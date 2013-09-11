@@ -20,6 +20,6 @@ public class ApplicationView {
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout());
 		
-		// some components		
+		// some components
 	}
 }
