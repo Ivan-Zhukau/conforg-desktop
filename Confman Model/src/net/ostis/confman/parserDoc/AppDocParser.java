@@ -3,15 +3,21 @@ package net.ostis.confman.parserDoc;
 import java.io.FileInputStream;
 
 import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.hwpf.usermodel.Paragraph;
+import org.apache.poi.hwpf.usermodel.Range;
+import org.apache.poi.hwpf.usermodel.Table;
+import org.apache.poi.hwpf.usermodel.TableCell;
+import org.apache.poi.hwpf.usermodel.TableRow;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 public class AppDocParser {
 	
 	public AppInfo appInfo;
+	private String info; 
 	
 	public AppDocParser(String path) {
 		appInfo = new AppInfo();
+		info = new String();
 		openDocFile(path);
 	}
 	
@@ -21,81 +27,98 @@ public class AppDocParser {
         	fileSystem = new POIFSFileSystem(new FileInputStream(path));
             HWPFDocument doc = new HWPFDocument(fileSystem);
             
-            WordExtractor wordExtractor = new WordExtractor(doc);
-            String[] paragraphs = wordExtractor.getParagraphText();
+            Range range = doc.getRange();             
+            Paragraph tableParagraph = range.getParagraph(0); 
             
-            for(int i = 0; i < paragraphs.length; i++) { 
-            	fieldComplete (i+1, paragraphs[i].toString().substring(0, paragraphs[i].toString().length()-1));
-            }         
+            if (tableParagraph.isInTable()) {  
+                Table table = range.getTable(tableParagraph);  
+                
+                for (int rowIdx=0; rowIdx < table.numRows(); rowIdx++) {  
+                    TableRow row = table.getRow(rowIdx);  
+                    
+                    for (int colIdx=0; colIdx<row.numCells(); colIdx++) {  
+                        TableCell cell = row.getCell(colIdx);  
+                        
+                        if(colIdx == 1){
+	                        for(int parInx = 0; parInx < cell.numParagraphs(); parInx++ ){
+	                        	
+	                        		info += cell.getParagraph(parInx).text();                     	
+	                        }
+	                        fieldComplete(rowIdx+1, info.substring(0, info.length()-1));
+	                        info = "";
+                        }
+                    }  
+                }  
+            }  	  
         } 
         catch (Exception e) {
             e.printStackTrace();
         }		
 	}
 
-	private void fieldComplete (int paragraphNumber, String info ) {
-		switch (paragraphNumber) {
-		case 5:{
+	private void fieldComplete (int rowNum, String info ) {
+		switch (rowNum) {
+		case 2:{
 			appInfo.setTitleEntry(info);
 			break;
 		}			
-		case 8:{
+		case 3:{
 			appInfo.setCoAuthor(info);
 			break;
 		}	
-		case 13:{
+		case 4:{
 			appInfo.setParticipationForm(info);
 			break;
 		}
-		case 16:{
+		case 5:{
 			appInfo.setSpeaker(info);
 			break;
 		}	
-		case 21:{
+		case 6:{
 			appInfo.setShowLaunching(info);
 			break;
 		}
-		case 26:{
+		case 8:{
 			appInfo.setSecondName(info);
 			break;
 		}
-		case 29:{
+		case 9:{
 			appInfo.setFirstName(info);
 			break;
 		}
-		case 32:{
+		case 10:{
 			appInfo.setThirdName(info);
 			break;
 		}			
-		case 38:{
+		case 11:{
 			appInfo.setAcademicDegree(info);
 			break;
 		}
-		case 45:{
+		case 12:{
 			appInfo.setAcademicTitle(info);
 			break;
 		}
-		case 48:{
+		case 13:{
 			appInfo.setCountry(info);
 			break;
 		}
-		case 51:{
+		case 14:{
 			appInfo.setCity(info);
 			break;
 		}
-		case 54:{
+		case 15:{
 			appInfo.seteMail(info);
 			break;
 		}	
-		case 58:{
+		case 16:{
 			appInfo.setContactPhoneNumber(info);
 			break;
 		}
-		case 63:{
+		case 18:{
 			appInfo.setAffliation(info);
 			break;
 		}
-		case 66:{
+		case 19:{
 			appInfo.setPosition(info);
 			break;
 		}
