@@ -10,7 +10,9 @@
  *******************************************************************************/
 package net.ostis.confman.ui.parts;
 
+
 import javax.annotation.PostConstruct;
+
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -19,7 +21,5 @@ public class ApplicationView {
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout());
-		
-		// some components
 	}
 }
