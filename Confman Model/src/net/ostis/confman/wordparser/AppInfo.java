@@ -1,4 +1,4 @@
-package net.ostis.confman.parserDoc;
+package net.ostis.confman.wordparser;
 
 public class AppInfo {
 	

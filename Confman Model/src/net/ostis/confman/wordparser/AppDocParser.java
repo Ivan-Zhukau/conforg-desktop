@@ -1,4 +1,4 @@
-package net.ostis.confman.parser_doc;
+package net.ostis.confman.wordparser;
 
 import java.io.FileInputStream;
 
@@ -30,7 +30,7 @@ public class AppDocParser {
             
             if (tableParagraph.isInTable()) {  
                 Table table = range.getTable(tableParagraph);                  
-                readTatle(table);  
+                readTable(table);  
             }  	  
         } 
         catch (Exception e) {
@@ -38,7 +38,7 @@ public class AppDocParser {
         }		
 	}
 
-	private void readTatle(Table table) {
+	private void readTable(Table table) {
 		for (int rowIdx=0; rowIdx < table.numRows(); rowIdx++) {  
 		    TableRow row = table.getRow(rowIdx);  
 		    

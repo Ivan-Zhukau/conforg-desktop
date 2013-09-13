@@ -1,4 +1,4 @@
-package net.ostis.confman.parser_doc;
+package net.ostis.confman.wordparser;
 
 public class EntryPointParser {
 	public static void main(String[] args) {
