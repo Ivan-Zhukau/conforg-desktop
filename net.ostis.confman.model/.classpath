@@ -2,11 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-examples-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-excelant-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-ooxml-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-ooxml-schemas-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/poi_apachi/poi-3.9/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/net.ostis.confman.service"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/poi"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
