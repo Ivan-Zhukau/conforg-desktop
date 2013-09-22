@@ -87,7 +87,7 @@ public class DocxRegistrationFormParser {
 	}
 
 	private int spotIndex(int counter, int authorNumber) {
-		return counter-(authorNumber*10);
+		return counter-(authorNumber*RegistrationFormConstant.NUMBER_AUTORS_ITEMS);
 	}
 
 	private void completeAuthorsPart(int index, String info, AuthorInformation authorInformation) {
@@ -143,7 +143,7 @@ public class DocxRegistrationFormParser {
 	}
 
 	private int getAuthorNumber(int counter) {
-		return (counter-5)/10;
+		return (counter-RegistrationFormConstant.NUMBER_ARTICLE_ITEMS)/RegistrationFormConstant.NUMBER_AUTORS_ITEMS;
 	}
 
 	private void completeArticlePart(int counter, String info) {
