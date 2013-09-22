@@ -5,5 +5,18 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/net.ostis.confman.service"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/poi"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/commons-codec-1.5.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-examples-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-excelant-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/university/sem_5/SystemControlConfirentions/Git/conforg-desktop/net.ostis.confman.lib/poi/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
