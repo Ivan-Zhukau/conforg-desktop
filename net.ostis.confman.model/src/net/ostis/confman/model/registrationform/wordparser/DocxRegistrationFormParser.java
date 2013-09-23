@@ -174,10 +174,61 @@ public class DocxRegistrationFormParser {
 	}
 
 	private void parseCoAuthors(String info) {
+		List<String> NamesWithSpaces = selectCertainNames(info);	
+		List<String> CoAuthorsNames = deleteSpaces(NamesWithSpaces);
+		addInResistrationForm(CoAuthorsNames);
+	}
+
+	private void addInResistrationForm(List<String> coAuthorsNames) {
+		for(String name : coAuthorsNames){
+			registrationForm.getArticleInformation().getCoAuthors().add(name);
+		}
+	}
+
+	private List<String> deleteSpaces(List<String> namesWithSpaces) {
+		List<String> namesWithoutSpaces = new ArrayList<String>();
+		int beginName = 0;
+		int endName = 0;
+		for(String name : namesWithSpaces){
+			beginName = findBeginWord(beginName, name);
+			endName = findEndWord(endName, name);
+			namesWithoutSpaces.add(name.substring(beginName, endName));
+		}
+		return namesWithoutSpaces;
+	}
+
+	private int findEndWord(int endName, String name) {
+		for(int index = name.length(); index>=0; index--){
+			if(!" ".equals(name.substring(index-1, index))){
+				endName=index;
+				break;
+			}
+		}
+		return endName;
+	}
+
+	private int findBeginWord(int beginName, String name) {
+		for(int index = 0; index<name.length(); index++){
+			if(!" ".equals(name.substring(index, index+1))){
+				beginName=index;
+				break;
+			}
+		}
+		return beginName;
+	}
+
+	private List<String> selectCertainNames(String info) {
+		List<String> NamesWithSpaces = new ArrayList<String>();
+		int beginWord = 0;
 		for(int index = 0; index<info.length(); index++){
-			if(",".equals(info.substring(index, index))){
-				
-			}			
-		}		
+			if(",".equals(info.substring(index, index+1))){
+				NamesWithSpaces.add(info.substring(beginWord, index));
+				beginWord = index+1;
+			}
+			if(index+1==info.length()){
+				NamesWithSpaces.add(info.substring(beginWord, index+1));
+			}
+		}
+		return NamesWithSpaces;
 	}
 }
