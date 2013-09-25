@@ -1,8 +1,6 @@
 package net.ostis.confman.model.registrationform.wordparser;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,78 +60,65 @@ public class DocxRegistrationFormParser {
 	}
 
 	private void infoAllocation(int counter, String info, AuthorInformation authorInformation) {
-		int currrentAuthorNumber = 0;
 		if(counter<5) {
 			completeArticlePart(counter, info);
 		}
 		else {
-			if(currrentAuthorNumber == getAuthorNumber(counter)){
-				int index = spotIndex(counter, getAuthorNumber(counter));
-				completeAuthorsPart(index, info, authorInformation);
-			}
-			else{
-				addAuthorInformation(counter, info, authorInformation);
-				currrentAuthorNumber = getAuthorNumber(counter);
-			}
+			completeAuthorsPart(counter, info);
 		}
 	}
-
-	private void addAuthorInformation(int counter, String info,
-			AuthorInformation authorInformation) {
-		registrationForm.getAuthorsInformation().add(authorInformation);
-		authorInformation = new AuthorInformation();
-		int index = spotIndex(counter, getAuthorNumber(counter));
-		completeAuthorsPart(index, info, authorInformation);
-	}
-
+	
 	private int spotIndex(int counter, int authorNumber) {
 		return counter-(authorNumber*RegistrationFormConstant.NUMBER_AUTORS_ITEMS);
 	}
 
-	private void completeAuthorsPart(int index, String info, AuthorInformation authorInformation) {
-		switch (index) {		
+	private void completeAuthorsPart(int index, String info) {
+		int authorNumber = getAuthorNumber(index);
+		int convertIndex = spotIndex(index, authorNumber);
+		
+		switch (convertIndex) {		
 		case RegistrationFormConstant.SECOND_NAME:{
-			authorInformation.getPersonalInformation().setSecondName(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getPersonalInformation().setSecondName(info);
 			break;
 		}			
 		case RegistrationFormConstant.FIRST_NAME:{
-			authorInformation.getPersonalInformation().setFirstName(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getPersonalInformation().setFirstName(info);
 			break;
 		}	
 		case RegistrationFormConstant.THIRD_NAME:{
-			authorInformation.getPersonalInformation().setThirdName(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getPersonalInformation().setThirdName(info);
 			break;
 		}
 		case RegistrationFormConstant.ACADEMIC_DEGREE:{
-			authorInformation.getPersonalInformation().setAcademicDegree(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getPersonalInformation().setAcademicDegree(info);
 			break;
 		}	
 		case RegistrationFormConstant.ACADEMIC_TITLE:{
-			authorInformation.getPersonalInformation().setAcademicTitle(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getPersonalInformation().setAcademicTitle(info);
 			break;
 		}		
 		case RegistrationFormConstant.COUNTRY:{
-			authorInformation.getContactInformation().setCountry(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getContactInformation().setCountry(info);
 			break;
 		}			
 		case RegistrationFormConstant.CITY:{
-			authorInformation.getContactInformation().setCity(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getContactInformation().setCity(info);
 			break;
 		}	
 		case RegistrationFormConstant.EMAIL:{
-			authorInformation.getContactInformation().seteMail(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getContactInformation().seteMail(info);
 			break;
 		}
 		case RegistrationFormConstant.CONTACT_PHONE_NUMBER:{
-			authorInformation.getContactInformation().setContactPhoneNumber(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getContactInformation().setContactPhoneNumber(info);
 			break;
 		}	
 		case RegistrationFormConstant.AFFLIATION:{
-			authorInformation.getWorkPlaceInformation().setAffliation(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getWorkPlaceInformation().setAffliation(info);
 			break;
 		}	
 		case RegistrationFormConstant.POSITION:{
-			authorInformation.getWorkPlaceInformation().setPosition(info);
+			registrationForm.getAuthorsInformation().get(authorNumber).getWorkPlaceInformation().setPosition(info);
 			break;
 		}	
 		default:
@@ -175,14 +160,16 @@ public class DocxRegistrationFormParser {
 
 	private void parseCoAuthors(String info) {
 		List<String> NamesWithSpaces = selectCertainNames(info);	
-		List<String> CoAuthorsNames = deleteSpaces(NamesWithSpaces);
-		addInResistrationForm(CoAuthorsNames);
+		List<String> coAuthorsNames = deleteSpaces(NamesWithSpaces);
+		addInResistrationForm(coAuthorsNames);
 	}
 
 	private void addInResistrationForm(List<String> coAuthorsNames) {
 		for(String name : coAuthorsNames){
-			registrationForm.getArticleInformation().getCoAuthors().add(name);
-		}
+			AuthorInformation authorInformation = new AuthorInformation();
+			authorInformation.setId_Author(name);
+			registrationForm.getAuthorsInformation().add(authorInformation);
+			}
 	}
 
 	private List<String> deleteSpaces(List<String> namesWithSpaces) {

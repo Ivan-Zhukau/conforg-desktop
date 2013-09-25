@@ -1,6 +1,7 @@
 package net.ostis.confman.model.registrationform;
 
 public class AuthorInformation {
+	private String id_Author;
 	private PersonalInformation personalInformation;
 	private ContactInformation contactInformation;
 	private WorkPlaceInformation workPlaceInformation;
@@ -12,6 +13,12 @@ public class AuthorInformation {
 		workPlaceInformation = new WorkPlaceInformation();
 	}
 	
+	public String getId_Author() {
+		return id_Author;
+	}
+	public void setId_Author(String id_Author) {
+		this.id_Author = id_Author;
+	}
 	public ContactInformation getContactInformation() {
 		return contactInformation;
 	}
