@@ -1,8 +1,6 @@
 package net.ostis.confman.model.registrationform.wordparser;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,218 +15,240 @@ import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
 public class DocxRegistrationFormParser {
-	
-	private RegistrationForm registrationForm;	 
-	private List<String> allInformation;
-	
-	public DocxRegistrationFormParser() {
-		super();
-		registrationForm = new RegistrationForm();
-		allInformation = new ArrayList<String>();
-	}
-	
-	public RegistrationForm parse(FileInputStream inputStream) {
-            try {
-				XWPFDocument document = new XWPFDocument(inputStream);
-				List<XWPFTable> tables = document.getTables();
-				readTables(tables);
-			} 
-            catch (IOException e) {
-				e.printStackTrace();
-			}	
-            return registrationForm;
-	}
 
-	private void readTables(List<XWPFTable> tables) {
-		for(XWPFTable table : tables){
-			for(XWPFTableRow row : table.getRows()){
-				for(XWPFTableCell cell : row.getTableCells()){
-					if(row.getTableCells().indexOf(cell)==1 && table.getRows().indexOf(row)!=0){
-						allInformation.add(cell.getText());
-					} 
-				}
-			}
-		}
-		parseAllInform(allInformation);
-	}
+    private RegistrationForm registrationForm;
 
-	private void parseAllInform(List<String> information) {	
-		int counter = 0;
-		AuthorInformation authorInformation = new AuthorInformation();
-		for(String info : information){
-			infoAllocation(counter, info, authorInformation);
-			counter++;
-		}
-	}
+    private List<String>     allInformation;
 
-	private void infoAllocation(int counter, String info, AuthorInformation authorInformation) {
-		int currrentAuthorNumber = 0;
-		if(counter<5) {
-			completeArticlePart(counter, info);
-		}
-		else {
-			if(currrentAuthorNumber == getAuthorNumber(counter)){
-				int index = spotIndex(counter, getAuthorNumber(counter));
-				completeAuthorsPart(index, info, authorInformation);
-			}
-			else{
-				addAuthorInformation(counter, info, authorInformation);
-				currrentAuthorNumber = getAuthorNumber(counter);
-			}
-		}
-	}
+    public DocxRegistrationFormParser() {
 
-	private void addAuthorInformation(int counter, String info,
-			AuthorInformation authorInformation) {
-		registrationForm.getAuthorsInformation().add(authorInformation);
-		authorInformation = new AuthorInformation();
-		int index = spotIndex(counter, getAuthorNumber(counter));
-		completeAuthorsPart(index, info, authorInformation);
-	}
+        super();
+        this.registrationForm = new RegistrationForm();
+        this.allInformation = new ArrayList<String>();
+    }
 
-	private int spotIndex(int counter, int authorNumber) {
-		return counter-(authorNumber*RegistrationFormConstant.NUMBER_AUTORS_ITEMS);
-	}
+    public RegistrationForm parse(final FileInputStream inputStream) {
 
-	private void completeAuthorsPart(int index, String info, AuthorInformation authorInformation) {
-		switch (index) {		
-		case RegistrationFormConstant.SECOND_NAME:{
-			authorInformation.getPersonalInformation().setSecondName(info);
-			break;
-		}			
-		case RegistrationFormConstant.FIRST_NAME:{
-			authorInformation.getPersonalInformation().setFirstName(info);
-			break;
-		}	
-		case RegistrationFormConstant.THIRD_NAME:{
-			authorInformation.getPersonalInformation().setThirdName(info);
-			break;
-		}
-		case RegistrationFormConstant.ACADEMIC_DEGREE:{
-			authorInformation.getPersonalInformation().setAcademicDegree(info);
-			break;
-		}	
-		case RegistrationFormConstant.ACADEMIC_TITLE:{
-			authorInformation.getPersonalInformation().setAcademicTitle(info);
-			break;
-		}		
-		case RegistrationFormConstant.COUNTRY:{
-			authorInformation.getContactInformation().setCountry(info);
-			break;
-		}			
-		case RegistrationFormConstant.CITY:{
-			authorInformation.getContactInformation().setCity(info);
-			break;
-		}	
-		case RegistrationFormConstant.EMAIL:{
-			authorInformation.getContactInformation().seteMail(info);
-			break;
-		}
-		case RegistrationFormConstant.CONTACT_PHONE_NUMBER:{
-			authorInformation.getContactInformation().setContactPhoneNumber(info);
-			break;
-		}	
-		case RegistrationFormConstant.AFFLIATION:{
-			authorInformation.getWorkPlaceInformation().setAffliation(info);
-			break;
-		}	
-		case RegistrationFormConstant.POSITION:{
-			authorInformation.getWorkPlaceInformation().setPosition(info);
-			break;
-		}	
-		default:
-			break;
-		}	
-		
-	}
+        try {
+            final XWPFDocument document = new XWPFDocument(inputStream);
+            final List<XWPFTable> tables = document.getTables();
+            readTables(tables);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        return this.registrationForm;
+    }
 
-	private int getAuthorNumber(int counter) {
-		return (counter-RegistrationFormConstant.NUMBER_ARTICLE_ITEMS)/RegistrationFormConstant.NUMBER_AUTORS_ITEMS;
-	}
+    private void readTables(final List<XWPFTable> tables) {
 
-	private void completeArticlePart(int counter, String info) {
-		switch (counter) {		
-		case RegistrationFormConstant.TITLE_ENTRY:{
-			registrationForm.getArticleInformation().setTitleEntry(info);
-			break;
-		}			
-		case RegistrationFormConstant.CO_AUTHOR:{
-			parseCoAuthors(info);
-			break;
-		}	
-		case RegistrationFormConstant.PARTICIPATION_FORM:{
-			registrationForm.getArticleInformation().setParticipationForm(info);
-			break;
-		}
-		case RegistrationFormConstant.SPEAKER:{
-			registrationForm.getArticleInformation().setSpeaker(info);
-			break;
-		}	
-		case RegistrationFormConstant.SHOW_LAUNCHING:{
-			registrationForm.getArticleInformation().setShowLaunching(info);
-			break;
-		}		
-		default:
-			break;
-		}			
-	}
+        for (final XWPFTable table : tables) {
+            for (final XWPFTableRow row : table.getRows()) {
+                for (final XWPFTableCell cell : row.getTableCells()) {
+                    if (row.getTableCells().indexOf(cell) == 1
+                            && table.getRows().indexOf(row) != 0) {
+                        this.allInformation.add(cell.getText());
+                    }
+                }
+            }
+        }
+        parseAllInform(this.allInformation);
+    }
 
-	private void parseCoAuthors(String info) {
-		List<String> NamesWithSpaces = selectCertainNames(info);	
-		List<String> CoAuthorsNames = deleteSpaces(NamesWithSpaces);
-		addInResistrationForm(CoAuthorsNames);
-	}
+    private void parseAllInform(final List<String> information) {
 
-	private void addInResistrationForm(List<String> coAuthorsNames) {
-		for(String name : coAuthorsNames){
-			registrationForm.getArticleInformation().getCoAuthors().add(name);
-		}
-	}
+        int counter = 0;
+        final AuthorInformation authorInformation = new AuthorInformation();
+        for (final String info : information) {
+            infoAllocation(counter, info, authorInformation);
+            counter++;
+        }
+    }
 
-	private List<String> deleteSpaces(List<String> namesWithSpaces) {
-		List<String> namesWithoutSpaces = new ArrayList<String>();
-		int beginName = 0;
-		int endName = 0;
-		for(String name : namesWithSpaces){
-			beginName = findBeginWord(beginName, name);
-			endName = findEndWord(endName, name);
-			namesWithoutSpaces.add(name.substring(beginName, endName));
-		}
-		return namesWithoutSpaces;
-	}
+    private void infoAllocation(final int counter, final String info,
+            final AuthorInformation authorInformation) {
 
-	private int findEndWord(int endName, String name) {
-		for(int index = name.length(); index>=0; index--){
-			if(!" ".equals(name.substring(index-1, index))){
-				endName=index;
-				break;
-			}
-		}
-		return endName;
-	}
+        if (counter < 5) {
+            completeArticlePart(counter, info);
+        } else {
+            completeAuthorsPart(counter, info);
+        }
+    }
 
-	private int findBeginWord(int beginName, String name) {
-		for(int index = 0; index<name.length(); index++){
-			if(!" ".equals(name.substring(index, index+1))){
-				beginName=index;
-				break;
-			}
-		}
-		return beginName;
-	}
+    private int spotIndex(final int counter, final int authorNumber) {
 
-	private List<String> selectCertainNames(String info) {
-		List<String> NamesWithSpaces = new ArrayList<String>();
-		int beginWord = 0;
-		for(int index = 0; index<info.length(); index++){
-			if(",".equals(info.substring(index, index+1))){
-				NamesWithSpaces.add(info.substring(beginWord, index));
-				beginWord = index+1;
-			}
-			if(index+1==info.length()){
-				NamesWithSpaces.add(info.substring(beginWord, index+1));
-			}
-		}
-		return NamesWithSpaces;
-	}
+        return counter
+                - (authorNumber * RegistrationFormConstant.NUMBER_AUTORS_ITEMS);
+    }
+
+    private void completeAuthorsPart(final int index, final String info) {
+
+        final int authorNumber = getAuthorNumber(index);
+        final int convertIndex = spotIndex(index, authorNumber);
+
+        switch (convertIndex) {
+            case RegistrationFormConstant.SECOND_NAME: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getPersonalInformation().setSecondName(info);
+                break;
+            }
+            case RegistrationFormConstant.FIRST_NAME: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getPersonalInformation().setFirstName(info);
+                break;
+            }
+            case RegistrationFormConstant.THIRD_NAME: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getPersonalInformation().setThirdName(info);
+                break;
+            }
+            case RegistrationFormConstant.ACADEMIC_DEGREE: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getPersonalInformation().setAcademicDegree(info);
+                break;
+            }
+            case RegistrationFormConstant.ACADEMIC_TITLE: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getPersonalInformation().setAcademicTitle(info);
+                break;
+            }
+            case RegistrationFormConstant.COUNTRY: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getContactInformation().setCountry(info);
+                break;
+            }
+            case RegistrationFormConstant.CITY: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getContactInformation().setCity(info);
+                break;
+            }
+            case RegistrationFormConstant.EMAIL: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getContactInformation().seteMail(info);
+                break;
+            }
+            case RegistrationFormConstant.CONTACT_PHONE_NUMBER: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getContactInformation().setContactPhoneNumber(info);
+                break;
+            }
+            case RegistrationFormConstant.AFFLIATION: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getWorkPlaceInformation().setAffliation(info);
+                break;
+            }
+            case RegistrationFormConstant.POSITION: {
+                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                        .getWorkPlaceInformation().setPosition(info);
+                break;
+            }
+            default:
+                break;
+        }
+
+    }
+
+    private int getAuthorNumber(final int counter) {
+
+        return (counter - RegistrationFormConstant.NUMBER_ARTICLE_ITEMS)
+                / RegistrationFormConstant.NUMBER_AUTORS_ITEMS;
+    }
+
+    private void completeArticlePart(final int counter, final String info) {
+
+        switch (counter) {
+            case RegistrationFormConstant.TITLE_ENTRY: {
+                this.registrationForm.getArticleInformation().setTitleEntry(
+                        info);
+                break;
+            }
+            case RegistrationFormConstant.CO_AUTHOR: {
+                parseCoAuthors(info);
+                break;
+            }
+            case RegistrationFormConstant.PARTICIPATION_FORM: {
+                this.registrationForm.getArticleInformation()
+                        .setParticipationForm(info);
+                break;
+            }
+            case RegistrationFormConstant.SPEAKER: {
+                this.registrationForm.getArticleInformation().setSpeaker(info);
+                break;
+            }
+            case RegistrationFormConstant.SHOW_LAUNCHING: {
+                this.registrationForm.getArticleInformation().setShowLaunching(
+                        info);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    private void parseCoAuthors(final String info) {
+
+        final List<String> NamesWithSpaces = selectCertainNames(info);
+        final List<String> coAuthorsNames = deleteSpaces(NamesWithSpaces);
+        addInResistrationForm(coAuthorsNames);
+    }
+
+    private void addInResistrationForm(final List<String> coAuthorsNames) {
+
+        for (final String name : coAuthorsNames) {
+            final AuthorInformation authorInformation = new AuthorInformation();
+            authorInformation.setId_Author(name);
+            this.registrationForm.getAuthorsInformation()
+                    .add(authorInformation);
+        }
+    }
+
+    private List<String> deleteSpaces(final List<String> namesWithSpaces) {
+
+        final List<String> namesWithoutSpaces = new ArrayList<String>();
+        int beginName = 0;
+        int endName = 0;
+        for (final String name : namesWithSpaces) {
+            beginName = findBeginWord(beginName, name);
+            endName = findEndWord(endName, name);
+            namesWithoutSpaces.add(name.substring(beginName, endName));
+        }
+        return namesWithoutSpaces;
+    }
+
+    private int findEndWord(int endName, final String name) {
+
+        for (int index = name.length(); index >= 0; index--) {
+            if (!" ".equals(name.substring(index - 1, index))) {
+                endName = index;
+                break;
+            }
+        }
+        return endName;
+    }
+
+    private int findBeginWord(int beginName, final String name) {
+
+        for (int index = 0; index < name.length(); index++) {
+            if (!" ".equals(name.substring(index, index + 1))) {
+                beginName = index;
+                break;
+            }
+        }
+        return beginName;
+    }
+
+    private List<String> selectCertainNames(final String info) {
+
+        final List<String> NamesWithSpaces = new ArrayList<String>();
+        int beginWord = 0;
+        for (int index = 0; index < info.length(); index++) {
+            if (",".equals(info.substring(index, index + 1))) {
+                NamesWithSpaces.add(info.substring(beginWord, index));
+                beginWord = index + 1;
+            }
+            if (index + 1 == info.length()) {
+                NamesWithSpaces.add(info.substring(beginWord, index + 1));
+            }
+        }
+        return NamesWithSpaces;
+    }
 }

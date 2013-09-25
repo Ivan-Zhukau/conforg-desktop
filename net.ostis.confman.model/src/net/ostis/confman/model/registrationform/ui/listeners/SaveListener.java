@@ -7,20 +7,26 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class SaveListener implements SelectionListener {
-	private Shell shell;
-	
-	public SaveListener(Shell shell) {
-		this.shell = shell;
-	}
-	
-	public void widgetSelected(SelectionEvent event) {
-        FileDialog fileDialog = new FileDialog(shell, SWT.SAVE);
+
+    private Shell shell;
+
+    public SaveListener(final Shell shell) {
+
+        this.shell = shell;
+    }
+
+    @Override
+    public void widgetSelected(final SelectionEvent event) {
+
+        final FileDialog fileDialog = new FileDialog(this.shell, SWT.SAVE);
         fileDialog.setText("Save");
-        String[] filterExtension = { "*.docx", "*.doc", "*.txt", "*.*" };
+        final String[] filterExtension = { "*.docx", "*.doc", "*.txt", "*.*" };
         fileDialog.setFilterExtensions(filterExtension);
         fileDialog.open();
     }
 
-    public void widgetDefaultSelected(SelectionEvent event) {
+    @Override
+    public void widgetDefaultSelected(final SelectionEvent event) {
+
     }
 }

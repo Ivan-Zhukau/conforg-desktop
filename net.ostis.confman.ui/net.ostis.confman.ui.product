@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="net.ostis.confman.ui" id="net.ostis.confman.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="net.ostis.confman.ui" uid="net.ostis.confman.ui.product" id="net.ostis.confman.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -13,12 +13,25 @@
 
    <windowImages/>
 
+   <launcher>
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
    <plugins>
-      <plugin id="net.ostis.confman.ui"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.xml"/>
+      <plugin id="net.ostis.confman.lib"/>
+      <plugin id="net.ostis.confman.model"/>
+      <plugin id="net.ostis.confman.services"/>
+      <plugin id="net.ostis.confman.ui"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.util"/>
       <plugin id="org.apache.batik.util.gui"/>
@@ -43,6 +56,7 @@
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.e4.core.commands"/>
