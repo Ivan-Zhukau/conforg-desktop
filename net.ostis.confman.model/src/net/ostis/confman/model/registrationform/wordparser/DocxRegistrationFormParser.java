@@ -23,49 +23,49 @@ public class DocxRegistrationFormParser {
     public DocxRegistrationFormParser() {
 
         super();
-        this.registrationForm = new RegistrationForm();
-        this.allInformation = new ArrayList<String>();
+        registrationForm = new RegistrationForm();
+        allInformation = new ArrayList<String>();
     }
 
-    public RegistrationForm parse(final FileInputStream inputStream) {
+    public RegistrationForm parse(FileInputStream inputStream) {
 
         try {
-            final XWPFDocument document = new XWPFDocument(inputStream);
-            final List<XWPFTable> tables = document.getTables();
+            XWPFDocument document = new XWPFDocument(inputStream);
+            List<XWPFTable> tables = document.getTables();
             readTables(tables);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return this.registrationForm;
+        return registrationForm;
     }
 
-    private void readTables(final List<XWPFTable> tables) {
+    private void readTables(List<XWPFTable> tables) {
 
-        for (final XWPFTable table : tables) {
-            for (final XWPFTableRow row : table.getRows()) {
-                for (final XWPFTableCell cell : row.getTableCells()) {
+        for (XWPFTable table : tables) {
+            for (XWPFTableRow row : table.getRows()) {
+                for (XWPFTableCell cell : row.getTableCells()) {
                     if (row.getTableCells().indexOf(cell) == 1
                             && table.getRows().indexOf(row) != 0) {
-                        this.allInformation.add(cell.getText());
+                        allInformation.add(cell.getText());
                     }
                 }
             }
         }
-        parseAllInform(this.allInformation);
+        parseAllInform(allInformation);
     }
 
-    private void parseAllInform(final List<String> information) {
+    private void parseAllInform(List<String> information) {
 
         int counter = 0;
-        final AuthorInformation authorInformation = new AuthorInformation();
-        for (final String info : information) {
+        AuthorInformation authorInformation = new AuthorInformation();
+        for (String info : information) {
             infoAllocation(counter, info, authorInformation);
             counter++;
         }
     }
 
-    private void infoAllocation(final int counter, final String info,
-            final AuthorInformation authorInformation) {
+    private void infoAllocation(int counter, String info,
+            AuthorInformation authorInformation) {
 
         if (counter < 5) {
             completeArticlePart(counter, info);
@@ -74,70 +74,70 @@ public class DocxRegistrationFormParser {
         }
     }
 
-    private int spotIndex(final int counter, final int authorNumber) {
+    private int spotIndex(int counter, int authorNumber) {
 
         return counter
                 - (authorNumber * RegistrationFormConstant.NUMBER_AUTORS_ITEMS);
     }
 
-    private void completeAuthorsPart(final int index, final String info) {
+    private void completeAuthorsPart(int index, String info) {
 
-        final int authorNumber = getAuthorNumber(index);
-        final int convertIndex = spotIndex(index, authorNumber);
+        int authorNumber = getAuthorNumber(index);
+        int convertIndex = spotIndex(index, authorNumber);
 
         switch (convertIndex) {
             case RegistrationFormConstant.SECOND_NAME: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getPersonalInformation().setSecondName(info);
                 break;
             }
             case RegistrationFormConstant.FIRST_NAME: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getPersonalInformation().setFirstName(info);
                 break;
             }
             case RegistrationFormConstant.THIRD_NAME: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getPersonalInformation().setThirdName(info);
                 break;
             }
             case RegistrationFormConstant.ACADEMIC_DEGREE: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getPersonalInformation().setAcademicDegree(info);
                 break;
             }
             case RegistrationFormConstant.ACADEMIC_TITLE: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getPersonalInformation().setAcademicTitle(info);
                 break;
             }
             case RegistrationFormConstant.COUNTRY: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getContactInformation().setCountry(info);
                 break;
             }
             case RegistrationFormConstant.CITY: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getContactInformation().setCity(info);
                 break;
             }
             case RegistrationFormConstant.EMAIL: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getContactInformation().seteMail(info);
                 break;
             }
             case RegistrationFormConstant.CONTACT_PHONE_NUMBER: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getContactInformation().setContactPhoneNumber(info);
                 break;
             }
             case RegistrationFormConstant.AFFLIATION: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getWorkPlaceInformation().setAffliation(info);
                 break;
             }
             case RegistrationFormConstant.POSITION: {
-                this.registrationForm.getAuthorsInformation().get(authorNumber)
+                registrationForm.getAuthorsInformation().get(authorNumber)
                         .getWorkPlaceInformation().setPosition(info);
                 break;
             }
@@ -147,18 +147,17 @@ public class DocxRegistrationFormParser {
 
     }
 
-    private int getAuthorNumber(final int counter) {
+    private int getAuthorNumber(int counter) {
 
         return (counter - RegistrationFormConstant.NUMBER_ARTICLE_ITEMS)
                 / RegistrationFormConstant.NUMBER_AUTORS_ITEMS;
     }
 
-    private void completeArticlePart(final int counter, final String info) {
+    private void completeArticlePart(int counter, String info) {
 
         switch (counter) {
             case RegistrationFormConstant.TITLE_ENTRY: {
-                this.registrationForm.getArticleInformation().setTitleEntry(
-                        info);
+                registrationForm.getArticleInformation().setTitleEntry(info);
                 break;
             }
             case RegistrationFormConstant.CO_AUTHOR: {
@@ -166,17 +165,16 @@ public class DocxRegistrationFormParser {
                 break;
             }
             case RegistrationFormConstant.PARTICIPATION_FORM: {
-                this.registrationForm.getArticleInformation()
-                        .setParticipationForm(info);
+                registrationForm.getArticleInformation().setParticipationForm(
+                        info);
                 break;
             }
             case RegistrationFormConstant.SPEAKER: {
-                this.registrationForm.getArticleInformation().setSpeaker(info);
+                registrationForm.getArticleInformation().setSpeaker(info);
                 break;
             }
             case RegistrationFormConstant.SHOW_LAUNCHING: {
-                this.registrationForm.getArticleInformation().setShowLaunching(
-                        info);
+                registrationForm.getArticleInformation().setShowLaunching(info);
                 break;
             }
             default:
@@ -184,29 +182,28 @@ public class DocxRegistrationFormParser {
         }
     }
 
-    private void parseCoAuthors(final String info) {
+    private void parseCoAuthors(String info) {
 
-        final List<String> NamesWithSpaces = selectCertainNames(info);
-        final List<String> coAuthorsNames = deleteSpaces(NamesWithSpaces);
+        List<String> NamesWithSpaces = selectCertainNames(info);
+        List<String> coAuthorsNames = deleteSpaces(NamesWithSpaces);
         addInResistrationForm(coAuthorsNames);
     }
 
-    private void addInResistrationForm(final List<String> coAuthorsNames) {
+    private void addInResistrationForm(List<String> coAuthorsNames) {
 
-        for (final String name : coAuthorsNames) {
-            final AuthorInformation authorInformation = new AuthorInformation();
+        for (String name : coAuthorsNames) {
+            AuthorInformation authorInformation = new AuthorInformation();
             authorInformation.setId_Author(name);
-            this.registrationForm.getAuthorsInformation()
-                    .add(authorInformation);
+            registrationForm.getAuthorsInformation().add(authorInformation);
         }
     }
 
-    private List<String> deleteSpaces(final List<String> namesWithSpaces) {
+    private List<String> deleteSpaces(List<String> namesWithSpaces) {
 
-        final List<String> namesWithoutSpaces = new ArrayList<String>();
+        List<String> namesWithoutSpaces = new ArrayList<String>();
         int beginName = 0;
         int endName = 0;
-        for (final String name : namesWithSpaces) {
+        for (String name : namesWithSpaces) {
             beginName = findBeginWord(beginName, name);
             endName = findEndWord(endName, name);
             namesWithoutSpaces.add(name.substring(beginName, endName));
@@ -214,7 +211,7 @@ public class DocxRegistrationFormParser {
         return namesWithoutSpaces;
     }
 
-    private int findEndWord(int endName, final String name) {
+    private int findEndWord(int endName, String name) {
 
         for (int index = name.length(); index >= 0; index--) {
             if (!" ".equals(name.substring(index - 1, index))) {
@@ -225,7 +222,7 @@ public class DocxRegistrationFormParser {
         return endName;
     }
 
-    private int findBeginWord(int beginName, final String name) {
+    private int findBeginWord(int beginName, String name) {
 
         for (int index = 0; index < name.length(); index++) {
             if (!" ".equals(name.substring(index, index + 1))) {
@@ -236,9 +233,9 @@ public class DocxRegistrationFormParser {
         return beginName;
     }
 
-    private List<String> selectCertainNames(final String info) {
+    private List<String> selectCertainNames(String info) {
 
-        final List<String> NamesWithSpaces = new ArrayList<String>();
+        List<String> NamesWithSpaces = new ArrayList<String>();
         int beginWord = 0;
         for (int index = 0; index < info.length(); index++) {
             if (",".equals(info.substring(index, index + 1))) {
