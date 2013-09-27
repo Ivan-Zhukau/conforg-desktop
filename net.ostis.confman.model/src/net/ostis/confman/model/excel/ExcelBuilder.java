@@ -1,7 +1,5 @@
 package net.ostis.confman.model.excel;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -17,24 +15,24 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelBuilder {
 
-    public static final Logger GENERATOR_LOGGER = Logger.getLogger(ExcelBuilder.class);
+    public static final Logger    GENERATOR_LOGGER = Logger.getLogger(ExcelBuilder.class);
 
-    private Workbook           workbook;
+    private final Workbook        workbook;
 
-    private ExcelRowBuilder    rowBuilder;
+    private final ExcelRowBuilder rowBuilder;
 
     public ExcelBuilder() {
 
         super();
         this.rowBuilder = new ExcelRowBuilder();
+        this.workbook = new XSSFWorkbook();
     }
 
-    public void generate(final File destination,
+    public void generate(final OutputStream outputStream,
             final SpreadsheetTable tableModel) {
 
-        this.workbook = new XSSFWorkbook();
         buildSheet(tableModel);
-        writeDocumentToFile(destination);
+        writeDocumentToStream(outputStream);
     }
 
     private void buildSheet(final SpreadsheetTable tableModel) {
@@ -54,12 +52,10 @@ public class ExcelBuilder {
         }
     }
 
-    private void writeDocumentToFile(final File destination) {
+    private void writeDocumentToStream(final OutputStream outputStream) {
 
         try {
-            final OutputStream fileOut = new FileOutputStream(destination);
-            this.workbook.write(fileOut);
-            fileOut.close();
+            this.workbook.write(outputStream);
         } catch (final IOException exception) {
             GENERATOR_LOGGER.error(exception);
         }

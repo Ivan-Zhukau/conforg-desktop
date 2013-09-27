@@ -1,6 +1,8 @@
 package net.ostis.confman.test.excel;
 
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
@@ -13,7 +15,7 @@ import org.junit.Test;
 public class ExcelGenerationTest {
     
     @Test
-    public void testExcelGeneration() {
+    public void testExcelGeneration() throws FileNotFoundException {
 
         SpreadsheetTable tableModel = new SpreadsheetTable();
         
@@ -51,7 +53,8 @@ public class ExcelGenerationTest {
         
         
         ExcelBuilder builder = new ExcelBuilder();
-        builder.generate(new File("table.xlsx"), tableModel);
+        OutputStream stream = new FileOutputStream("table.xlsx");
+        builder.generate(stream, tableModel);
     }
 
 }

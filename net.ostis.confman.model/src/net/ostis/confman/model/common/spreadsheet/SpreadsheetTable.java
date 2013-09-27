@@ -1,6 +1,7 @@
 package net.ostis.confman.model.common.spreadsheet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SpreadsheetTable {
@@ -20,7 +21,7 @@ public class SpreadsheetTable {
 
     public List<SpreadsheetRow> getRows() {
 
-        return this.rows;
+        return Collections.unmodifiableList(this.rows);
     }
 
 }
