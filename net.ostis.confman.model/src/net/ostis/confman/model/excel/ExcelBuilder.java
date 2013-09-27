@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.ListIterator;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
@@ -20,9 +21,12 @@ public class ExcelBuilder {
 
     private Workbook           workbook;
 
+    private ExcelRowBuilder    rowBuilder;
+
     public ExcelBuilder() {
 
         super();
+        this.rowBuilder = new ExcelRowBuilder();
     }
 
     public void generate(final File destination,
@@ -42,11 +46,11 @@ public class ExcelBuilder {
     private void buildRows(final Sheet sheet,
             final List<SpreadsheetRow> spreadsheetRows) {
 
-        final ExcelRowBuilder rowBuilder = new ExcelRowBuilder();
-        int rowPosition = 0;
-        for (final SpreadsheetRow spreadsheetRow : spreadsheetRows) {
-            rowBuilder.buildRow(sheet, spreadsheetRow, rowPosition);
-            rowPosition++;
+        final ListIterator<SpreadsheetRow> rowIterator = spreadsheetRows
+                .listIterator();
+        while (rowIterator.hasNext()) {
+            this.rowBuilder.buildRow(sheet, rowIterator.next(),
+                    rowIterator.previousIndex());
         }
     }
 
