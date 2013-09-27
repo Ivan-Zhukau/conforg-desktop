@@ -1,6 +1,7 @@
 package net.ostis.confman.model.excel;
 
 import java.util.List;
+import java.util.ListIterator;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
@@ -21,10 +22,11 @@ class ExcelRowBuilder {
     private void buildCells(final Row excelRow,
             final List<SpreadsheetCell> spreadsheetCells) {
 
-        int cellPosition = 0;
-        for (final SpreadsheetCell spreadsheetCell : spreadsheetCells) {
-            this.cellBuilder.buildCell(excelRow, spreadsheetCell, cellPosition);
-            cellPosition++;
+        final ListIterator<SpreadsheetCell> cellIterator = spreadsheetCells
+                .listIterator();
+        while (cellIterator.hasNext()) {
+            this.cellBuilder.buildCell(excelRow, cellIterator.next(),
+                    cellIterator.previousIndex());
         }
     }
 
