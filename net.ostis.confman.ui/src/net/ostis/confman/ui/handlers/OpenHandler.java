@@ -12,6 +12,8 @@ package net.ostis.confman.ui.handlers;
 
 import javax.inject.Named;
 
+import net.ostis.confman.model.registrationform.AuthorInformation;
+import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.services.RegistrationService;
 import net.ostis.confman.services.ServiceLocator;
 
@@ -29,6 +31,6 @@ public class OpenHandler {
         final String filePath = dialog.open();
         final RegistrationService service = (RegistrationService) ServiceLocator
                 .getInstance().getService(RegistrationService.class);
-        service.parseForm(filePath);
+        	RegistrationForm form = service.parseForm(filePath);
     }
 }

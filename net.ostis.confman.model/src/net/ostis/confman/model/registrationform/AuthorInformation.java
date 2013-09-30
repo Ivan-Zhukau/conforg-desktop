@@ -23,7 +23,7 @@ public class AuthorInformation {
         return this.id_Author;
     }
 
-    public void setId_Author(final String id_Author) {
+    public void setIdAuthor(final String id_Author) {
 
         this.id_Author = id_Author;
     }
