@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <eclipse-userlibraries version="2">
+    <library name="jaxb" systemlibrary="false">
+        <archive javadoc="jar:platform:/resource/net.ostis.confman.lib/jaxb/jaxb-core-javadoc.jar!/" path="/net.ostis.confman.lib/jaxb/jaxb-core.jar" source="/net.ostis.confman.lib/jaxb/jaxb-core.src.zip"/>
+        <archive javadoc="jar:platform:/resource/net.ostis.confman.lib/jaxb/jaxb-impl-javadoc.jar!/" path="/net.ostis.confman.lib/jaxb/jaxb-impl.jar" source="/net.ostis.confman.lib/jaxb/jaxb-impl.src.zip"/>
+    </library>
     <library name="log4j" systemlibrary="false">
         <archive path="/net.ostis.confman.lib/log4j/log4j-1.2.17.jar" source="/net.ostis.confman.lib/log4j/src/log4j-1.2.17.zip"/>
     </library>

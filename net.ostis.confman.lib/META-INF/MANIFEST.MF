@@ -18,4 +18,7 @@ Bundle-ClassPath: log4j/log4j-1.2.17.jar,
  poi/stax-api-1.0.1.jar,
  poi/xmlbeans-2.3.0.jar,
  swt/swt-debug.jar,
- swt/swt.jar
+ swt/swt.jar,
+ jaxb/,
+ jaxb/jaxb-core.jar,
+ jaxb/jaxb-impl.jar

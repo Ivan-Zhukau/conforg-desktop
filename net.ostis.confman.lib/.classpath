@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="jaxb/"/>
+	<classpathentry exported="true" kind="lib" path="jaxb/jaxb-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="jaxb/jaxb-impl.jar"/>
 	<classpathentry exported="true" kind="lib" path="log4j/log4j-1.2.17.jar"/>
 	<classpathentry exported="true" kind="lib" path="poi/commons-codec-1.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="poi/commons-logging-1.1.jar"/>
