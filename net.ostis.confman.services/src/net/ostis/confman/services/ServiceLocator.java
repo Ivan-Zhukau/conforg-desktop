@@ -21,6 +21,8 @@ public class ServiceLocator {
 
         this.serviceImpls.put(RegistrationService.class,
                 new RegistrationServiceImpl());
+        this.serviceImpls.put(ConferenceService.class,
+                new ConferenceServiceImpl());
     }
 
     public static ServiceLocator getInstance() {

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_SOfz8BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ide.application" bindingContexts="_SOfz-RpVEeOmro9kd1wSKw">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" label="net.ostis.confman.ui" width="500" height="400">
-    <children xsi:type="advanced:PerspectiveStack" xmi:id="_SOyu8hpVEeOmro9kd1wSKw">
-      <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" selectedElement="_SOyu8hpVEeOmro9kd1wSKw" label="net.ostis.confman.ui" width="500" height="400">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_SOyu8hpVEeOmro9kd1wSKw" elementId="" selectedElement="_BVLAYCk9EeOe4N68_VhelA">
+      <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="Participant Managment">
         <children xsi:type="basic:PartSashContainer" xmi:id="_SOyu9BpVEeOmro9kd1wSKw">
           <children xsi:type="basic:PartStack" xmi:id="_SOyu9RpVEeOmro9kd1wSKw">
             <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.parts.ApplicationView" label="Sample Part"/>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_BVLAYCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.perspective.conference" label="Conference Management">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_WyzmoCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partsashcontainer.conference.main" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_fOZS4Ck9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.tree">
+            <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="TreeView">
+              <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1"/>
+            </children>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">
+            <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferenceEditorPart" label="Conference Data Editor" tooltip="Conference Data Editor"/>
           </children>
         </children>
       </children>
@@ -19,6 +31,16 @@
       <children xsi:type="menu:Menu" xmi:id="_SOyu8BpVEeOmro9kd1wSKw" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu8RpVEeOmro9kd1wSKw" label="About" command="_SOyu6BpVEeOmro9kd1wSKw"/>
       </children>
+      <children xsi:type="menu:Menu" xmi:id="_f2ESkCrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.window" label="Window">
+        <children xsi:type="menu:Menu" xmi:id="_nPBdICrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.openPerspective" label="Open Perspective">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_ouTpICrNEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.confPerspectiveSwitcher" label="Conferece Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+            <parameters xmi:id="_1hGFgCrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.0" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.conference"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_QJL4ECrOEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.registrationPerpective" label="Participant Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+            <parameters xmi:id="_-4qR0CrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.1" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantPerspective"/>
+          </children>
+        </children>
+      </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">
       <children xsi:type="menu:ToolBar" xmi:id="_SOyu-BpVEeOmro9kd1wSKw" elementId="toolbar:org.eclipse.ui.main.toolbar">
@@ -31,6 +53,7 @@
   <handlers xmi:id="_SOyu4xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.handler.openCommand" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.OpenHandler" command="_SOyu4hpVEeOmro9kd1wSKw"/>
   <handlers xmi:id="_SOyu5hpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.handler.saveCommand" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveHandler" command="_SOyu5RpVEeOmro9kd1wSKw"/>
   <handlers xmi:id="_SOyu6RpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.handler.aboutCommand" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.AboutHandler" command="_SOyu6BpVEeOmro9kd1wSKw"/>
+  <handlers xmi:id="_HijBICrIEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handler.switchPerspective" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SwitchPerspectiveHandler" command="_88j54CrHEeOTVPtjqnvy9g"/>
   <bindingTables xmi:id="_SOyu4BpVEeOmro9kd1wSKw" bindingContext="_SOfz-RpVEeOmro9kd1wSKw">
     <bindings xmi:id="_SOyu4RpVEeOmro9kd1wSKw" keySequence="M1+Q" command="_SOfz_BpVEeOmro9kd1wSKw"/>
     <bindings xmi:id="_SOyu5BpVEeOmro9kd1wSKw" keySequence="M1+O" command="_SOyu4hpVEeOmro9kd1wSKw"/>
@@ -45,6 +68,9 @@
   <commands xmi:id="_SOyu4hpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.open" commandName="openCommand"/>
   <commands xmi:id="_SOyu5RpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_SOyu6BpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_88j54CrHEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.command.switchperspective" commandName="switchPerspective">
+    <parameters xmi:id="_ahrxYCrYEeOE7riNv-mKnA" elementId="net.ostis.confman.ui.parameter.perspectiveId" name="perspectiveId" typeId=""/>
+  </commands>
   <addons xmi:id="_SOfz8hpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_SOfz8xpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_SOfz9BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
