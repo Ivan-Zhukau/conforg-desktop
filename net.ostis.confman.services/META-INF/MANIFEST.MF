@@ -3,5 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Services
 Bundle-SymbolicName: net.ostis.confman.services
 Bundle-Version: 1.0.0.qualifier
-Export-Package: net.ostis.confman.services
+Export-Package: net.ostis.confman.services,
+ net.ostis.confman.services.editing
 Require-Bundle: net.ostis.confman.model;bundle-version="1.0.0"

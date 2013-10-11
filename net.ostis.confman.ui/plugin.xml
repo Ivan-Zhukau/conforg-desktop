@@ -21,5 +21,18 @@
          </property>
       </product>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="pageEditor.EditorPart"
+            id="pageEditor.EditorPart"
+            name="New MultiPageEditorPart">
+      </editor>
+      <editor
+            class="net.ostis.confman.ui.conference.af"
+            id="net.ostis.confman.ui.conference.af"
+            name="New MultiPageEditorPart">
+      </editor>
+   </extension>
 
 </plugin>
