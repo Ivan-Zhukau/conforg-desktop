@@ -7,11 +7,11 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.editing.AuthorInformation;
-import net.ostis.confman.services.editing.AuthorsList;
-import net.ostis.confman.services.editing.ContactInformation;
-import net.ostis.confman.services.editing.PersonalInformation;
-import net.ostis.confman.services.editing.WorkplaceInformation;
+import net.ostis.confman.services.common.model.AuthorInformation;
+import net.ostis.confman.services.common.model.AuthorsList;
+import net.ostis.confman.services.common.model.ContactInformation;
+import net.ostis.confman.services.common.model.PersonalInformation;
+import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;

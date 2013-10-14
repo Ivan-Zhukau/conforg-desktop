@@ -1,15 +1,15 @@
-package net.ostis.confman.test.tableEditorPart;
+package net.ostis.confman.test.converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ostis.confman.model.convert.DataConverter;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
-import net.ostis.confman.services.editing.AuthorsList;
-import net.ostis.confman.services.editing.DataConverter;
+import net.ostis.confman.services.common.model.AuthorsList;
 
 import org.junit.Test;
 

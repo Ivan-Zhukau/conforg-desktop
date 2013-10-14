@@ -1,10 +1,14 @@
-package net.ostis.confman.services.editing;
+package net.ostis.confman.model.convert;
 
 import java.util.List;
 
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
+import net.ostis.confman.services.common.model.AuthorsList;
+import net.ostis.confman.services.common.model.ContactInformation;
+import net.ostis.confman.services.common.model.PersonalInformation;
+import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 public class DataConverter {
 
@@ -28,7 +32,7 @@ public class DataConverter {
         final AuthorsList authorsList = new AuthorsList();
         final List<AuthorInformation> authors = form.getAuthorsInformation();
         for (final AuthorInformation authorInformation : authors) {
-            net.ostis.confman.services.editing.AuthorInformation authorInfo = new net.ostis.confman.services.editing.AuthorInformation();
+            net.ostis.confman.services.common.model.AuthorInformation authorInfo = new net.ostis.confman.services.common.model.AuthorInformation();
             ContactInformation contactInfo = authorInfo.getContactInformation();
             PersonalInformation personalInfo = authorInfo
                     .getPersonalInformation();
@@ -86,10 +90,10 @@ public class DataConverter {
         return workpaceInfo;
     }
 
-    private net.ostis.confman.services.editing.AuthorInformation convertAuthor(
+    private net.ostis.confman.services.common.model.AuthorInformation convertAuthor(
             final ContactInformation cInfo, final PersonalInformation pInfo,
             final WorkplaceInformation wInfo,
-            final net.ostis.confman.services.editing.AuthorInformation author) {
+            final net.ostis.confman.services.common.model.AuthorInformation author) {
 
         author.setContactInformation(cInfo);
         author.setPersonalInformation(pInfo);
