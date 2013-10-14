@@ -356,8 +356,9 @@ public class TableEditorPart {
     }
 
     private void buildLayout(final Composite parent) {
-
+        
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
+       
         final StringDataConverter stringConverter = new StringDataConverter();
         this.editFields.put(TableFields.SURNAME, new TextField(parent,
                 LocalizationUtil.translate(TableFields.SURNAME))
