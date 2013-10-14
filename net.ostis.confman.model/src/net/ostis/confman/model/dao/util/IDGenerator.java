@@ -10,17 +10,13 @@ import java.util.List;
 
 public class IDGenerator {
 
-    private static final String ID_DATA_FILE_LOCATION   = "id-data";
+    private static final String ID_DATA_FILE_LOCATION = "id-data";
 
-    private static final int    ARTICLE_ID_POSITION     = 0;
-
-    private static final int    PARTICIPANT_ID_POSITION = 1;
+    private static final int    ID_POSITION           = 0;
 
     private static IDGenerator  instance;
 
-    private long                articleID;
-
-    private long                participantID;
+    private long                id;
 
     private IDGenerator() {
 
@@ -44,29 +40,20 @@ public class IDGenerator {
             lines = Files.readAllLines(path, StandardCharsets.UTF_8);
             parseDataList(lines);
         } catch (final IOException e) {
-            e.printStackTrace();
+            // TODO kfs: add log4j support
         }
     }
 
     private void parseDataList(final List<String> lines) {
 
-        this.articleID = Integer.parseInt(lines.get(ARTICLE_ID_POSITION));
-        this.participantID = Integer.parseInt(lines
-                .get(PARTICIPANT_ID_POSITION));
+        this.id = Integer.parseInt(lines.get(ID_POSITION));
     }
 
-    public long nextArticleID() {
+    public long nextId() {
 
-        this.articleID++;
+        this.id++;
         saveChanges();
-        return this.articleID;
-    }
-
-    public long nextParticipantID() {
-
-        this.participantID++;
-        saveChanges();
-        return this.participantID;
+        return this.id;
     }
 
     private void saveChanges() {
@@ -76,15 +63,14 @@ public class IDGenerator {
         try {
             Files.write(path, lines, StandardCharsets.UTF_8);
         } catch (final IOException e) {
-            e.printStackTrace();
+            // TODO kfs: add log4j support
         }
     }
 
     private List<String> createDataList() {
 
         final List<String> lines = new ArrayList<String>();
-        lines.add(Long.toString(this.articleID));
-        lines.add(Long.toString(this.participantID));
+        lines.add(Long.toString(this.id));
         return lines;
     }
 }
