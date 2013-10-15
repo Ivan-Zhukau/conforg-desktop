@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import net.ostis.confman.services.common.model.AuthorInformation;
-import net.ostis.confman.services.common.model.AuthorsList;
+import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
 import net.ostis.confman.services.common.model.PersonalInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
@@ -106,17 +106,17 @@ public class TableEditorPart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (!(selection instanceof AuthorsList)) {
+                if (!(selection instanceof RegistrationInformation)) {
                     return;
                 }
-                final AuthorsList tableInfo = (AuthorsList) selection;
+                final RegistrationInformation tableInfo = (RegistrationInformation) selection;
                 onNewSelection(tableInfo, 1); // TODO
             }
         });
         buildLayout(parent);
     }
 
-    private void onNewSelection(final AuthorsList tableInfo,
+    private void onNewSelection(final RegistrationInformation tableInfo,
             final int numberOfAuthor) {
 
         applyValueBindings(tableInfo, numberOfAuthor);
@@ -125,7 +125,7 @@ public class TableEditorPart {
         }
     }
 
-    private void applyValueBindings(final AuthorsList tableInfo,
+    private void applyValueBindings(final RegistrationInformation tableInfo,
             final int numberOfAuthor) {
 
         final List<AuthorInformation> authorInfo = tableInfo.getAuthorInfo();

@@ -5,7 +5,8 @@ import java.util.List;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
-import net.ostis.confman.services.common.model.AuthorsList;
+import net.ostis.confman.services.common.model.ArticleInformation;
+import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
 import net.ostis.confman.services.common.model.PersonalInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
@@ -27,12 +28,17 @@ public class DataConverter {
         return instance;
     }
 
-    public AuthorsList convertAuthor(final RegistrationForm form) {
+    public RegistrationInformation convertAuthor(final RegistrationForm form) {
 
-        final AuthorsList authorsList = new AuthorsList();
+        final RegistrationInformation authorsList = new RegistrationInformation();
         final List<AuthorInformation> authors = form.getAuthorsInformation();
+        final net.ostis.confman.model.registrationform.ArticleInformation articleInfo = form
+                .getArticleInformation();
+        ArticleInformation article = new ArticleInformation();
+        article = convertArticleInformation(articleInfo, article);
         for (final AuthorInformation authorInformation : authors) {
             net.ostis.confman.services.common.model.AuthorInformation authorInfo = new net.ostis.confman.services.common.model.AuthorInformation();
+            final String id_Author = authorInfo.getId_Author();
             ContactInformation contactInfo = authorInfo.getContactInformation();
             PersonalInformation personalInfo = authorInfo
                     .getPersonalInformation();
@@ -44,8 +50,8 @@ public class DataConverter {
                     personalInfo);
             workpaceInfo = convertWorcplaceInformation(authorInformation,
                     workpaceInfo);
-            authorInfo = convertAuthor(contactInfo, personalInfo, workpaceInfo,
-                    authorInfo);
+            authorInfo = convertAuthor(id_Author, contactInfo, personalInfo,
+                    workpaceInfo, authorInfo);
             authorsList.getAuthorInfo().add(authorInfo);
         }
         return authorsList;
@@ -91,14 +97,28 @@ public class DataConverter {
     }
 
     private net.ostis.confman.services.common.model.AuthorInformation convertAuthor(
-            final ContactInformation cInfo, final PersonalInformation pInfo,
+            final String id_Author,
+            final ContactInformation cInfo,
+            final PersonalInformation pInfo,
             final WorkplaceInformation wInfo,
             final net.ostis.confman.services.common.model.AuthorInformation author) {
 
         author.setContactInformation(cInfo);
         author.setPersonalInformation(pInfo);
         author.setWorkPlaceInformation(wInfo);
+        author.setIdAuthor(id_Author);
 
         return author;
+    }
+
+    private ArticleInformation convertArticleInformation(
+            final net.ostis.confman.model.registrationform.ArticleInformation articleInfo,
+            final ArticleInformation article) {
+
+        article.setTitleEntry(articleInfo.getTitleEntry());
+        article.setSpeaker(articleInfo.getSpeaker());
+        article.setShowLaunching(articleInfo.getShowLaunching());
+        article.setParticipationForm(articleInfo.getParticipationForm());
+        return article;
     }
 }

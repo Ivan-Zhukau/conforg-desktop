@@ -9,7 +9,7 @@ import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
-import net.ostis.confman.services.common.model.AuthorsList;
+import net.ostis.confman.services.common.model.RegistrationInformation;
 
 import org.junit.Test;
 
@@ -47,7 +47,7 @@ public class TableEditorPartTest {
 
         registrationForm.setAuthorsInformation(authorInfo);
 
-        final AuthorsList aList = DataConverter.getInstance().convertAuthor(
+        final RegistrationInformation aList = DataConverter.getInstance().convertAuthor(
                 registrationForm);
 
     }
