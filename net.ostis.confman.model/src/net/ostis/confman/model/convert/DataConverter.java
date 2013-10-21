@@ -12,6 +12,8 @@ import net.ostis.confman.services.common.model.PersonalInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 public class DataConverter {
+	
+	
 
     private static DataConverter instance;
 

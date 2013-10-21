@@ -31,6 +31,7 @@
       <plugin id="net.ostis.confman.lib"/>
       <plugin id="net.ostis.confman.model"/>
       <plugin id="net.ostis.confman.services"/>
+      <plugin id="net.ostis.confman.services.common"/>
       <plugin id="net.ostis.confman.ui"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.util"/>

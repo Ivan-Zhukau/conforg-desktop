@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common
+Bundle-SymbolicName: net.ostis.confman.services.common
+Bundle-Version: 1.0.0.qualifier
+Export-Package: net.ostis.confman.services.common.model
