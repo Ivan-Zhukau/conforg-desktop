@@ -36,7 +36,7 @@
       </children>
       <children xsi:type="menu:Menu" xmi:id="_f2ESkCrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.window" label="Window">
         <children xsi:type="menu:Menu" xmi:id="_nPBdICrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.openPerspective" label="Open Perspective">
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_ouTpICrNEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.confPerspectiveSwitcher" label="Conferece Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_ouTpICrNEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.confPerspectiveSwitcher" label="Conference Managment" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_1hGFgCrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.0" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.conference"/>
           </children>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_QJL4ECrOEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.registrationPerpective" label="Participant Managment" command="_88j54CrHEeOTVPtjqnvy9g">

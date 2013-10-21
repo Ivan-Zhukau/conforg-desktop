@@ -36,20 +36,19 @@ public class TableEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum TableFields implements Localizable {
-        INFORMATION_OF_AUTHOR_OF_ARTICLE(
-                "Информация о всех Авторах статьи/Information of Author of article:"),
-        SURNAME("Фамилия/Surname:"),
-        NAME("Имя/First Name:"),
-        PATRONYMIC("Отчество/Patronymic:"),
-        ACADEMIC_DEGREE("Учёная степень/Academic degree:"),
-        ACADEMIC_TITLE("Учёное звание/Academic title:"),
-        COUNTRY("Страна/Country:"),
-        SITY("Город/City:"),
-        E_MAIL("E-mail для связи:"),
-        CONTACT_PHONE_NUMBER("Контактный телефон/Contact phone number:"),
-        PLACE_OF_WORK("Место работы/Place of work:"),
-        AFFLICATION("Организация/Affliation:"),
-        POSITION("Должность/Position:");
+        INFORMATION_OF_AUTHOR_OF_ARTICLE("РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РІСЃРµС… РђРІС‚РѕСЂР°С… СЃС‚Р°С‚СЊРё:"),
+        SURNAME("Р¤Р°РјРёР»РёСЏ:"),
+        NAME("РРјСЏ:"),
+        PATRONYMIC("РћС‚С‡РµСЃС‚РІРѕ:"),
+        ACADEMIC_DEGREE("РЈС‡С‘РЅР°СЏ СЃС‚РµРїРµРЅСЊ:"),
+        ACADEMIC_TITLE("РЈС‡С‘РЅРѕРµ Р·РІР°РЅРёРµ:"),
+        COUNTRY("РЎС‚СЂР°РЅР°:"),
+        SITY("Р“РѕСЂРѕРґ:"),
+        E_MAIL("E-mail РґР»СЏ СЃРІСЏР·Рё:"),
+        CONTACT_PHONE_NUMBER("РљРѕРЅС‚Р°РєС‚РЅС‹Р№ С‚РµР»РµС„РѕРЅ:"),
+        PLACE_OF_WORK("РњРµСЃС‚Рѕ СЂР°Р±РѕС‚С‹:"),
+        AFFLICATION("РћСЂРіР°РЅРёР·Р°С†РёСЏ:"),
+        POSITION("Р”РѕР»Р¶РЅРѕСЃС‚СЊ:");
 
         private String rk;
 

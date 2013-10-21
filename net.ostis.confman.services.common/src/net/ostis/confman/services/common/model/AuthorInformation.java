@@ -2,7 +2,7 @@ package net.ostis.confman.services.common.model;
 
 public class AuthorInformation {
 
-    private String               id_Author;
+    private String               idAuthor;
 
     private PersonalInformation  personalInformation;
 
@@ -18,14 +18,14 @@ public class AuthorInformation {
         this.workplaceInformation = new WorkplaceInformation();
     }
 
-    public String getId_Author() {
+    public String getIdAuthor() {
 
-        return this.id_Author;
+        return this.idAuthor;
     }
 
-    public void setIdAuthor(final String id_Author) {
+    public void setIdAuthor(final String idAuthor) {
 
-        this.id_Author = id_Author;
+        this.idAuthor = idAuthor;
     }
 
     public ContactInformation getContactInformation() {
