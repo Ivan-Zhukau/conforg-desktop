@@ -2,56 +2,56 @@ package net.ostis.confman.model.registrationform;
 
 public class ContactInformation {
 
-    private String country;
+	private String country;
 
-    private String city;
+	private String city;
 
-    private String eMail;
+	private String eMail;
 
-    private String contactPhoneNumber;
+	private String contactPhoneNumber;
 
-    public ContactInformation() {
+	public ContactInformation() {
 
-        super();
-    }
+		super();
+	}
 
-    public String getCity() {
+	public String getCity() {
 
-        return this.city;
-    }
+		return this.city;
+	}
 
-    public String getContactPhoneNumber() {
+	public String getContactPhoneNumber() {
 
-        return this.contactPhoneNumber;
-    }
+		return this.contactPhoneNumber;
+	}
 
-    public String getCountry() {
+	public String getCountry() {
 
-        return this.country;
-    }
+		return this.country;
+	}
 
-    public String geteMail() {
+	public String geteMail() {
 
-        return this.eMail;
-    }
+		return this.eMail;
+	}
 
-    public void setCity(final String city) {
+	public void setCity(final String city) {
 
-        this.city = city;
-    }
+		this.city = city;
+	}
 
-    public void setContactPhoneNumber(final String contactPhoneNumber) {
+	public void setContactPhoneNumber(final String contactPhoneNumber) {
 
-        this.contactPhoneNumber = contactPhoneNumber;
-    }
+		this.contactPhoneNumber = contactPhoneNumber;
+	}
 
-    public void setCountry(final String country) {
+	public void setCountry(final String country) {
 
-        this.country = country;
-    }
+		this.country = country;
+	}
 
-    public void seteMail(final String eMail) {
+	public void seteMail(final String eMail) {
 
-        this.eMail = eMail;
-    }
+		this.eMail = eMail;
+	}
 }

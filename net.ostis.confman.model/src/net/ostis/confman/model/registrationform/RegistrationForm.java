@@ -5,36 +5,36 @@ import java.util.List;
 
 public class RegistrationForm {
 
-    private ArticleInformation      articleInformation;
+	private ArticleInformation articleInformation;
 
-    private List<AuthorInformation> authorsInformation;
+	private List<AuthorInformation> authorsInformation;
 
-    public RegistrationForm() {
+	public RegistrationForm() {
 
-        super();
-        this.articleInformation = new ArticleInformation();
-        this.authorsInformation = new ArrayList<AuthorInformation>();
-    }
+		super();
+		this.articleInformation = new ArticleInformation();
+		this.authorsInformation = new ArrayList<AuthorInformation>();
+	}
 
-    public ArticleInformation getArticleInformation() {
+	public ArticleInformation getArticleInformation() {
 
-        return this.articleInformation;
-    }
+		return this.articleInformation;
+	}
 
-    public List<AuthorInformation> getAuthorsInformation() {
+	public List<AuthorInformation> getAuthorsInformation() {
 
-        return this.authorsInformation;
-    }
+		return this.authorsInformation;
+	}
 
-    public void setArticleInformation(
-            final ArticleInformation articleInformation) {
+	public void setArticleInformation(
+			final ArticleInformation articleInformation) {
 
-        this.articleInformation = articleInformation;
-    }
+		this.articleInformation = articleInformation;
+	}
 
-    public void setAuthorsInformation(
-            final List<AuthorInformation> authorsInformation) {
+	public void setAuthorsInformation(
+			final List<AuthorInformation> authorsInformation) {
 
-        this.authorsInformation = authorsInformation;
-    }
+		this.authorsInformation = authorsInformation;
+	}
 }

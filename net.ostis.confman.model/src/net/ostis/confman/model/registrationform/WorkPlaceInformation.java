@@ -2,32 +2,32 @@ package net.ostis.confman.model.registrationform;
 
 public class WorkPlaceInformation {
 
-    private String affliation;
+	private String affliation;
 
-    private String position;
+	private String position;
 
-    public WorkPlaceInformation() {
+	public WorkPlaceInformation() {
 
-        super();
-    }
+		super();
+	}
 
-    public String getAffliation() {
+	public String getAffliation() {
 
-        return this.affliation;
-    }
+		return this.affliation;
+	}
 
-    public String getPosition() {
+	public String getPosition() {
 
-        return this.position;
-    }
+		return this.position;
+	}
 
-    public void setAffliation(final String affliation) {
+	public void setAffliation(final String affliation) {
 
-        this.affliation = affliation;
-    }
+		this.affliation = affliation;
+	}
 
-    public void setPosition(final String position) {
+	public void setPosition(final String position) {
 
-        this.position = position;
-    }
+		this.position = position;
+	}
 }
