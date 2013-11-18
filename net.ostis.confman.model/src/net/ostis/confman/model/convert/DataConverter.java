@@ -43,7 +43,8 @@ public class DataConverter {
 			article = convertArticleInformation(articleInfo, article);
 			for (final AuthorInformation authorInformation : authors) {
 				net.ostis.confman.services.common.model.AuthorInformation authorInfo = new net.ostis.confman.services.common.model.AuthorInformation();
-				final String idAuthor = authorInformation.getId_Author();
+				//TODO: Correct
+				//final String idAuthor = authorInformation.getId_Author();
 				ContactInformation contactInfo = authorInfo
 						.getContactInformation();
 				PersonalInformation personalInfo = authorInfo
@@ -56,16 +57,18 @@ public class DataConverter {
 						personalInfo);
 				workpaceInfo = convertWorcplaceInformation(authorInformation,
 						workpaceInfo);
-				authorInfo = convertAuthor(idAuthor, contactInfo, personalInfo,
-						workpaceInfo, authorInfo);
+				//TODO: Correct
+				/*authorInfo = convertAuthor(idAuthor, contactInfo, personalInfo,
+						workpaceInfo, authorInfo);*/
 				confInfo.getAuthors().add(authorInfo);
 				final List<net.ostis.confman.services.common.model.AuthorInformation> temAuthorsList = confInfo
 						.getAuthors();
 				for (final net.ostis.confman.services.common.model.AuthorInformation authorInformation2 : temAuthorsList) {
-					if (authorInformation2.getIdAuthor() == authorInformation
+					//TODO: Correct
+				    /*if (authorInformation2.getIdAuthor() == authorInformation
 							.getId_Author()) {
 						authorsList.getAuthorInfo().add(authorInformation2);
-					}
+					}*/
 				}
 			}
 			confInfo.setArticle(authorsList);

@@ -5,7 +5,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="Participant Managment">
         <children xsi:type="basic:PartSashContainer" xmi:id="_SOyu9BpVEeOmro9kd1wSKw" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_SOyu9RpVEeOmro9kd1wSKw">
-            <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.parts.ApplicationView" label="TableViewPart"/>
+            <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableViewPart" label="TableViewPart"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_MTrhkC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.partstack.0">
             <children xsi:type="basic:Part" xmi:id="_N_kboC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.part.participant.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableEditorPart" label="TableEditorPart"/>
