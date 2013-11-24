@@ -1,7 +1,7 @@
 package net.ostis.confman.test.util;
 
 import junit.framework.Assert;
-import net.ostis.confman.model.datastore.dao.util.IDGenerator;
+import net.ostis.confman.model.datastore.util.IDGenerator;
 
 import org.junit.Test;
 

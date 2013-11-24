@@ -5,26 +5,26 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Authors;
+import net.ostis.confman.model.entity.Reports;
 
-public class AuthorsReader extends Reader implements Callable<Authors> {
+public class ReportReader extends Reader implements Callable<Reports> {
 
-    public AuthorsReader() {
+    public ReportReader() {
 
         super();
     }
 
     @Override
-    public Authors call() throws Exception {
+    public Reports call() throws Exception {
 
         try {
-            return (Authors) read(LocalStorageConstants.AUTHORS_FILE_LOCATION,
-                    Authors.class);
+            return (Reports) read(LocalStorageConstants.REPORTS_FILE_LOCATION,
+                    Reports.class);
         } catch (final FileNotFoundException e) {
             LOGGER.error(e);
         } catch (final JAXBException e) {
             LOGGER.error(e);
         }
-        return new Authors();
+        throw new DatastoreException();
     }
 }

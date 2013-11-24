@@ -1,4 +1,4 @@
-package net.ostis.confman.model.datastore.dao.util;
+package net.ostis.confman.model.datastore.util;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
