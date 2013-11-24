@@ -8,7 +8,11 @@
             <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableViewPart" label="TableViewPart"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_MTrhkC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.partstack.0">
-            <children xsi:type="basic:Part" xmi:id="_N_kboC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.part.participant.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableEditorPart" label="TableEditorPart"/>
+            <children xsi:type="basic:Part" xmi:id="_N_kboC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.part.participant.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableEditorPart" label="TableEditorPart">
+              <toolbar xmi:id="_Nl4jEFU6EeOlDudWAZ42EQ" elementId="net.ostis.confman.ui.toolbar.0">
+                <children xsi:type="menu:DirectToolItem" xmi:id="_WBF00FU6EeOlDudWAZ42EQ" elementId="net.ostis.confman.ui.directtoolitem.0" iconURI="platform:/plugin/net.ostis.confman.ui/icons/new.png"/>
+              </toolbar>
+            </children>
           </children>
         </children>
       </children>

@@ -1,8 +1,8 @@
 package net.ostis.confman.services.common.model;
 
 public class WorkplaceInformation {
-	
-	private String affliation;
+
+    private String affliation;
 
     private String position;
 

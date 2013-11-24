@@ -10,7 +10,7 @@ import net.ostis.confman.model.entity.AuthorWorkplace;
 import net.ostis.confman.model.entity.Authors;
 import net.ostis.confman.services.common.model.AuthorInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
-import net.ostis.confman.services.common.model.PersonalInformation;
+import net.ostis.confman.services.common.model.AcademiclInformation;
 import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 
@@ -65,7 +65,7 @@ public class EntityConverter {
     }
 
     private AuthorPersonalInfo convertPersonalInfo(
-            final PersonalInformation personalInformation) {
+            final AcademiclInformation personalInformation) {
 
         final AuthorPersonalInfo info = new AuthorPersonalInfo();
         info.setName(personalInformation.getName());

@@ -9,8 +9,6 @@ import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
-import net.ostis.confman.services.common.model.ConferenceInformation;
-import net.ostis.confman.services.common.model.RegistrationInformation;
 
 import org.junit.Test;
 
@@ -83,7 +81,7 @@ public class TableEditorPartTest {
         rInfo.add(registrationForm);
         rInfo.add(registrationForm1);        
 
-        ConferenceInformation aList = DataConverter.getInstance().convertAuthors(rInfo);
+        //ConferenceInformation aList = DataConverter.getInstance().convertAuthors(rInfo);
         
     }
 }

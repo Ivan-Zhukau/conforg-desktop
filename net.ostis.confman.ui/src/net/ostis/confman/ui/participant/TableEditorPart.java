@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import net.ostis.confman.services.common.model.AuthorInformation;
 import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
-import net.ostis.confman.services.common.model.PersonalInformation;
+import net.ostis.confman.services.common.model.AcademiclInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -128,7 +128,7 @@ public class TableEditorPart {
             final int numberOfAuthor) {
 
         final List<AuthorInformation> authorInfo = tableInfo.getAuthorInfo();
-        final PersonalInformation personInfo = authorInfo.get(numberOfAuthor)
+        final AcademiclInformation personInfo = authorInfo.get(numberOfAuthor)
                 .getPersonalInformation();
         final WorkplaceInformation workInfo = authorInfo.get(numberOfAuthor)
                 .getWorkPlaceInformation();
@@ -147,7 +147,7 @@ public class TableEditorPart {
         applyPositionBinder(workInfo);
     }
 
-    private void applySurnameBinder(final PersonalInformation personInfo) {
+    private void applySurnameBinder(final AcademiclInformation personInfo) {
 
         this.editFields.get(TableFields.SURNAME).setValueBinder(
                 new ValueBinder() {
@@ -166,7 +166,7 @@ public class TableEditorPart {
                 });
     }
 
-    private void applyNameBinder(final PersonalInformation personInfo) {
+    private void applyNameBinder(final AcademiclInformation personInfo) {
 
         this.editFields.get(TableFields.NAME).setValueBinder(new ValueBinder() {
 
@@ -184,7 +184,7 @@ public class TableEditorPart {
         });
     }
 
-    private void applyPatronymicBinder(final PersonalInformation personInfo) {
+    private void applyPatronymicBinder(final AcademiclInformation personInfo) {
 
         this.editFields.get(TableFields.PATRONYMIC).setValueBinder(
                 new ValueBinder() {
@@ -203,7 +203,7 @@ public class TableEditorPart {
                 });
     }
 
-    private void applyAcademicDegreeBinder(final PersonalInformation personInfo) {
+    private void applyAcademicDegreeBinder(final AcademiclInformation personInfo) {
 
         this.editFields.get(TableFields.ACADEMIC_DEGREE).setValueBinder(
                 new ValueBinder() {
@@ -222,7 +222,7 @@ public class TableEditorPart {
                 });
     }
 
-    private void applyAcademicTitleBinder(final PersonalInformation personInfo) {
+    private void applyAcademicTitleBinder(final AcademiclInformation personInfo) {
 
         this.editFields.get(TableFields.ACADEMIC_TITLE).setValueBinder(
                 new ValueBinder() {

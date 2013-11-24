@@ -8,7 +8,7 @@ import net.ostis.confman.model.registrationform.WorkPlaceInformation;
 import net.ostis.confman.services.common.model.ArticleInformation;
 import net.ostis.confman.services.common.model.ConferenceInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
-import net.ostis.confman.services.common.model.PersonalInformation;
+import net.ostis.confman.services.common.model.AcademiclInformation;
 import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 
@@ -47,7 +47,7 @@ public class DataConverter {
 				//final String idAuthor = authorInformation.getId_Author();
 				ContactInformation contactInfo = authorInfo
 						.getContactInformation();
-				PersonalInformation personalInfo = authorInfo
+				AcademiclInformation personalInfo = authorInfo
 						.getPersonalInformation();
 				WorkplaceInformation workpaceInfo = authorInfo
 						.getWorkPlaceInformation();
@@ -89,9 +89,9 @@ public class DataConverter {
 		return contactInfo;
 	}
 
-	private PersonalInformation convertPersonalInformation(
+	private AcademiclInformation convertPersonalInformation(
 			final AuthorInformation author,
-			final PersonalInformation personalInfo) {
+			final AcademiclInformation personalInfo) {
 
 		final net.ostis.confman.model.registrationform.PersonalInformation pInfo = author
 				.getPersonalInformation();
@@ -118,7 +118,7 @@ public class DataConverter {
 	private net.ostis.confman.services.common.model.AuthorInformation convertAuthor(
 			final String idAuthor,
 			final ContactInformation cInfo,
-			final PersonalInformation pInfo,
+			final AcademiclInformation pInfo,
 			final WorkplaceInformation wInfo,
 			final net.ostis.confman.services.common.model.AuthorInformation author) {
 
