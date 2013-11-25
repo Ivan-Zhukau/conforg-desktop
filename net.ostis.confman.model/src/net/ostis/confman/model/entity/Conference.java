@@ -12,6 +12,8 @@ public class Conference {
 
     private String     title;
 
+    private String     conferenceVenue;
+
     private Date       startDate;
 
     private Date       endDate;
@@ -94,5 +96,16 @@ public class Conference {
     public void setParticipants(final List<Long> participants) {
 
         this.participants = participants;
+    }
+
+    @XmlElement(name = "confvenue")
+    public String getConferenceVenue() {
+
+        return this.conferenceVenue;
+    }
+
+    public void setConferenceVenue(final String conferenceVenue) {
+
+        this.conferenceVenue = conferenceVenue;
     }
 }

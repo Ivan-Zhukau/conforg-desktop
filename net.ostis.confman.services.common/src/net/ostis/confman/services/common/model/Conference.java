@@ -17,6 +17,8 @@ public class Conference {
 
     private List<Participant> participants;
 
+    private String            conferenceVenue;
+
     public Conference() {
 
         super();
@@ -80,5 +82,15 @@ public class Conference {
     public void setParticipants(final List<Participant> participants) {
 
         this.participants = participants;
+    }
+
+    public String getConferenceVenue() {
+
+        return this.conferenceVenue;
+    }
+
+    public void setConferenceVenue(final String conferenceVenue) {
+
+        this.conferenceVenue = conferenceVenue;
     }
 }
