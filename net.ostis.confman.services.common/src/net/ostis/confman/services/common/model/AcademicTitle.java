@@ -5,7 +5,7 @@ public enum AcademicTitle {
     SENIOR("Senior Researcher"),
     DOCENT("Docent"),
     PROFESSOR("Professor"),
-    NON("non");
+    NONE("None");
 
     private String academicTitle;
 

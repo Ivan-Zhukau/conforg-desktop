@@ -2,9 +2,9 @@ package net.ostis.confman.services.common.model;
 
 public enum AcademicDegree {
 
-    CANDIDATE("candidate of sciences"),
-    DOCTOR("doctor of Science"),
-    NON("non");
+    CANDIDATE("Candidate of Sciences"),
+    DOCTOR("Doctor of Science"),
+    NONE("None");
 
     private String academicDegree;
 
