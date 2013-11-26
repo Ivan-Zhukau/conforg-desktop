@@ -8,9 +8,9 @@ public class Report {
 
     private Section           section;
 
-    private List<Participant> participants;
+    private List<Participant> allAuthors;
 
-    private Participant       participant;
+    private Participant       mainAuthor;
 
     public Report() {
 
@@ -27,26 +27,6 @@ public class Report {
         this.title = title;
     }
 
-    public List<Participant> getParticipants() {
-
-        return this.participants;
-    }
-
-    public void setParticipants(final List<Participant> participants) {
-
-        this.participants = participants;
-    }
-
-    public Participant getReporter() {
-
-        return this.participant;
-    }
-
-    public void setReporter(final Participant participant) {
-
-        this.participant = participant;
-    }
-
     public Section getSection() {
 
         return this.section;
@@ -55,5 +35,25 @@ public class Report {
     public void setSection(final Section section) {
 
         this.section = section;
+    }
+
+    public List<Participant> getAllAuthors() {
+
+        return this.allAuthors;
+    }
+
+    public void setAllAuthors(final List<Participant> allAuthors) {
+
+        this.allAuthors = allAuthors;
+    }
+
+    public Participant getMainAuthor() {
+
+        return this.mainAuthor;
+    }
+
+    public void setMainAuthor(final Participant mainAuthor) {
+
+        this.mainAuthor = mainAuthor;
     }
 }
