@@ -10,7 +10,7 @@ public class Person {
 
     private String               firstName;
 
-    private Place                residence;
+    private Address              residence;
 
     private WorkplaceInformation workplace;
 
@@ -63,12 +63,12 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public Place getResidence() {
+    public Address getResidence() {
 
         return this.residence;
     }
 
-    public void setResidence(final Place residence) {
+    public void setResidence(final Address residence) {
 
         this.residence = residence;
     }

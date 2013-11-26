@@ -4,7 +4,7 @@ public class Address {
 
     private String country;
 
-    private String sity;
+    private String city;
 
     private String street;
 
@@ -25,16 +25,6 @@ public class Address {
         this.country = country;
     }
 
-    public String getSity() {
-
-        return this.sity;
-    }
-
-    public void setSity(final String sity) {
-
-        this.sity = sity;
-    }
-
     public String getHouseNumber() {
 
         return this.houseNumber;
@@ -53,6 +43,16 @@ public class Address {
     public void setStreet(final String street) {
 
         this.street = street;
+    }
+
+    public String getCity() {
+
+        return city;
+    }
+
+    public void setCity(String city) {
+
+        this.city = city;
     }
 
 }

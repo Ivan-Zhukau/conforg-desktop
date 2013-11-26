@@ -17,7 +17,7 @@ public class Conference {
 
     private List<Participant> participants;
 
-    private String            conferenceVenue;
+    private Address            conferenceVenue;
 
     public Conference() {
 
@@ -84,12 +84,12 @@ public class Conference {
         this.participants = participants;
     }
 
-    public String getConferenceVenue() {
+    public Address getConferenceVenue() {
 
         return this.conferenceVenue;
     }
 
-    public void setConferenceVenue(final String conferenceVenue) {
+    public void setConferenceVenue(final Address conferenceVenue) {
 
         this.conferenceVenue = conferenceVenue;
     }
