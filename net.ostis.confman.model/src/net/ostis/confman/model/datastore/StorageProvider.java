@@ -1,5 +1,6 @@
 package net.ostis.confman.model.datastore;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -25,19 +26,19 @@ import org.apache.log4j.Logger;
 
 public class StorageProvider {
 
-    public static final Logger     LOGGER = Logger.getLogger(StorageProvider.class);
+    public static final Logger     LOGGER       = Logger.getLogger(StorageProvider.class);
 
     private static StorageProvider INSTANCE;
 
-    private List<Person>           persons;
+    private List<Person>           persons      = new ArrayList<>();
 
-    private List<Participant>      participants;
+    private List<Participant>      participants = new ArrayList<>();
 
-    private List<Report>           reports;
+    private List<Report>           reports      = new ArrayList<>();
 
-    private List<Section>          sections;
+    private List<Section>          sections     = new ArrayList<>();
 
-    private List<Conference>       conferences;
+    private List<Conference>       conferences  = new ArrayList<>();
 
     private StorageProvider() {
 
