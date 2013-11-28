@@ -8,8 +8,8 @@ import javax.inject.Inject;
 
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
-import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.ContactInformation;
+import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
@@ -23,7 +23,6 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.e4.ui.workbench.modeling.ISaveHandler.Save;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -110,7 +109,7 @@ public class TableEditorPart {
                     return;
                 }
                 final Participant participant = (Participant) selection;
-                onNewSelection(participant); 
+                onNewSelection(participant);
             }
         });
         buildLayout(parent);
@@ -126,11 +125,11 @@ public class TableEditorPart {
 
     private void applyValueBindings(final Participant participant) {
 
-        Person person = participant.getPerson(); 
-        Address address = person.getResidence();
-        WorkplaceInformation workplaceInformation = person.getWorkplace();
-        ContactInformation contactInfo = person.getContacts();
-        AcademicInformation academicInfo = person.getDegree();
+        final Person person = participant.getPerson();
+        final Address address = person.getResidence();
+        final WorkplaceInformation workplaceInformation = person.getWorkplace();
+        final ContactInformation contactInfo = person.getContacts();
+        final AcademicInformation academicInfo = person.getDegree();
         applySurnameBinder(person);
         applyNameBinder(person);
         applyPatronymicBinder(person);
@@ -352,45 +351,44 @@ public class TableEditorPart {
     }
 
     private void buildLayout(final Composite parent) {
-        LocalizationUtil util = LocalizationUtil.getInstance();
+
+        final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
-       
+
         final StringDataConverter stringConverter = new StringDataConverter();
-        this.editFields.put(TableFields.SURNAME, new TextField(parent,
-                util.translate(TableFields.SURNAME))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.NAME, new TextField(parent,
-                util.translate(TableFields.NAME))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.PATRONYMIC, new TextField(parent,
-                util.translate(TableFields.PATRONYMIC))
-                .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.SURNAME,
+                new TextField(parent, util.translate(TableFields.SURNAME))
+                        .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.NAME,
+                new TextField(parent, util.translate(TableFields.NAME))
+                        .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.PATRONYMIC,
+                new TextField(parent, util.translate(TableFields.PATRONYMIC))
+                        .setDataConverter(stringConverter));
         this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
                 util.translate(TableFields.ACADEMIC_DEGREE))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.ACADEMIC_TITLE, new TextField(parent,
                 util.translate(TableFields.ACADEMIC_TITLE))
                 .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.COUNTRY, new TextField(parent,
-                util.translate(TableFields.COUNTRY))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.CITY, new TextField(parent,
-                util.translate(TableFields.CITY))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.E_MAIL, new TextField(parent,
-                util.translate(TableFields.E_MAIL))
-                .setDataConverter(stringConverter));
-        this.editFields.put(
-                TableFields.CONTACT_PHONE_NUMBER,
-                new TextField(parent, util
-                        .translate(TableFields.CONTACT_PHONE_NUMBER))
+        this.editFields.put(TableFields.COUNTRY,
+                new TextField(parent, util.translate(TableFields.COUNTRY))
                         .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.AFFLICATION, new TextField(parent,
-                util.translate(TableFields.AFFLICATION))
+        this.editFields.put(TableFields.CITY,
+                new TextField(parent, util.translate(TableFields.CITY))
+                        .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.E_MAIL,
+                new TextField(parent, util.translate(TableFields.E_MAIL))
+                        .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.CONTACT_PHONE_NUMBER, new TextField(
+                parent, util.translate(TableFields.CONTACT_PHONE_NUMBER))
                 .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.POSITION, new TextField(parent,
-                util.translate(TableFields.POSITION))
-                .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.AFFLICATION,
+                new TextField(parent, util.translate(TableFields.AFFLICATION))
+                        .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.POSITION,
+                new TextField(parent, util.translate(TableFields.POSITION))
+                        .setDataConverter(stringConverter));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

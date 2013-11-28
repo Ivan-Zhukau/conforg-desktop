@@ -6,7 +6,7 @@ public class ParticipantArrival {
 
     private Boolean meeting;
 
-    private Address  residencePlace;
+    private Address residencePlace;
 
     public ParticipantArrival() {
 

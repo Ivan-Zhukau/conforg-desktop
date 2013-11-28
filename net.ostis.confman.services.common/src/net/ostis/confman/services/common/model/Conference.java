@@ -17,7 +17,7 @@ public class Conference {
 
     private List<Participant> participants;
 
-    private Address            conferenceVenue;
+    private Address           conferenceVenue;
 
     public Conference() {
 

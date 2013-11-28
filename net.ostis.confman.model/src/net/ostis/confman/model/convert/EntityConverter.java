@@ -3,15 +3,8 @@ package net.ostis.confman.model.convert;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ostis.confman.model.entity.Author;
-import net.ostis.confman.model.entity.AuthorContacts;
-import net.ostis.confman.model.entity.AuthorPersonalInfo;
-import net.ostis.confman.model.entity.AuthorWorkplace;
-import net.ostis.confman.model.entity.Authors;
-import net.ostis.confman.services.common.model.AuthorInformation;
+import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.services.common.model.ContactInformation;
-import net.ostis.confman.services.common.model.AcademiclInformation;
-import net.ostis.confman.services.common.model.RegistrationInformation;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 public class EntityConverter {
