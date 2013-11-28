@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sections>
+    <section>
+        <conference>1</conference>
+        <date>1970-01-02T13:12:04.124+03:00</date>
+        <reports>
+            <report>12</report>
+            <report>13</report>
+        </reports>
+        <title>First</title>
+    </section>
+    <section>
+        <conference>1</conference>
+        <date>1970-01-02T13:12:04.124+03:00</date>
+        <reports>
+            <report>12</report>
+            <report>13</report>
+        </reports>
+        <title>First</title>
+    </section>
+    <section>
+        <conference>1</conference>
+        <date>1970-01-02T13:12:04.124+03:00</date>
+        <reports>
+            <report>12</report>
+            <report>13</report>
+        </reports>
+        <title>First</title>
+    </section>
+</sections>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person>
+        <contacts>
+            <email>peter_the_best@yyahho.com</email>
+            <phone>78965412</phone>
+        </contacts>
+        <acdegree>
+            <degree>phD?IDK2</degree>
+            <title>phD??IDK</title>
+        </acdegree>
+        <firstname>Peter</firstname>
+        <id>1</id>
+        <patronymic>Darth</patronymic>
+        <homeplace>
+            <city>NY</city>
+            <country>USA</country>
+        </homeplace>
+        <surname>Fren</surname>
+        <workplace>
+            <position>CEO</position>
+            <workplace>YYAHHO INC.</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>peter_the_best@yyahho.com</email>
+            <phone>78965412</phone>
+        </contacts>
+        <acdegree>
+            <degree>phD?IDK2</degree>
+            <title>phD??IDK</title>
+        </acdegree>
+        <firstname>Peter</firstname>
+        <id>1</id>
+        <patronymic>Darth</patronymic>
+        <homeplace>
+            <city>NY</city>
+            <country>USA</country>
+        </homeplace>
+        <surname>Fren</surname>
+        <workplace>
+            <position>CEO</position>
+            <workplace>YYAHHO INC.</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>peter_the_best@yyahho.com</email>
+            <phone>78965412</phone>
+        </contacts>
+        <acdegree>
+            <degree>phD?IDK2</degree>
+            <title>phD??IDK</title>
+        </acdegree>
+        <firstname>Peter</firstname>
+        <id>1</id>
+        <patronymic>Darth</patronymic>
+        <homeplace>
+            <city>NY</city>
+            <country>USA</country>
+        </homeplace>
+        <surname>Fren</surname>
+        <workplace>
+            <position>CEO</position>
+            <workplace>YYAHHO INC.</workplace>
+        </workplace>
+    </person>
+</persons>
