@@ -1,7 +1,6 @@
 package net.ostis.confman.ui.participant;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +23,7 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.e4.ui.workbench.modeling.ISaveHandler.Save;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -37,19 +37,19 @@ public class TableEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum TableFields implements Localizable {
-        INFORMATION_OF_AUTHOR_OF_ARTICLE("Информация о всех Авторах статьи:"),
-        SURNAME("Фамилия:"),
-        NAME("Имя:"),
-        PATRONYMIC("Отчество:"),
-        ACADEMIC_DEGREE("Учёная степень:"),
-        ACADEMIC_TITLE("Учёное звание:"),
-        COUNTRY("Страна:"),
-        SITY("Город:"),
-        E_MAIL("E-mail для связи:"),
-        CONTACT_PHONE_NUMBER("Контактный телефон:"),
-        PLACE_OF_WORK("Место работы:"),
-        AFFLICATION("Организация:"),
-        POSITION("Должность:");
+        INFORMATION_OF_AUTHOR_OF_ARTICLE("informationOfAuthorArticle"),
+        SURNAME("surname"),
+        NAME("name"),
+        PATRONYMIC("patronymic"),
+        ACADEMIC_DEGREE("academicDegree"),
+        ACADEMIC_TITLE("academicTitle"),
+        COUNTRY("country"),
+        CITY("city"),
+        E_MAIL("eMail"),
+        CONTACT_PHONE_NUMBER("contactPhoneNumber"),
+        PLACE_OF_WORK("placeOfWork"),
+        AFFLICATION("afflication"),
+        POSITION("position");
 
         private String rk;
 
@@ -66,7 +66,7 @@ public class TableEditorPart {
     }
 
     private enum Buttons implements Localizable {
-        SAVE("Save the changes");
+        SAVE("save");
 
         private String rk;
 
@@ -335,7 +335,7 @@ public class TableEditorPart {
 
     private void applySityBinder(final Address contactInfo) {
 
-        this.editFields.get(TableFields.SITY).setValueBinder(new ValueBinder() {
+        this.editFields.get(TableFields.CITY).setValueBinder(new ValueBinder() {
 
             @Override
             public void setValue(final Object value) {
@@ -352,47 +352,47 @@ public class TableEditorPart {
     }
 
     private void buildLayout(final Composite parent) {
-        
+        LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
        
         final StringDataConverter stringConverter = new StringDataConverter();
         this.editFields.put(TableFields.SURNAME, new TextField(parent,
-                LocalizationUtil.translate(TableFields.SURNAME))
+                util.translate(TableFields.SURNAME))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.NAME, new TextField(parent,
-                LocalizationUtil.translate(TableFields.NAME))
+                util.translate(TableFields.NAME))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.PATRONYMIC, new TextField(parent,
-                LocalizationUtil.translate(TableFields.PATRONYMIC))
+                util.translate(TableFields.PATRONYMIC))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
-                LocalizationUtil.translate(TableFields.ACADEMIC_DEGREE))
+                util.translate(TableFields.ACADEMIC_DEGREE))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.ACADEMIC_TITLE, new TextField(parent,
-                LocalizationUtil.translate(TableFields.ACADEMIC_TITLE))
+                util.translate(TableFields.ACADEMIC_TITLE))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.COUNTRY, new TextField(parent,
-                LocalizationUtil.translate(TableFields.COUNTRY))
+                util.translate(TableFields.COUNTRY))
                 .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.SITY, new TextField(parent,
-                LocalizationUtil.translate(TableFields.SITY))
+        this.editFields.put(TableFields.CITY, new TextField(parent,
+                util.translate(TableFields.CITY))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.E_MAIL, new TextField(parent,
-                LocalizationUtil.translate(TableFields.E_MAIL))
+                util.translate(TableFields.E_MAIL))
                 .setDataConverter(stringConverter));
         this.editFields.put(
                 TableFields.CONTACT_PHONE_NUMBER,
-                new TextField(parent, LocalizationUtil
+                new TextField(parent, util
                         .translate(TableFields.CONTACT_PHONE_NUMBER))
                         .setDataConverter(stringConverter));
         this.editFields.put(TableFields.AFFLICATION, new TextField(parent,
-                LocalizationUtil.translate(TableFields.AFFLICATION))
+                util.translate(TableFields.AFFLICATION))
                 .setDataConverter(stringConverter));
         this.editFields.put(TableFields.POSITION, new TextField(parent,
-                LocalizationUtil.translate(TableFields.POSITION))
+                util.translate(TableFields.POSITION))
                 .setDataConverter(stringConverter));
         final Button button = new Button(parent, SWT.PUSH);
-        button.setText(LocalizationUtil.translate(Buttons.SAVE));
+        button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
 
             @Override

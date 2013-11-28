@@ -32,9 +32,9 @@ public class ConferenceEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
-        TITLE("conf.editor.field.title"),
-        START_DATE("conf.editor.field.startdate"),
-        END_DATE("conf.editor.field.enddate");
+        TITLE("title"),
+        START_DATE("startDate"),
+        END_DATE("endDate");
 
         private String rk;
 
@@ -51,7 +51,7 @@ public class ConferenceEditorPart {
     }
 
     private enum Buttons implements Localizable {
-        SAVE("conf.editor.button.save");
+        SAVE("save");
 
         private String rk;
 
@@ -159,20 +159,21 @@ public class ConferenceEditorPart {
     }
 
     private void buildLayout(final Composite parent) {
-
+        
+        LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
         this.editFields.put(ConferenceFields.TITLE, new TextField(parent,
-                LocalizationUtil.translate(ConferenceFields.TITLE))
+                util.translate(ConferenceFields.TITLE))
                 .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
         this.editFields.put(ConferenceFields.START_DATE, new TextField(parent,
-                LocalizationUtil.translate(ConferenceFields.START_DATE))
+                util.translate(ConferenceFields.START_DATE))
                 .setDataConverter(dateConverter));
         this.editFields.put(ConferenceFields.END_DATE, new TextField(parent,
-                LocalizationUtil.translate(ConferenceFields.END_DATE))
+                util.translate(ConferenceFields.END_DATE))
                 .setDataConverter(dateConverter));
         final Button button = new Button(parent, SWT.PUSH);
-        button.setText(LocalizationUtil.translate(Buttons.SAVE));
+        button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
 
             @Override
