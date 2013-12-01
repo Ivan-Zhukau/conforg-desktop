@@ -10,7 +10,7 @@ public class ParticipantArrival {
 
     private Boolean meeting;
 
-    private String  residencePlace;
+    private Address residencePlace;
 
     public ParticipantArrival() {
 
@@ -39,13 +39,13 @@ public class ParticipantArrival {
         this.meeting = meeting;
     }
 
-    @XmlElement
-    public String getResidencePlace() {
+    @XmlElement(name = "address")
+    public Address getResidencePlace() {
 
         return this.residencePlace;
     }
 
-    public void setResidencePlace(final String residencePlace) {
+    public void setResidencePlace(final Address residencePlace) {
 
         this.residencePlace = residencePlace;
     }

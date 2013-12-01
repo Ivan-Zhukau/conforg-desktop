@@ -12,10 +12,10 @@
         <firstname>Peter</firstname>
         <id>1</id>
         <patronymic>Darth</patronymic>
-        <homeplace>
+        <address>
             <city>NY</city>
             <country>USA</country>
-        </homeplace>
+        </address>
         <surname>Fren</surname>
         <workplace>
             <position>CEO</position>
@@ -34,10 +34,10 @@
         <firstname>Peter</firstname>
         <id>1</id>
         <patronymic>Darth</patronymic>
-        <homeplace>
+        <address>
             <city>NY</city>
             <country>USA</country>
-        </homeplace>
+        </address>
         <surname>Fren</surname>
         <workplace>
             <position>CEO</position>
@@ -56,10 +56,10 @@
         <firstname>Peter</firstname>
         <id>1</id>
         <patronymic>Darth</patronymic>
-        <homeplace>
+        <address>
             <city>NY</city>
             <country>USA</country>
-        </homeplace>
+        </address>
         <surname>Fren</surname>
         <workplace>
             <position>CEO</position>

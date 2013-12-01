@@ -8,75 +8,61 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "report")
 public class Report {
-    
+
     private String     title;
-    
+
     private Long       sectionId;
 
     private List<Long> participants;
-    
+
     private Long       reporter;
-    
-    
+
     public Report() {
 
         super();
     }
 
-
     @XmlElement
     public String getTitle() {
-    
-        return title;
+
+        return this.title;
     }
 
+    public void setTitle(final String title) {
 
-    
-    public void setTitle(String title) {
-    
         this.title = title;
     }
 
-
     @XmlElement(name = "section")
     public Long getSectionId() {
-    
-        return sectionId;
+
+        return this.sectionId;
     }
 
+    public void setSectionId(final Long sectionId) {
 
-    
-    public void setSectionId(Long sectionId) {
-    
         this.sectionId = sectionId;
     }
-
 
     @XmlElementWrapper(name = "participants")
     @XmlElement(name = "participant")
     public List<Long> getParticipants() {
-    
-        return participants;
+
+        return this.participants;
     }
 
+    public void setParticipants(final List<Long> participants) {
 
-    
-    public void setParticipants(List<Long> participants) {
-    
         this.participants = participants;
     }
 
-
-    
     public Long getReporter() {
-    
-        return reporter;
+
+        return this.reporter;
     }
 
+    public void setReporter(final Long reporter) {
 
-    
-    public void setReporter(Long reporter) {
-    
         this.reporter = reporter;
     }
 }

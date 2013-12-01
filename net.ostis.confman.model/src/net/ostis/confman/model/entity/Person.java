@@ -14,7 +14,7 @@ public class Person {
 
     private String               firstName;
 
-    private Place                residence;
+    private Address              residence;
 
     private WorkplaceInformation workplace;
 
@@ -71,13 +71,13 @@ public class Person {
         this.firstName = firstName;
     }
 
-    @XmlElement(name = "homeplace")
-    public Place getResidence() {
+    @XmlElement(name = "address")
+    public Address getResidence() {
 
         return this.residence;
     }
 
-    public void setResidence(final Place residence) {
+    public void setResidence(final Address residence) {
 
         this.residence = residence;
     }

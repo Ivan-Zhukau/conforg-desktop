@@ -5,10 +5,10 @@ import java.util.Arrays;
 import net.ostis.confman.model.datastore.local.PersonReader;
 import net.ostis.confman.model.datastore.local.PersonWriter;
 import net.ostis.confman.model.entity.AcademicInformation;
+import net.ostis.confman.model.entity.Address;
 import net.ostis.confman.model.entity.ContactInformation;
 import net.ostis.confman.model.entity.Person;
 import net.ostis.confman.model.entity.Persons;
-import net.ostis.confman.model.entity.Place;
 import net.ostis.confman.model.entity.WorkplaceInformation;
 
 import org.junit.Test;
@@ -22,9 +22,9 @@ public class PersonStorageTest {
         final WorkplaceInformation wpi = new WorkplaceInformation();
         wpi.setPosition("CEO");
         wpi.setWorkplace("YYAHHO INC.");
-        final Place place = new Place();
-        place.setCity("NY");
-        place.setCountry("USA");
+        final Address address = new Address();
+        address.setCity("NY");
+        address.setCountry("USA");
         final ContactInformation ci = new ContactInformation();
         ci.setEmail("peter_the_best@yyahho.com");
         ci.setPhone("78965412");
@@ -36,7 +36,7 @@ public class PersonStorageTest {
         person.setPatronymic("Darth");
         person.setSurname("Fren");
         person.setWorkplace(wpi);
-        person.setResidence(place);
+        person.setResidence(address);
         person.setContacts(ci);
         person.setDegree(ai);
 

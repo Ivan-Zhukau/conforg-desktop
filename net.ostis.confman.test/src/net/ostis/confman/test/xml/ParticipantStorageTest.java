@@ -3,6 +3,7 @@ package net.ostis.confman.test.xml;
 import java.util.Arrays;
 
 import net.ostis.confman.model.datastore.local.ParticipantWriter;
+import net.ostis.confman.model.entity.Address;
 import net.ostis.confman.model.entity.Participant;
 import net.ostis.confman.model.entity.ParticipantArrival;
 import net.ostis.confman.model.entity.ParticipantRole;
@@ -23,7 +24,10 @@ public class ParticipantStorageTest {
         final ParticipantArrival arrival = new ParticipantArrival();
         arrival.setHousing(true);
         arrival.setMeeting(false);
-        arrival.setResidencePlace("Minsk");
+        final Address address = new Address();
+        address.setCity("NY");
+        address.setCountry("USA");
+        arrival.setResidencePlace(address);
         participant.setArrival(arrival);
         final ParticipantRole role = new ParticipantRole();
         role.setExibitionStand(false);

@@ -18,6 +18,8 @@ public class Conference {
 
     private Date       endDate;
 
+    private Address    residence;
+
     private List<Long> sections;
 
     private List<Long> reports;
@@ -107,5 +109,16 @@ public class Conference {
     public void setConferenceVenue(final String conferenceVenue) {
 
         this.conferenceVenue = conferenceVenue;
+    }
+
+    @XmlElement(name = "address")
+    public Address getResidence() {
+
+        return this.residence;
+    }
+
+    public void setResidence(final Address residence) {
+
+        this.residence = residence;
     }
 }
