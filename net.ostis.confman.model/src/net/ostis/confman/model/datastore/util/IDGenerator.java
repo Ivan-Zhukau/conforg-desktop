@@ -8,7 +8,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class IDGenerator {
+    
+    public static Logger GENERATOR_LOGGER = Logger.getLogger(IDGenerator.class);
 
     private static final String ID_DATA_FILE_LOCATION = "id-data";
 
@@ -40,7 +44,7 @@ public class IDGenerator {
             lines = Files.readAllLines(path, StandardCharsets.UTF_8);
             parseDataList(lines);
         } catch (final IOException e) {
-            // TODO kfs: add log4j support
+            GENERATOR_LOGGER.error(e);
         }
     }
 
@@ -63,7 +67,7 @@ public class IDGenerator {
         try {
             Files.write(path, lines, StandardCharsets.UTF_8);
         } catch (final IOException e) {
-            // TODO kfs: add log4j support
+            GENERATOR_LOGGER.error(e);
         }
     }
 
