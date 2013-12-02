@@ -2,56 +2,56 @@ package net.ostis.confman.model.registrationform;
 
 public class ArticleInformation {
 
-	private String titleEntry;
+    private String titleEntry;
 
-	private String participationForm;
+    private String participationForm;
 
-	private String speaker;
+    private String speaker;
 
-	private String showLaunching;
+    private String showLaunching;
 
-	public ArticleInformation() {
+    public ArticleInformation() {
 
-		super();
-	}
+        super();
+    }
 
-	public String getTitleEntry() {
+    public String getTitleEntry() {
 
-		return this.titleEntry;
-	}
+        return this.titleEntry;
+    }
 
-	public String getParticipationForm() {
+    public String getParticipationForm() {
 
-		return this.participationForm;
-	}
+        return this.participationForm;
+    }
 
-	public String getShowLaunching() {
+    public String getShowLaunching() {
 
-		return this.showLaunching;
-	}
+        return this.showLaunching;
+    }
 
-	public String getSpeaker() {
+    public String getSpeaker() {
 
-		return this.speaker;
-	}
+        return this.speaker;
+    }
 
-	public void setParticipationForm(final String participationForm) {
+    public void setParticipationForm(final String participationForm) {
 
-		this.participationForm = participationForm;
-	}
+        this.participationForm = participationForm;
+    }
 
-	public void setShowLaunching(final String showLaunching) {
+    public void setShowLaunching(final String showLaunching) {
 
-		this.showLaunching = showLaunching;
-	}
+        this.showLaunching = showLaunching;
+    }
 
-	public void setSpeaker(final String speaker) {
+    public void setSpeaker(final String speaker) {
 
-		this.speaker = speaker;
-	}
+        this.speaker = speaker;
+    }
 
-	public void setTitleEntry(final String titleEntry) {
+    public void setTitleEntry(final String titleEntry) {
 
-		this.titleEntry = titleEntry;
-	}
+        this.titleEntry = titleEntry;
+    }
 }

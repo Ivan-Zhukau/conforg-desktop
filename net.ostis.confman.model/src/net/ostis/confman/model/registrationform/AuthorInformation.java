@@ -2,62 +2,62 @@ package net.ostis.confman.model.registrationform;
 
 public class AuthorInformation {
 
-	private String shortName;
+    private String               shortName;
 
-	private PersonalInformation personalInformation;
+    private PersonalInformation  personalInformation;
 
-	private ContactInformation contactInformation;
+    private ContactInformation   contactInformation;
 
-	private WorkPlaceInformation workPlaceInformation;
+    private WorkPlaceInformation workPlaceInformation;
 
-	public AuthorInformation() {
+    public AuthorInformation() {
 
-		super();
-		this.personalInformation = new PersonalInformation();
-		this.contactInformation = new ContactInformation();
-		this.workPlaceInformation = new WorkPlaceInformation();
-	}
+        super();
+        this.personalInformation = new PersonalInformation();
+        this.contactInformation = new ContactInformation();
+        this.workPlaceInformation = new WorkPlaceInformation();
+    }
 
-	public String getShortName() {
+    public String getShortName() {
 
-		return this.shortName;
-	}
+        return this.shortName;
+    }
 
-	public void setIdAuthor(final String shortName) {
+    public void setIdAuthor(final String shortName) {
 
-		this.shortName = shortName;
-	}
+        this.shortName = shortName;
+    }
 
-	public ContactInformation getContactInformation() {
+    public ContactInformation getContactInformation() {
 
-		return this.contactInformation;
-	}
+        return this.contactInformation;
+    }
 
-	public PersonalInformation getPersonalInformation() {
+    public PersonalInformation getPersonalInformation() {
 
-		return this.personalInformation;
-	}
+        return this.personalInformation;
+    }
 
-	public WorkPlaceInformation getWorkPlaceInformation() {
+    public WorkPlaceInformation getWorkPlaceInformation() {
 
-		return this.workPlaceInformation;
-	}
+        return this.workPlaceInformation;
+    }
 
-	public void setContactInformation(
-			final ContactInformation contactInformation) {
+    public void setContactInformation(
+            final ContactInformation contactInformation) {
 
-		this.contactInformation = contactInformation;
-	}
+        this.contactInformation = contactInformation;
+    }
 
-	public void setPersonalInformation(
-			final PersonalInformation personalInformation) {
+    public void setPersonalInformation(
+            final PersonalInformation personalInformation) {
 
-		this.personalInformation = personalInformation;
-	}
+        this.personalInformation = personalInformation;
+    }
 
-	public void setWorkPlaceInformation(
-			final WorkPlaceInformation workPlaceInformation) {
+    public void setWorkPlaceInformation(
+            final WorkPlaceInformation workPlaceInformation) {
 
-		this.workPlaceInformation = workPlaceInformation;
-	}
+        this.workPlaceInformation = workPlaceInformation;
+    }
 }

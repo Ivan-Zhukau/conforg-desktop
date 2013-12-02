@@ -2,69 +2,69 @@ package net.ostis.confman.model.registrationform;
 
 public class PersonalInformation {
 
-	private String secondName;
+    private String secondName;
 
-	private String firstName;
+    private String firstName;
 
-	private String thirdName;
+    private String thirdName;
 
-	private String academicDegree;
+    private String academicDegree;
 
-	private String academicTitle;
+    private String academicTitle;
 
-	public PersonalInformation() {
+    public PersonalInformation() {
 
-		super();
-	}
+        super();
+    }
 
-	public String getAcademicDegree() {
+    public String getAcademicDegree() {
 
-		return this.academicDegree;
-	}
+        return this.academicDegree;
+    }
 
-	public String getAcademicTitle() {
+    public String getAcademicTitle() {
 
-		return this.academicTitle;
-	}
+        return this.academicTitle;
+    }
 
-	public String getFirstName() {
+    public String getFirstName() {
 
-		return this.firstName;
-	}
+        return this.firstName;
+    }
 
-	public String getSecondName() {
+    public String getSecondName() {
 
-		return this.secondName;
-	}
+        return this.secondName;
+    }
 
-	public String getThirdName() {
+    public String getThirdName() {
 
-		return this.thirdName;
-	}
+        return this.thirdName;
+    }
 
-	public void setAcademicDegree(final String academicDegree) {
+    public void setAcademicDegree(final String academicDegree) {
 
-		this.academicDegree = academicDegree;
-	}
+        this.academicDegree = academicDegree;
+    }
 
-	public void setAcademicTitle(final String academicTitle) {
+    public void setAcademicTitle(final String academicTitle) {
 
-		this.academicTitle = academicTitle;
-	}
+        this.academicTitle = academicTitle;
+    }
 
-	public void setFirstName(final String firstName) {
+    public void setFirstName(final String firstName) {
 
-		this.firstName = firstName;
-	}
+        this.firstName = firstName;
+    }
 
-	public void setSecondName(final String secondName) {
+    public void setSecondName(final String secondName) {
 
-		this.secondName = secondName;
-	}
+        this.secondName = secondName;
+    }
 
-	public void setThirdName(final String thirdName) {
+    public void setThirdName(final String thirdName) {
 
-		this.thirdName = thirdName;
-	}
+        this.thirdName = thirdName;
+    }
 
 }
