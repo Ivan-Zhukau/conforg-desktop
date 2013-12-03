@@ -17,16 +17,16 @@ public class ParticipantStorageTest {
     public void test() {
 
         final Participant participant = new Participant();
-        participant.setId(1L);
-        participant.setConferenceId(11L);
-        participant.setPersonId(2L);
-        participant.setReportId(Arrays.asList(112L));
+        participant.setId(2L);
+        participant.setConferenceId(3L);
+        participant.setPersonId(1L);
+        participant.setReportId(Arrays.asList(5L));
         final ParticipantArrival arrival = new ParticipantArrival();
         arrival.setHousing(true);
         arrival.setMeeting(false);
         final Address address = new Address();
-        address.setCity("NY");
-        address.setCountry("USA");
+        address.setCity("ASDFG");
+        address.setCountry("NIGERIA");
         arrival.setResidencePlace(address);
         participant.setArrival(arrival);
         final ParticipantRole role = new ParticipantRole();

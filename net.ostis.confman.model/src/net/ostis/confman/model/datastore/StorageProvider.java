@@ -30,15 +30,15 @@ public class StorageProvider {
 
     private static StorageProvider INSTANCE;
 
-    private List<Person>           persons      = new ArrayList<>();
+    private List<Person>           persons;
 
-    private List<Participant>      participants = new ArrayList<>();
+    private List<Participant>      participants;
 
-    private List<Report>           reports      = new ArrayList<>();
+    private List<Report>           reports;
+    
+    private List<Section>          sections;
 
-    private List<Section>          sections     = new ArrayList<>();
-
-    private List<Conference>       conferences  = new ArrayList<>();
+    private List<Conference>       conferences;
 
     private StorageProvider() {
 
@@ -49,12 +49,12 @@ public class StorageProvider {
 
         if (INSTANCE == null) {
             INSTANCE = new StorageProvider();
-            INSTANCE.loadData();
+            INSTANCE.loadOnStartup();
         }
         return INSTANCE;
     }
 
-    private void loadData() {
+    private void loadOnStartup() {
 
         this.persons = loadPersons();
         this.participants = loadParticipants();
@@ -101,8 +101,8 @@ public class StorageProvider {
     private Object load(final Callable<?> reader) {
 
         try {
-            return ConcurrencyThreadExecutor.getInstance().callTask(reader);
-        } catch (InterruptedException | ExecutionException e) {
+            return reader.call();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

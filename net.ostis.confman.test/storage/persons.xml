@@ -2,68 +2,24 @@
 <persons>
     <person>
         <contacts>
-            <email>peter_the_best@yyahho.com</email>
+            <email>v.m@yyahho.com</email>
             <phone>78965412</phone>
         </contacts>
         <acdegree>
-            <degree>phD?IDK2</degree>
-            <title>phD??IDK</title>
+            <degree>scholar</degree>
+            <title>scholar</title>
         </acdegree>
-        <firstname>Peter</firstname>
+        <firstname>Vadim</firstname>
         <id>1</id>
-        <patronymic>Darth</patronymic>
+        <patronymic>Viktorovich</patronymic>
         <address>
-            <city>NY</city>
-            <country>USA</country>
+            <city>MINSK</city>
+            <country>BOOLBLAND</country>
         </address>
-        <surname>Fren</surname>
+        <surname>Mihalovski</surname>
         <workplace>
-            <position>CEO</position>
-            <workplace>YYAHHO INC.</workplace>
-        </workplace>
-    </person>
-    <person>
-        <contacts>
-            <email>peter_the_best@yyahho.com</email>
-            <phone>78965412</phone>
-        </contacts>
-        <acdegree>
-            <degree>phD?IDK2</degree>
-            <title>phD??IDK</title>
-        </acdegree>
-        <firstname>Peter</firstname>
-        <id>1</id>
-        <patronymic>Darth</patronymic>
-        <address>
-            <city>NY</city>
-            <country>USA</country>
-        </address>
-        <surname>Fren</surname>
-        <workplace>
-            <position>CEO</position>
-            <workplace>YYAHHO INC.</workplace>
-        </workplace>
-    </person>
-    <person>
-        <contacts>
-            <email>peter_the_best@yyahho.com</email>
-            <phone>78965412</phone>
-        </contacts>
-        <acdegree>
-            <degree>phD?IDK2</degree>
-            <title>phD??IDK</title>
-        </acdegree>
-        <firstname>Peter</firstname>
-        <id>1</id>
-        <patronymic>Darth</patronymic>
-        <address>
-            <city>NY</city>
-            <country>USA</country>
-        </address>
-        <surname>Fren</surname>
-        <workplace>
-            <position>CEO</position>
-            <workplace>YYAHHO INC.</workplace>
+            <position>Scholar</position>
+            <workplace>BSUIR</workplace>
         </workplace>
     </person>
 </persons>

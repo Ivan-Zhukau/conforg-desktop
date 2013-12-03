@@ -15,13 +15,14 @@ public class SectionStorageTest {
     public void testSectionSave() {
 
         final Section section = new Section();
-        section.setConferenceId(1L);
-        section.setDate(new Date(123124124));
-        section.setReports(Arrays.asList(12L, 13L));
-        section.setTitle("First");
+        section.setId(4L);
+        section.setConferenceId(3L);
+        section.setDate(new Date());
+        section.setReports(Arrays.asList(5L));
+        section.setTitle("SemanTec");
 
         final Sections sections = new Sections();
-        sections.setSections(Arrays.asList(section, section, section));
+        sections.setSections(Arrays.asList(section));
         final Runnable command = new SectionWriter(sections);
         command.run();
     }

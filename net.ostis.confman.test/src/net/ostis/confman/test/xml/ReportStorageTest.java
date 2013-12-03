@@ -14,10 +14,11 @@ public class ReportStorageTest {
     public void test() {
 
         final Report report = new Report();
+        report.setId(5L);
         report.setTitle("Some Semantic Technologies");
-        report.setSectionId(11L);
-        report.setReporter(1L);
-        report.setParticipants(Arrays.asList(1L, 2L));
+        report.setSectionId(4L);
+        report.setReporter(2L);
+        report.setParticipants(Arrays.asList(2L));
 
         final Reports reports = new Reports();
         reports.setReports(Arrays.asList(report));

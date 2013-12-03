@@ -3,6 +3,7 @@ package net.ostis.confman.model.entity;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "participant")
@@ -58,7 +59,8 @@ public class Participant {
         this.arrival = arrival;
     }
 
-    @XmlElement(name = "reports")
+    @XmlElementWrapper(name = "reports")
+    @XmlElement(name = "report")
     public List<Long> getReportId() {
 
         return this.reportId;

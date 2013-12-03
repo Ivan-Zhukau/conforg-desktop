@@ -4,12 +4,17 @@
         <partarrival>
             <housing>true</housing>
             <meeting>false</meeting>
-            <residencePlace>Minsk</residencePlace>
+            <address>
+                <city>ASDFG</city>
+                <country>NIGERIA</country>
+            </address>
         </partarrival>
-        <conferenceId>11</conferenceId>
-        <id>1</id>
-        <personId>2</personId>
-        <reports>112</reports>
+        <conferenceId>3</conferenceId>
+        <id>2</id>
+        <personId>1</personId>
+        <reports>
+            <report>5</report>
+        </reports>
         <partrole>
             <exhibition>false</exhibition>
             <form>Reporter</form>

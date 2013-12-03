@@ -20,28 +20,28 @@ public class PersonStorageTest {
 
         final Person person = new Person();
         final WorkplaceInformation wpi = new WorkplaceInformation();
-        wpi.setPosition("CEO");
-        wpi.setWorkplace("YYAHHO INC.");
+        wpi.setPosition("Scholar");
+        wpi.setWorkplace("BSUIR");
         final Address address = new Address();
-        address.setCity("NY");
-        address.setCountry("USA");
+        address.setCity("MINSK");
+        address.setCountry("BOOLBLAND");
         final ContactInformation ci = new ContactInformation();
-        ci.setEmail("peter_the_best@yyahho.com");
+        ci.setEmail("v.m@yyahho.com");
         ci.setPhone("78965412");
         final AcademicInformation ai = new AcademicInformation();
-        ai.setTitle("phD??IDK");
-        ai.setDegree("phD?IDK2");
+        ai.setTitle("scholar");
+        ai.setDegree("scholar");
         person.setId(1L);
-        person.setFirstName("Peter");
-        person.setPatronymic("Darth");
-        person.setSurname("Fren");
+        person.setFirstName("Vadim");
+        person.setPatronymic("Viktorovich");
+        person.setSurname("Mihalovski");
         person.setWorkplace(wpi);
         person.setResidence(address);
         person.setContacts(ci);
         person.setDegree(ai);
 
         final Persons persons = new Persons();
-        persons.setPersons(Arrays.asList(person, person, person));
+        persons.setPersons(Arrays.asList(person));
         final Runnable command = new PersonWriter(persons);
         command.run();
     }

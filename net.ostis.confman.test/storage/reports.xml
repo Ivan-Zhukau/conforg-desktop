@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <reports>
     <report>
+        <id>5</id>
         <participants>
-            <participant>1</participant>
             <participant>2</participant>
         </participants>
-        <reporter>1</reporter>
-        <section>11</section>
+        <reporter>2</reporter>
+        <section>4</section>
         <title>Some Semantic Technologies</title>
     </report>
 </reports>
