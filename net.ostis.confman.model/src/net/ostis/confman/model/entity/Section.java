@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "section")
 public class Section {
 
+    private Long       id;
+
     private String     title;
 
     private Date       date;
@@ -21,6 +23,17 @@ public class Section {
     public Section() {
 
         super();
+    }
+
+    @XmlElement
+    public Long getId() {
+
+        return this.id;
+    }
+
+    public void setId(final Long id) {
+
+        this.id = id;
     }
 
     @XmlElement

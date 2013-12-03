@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "conference")
 public class Conference {
 
-    private String     title;
+    private Long       id;
 
-    private String     conferenceVenue;
+    private String     title;
 
     private Date       startDate;
 
@@ -29,6 +29,17 @@ public class Conference {
     public Conference() {
 
         super();
+    }
+
+    @XmlElement
+    public Long getId() {
+
+        return this.id;
+    }
+
+    public void setId(final Long id) {
+
+        this.id = id;
     }
 
     @XmlElement
@@ -98,17 +109,6 @@ public class Conference {
     public void setParticipants(final List<Long> participants) {
 
         this.participants = participants;
-    }
-
-    @XmlElement(name = "confvenue")
-    public String getConferenceVenue() {
-
-        return this.conferenceVenue;
-    }
-
-    public void setConferenceVenue(final String conferenceVenue) {
-
-        this.conferenceVenue = conferenceVenue;
     }
 
     @XmlElement(name = "address")

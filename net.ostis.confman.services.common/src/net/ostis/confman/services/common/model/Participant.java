@@ -4,8 +4,6 @@ import java.util.List;
 
 public class Participant {
 
-    private Long               id;
-
     private ParticipantRole    role;
 
     private ParticipantArrival arrival;
@@ -19,16 +17,6 @@ public class Participant {
     public Participant() {
 
         super();
-    }
-
-    public Long getId() {
-
-        return this.id;
-    }
-
-    public void setId(final Long id) {
-
-        this.id = id;
     }
 
     public ParticipantRole getRole() {

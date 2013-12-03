@@ -2,8 +2,6 @@ package net.ostis.confman.services.common.model;
 
 public class Person {
 
-    private Long                 id;
-
     private String               surname;
 
     private String               patronymic;
@@ -21,16 +19,6 @@ public class Person {
     public Person() {
 
         super();
-    }
-
-    public Long getId() {
-
-        return this.id;
-    }
-
-    public void setId(final Long id) {
-
-        this.id = id;
     }
 
     public String getSurname() {

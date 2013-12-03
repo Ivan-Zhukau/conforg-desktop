@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "report")
 public class Report {
 
+    private Long       id;
+
     private String     title;
 
     private Long       sectionId;
@@ -20,6 +22,17 @@ public class Report {
     public Report() {
 
         super();
+    }
+
+    @XmlElement
+    public Long getId() {
+
+        return this.id;
+    }
+
+    public void setId(final Long id) {
+
+        this.id = id;
     }
 
     @XmlElement
