@@ -3,8 +3,10 @@ package net.ostis.confman.ui.conference;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.model.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeContentProvider;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeLabelProvider;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeListenerProvider;

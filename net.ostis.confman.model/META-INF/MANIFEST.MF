@@ -15,6 +15,7 @@ Export-Package: javax.xml,
  junit.swingui,
  junit.swingui.icons,
  junit.textui,
+ net.ostis.confman.model.convert,
  net.ostis.confman.model.datastore,
  net.ostis.confman.model.registrationform,
  net.ostis.confman.model.registrationform.wordparser,
@@ -369,4 +370,5 @@ Export-Package: javax.xml,
  schemasMicrosoftComOfficeOffice.impl,
  schemasMicrosoftComVml,
  schemasMicrosoftComVml.impl
-Require-Bundle: net.ostis.confman.lib;bundle-version="1.0.0"
+Require-Bundle: net.ostis.confman.lib;bundle-version="1.0.0",
+ net.ostis.confman.services.common;bundle-version="1.0.0"

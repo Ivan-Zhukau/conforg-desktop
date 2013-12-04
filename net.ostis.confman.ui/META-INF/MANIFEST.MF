@@ -18,10 +18,13 @@ Require-Bundle: javax.inject;bundle-version="1.0.0",
  net.ostis.confman.services,
  org.eclipse.osgi.services;bundle-version="3.3.100",
  org.eclipse.e4.core.services;bundle-version="1.1.0",
- net.ostis.confman.services.common;bundle-version="1.0.0"
+ net.ostis.confman.services.common;bundle-version="1.0.0",
+ net.ostis.confman.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: javax.annotation;version="1.0.0",
+ net.ostis.confman.model.convert,
  net.ostis.confman.model.datastore,
- net.ostis.confman.model.registrationform
+ net.ostis.confman.model.registrationform,
+ net.ostis.confman.services.common.model
 Export-Package: net.ostis.confman.ui.handlers,
  net.ostis.confman.ui.parts
