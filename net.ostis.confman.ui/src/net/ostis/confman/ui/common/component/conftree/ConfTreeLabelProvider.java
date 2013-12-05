@@ -19,9 +19,11 @@ public class ConfTreeLabelProvider extends LabelProvider {
         } else if (element instanceof Section) {
             final Section section = (Section) element;
             return section.getTitle();
-        } else {
-            return ((Report) element).getTitle();
+        } else if (element instanceof Report) {
+            final Report report = (Report) element;
+            return report.getTitle();
         }
+        throw new IllegalArgumentException();
     }
 
     @Override

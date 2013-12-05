@@ -17,7 +17,7 @@ public abstract class Writer {
         super();
     }
 
-    protected void write(final File location, final Object jaxbElement)
+    protected synchronized void write(final File location, final Object jaxbElement)
             throws JAXBException {
 
         final JAXBContext context = JAXBContext.newInstance(jaxbElement

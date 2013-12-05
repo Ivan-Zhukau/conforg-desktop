@@ -286,6 +286,9 @@ public class ConverterFromStorageProvider {
             final Address address) {
 
         final net.ostis.confman.services.common.model.Address confAddress = new net.ostis.confman.services.common.model.Address();
+        if(address == null) {
+            return confAddress;
+        }
         confAddress.setCity(address.getCity());
         confAddress.setCountry(address.getCountry());
         confAddress.setHouseNumber(address.getHouseNumber());

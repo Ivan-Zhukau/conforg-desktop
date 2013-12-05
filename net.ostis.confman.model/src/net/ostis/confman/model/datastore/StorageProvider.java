@@ -1,16 +1,20 @@
 package net.ostis.confman.model.datastore;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 
 import net.ostis.confman.model.common.concurrency.ConcurrencyThreadExecutor;
+import net.ostis.confman.model.convert.EntityConverter;
 import net.ostis.confman.model.datastore.local.ConferenceReader;
+import net.ostis.confman.model.datastore.local.ConferenceWriter;
 import net.ostis.confman.model.datastore.local.ParticipantReader;
+import net.ostis.confman.model.datastore.local.ParticipantWriter;
 import net.ostis.confman.model.datastore.local.PersonReader;
+import net.ostis.confman.model.datastore.local.PersonWriter;
 import net.ostis.confman.model.datastore.local.ReportReader;
+import net.ostis.confman.model.datastore.local.ReportWriter;
 import net.ostis.confman.model.datastore.local.SectionReader;
+import net.ostis.confman.model.datastore.local.SectionWriter;
 import net.ostis.confman.model.entity.Conference;
 import net.ostis.confman.model.entity.Conferences;
 import net.ostis.confman.model.entity.Participant;
@@ -21,24 +25,25 @@ import net.ostis.confman.model.entity.Report;
 import net.ostis.confman.model.entity.Reports;
 import net.ostis.confman.model.entity.Section;
 import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.services.common.model.FullModel;
 
 import org.apache.log4j.Logger;
 
 public class StorageProvider {
 
-    public static final Logger     LOGGER       = Logger.getLogger(StorageProvider.class);
+    public static final Logger     LOGGER = Logger.getLogger(StorageProvider.class);
 
     private static StorageProvider INSTANCE;
 
-    private List<Person>           persons;
+    private Persons                persons;
 
-    private List<Participant>      participants;
+    private Participants           participants;
 
-    private List<Report>           reports;
-    
-    private List<Section>          sections;
+    private Reports                reports;
 
-    private List<Conference>       conferences;
+    private Sections               sections;
+
+    private Conferences            conferences;
 
     private StorageProvider() {
 
@@ -63,72 +68,129 @@ public class StorageProvider {
         this.conferences = loadConferences();
     }
 
-    private List<Person> loadPersons() {
+    private Persons loadPersons() {
 
         final PersonReader reader = new PersonReader();
         final Persons loadedData = (Persons) load(reader);
-        return loadedData.getPersons();
+        return loadedData;
     }
 
-    private List<Participant> loadParticipants() {
+    private Participants loadParticipants() {
 
         final ParticipantReader reader = new ParticipantReader();
         final Participants loadedData = (Participants) load(reader);
-        return loadedData.getParticipants();
+        return loadedData;
     }
 
-    private List<Report> loadReports() {
+    private Reports loadReports() {
 
         final ReportReader reader = new ReportReader();
         final Reports loadedData = (Reports) load(reader);
-        return loadedData.getReports();
+        return loadedData;
     }
 
-    private List<Section> loadSections() {
+    private Sections loadSections() {
 
         final SectionReader reader = new SectionReader();
         final Sections loadedData = (Sections) load(reader);
-        return loadedData.getSections();
+        return loadedData;
     }
 
-    private List<Conference> loadConferences() {
+    private Conferences loadConferences() {
 
         final ConferenceReader reader = new ConferenceReader();
         final Conferences loadedData = (Conferences) load(reader);
-        return loadedData.getConferences();
+        return loadedData;
     }
 
     private Object load(final Callable<?> reader) {
 
         try {
             return reader.call();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    public void persist(final FullModel model) {
+
+        final EntityConverter converter = new EntityConverter();
+        converter.convertModel(model);
+        saveData(converter);
+    }
+
+    private synchronized void saveData(final EntityConverter converter) {
+
+        saveConferences(converter.getConferences());
+        saveSections(converter.getSections());
+        saveReports(converter.getReports());
+        savePersons(converter.getPersons());
+        saveParticipants(converter.getParticipants());
+    }
+
+    private synchronized void saveConferences(
+            final Conferences convertedConferences) {
+
+        final ConferenceWriter writer = new ConferenceWriter(
+                convertedConferences);
+        save(writer);
+    }
+
+    private synchronized void saveSections(final Sections convertedSections) {
+
+        final SectionWriter writer = new SectionWriter(convertedSections);
+        save(writer);
+    }
+
+    private synchronized void saveReports(final Reports convertedReports) {
+
+        final ReportWriter writer = new ReportWriter(convertedReports);
+        save(writer);
+    }
+
+    private synchronized void savePersons(final Persons convertedPersons) {
+
+        final PersonWriter writer = new PersonWriter(convertedPersons);
+        save(writer);
+    }
+
+    private synchronized void saveParticipants(
+            final Participants convertedParticipants) {
+
+        final ParticipantWriter writer = new ParticipantWriter(
+                convertedParticipants);
+        save(writer);
+    }
+
+    private synchronized void save(final Runnable command) {
+
+        final ConcurrencyThreadExecutor threadExecutor = ConcurrencyThreadExecutor
+                .getInstance();
+        threadExecutor.runTask(command);
+    }
+
     public List<Person> getPersons() {
 
-        return this.persons;
+        return this.persons.getPersons();
     }
 
     public List<Participant> getParticipants() {
 
-        return this.participants;
+        return this.participants.getParticipants();
     }
 
     public List<Report> getReports() {
 
-        return this.reports;
+        return this.reports.getReports();
     }
 
     public List<Section> getSections() {
 
-        return this.sections;
+        return this.sections.getSections();
     }
 
     public List<Conference> getConferences() {
 
-        return this.conferences;
+        return this.conferences.getConferences();
     }
 }
