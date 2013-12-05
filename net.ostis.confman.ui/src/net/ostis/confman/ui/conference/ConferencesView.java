@@ -40,7 +40,7 @@ public class ConferencesView {
         this.confService = (ConferenceService) ServiceLocator.getInstance()
                 .getService(ConferenceService.class);
         ConverterFromStorageProvider provider = new ConverterFromStorageProvider();
-        FullModel model = provider.converData();
+        FullModel model = provider.convertData();
         model.getClass();
     }
 

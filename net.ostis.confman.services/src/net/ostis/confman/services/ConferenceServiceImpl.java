@@ -13,7 +13,7 @@ class ConferenceServiceImpl implements ConferenceService {
     public ConferenceServiceImpl() {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
-        final FullModel model = converter.converData();
+        final FullModel model = converter.convertData();
         this.conferences = model.getConferences();
     }
 
