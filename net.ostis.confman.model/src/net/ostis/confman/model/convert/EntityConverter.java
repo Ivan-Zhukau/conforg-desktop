@@ -1,5 +1,6 @@
 package net.ostis.confman.model.convert;
 
+import net.ostis.confman.model.datastore.util.IDProvider;
 import net.ostis.confman.model.entity.Conferences;
 import net.ostis.confman.model.entity.Participants;
 import net.ostis.confman.model.entity.Persons;
@@ -26,11 +27,27 @@ public class EntityConverter {
 
     public void convertModel(final FullModel model) {
 
-        this.conferences = ConferenceConverter.convert(model);
-        this.sections = SectionConverter.convert(model);
-        this.reports = ReportConverter.convert(model);
-        this.persons = PersonConverter.convert(model);
-        this.participants = ParticipantConverter.convert(model);
+        final IDProvider idProvider = new IDProvider();
+        idProvider.init(model, this);
+        final Persons persons = PersonConverter.convert(model, idProvider);
+        final Participants participants = ParticipantConverter.convert(model,
+                idProvider);
+        final Conferences conferences = ConferenceConverter.convert(model,
+                idProvider);
+        final Sections sections = SectionConverter.convert(model, idProvider);
+        final Reports reports = ReportConverter.convert(model, idProvider);
+        update(persons, participants, conferences, sections, reports);
+    }
+
+    private void update(final Persons persons, final Participants participants,
+            final Conferences conferences, final Sections sections,
+            final Reports reports) {
+
+        this.persons = persons;
+        this.participants = participants;
+        this.conferences = conferences;
+        this.sections = sections;
+        this.reports = reports;
     }
 
     public Conferences getConferences() {

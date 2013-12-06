@@ -1,15 +1,100 @@
 package net.ostis.confman.model.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.ostis.confman.model.datastore.util.IDProvider;
+import net.ostis.confman.model.entity.Address;
+import net.ostis.confman.model.entity.Participant;
+import net.ostis.confman.model.entity.ParticipantArrival;
+import net.ostis.confman.model.entity.ParticipantRole;
 import net.ostis.confman.model.entity.Participants;
 import net.ostis.confman.services.common.model.FullModel;
-
+import net.ostis.confman.services.common.model.Report;
 
 public class ParticipantConverter {
 
-    public static Participants convert(FullModel model) {
+    public static Participants convert(final FullModel model,
+            final IDProvider idProvider) {
 
-        // TODO Auto-generated method stub
-        return null;
+        final List<Participant> participantsToStore = convertParticipants(
+                model.getParticipants(), idProvider);
+        final Participants storage = new Participants();
+        storage.setParticipants(participantsToStore);
+        return storage;
     }
 
+    private static List<Participant> convertParticipants(
+            final List<net.ostis.confman.services.common.model.Participant> participants,
+            final IDProvider idProvider) {
+
+        final List<Participant> participantsToStore = new ArrayList<Participant>();
+        Participant participantToStore;
+        for (final net.ostis.confman.services.common.model.Participant participant : participants) {
+            participantToStore = convertFields(participant, idProvider);
+            participantsToStore.add(participantToStore);
+        }
+        return participantsToStore;
+    }
+
+    private static Participant convertFields(
+            final net.ostis.confman.services.common.model.Participant participant,
+            final IDProvider idProvider) {
+
+        final Participant participantToStore = new Participant();
+        participantToStore.setArrival(convertArrival(participant.getArrival()));
+        participantToStore.setConferenceId(idProvider.getId(participant
+                .getConference()));
+        participantToStore.setId(idProvider.getId(participant));
+        participantToStore
+                .setPersonId(idProvider.getId(participant.getPerson()));
+        participantToStore.setReportId(getReportId(participant.getReports(),
+                idProvider));
+        participantToStore.setRole(convertRole(participant.getRole()));
+        return participantToStore;
+    }
+
+    private static ParticipantRole convertRole(
+            final net.ostis.confman.services.common.model.ParticipantRole role) {
+
+        final ParticipantRole participantRole = new ParticipantRole();
+        participantRole.setExibitionStand(role.getExhibitionStand());
+        participantRole.setParticipationForm(role.getParticipationForm());
+        participantRole.setProgramCommitteeMember(role
+                .getProgramCommitteeMember());
+        return participantRole;
+    }
+
+    private static ParticipantArrival convertArrival(
+            final net.ostis.confman.services.common.model.ParticipantArrival arrival) {
+
+        final ParticipantArrival participantArrival = new ParticipantArrival();
+        participantArrival.setHousing(arrival.getHousing());
+        participantArrival.setMeeting(arrival.getMeeting());
+        participantArrival.setResidencePlace(convertResidencePlace(arrival
+                .getResidencePlace()));
+        return participantArrival;
+    }
+
+    private static Address convertResidencePlace(
+            final net.ostis.confman.services.common.model.Address residencePlace) {
+
+        final Address address = new Address();
+        address.setCity(residencePlace.getCity());
+        address.setCountry(residencePlace.getCountry());
+        address.setHouseNumber(residencePlace.getHouseNumber());
+        address.setStreet(residencePlace.getStreet());
+        return address;
+    }
+
+    private static List<Long> getReportId(final List<Report> reports,
+            final IDProvider idProvider) {
+
+        final List<Long> ids = new ArrayList<>();
+        for (final Report report : reports) {
+            final long id = idProvider.getId(report);
+            ids.add(id);
+        }
+        return ids;
+    }
 }
