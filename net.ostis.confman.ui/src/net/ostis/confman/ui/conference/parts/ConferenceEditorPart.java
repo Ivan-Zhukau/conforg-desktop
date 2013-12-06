@@ -1,4 +1,4 @@
-package net.ostis.confman.ui.conference;
+package net.ostis.confman.ui.conference.parts;
 
 import java.util.Date;
 import java.util.EnumMap;
@@ -15,6 +15,7 @@ import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
 import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;

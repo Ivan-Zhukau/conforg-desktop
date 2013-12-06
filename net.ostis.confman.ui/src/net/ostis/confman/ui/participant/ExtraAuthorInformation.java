@@ -35,7 +35,10 @@ public class ExtraAuthorInformation {
 
     private enum TableFields implements Localizable {
         PATICIPATION_FORM("participationForm"),
-        REZIDENCE_PLACE("residencePlace");
+        COUNTRY("country"),
+        CITY("city"),
+        STREET("street"),
+        HOUSE_NUMBER("houseNumber");
 
         private String rk;
 
@@ -56,7 +59,7 @@ public class ExtraAuthorInformation {
         PROGRAMM_COMMITTEE_MEMBER("programCommitteeMember"),
         MEETING("meeting"),
         HOUSING("housing"),
-        EXIBITION_STAND("exibitionStand");
+        EXIBITION_STAND("exhibitionStand");
 
         private String rk;
 
@@ -74,6 +77,8 @@ public class ExtraAuthorInformation {
     }
 
     private final Map<TableFields, EditableComponent<TextField>> editFields;
+    
+    private final Map<Buttons, EditableComponent<Button>> checkFields;
 
     @Inject
     private ESelectionService                                    selectionService;
@@ -85,6 +90,7 @@ public class ExtraAuthorInformation {
 
         super();
         this.editFields = new EnumMap<>(TableFields.class);
+        this.checkFields = new EnumMap<>(Buttons.class);
     }
 
     @PostConstruct
@@ -118,26 +124,174 @@ public class ExtraAuthorInformation {
 
         final ParticipantArrival participantArrival = participant.getArrival();
         final ParticipantRole participantRole = participant.getRole();
+        Address address = participantArrival.getResidencePlace();
         applyParticipationFormBinder(participantRole);
-        applyResidencePlaceBinder(participantArrival);
+        applyCityBinder(address);
+        applyCountryBinder(address);
+        applyHouseBinder(address);
+        applyStreetBinder(address);
+        applyHousingBinder(participantArrival);
+        applyMeetingBinder(participantArrival);
+        applyExibitionBinder(participantRole);
+        applyCommitteeBinder(participantRole);
     }
+    
+    private void applyExibitionBinder(
+            final ParticipantRole role) {
 
-    private void applyResidencePlaceBinder(
-            final ParticipantArrival participantArrival) {
-
-        this.editFields.get(TableFields.REZIDENCE_PLACE).setValueBinder(
+        this.checkFields.get(Buttons.EXIBITION_STAND).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        participantArrival.setResidencePlace((Address) value);
+                        role.setExibitionStand((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return participantArrival.getResidencePlace();
+                        return role.getExhibitionStand();
+                    }
+                });
+    }
+    
+    private void applyCommitteeBinder(
+            final ParticipantRole role) {
+
+        this.checkFields.get(Buttons.PROGRAMM_COMMITTEE_MEMBER).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        role.setProgramCommitteeMember((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return role.getProgramCommitteeMember();
+                    }
+                });
+    }
+    
+    private void applyMeetingBinder(
+            final ParticipantArrival arrival) {
+
+        this.checkFields.get(Buttons.MEETING).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        arrival.setMeeting((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return arrival.getMeeting();
+                    }
+                });
+    }
+    
+    private void applyHousingBinder(
+            final ParticipantArrival arrival) {
+
+        this.checkFields.get(Buttons.HOUSING).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        arrival.setHousing((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return arrival.getHousing();
+                    }
+                });
+    }
+
+    private void applyCityBinder(
+            final Address address) {
+
+        this.editFields.get(TableFields.CITY).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        address.setCity((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return address.getCity();
+                    }
+                });
+    }
+    
+    private void applyCountryBinder(
+            final Address address) {
+
+        this.editFields.get(TableFields.COUNTRY).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        address.setCountry((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return address.getCountry();
+                    }
+                });
+    }
+    
+    private void applyStreetBinder(
+            final Address address) {
+
+        this.editFields.get(TableFields.STREET).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        address.setStreet((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return address.getStreet();
+                    }
+                });
+    }
+    
+    private void applyHouseBinder(
+            final Address address) {
+
+        this.editFields.get(TableFields.HOUSE_NUMBER).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        address.setHouseNumber((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return address.getHouseNumber();
                     }
                 });
     }
@@ -171,9 +325,22 @@ public class ExtraAuthorInformation {
         this.editFields.put(TableFields.PATICIPATION_FORM, new TextField(
                 parent, util.translate(TableFields.PATICIPATION_FORM))
                 .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.REZIDENCE_PLACE, new TextField(parent,
-                util.translate(TableFields.REZIDENCE_PLACE))
+        this.editFields.put(TableFields.CITY, new TextField(parent,
+                util.translate(TableFields.CITY))
                 .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.COUNTRY, new TextField(parent,
+                util.translate(TableFields.COUNTRY))
+                .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.HOUSE_NUMBER, new TextField(parent,
+                util.translate(TableFields.HOUSE_NUMBER))
+                .setDataConverter(stringConverter));
+        this.editFields.put(TableFields.STREET, new TextField(parent,
+                util.translate(TableFields.STREET))
+                .setDataConverter(stringConverter));
+        applyHousingButton(parent, util.translate(Buttons.HOUSING));
+        applyMeetingButton(parent, util.translate(Buttons.MEETING));
+        applyCommitteeButton(parent, util.translate(Buttons.PROGRAMM_COMMITTEE_MEMBER));
+        applyStandButton(parent, util.translate(Buttons.EXIBITION_STAND));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
@@ -188,6 +355,90 @@ public class ExtraAuthorInformation {
             public void widgetDefaultSelected(final SelectionEvent e) {
 
                 onSave();
+            }
+        });
+    }
+    
+    private void applyHousingButton(Composite parent, String title){
+        Button housingButton = new Button(parent, SWT.CHECK);
+        housingButton.setText(title);
+        housingButton.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+        });
+    }
+    
+    private void applyMeetingButton(Composite parent, String title){
+        Button meetingButton = new Button(parent, SWT.CHECK);
+        meetingButton.setText(title);
+        meetingButton.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+        });
+    }
+    
+    private void applyCommitteeButton(Composite parent, String title){
+        Button committeeButton = new Button(parent, SWT.CHECK);
+        committeeButton.setText(title);
+        committeeButton.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+        });
+    }
+    
+    private void applyStandButton(Composite parent, String title){
+        Button standButton = new Button(parent, SWT.CHECK);
+        standButton.setText(title);
+        standButton.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                // TODO Auto-generated method stub
+                
             }
         });
     }

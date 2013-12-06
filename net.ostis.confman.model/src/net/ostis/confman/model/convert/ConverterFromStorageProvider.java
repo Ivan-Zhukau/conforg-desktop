@@ -26,7 +26,7 @@ public class ConverterFromStorageProvider {
         super();
     }
 
-    public FullModel converData() {
+    public FullModel convertData() {
 
         final FullModel model = new FullModel();
         final StorageProvider storageProvider = StorageProvider.getInstance();
@@ -79,6 +79,9 @@ public class ConverterFromStorageProvider {
             final ContactInformation contactInformation) {
 
         final net.ostis.confman.services.common.model.ContactInformation information = new net.ostis.confman.services.common.model.ContactInformation();
+        if (contactInformation == null) {
+            return information;
+        }
         information.setContactPhoneNumber(contactInformation.getPhone());
         information.seteMail(contactInformation.getEmail());
         return information;
@@ -88,6 +91,9 @@ public class ConverterFromStorageProvider {
             final WorkplaceInformation workplaceInformation) {
 
         final net.ostis.confman.services.common.model.WorkplaceInformation information = new net.ostis.confman.services.common.model.WorkplaceInformation();
+        if (workplaceInformation == null) {
+            return information;
+        }
         information.setAffliation(workplaceInformation.getWorkplace());
         information.setPosition(workplaceInformation.getPosition());
         return information;
@@ -97,6 +103,9 @@ public class ConverterFromStorageProvider {
             final AcademicInformation academicInformation) {
 
         final net.ostis.confman.services.common.model.AcademicInformation information = new net.ostis.confman.services.common.model.AcademicInformation();
+        if (academicInformation == null) {
+            return information;
+        }
         information.setDegree(academicInformation.getDegree());
         information.setTitle(academicInformation.getTitle());
         return information;
@@ -106,6 +115,9 @@ public class ConverterFromStorageProvider {
             final Address address) {
 
         final net.ostis.confman.services.common.model.Address personAddress = new net.ostis.confman.services.common.model.Address();
+        if (address == null) {
+            return personAddress;
+        }
         personAddress.setCity(address.getCity());
         personAddress.setCountry(address.getCountry());
         personAddress.setHouseNumber(address.getHouseNumber());
@@ -155,6 +167,9 @@ public class ConverterFromStorageProvider {
             final ParticipantArrival participantArrival) {
 
         final net.ostis.confman.services.common.model.ParticipantArrival arrival = new net.ostis.confman.services.common.model.ParticipantArrival();
+        if (participantArrival == null) {
+            return arrival;
+        }
         arrival.setHousing(participantArrival.getHousing());
         arrival.setMeeting(participantArrival.getMeeting());
         arrival.setResidencePlace(convertResidence(participantArrival
@@ -166,6 +181,9 @@ public class ConverterFromStorageProvider {
             final ParticipantRole participantRole) {
 
         final net.ostis.confman.services.common.model.ParticipantRole role = new net.ostis.confman.services.common.model.ParticipantRole();
+        if (participantRole == null) {
+            return role;
+        }
         role.setExibitionStand(participantRole.getExhibitionStand());
         role.setParticipationForm(participantRole.getParticipationForm());
         role.setProgramCommitteeMember(participantRole
@@ -286,7 +304,7 @@ public class ConverterFromStorageProvider {
             final Address address) {
 
         final net.ostis.confman.services.common.model.Address confAddress = new net.ostis.confman.services.common.model.Address();
-        if(address == null) {
+        if (address == null) {
             return confAddress;
         }
         confAddress.setCity(address.getCity());
