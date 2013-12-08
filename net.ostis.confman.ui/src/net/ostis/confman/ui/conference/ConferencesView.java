@@ -3,7 +3,7 @@ package net.ostis.confman.ui.conference;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.convert.ConverterFromStorageProvider;
+import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.FullModel;

@@ -3,7 +3,7 @@ package net.ostis.confman.test.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ostis.confman.model.convert.DataConverter;
+import net.ostis.confman.model.datastore.local.convert.DataConverter;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;

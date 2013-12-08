@@ -11,8 +11,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class IDGenerator {
-    
-    public static Logger GENERATOR_LOGGER = Logger.getLogger(IDGenerator.class);
+
+    public static Logger        GENERATOR_LOGGER      = Logger.getLogger(IDGenerator.class);
 
     private static final String ID_DATA_FILE_LOCATION = "id-data";
 

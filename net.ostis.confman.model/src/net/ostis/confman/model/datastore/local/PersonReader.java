@@ -1,6 +1,5 @@
 package net.ostis.confman.model.datastore.local;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.concurrent.Callable;
 

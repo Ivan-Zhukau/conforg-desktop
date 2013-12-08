@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import net.ostis.confman.model.common.concurrency.ConcurrencyThreadExecutor;
-import net.ostis.confman.model.convert.EntityConverter;
 import net.ostis.confman.model.datastore.local.ConferenceReader;
 import net.ostis.confman.model.datastore.local.ConferenceWriter;
 import net.ostis.confman.model.datastore.local.ParticipantReader;
@@ -15,6 +14,7 @@ import net.ostis.confman.model.datastore.local.ReportReader;
 import net.ostis.confman.model.datastore.local.ReportWriter;
 import net.ostis.confman.model.datastore.local.SectionReader;
 import net.ostis.confman.model.datastore.local.SectionWriter;
+import net.ostis.confman.model.datastore.local.convert.EntityConverter;
 import net.ostis.confman.model.entity.Conference;
 import net.ostis.confman.model.entity.Conferences;
 import net.ostis.confman.model.entity.Participant;
@@ -192,5 +192,73 @@ public class StorageProvider {
     public List<Conference> getConferences() {
 
         return this.conferences.getConferences();
+    }
+
+    public Person getPerson(final long id) {
+
+        final List<Person> personsList = this.persons.getPersons();
+        for (final Person person : personsList) {
+            if (id == person.getId()) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    public Participant getParticipant(final long id) {
+
+        final List<Participant> participantsList = this.participants
+                .getParticipants();
+        for (final Participant participant : participantsList) {
+            if (id == participant.getId()) {
+                return participant;
+            }
+        }
+        return null;
+    }
+
+    public Report getReport(final long id) {
+
+        final List<Report> reportsList = this.reports.getReports();
+        for (final Report report : reportsList) {
+            if (id == report.getId()) {
+                return report;
+            }
+        }
+        return null;
+    }
+
+    public Section getSection(final long id) {
+
+        final List<Section> sectionsList = this.sections.getSections();
+        for (final Section section : sectionsList) {
+            if (id == section.getId()) {
+                return section;
+            }
+        }
+        return null;
+    }
+
+    public Conference getConference(final long id) {
+
+        final List<Conference> conferencesList = this.conferences
+                .getConferences();
+        for (final Conference conference : conferencesList) {
+            if (id == conference.getId()) {
+                return conference;
+            }
+        }
+        return null;
+    }
+
+    public void update(final Persons persons, final Participants participants,
+            final Conferences conferences, final Sections sections,
+            final Reports reports) {
+
+        this.persons = persons;
+        this.participants = participants;
+        this.conferences = conferences;
+        this.sections = sections;
+        this.reports = reports;
     }
 }

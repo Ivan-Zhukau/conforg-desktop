@@ -15,6 +15,12 @@ public class Sections {
         super();
     }
 
+    public Sections(final List<Section> sections) {
+
+        super();
+        this.sections = sections;
+    }
+
     @XmlElement(name = "section")
     public List<Section> getSections() {
 

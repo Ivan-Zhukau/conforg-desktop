@@ -22,8 +22,8 @@ Require-Bundle: javax.inject;bundle-version="1.0.0",
  net.ostis.confman.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: javax.annotation;version="1.0.0",
- net.ostis.confman.model.convert,
  net.ostis.confman.model.datastore,
+ net.ostis.confman.model.datastore.local.convert,
  net.ostis.confman.model.registrationform,
  net.ostis.confman.services.common.model
 Export-Package: net.ostis.confman.ui.handlers,

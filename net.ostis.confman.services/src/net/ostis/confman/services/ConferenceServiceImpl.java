@@ -2,7 +2,7 @@ package net.ostis.confman.services;
 
 import java.util.List;
 
-import net.ostis.confman.model.convert.ConverterFromStorageProvider;
+import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.FullModel;
 
