@@ -31,9 +31,9 @@ public class ReportEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
-        TITLE("title"),
-        START_DATE("startDate"),
-        END_DATE("endDate");
+        TITLE("reportTitle"),
+        SECTION("section"),
+        MAIN_AUTHOR("mainAuthor");
 
         private String rk;
 
@@ -125,6 +125,36 @@ public class ReportEditorPart {
                         return conf.getTitle();
                     }
                 });
+        this.editFields.get(ConferenceFields.SECTION).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.setTitle((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getTitle();
+                    }
+                });
+        this.editFields.get(ConferenceFields.MAIN_AUTHOR).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.setTitle((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getTitle();
+                    }
+                });
     }
 
     private void buildLayout(final Composite parent) {
@@ -134,6 +164,12 @@ public class ReportEditorPart {
         this.editFields.put(ConferenceFields.TITLE,
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.SECTION, new TextField(parent,
+                util.translate(ConferenceFields.SECTION))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.MAIN_AUTHOR, new TextField(parent,
+                util.translate(ConferenceFields.MAIN_AUTHOR))
+                .setDataConverter(new StringDataConverter()));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
