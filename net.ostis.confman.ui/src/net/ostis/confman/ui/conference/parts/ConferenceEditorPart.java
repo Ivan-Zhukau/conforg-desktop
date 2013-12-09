@@ -37,9 +37,10 @@ public class ConferenceEditorPart {
     private static final int   LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
-        TITLE("title"),
-        START_DATE("startDate"),
-        END_DATE("endDate");
+        TITLE("conferenceTitle"),
+        START_DATE("conferenceStartDate"),
+        END_DATE("conferenceEndDate"),
+        CONFERENCE_VENUE("conferenceVenue");
 
         private String rk;
 
@@ -170,6 +171,21 @@ public class ConferenceEditorPart {
                         return conf.getEndDate();
                     }
                 });
+        this.editFields.get(ConferenceFields.CONFERENCE_VENUE).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.setEndDate((Date) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getEndDate();
+                    }
+                });
     }
 
     private void buildLayout(final Composite parent) {
@@ -188,6 +204,9 @@ public class ConferenceEditorPart {
                         new TextField(parent, util
                                 .translate(ConferenceFields.END_DATE))
                                 .setDataConverter(dateConverter));
+        this.editFields.put(ConferenceFields.CONFERENCE_VENUE, new TextField(
+                parent, util.translate(ConferenceFields.CONFERENCE_VENUE))
+                .setDataConverter(new StringDataConverter()));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

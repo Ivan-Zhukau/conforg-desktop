@@ -31,6 +31,10 @@ public class TableComponent extends AbstractTableModel {
                 this.table));
 
     }
+    
+    public Table getTable() {
+        return this.table;
+    }
 
     public void addColumn(final String columnName) {
 
@@ -58,6 +62,10 @@ public class TableComponent extends AbstractTableModel {
             final TableItem tableItem = new TableItem(this.table, SWT.NONE);
             tableItem.setText(this.rowData.get(index));
         }
+    }
+    
+    public String[] getRow(int rowIndex) {
+        return rowData.get(rowIndex);
     }
 
     @Override

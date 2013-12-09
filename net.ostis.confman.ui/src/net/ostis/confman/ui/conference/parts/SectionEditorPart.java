@@ -33,9 +33,9 @@ public class SectionEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
-        TITLE("title"),
-        START_DATE("startDate"),
-        END_DATE("endDate");
+        TITLE("sectionTitle"),
+        DATE("sectionData"),
+        CONFERENCE("conference");
 
         private String rk;
 
@@ -127,7 +127,22 @@ public class SectionEditorPart {
                         return conf.getTitle();
                     }
                 });
-        this.editFields.get(ConferenceFields.START_DATE).setValueBinder(
+        this.editFields.get(ConferenceFields.DATE).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.setStartDate((Date) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getStartDate();
+                    }
+                });
+        this.editFields.get(ConferenceFields.CONFERENCE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -152,8 +167,11 @@ public class SectionEditorPart {
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.editFields.put(ConferenceFields.START_DATE, new TextField(parent,
-                util.translate(ConferenceFields.START_DATE))
+        this.editFields.put(ConferenceFields.DATE,
+                new TextField(parent, util.translate(ConferenceFields.DATE))
+                        .setDataConverter(dateConverter));
+        this.editFields.put(ConferenceFields.CONFERENCE, new TextField(parent,
+                util.translate(ConferenceFields.CONFERENCE))
                 .setDataConverter(dateConverter));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
@@ -178,6 +196,6 @@ public class SectionEditorPart {
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
+        this.eventBroker.post(ConferenceTopics.CONF_SAVE, null);
     }
 }

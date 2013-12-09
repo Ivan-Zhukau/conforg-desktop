@@ -21,6 +21,8 @@ import net.ostis.confman.services.common.model.FullModel;
 
 public class ConverterFromStorageProvider {
 
+    private static FullModel model;
+
     public ConverterFromStorageProvider() {
 
         super();
@@ -28,7 +30,10 @@ public class ConverterFromStorageProvider {
 
     public FullModel convertData() {
 
-        final FullModel model = new FullModel();
+        if (model != null) {
+            return model;
+        }
+        model = new FullModel();
         final StorageProvider storageProvider = StorageProvider.getInstance();
         final List<Person> persons = storageProvider.getPersons();
         final Map<Long, net.ostis.confman.services.common.model.Person> personsMap = new HashMap<>();
@@ -133,7 +138,7 @@ public class ConverterFromStorageProvider {
         final List<net.ostis.confman.services.common.model.Participant> listParticipants = new ArrayList<>();
         for (final Participant temp : participants) {
             final net.ostis.confman.services.common.model.Participant participant = new net.ostis.confman.services.common.model.Participant();
-            participant.setPerson(personsMap.get(temp.getId()));
+            participant.setPerson(personsMap.get(temp.getPersonId()));
             participant
                     .setArrival(convertParticipantArrival(temp.getArrival()));
             participant.setRole(convertParticipantRole(temp.getRole()));
