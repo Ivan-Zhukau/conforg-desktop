@@ -45,8 +45,6 @@ public class OpenHandler {
         final RegistrationService service = (RegistrationService) ServiceLocator
                 .getInstance().getService(RegistrationService.class);
 
-        //service.parseForm(reportNames);
-         //final RegistrationForm form = service.parseForm(filePath);
          DataConverter converter = DataConverter.getInstance();
          converter.convertAuthors(service.parseForm(reportNames));
         

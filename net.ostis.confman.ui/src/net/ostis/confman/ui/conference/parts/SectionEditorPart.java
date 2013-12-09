@@ -196,6 +196,6 @@ public class SectionEditorPart {
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.CONF_SAVE, null);
+        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
     }
 }
