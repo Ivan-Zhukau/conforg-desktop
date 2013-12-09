@@ -51,6 +51,7 @@ private String[] getTableTitles() {
     String []titles = {
             "PersonName",
             "ParticipantRole",
+            "Name",
             "ConfStartDate"
     };
     return titles;
@@ -62,6 +63,7 @@ private void initTableData() {
     for(int index = 0; index < participants.size(); index++) {
         String []data = {"vasya" + String.valueOf(index),
                 getParticipantRole(index),
+                getPersonName(index),
                 getConferenceStartDate(index)};
         tableData.add(data);
     }
@@ -100,10 +102,10 @@ private String getConferenceStartDate(int index) {
 
 /*//
 String []titles = {
-        "ÈÌß",
-        "ÔÀÌÈËÈß",
-        "ÎÒ×ÅÑÒÂÎ",
-        "ÃÐÓÏÏÀ"
+        "ï¿½ï¿½ï¿½",
+        "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+        "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+        "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 };
 
 
