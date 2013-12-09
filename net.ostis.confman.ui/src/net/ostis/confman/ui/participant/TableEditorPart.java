@@ -412,6 +412,6 @@ public class TableEditorPart {
         for (final TableFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.CONF_SAVE, null); // TODO
+        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null); // TODO
     }
 }

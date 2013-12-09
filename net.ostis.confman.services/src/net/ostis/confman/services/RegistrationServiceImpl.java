@@ -9,23 +9,24 @@ import net.ostis.confman.model.registrationform.wordparser.DocxRegistrationFormP
 
 public class RegistrationServiceImpl implements RegistrationService {
 
-	
     @Override
     public RegistrationForm parseForm(final String path) {
-    	FileInputStream inputStream = createInputStream(path);
-    	RegistrationForm registrationForm = 
-    			new DocxRegistrationFormParser().parse(inputStream);
-    	return registrationForm;
+
+        final FileInputStream inputStream = createInputStream(path);
+        final RegistrationForm registrationForm = new DocxRegistrationFormParser()
+                .parse(inputStream);
+        return registrationForm;
     }
 
-	private FileInputStream createInputStream(final String path) {
-		FileInputStream inputStream = null;
-		try {
-			inputStream = new FileInputStream(new File(path));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return inputStream;
-	}
+    private FileInputStream createInputStream(final String path) {
+
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(new File(path));
+        } catch (final FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
 
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.ConferenceDto;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -19,6 +19,8 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -30,7 +32,9 @@ import org.eclipse.swt.widgets.Composite;
 
 public class ConferenceEditorPart {
 
-    private static final int LAYOUT_COL_COUNT = 1;
+    public static final String PART_ID          = "net.ostis.confman.ui.part.conference.editor";
+
+    private static final int   LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
         TITLE("title"),
@@ -77,6 +81,9 @@ public class ConferenceEditorPart {
     @Inject
     private IEventBroker                                              eventBroker;
 
+    @Inject
+    private EPartService                                              partService;
+
     public ConferenceEditorPart() {
 
         super();
@@ -92,25 +99,31 @@ public class ConferenceEditorPart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (!(selection instanceof ConferenceDto)) {
-                    return;
+                if (selection instanceof Conference) {
+                    final Conference conf = (Conference) selection;
+                    onConferenceEvent(conf);
                 }
-                final ConferenceDto conf = (ConferenceDto) selection;
-                onNewSelection(conf);
             }
         });
         buildLayout(parent);
     }
 
-    private void onNewSelection(final ConferenceDto conf) {
+    protected void onConferenceEvent(final Conference conf) {
 
         applyValueBindings(conf);
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
+        showConferencePart();
     }
 
-    private void applyValueBindings(final ConferenceDto conf) {
+    private void showConferencePart() {
+
+        final MPart confPart = this.partService.findPart(PART_ID);
+        this.partService.showPart(confPart, PartState.VISIBLE);
+    }
+
+    private void applyValueBindings(final Conference conf) {
 
         this.editFields.get(ConferenceFields.TITLE).setValueBinder(
                 new ValueBinder() {
@@ -182,22 +195,25 @@ public class ConferenceEditorPart {
             @Override
             public void widgetSelected(final SelectionEvent e) {
 
-                onSave();
+                onUpdate();
             }
 
             @Override
             public void widgetDefaultSelected(final SelectionEvent e) {
 
-                onSave();
+                onUpdate();
             }
         });
     }
 
-    private void onSave() {
+    private void onUpdate() {
 
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
+
         }
-        this.eventBroker.post(ConferenceTopics.CONF_SAVE, null);
+        // TODO: add getter (?) for ValueBinder in TextField and create\
+        // Conference obj with updated fiels.
+        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
     }
 }

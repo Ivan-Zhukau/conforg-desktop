@@ -1,12 +1,18 @@
 package net.ostis.confman.ui.common.component.conftree;
 
+import net.ostis.confman.services.ConferenceService;
+import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
+import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -17,7 +23,6 @@ import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.TransferData;
 
 public class ConfTreeListenerProvider {
@@ -27,9 +32,11 @@ public class ConfTreeListenerProvider {
         super();
     }
 
-    public ISelectionChangedListener getSelectionChangedListener() {
+    public ISelectionChangedListener getSelectionChangedListener(
+            final TreeViewer treeViewer,
+            final ESelectionService selectionService) {
 
-        return new TreeSelectionChangedListener();
+        return new TreeSelectionChangedListener(treeViewer, selectionService);
     }
 
     public IDoubleClickListener getDoubleClickListener() {
@@ -55,15 +62,24 @@ public class ConfTreeListenerProvider {
     private static class TreeSelectionChangedListener implements
             ISelectionChangedListener {
 
-        public TreeSelectionChangedListener() {
+        private TreeViewer        treeViewer;
+
+        private ESelectionService selectionService;
+
+        public TreeSelectionChangedListener(final TreeViewer treeViewer,
+                final ESelectionService selectionService) {
 
             super();
-
+            this.treeViewer = treeViewer;
+            this.selectionService = selectionService;
         }
 
         @Override
         public void selectionChanged(final SelectionChangedEvent event) {
 
+            final IStructuredSelection selection = (IStructuredSelection) this.treeViewer
+                    .getSelection();
+            this.selectionService.setSelection(selection.getFirstElement());
         }
     }
 
@@ -89,12 +105,68 @@ public class ConfTreeListenerProvider {
 
     private static class TreeMenuListener implements IMenuListener {
 
-        private TreeViewer treeViewer;
+        private enum ConferenceFields implements Localizable {
+            ADD_SECTION("ctxAddSection");
+
+            private String rk;
+
+            private ConferenceFields(final String rk) {
+
+                this.rk = rk;
+            }
+
+            @Override
+            public String getResourceKey() {
+
+                return this.rk;
+            }
+        }
+
+        private enum SectionFields implements Localizable {
+            ADD_REPORT("ctxAddReport"),
+            DELETE("ctxDeleteSection");
+
+            private String rk;
+
+            private SectionFields(final String rk) {
+
+                this.rk = rk;
+            }
+
+            @Override
+            public String getResourceKey() {
+
+                return this.rk;
+            }
+        }
+
+        private enum ReportFields implements Localizable {
+            DELETE("ctxDeleteReport");
+
+            private String rk;
+
+            private ReportFields(final String rk) {
+
+                this.rk = rk;
+            }
+
+            @Override
+            public String getResourceKey() {
+
+                return this.rk;
+            }
+        }
+
+        private TreeViewer        treeViewer;
+
+        private ConferenceService conferenceService;
 
         public TreeMenuListener(final TreeViewer treeViewer) {
 
             super();
             this.treeViewer = treeViewer;
+            this.conferenceService = (ConferenceService) ServiceLocator
+                    .getInstance().getService(ConferenceService.class);
         }
 
         @Override
@@ -117,34 +189,68 @@ public class ConfTreeListenerProvider {
         private void addConferenceActions(final IMenuManager manager,
                 final Conference selectedElement) {
 
-            // TODO kfs: add tree menu item listeners
-            final Action a = new Action("Add Section") {
+            final String actionText = getLocalizedValue(ConferenceFields.ADD_SECTION);
+            final Action addSectionAction = new Action(actionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.conferenceService.addSection(
+                            selectedElement, null);
+                }
             };
-            manager.add(a);
+            manager.add(addSectionAction);
         }
 
         private void addSectionActions(final IMenuManager manager,
                 final Section selectedElement) {
 
-            // TODO kfs: add tree menu item listeners
-            final Action a1 = new Action("Add Report") {
+            final String addReportActionText = getLocalizedValue(SectionFields.ADD_REPORT);
+            final Action addReportAction = new Action(addReportActionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.conferenceService.addReport(
+                            selectedElement, null);
+                }
             };
-            final Action a2 = new Action("Delete") {
+            final String deleteSectionActionText = getLocalizedValue(SectionFields.DELETE);
+            final Action deleteSectionAction = new Action(
+                    deleteSectionActionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.conferenceService
+                            .deleteSection(selectedElement);
+                }
             };
-            manager.add(a1);
-            manager.add(a2);
+            manager.add(addReportAction);
+            manager.add(deleteSectionAction);
         }
 
         private void addReportActions(final IMenuManager manager,
                 final Report selectedElement) {
 
-            // TODO kfs: add tree menu item listeners
-            final Action a1 = new Action("Delete") {
+            final String deleteReportActionText = getLocalizedValue(ReportFields.DELETE);
+            final Action deleteReportAction = new Action(deleteReportActionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.conferenceService
+                            .deleteReport(selectedElement);
+                }
             };
-            final Action a2 = new Action("Move to...") {
-            };
-            manager.add(a1);
-            manager.add(a2);
+            manager.add(deleteReportAction);
+        }
+
+        private String getLocalizedValue(final Localizable toTranslate) {
+
+            final LocalizationUtil localizationUtil = LocalizationUtil
+                    .getInstance();
+            return localizationUtil.translate(toTranslate);
         }
     }
 
@@ -158,97 +264,88 @@ public class ConfTreeListenerProvider {
         }
 
         @Override
-        public void dragFinished(final DragSourceEvent event) {
-
-            // TODO kfs: provide Finshed Drag event support
-        }
-
-        @Override
         public void dragSetData(final DragSourceEvent event) {
 
             final IStructuredSelection selection = (IStructuredSelection) this.treeViewer
                     .getSelection();
-            final Report element = (Report) selection.getFirstElement();
-
-            if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
-                event.data = element.getTitle();
+            if (!(selection.getFirstElement() instanceof Report)) {
+                return;
             }
-
+            final LocalSelectionTransfer localSelectionTransfer = LocalSelectionTransfer
+                    .getTransfer();
+            localSelectionTransfer.setSelection(selection);
         }
 
         @Override
         public void dragStart(final DragSourceEvent event) {
 
-            // TODO kfs: provide Start Drag event support
+            // do nothing
+        }
+
+        @Override
+        public void dragFinished(final DragSourceEvent event) {
+
+            // do nothing
         }
     }
 
     public static class TreeDropListener extends ViewerDropAdapter {
 
-        private enum DropLocation {
-            BEFORE_TARGET(1),
-            AFTER_TARGET(2),
-            ON_TARGET(3),
-            INTO_NOTHING(4);
-
-            private int locationNumber;
-
-            private DropLocation(final int locationNumber) {
-
-                this.locationNumber = locationNumber;
-            }
-
-            public static DropLocation getDropLocation(final int locationNumber) {
-
-                for (final DropLocation dropLocation : DropLocation.values()) {
-                    if (dropLocation.locationNumber == locationNumber) {
-                        return dropLocation;
-                    }
-                }
-                return INTO_NOTHING;
-            }
-        }
-
-        private final TreeViewer treeViewer;
-
         public TreeDropListener(final TreeViewer treeViewer) {
 
             super(treeViewer);
-            this.treeViewer = treeViewer;
         }
 
         @Override
         public void drop(final DropTargetEvent event) {
 
-            final int location = this.determineLocation(event);
-            switch (DropLocation.getDropLocation(location)) {
-                case BEFORE_TARGET:
-
-                    break;
-                case AFTER_TARGET:
-
-                    break;
-                case ON_TARGET:
-
-                    break;
-                case INTO_NOTHING:
-
-                    break;
+            if (event.item == null) {
+                return;
             }
-            super.drop(event);
+            final Object dropTarget = event.item.getData();
+            final Report report = getReport();
+            processEvent(dropTarget, report);
+        }
+
+        private Report getReport() {
+
+            final LocalSelectionTransfer localSelectionTransfer = LocalSelectionTransfer
+                    .getTransfer();
+            final IStructuredSelection selection = (IStructuredSelection) localSelectionTransfer
+                    .getSelection();
+            final Report report = (Report) selection.getFirstElement();
+            return report;
+        }
+
+        private void processEvent(final Object dropTarget, final Report report) {
+
+            final ConferenceService conferenceService = (ConferenceService) ServiceLocator
+                    .getInstance().getService(ConferenceService.class);
+            if (dropTarget instanceof Report) {
+                final Report targetReport = (Report) dropTarget;
+                if (targetReport.getSection() != report.getSection()) {
+                    conferenceService.moveReport(report, report.getSection(),
+                            targetReport.getSection());
+                }
+            }
+            if (dropTarget instanceof Section) {
+                conferenceService.moveReport(report, report.getSection(),
+                        (Section) dropTarget);
+            }
         }
 
         @Override
         public boolean performDrop(final Object data) {
 
-            // TODO kfs: move some data in model
-            return false;
+            // do nothing
+            return true;
         }
 
         @Override
         public boolean validateDrop(final Object target, final int operation,
                 final TransferData transferType) {
 
+            // do nothing
             return true;
         }
     }

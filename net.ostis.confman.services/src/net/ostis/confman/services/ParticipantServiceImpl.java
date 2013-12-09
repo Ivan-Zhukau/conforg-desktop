@@ -6,11 +6,10 @@ import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvi
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 
-
 public class ParticipantServiceImpl implements ParticipantService {
-    
+
     List<Participant> participants;
-    
+
     public ParticipantServiceImpl() {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
@@ -20,15 +19,14 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Override
     public List<Participant> getParticipants() {
-        
-        return participants;
+
+        return this.participants;
     }
 
     @Override
-    public void addParticipant(Participant participant) {
+    public void addParticipant(final Participant participant) {
 
         this.participants.add(participant);
     }
-    
-    
+
 }

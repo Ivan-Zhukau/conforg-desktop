@@ -12,14 +12,14 @@ import net.ostis.confman.services.common.model.Section;
 class ConferenceServiceImpl implements ConferenceService {
 
     private List<Conference> conferences;
-    
-    private FullModel model;
+
+    private FullModel        model;
 
     public ConferenceServiceImpl() {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
-        model = converter.convertData();
-        this.conferences = model.getConferences();
+        this.model = converter.convertData();
+        this.conferences = this.model.getConferences();
     }
 
     @Override
@@ -29,14 +29,14 @@ class ConferenceServiceImpl implements ConferenceService {
     }
 
     @Override
-    public void addSection(Conference conference, Section section) {
+    public void addSection(final Conference conference, final Section section) {
 
         conference.getSections().add(section);
         fireData();
     }
 
     @Override
-    public void addReport(Section section, Report report) {
+    public void addReport(final Section section, final Report report) {
 
         section.getConference().getReports().add(report);
         section.getReports().add(report);
@@ -44,7 +44,8 @@ class ConferenceServiceImpl implements ConferenceService {
     }
 
     @Override
-    public void moveReport(Report report, Section from, Section to) {
+    public void moveReport(final Report report, final Section from,
+            final Section to) {
 
         from.getReports().remove(report);
         to.getReports().add(report);
@@ -53,16 +54,28 @@ class ConferenceServiceImpl implements ConferenceService {
     }
 
     @Override
-    public void deleteReport(Report report) {
+    public void deleteReport(final Report report) {
 
-        Section section = report.getSection();
+        final Section section = report.getSection();
         section.getConference().getReports().remove(report);
         section.getReports().remove(report);
         fireData();
     }
-    
+
     private void fireData() {
-        StorageProvider storageProvider = StorageProvider.getInstance();
-        storageProvider.persist(model);
+
+        final StorageProvider storageProvider = StorageProvider.getInstance();
+        storageProvider.persist(this.model);
+    }
+
+    @Override
+    public void updateConference(final Conference storedConference,
+            final Conference updatedConference) {
+
+    }
+
+    @Override
+    public void deleteSection(final Section selectedElement) {
+
     }
 }
