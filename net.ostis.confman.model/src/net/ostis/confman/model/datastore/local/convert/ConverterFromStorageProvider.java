@@ -138,7 +138,7 @@ public class ConverterFromStorageProvider {
         final List<net.ostis.confman.services.common.model.Participant> listParticipants = new ArrayList<>();
         for (final Participant temp : participants) {
             final net.ostis.confman.services.common.model.Participant participant = new net.ostis.confman.services.common.model.Participant();
-            participant.setPerson(personsMap.get(temp.getId()));
+            participant.setPerson(personsMap.get(temp.getPersonId()));
             participant
                     .setArrival(convertParticipantArrival(temp.getArrival()));
             participant.setRole(convertParticipantRole(temp.getRole()));
