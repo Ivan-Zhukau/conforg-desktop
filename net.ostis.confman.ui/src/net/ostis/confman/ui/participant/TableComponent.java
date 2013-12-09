@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
@@ -13,6 +17,8 @@ import org.eclipse.swt.widgets.TableItem;
 public class TableComponent extends AbstractTableModel {
 
     private Table          table;
+    
+    private Composite   composite;
 
     private List<String>   columnIdentifies;
 
@@ -21,6 +27,7 @@ public class TableComponent extends AbstractTableModel {
     TableComponent(final Composite composite, final int style) {
 
         this.table = new Table(composite, style);
+        this.composite = composite;
         this.columnIdentifies = new ArrayList<String>();
         this.rowData = new ArrayList<String[]>();
         this.table.setLinesVisible(true);
@@ -29,6 +36,7 @@ public class TableComponent extends AbstractTableModel {
         this.table.setLayoutData(layoutData);
         this.table.addListener(SWT.MouseDown, new RowSelectionListener(
                 this.table));
+        columnResizeListener(composite);
 
     }
     
@@ -98,5 +106,32 @@ public class TableComponent extends AbstractTableModel {
         final String[] rowValue = this.rowData.get(row - 1);
         rowValue[column - 1] = Value.toString();
         this.rowData.set(row, rowValue);
+    }
+    
+    private void columnResizeListener(final Composite comp) {
+        comp.addControlListener(new ControlAdapter() {
+            public void controlResized(ControlEvent e) {
+              TableColumn[] columns = table.getColumns();
+              Rectangle area = comp.getClientArea();
+              Point preferredSize = table.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+              int width = area.width - 2 * table.getBorderWidth();
+              if (preferredSize.y > area.height + table.getHeaderHeight()) {
+                Point vBarSize = table.getVerticalBar().getSize();
+                width -= vBarSize.x;
+              }
+              Point oldSize = table.getSize();
+              if (oldSize.x > area.width) {
+                  for(int index = 0; index < table.getColumnCount(); index++) {
+                      columns[index].setWidth(width / 3);
+                  }
+                table.setSize(area.width, area.height);
+              } else {
+                table.setSize(area.width, area.height);
+                for(int index = 0; index < table.getColumnCount(); index++) {
+                    columns[index].setWidth(width / 3);
+                }
+              }
+            }
+          });
     }
 }
