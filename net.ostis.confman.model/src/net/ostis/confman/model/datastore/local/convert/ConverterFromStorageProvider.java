@@ -21,6 +21,8 @@ import net.ostis.confman.services.common.model.FullModel;
 
 public class ConverterFromStorageProvider {
 
+    private static FullModel model;
+
     public ConverterFromStorageProvider() {
 
         super();
@@ -28,7 +30,10 @@ public class ConverterFromStorageProvider {
 
     public FullModel convertData() {
 
-        final FullModel model = new FullModel();
+        if (model != null) {
+            return model;
+        }
+        model = new FullModel();
         final StorageProvider storageProvider = StorageProvider.getInstance();
         final List<Person> persons = storageProvider.getPersons();
         final Map<Long, net.ostis.confman.services.common.model.Person> personsMap = new HashMap<>();
