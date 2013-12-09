@@ -15,6 +15,12 @@ public class Conferences {
         super();
     }
 
+    public Conferences(final List<Conference> conferences) {
+
+        super();
+        this.conferences = conferences;
+    }
+
     @XmlElement(name = "conference")
     public List<Conference> getConferences() {
 

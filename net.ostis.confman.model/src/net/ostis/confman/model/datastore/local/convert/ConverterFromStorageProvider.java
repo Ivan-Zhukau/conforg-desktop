@@ -1,4 +1,4 @@
-package net.ostis.confman.model.convert;
+package net.ostis.confman.model.datastore.local.convert;
 
 import java.util.ArrayList;
 import java.util.HashMap;

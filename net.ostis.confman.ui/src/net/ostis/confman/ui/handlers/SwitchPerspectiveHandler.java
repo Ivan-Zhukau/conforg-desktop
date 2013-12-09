@@ -14,10 +14,10 @@ public class SwitchPerspectiveHandler {
     private static final String PERSPECTIVE_CMD_PARAM = "net.ostis.confman.ui.parameter.perspectiveId";
 
     @Inject
-    private EPartService  partService;
+    private EPartService        partService;
 
     @Inject
-    private EModelService modelService;
+    private EModelService       modelService;
 
     public SwitchPerspectiveHandler() {
 
@@ -25,8 +25,7 @@ public class SwitchPerspectiveHandler {
     }
 
     @Execute
-    public void changePerspective(
-            final MApplication app,
+    public void changePerspective(final MApplication app,
             @Named(PERSPECTIVE_CMD_PARAM) final String newPerspId) {
 
         final MPerspective newPerspective = (MPerspective) this.modelService
