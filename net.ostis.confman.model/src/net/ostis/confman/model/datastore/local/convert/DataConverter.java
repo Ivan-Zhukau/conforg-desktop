@@ -10,6 +10,7 @@ import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.WorkPlaceInformation;
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
+import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
@@ -33,6 +34,8 @@ public class DataConverter {
 
     public void convertAuthors(final List<RegistrationForm> rForm) {
 
+        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        final FullModel model = converter.convertData();
         final List<Participant> participants = new ArrayList<Participant>();
         for (final RegistrationForm currentRegForm : rForm) {
             final List<AuthorInformation> authorsInformation = currentRegForm
@@ -50,6 +53,8 @@ public class DataConverter {
                         workPlaceInformation);
                 participant.setPerson(person);
                 participants.add(participant);
+                model.getPersons().add(person);
+                model.getParticipants().add(participant);
             }
 
         }
