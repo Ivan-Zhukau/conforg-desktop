@@ -3,6 +3,9 @@ package net.ostis.confman.ui.participant;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ostis.confman.services.ParticipantServiceImpl;
+import net.ostis.confman.services.common.model.Participant;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Event;
@@ -15,6 +18,8 @@ public class RowSelectionListener implements Listener {
     private Table table;
 
     private int   rowIndex;
+    
+    private ParticipantServiceImpl participantService = new ParticipantServiceImpl();
 
     RowSelectionListener(final Table table) {
 
@@ -49,6 +54,9 @@ public class RowSelectionListener implements Listener {
             System.out.print(" " + rowData.get(index));
         }
         System.out.println();
+        
+        List<Participant> participants = participantService.getParticipants();
+        System.out.println(participants.get(rowIndex).getConference().getStartDate().toString());
 
     }
 }
