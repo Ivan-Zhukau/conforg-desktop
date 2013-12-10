@@ -1,10 +1,12 @@
 package net.ostis.confman.ui.participant;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -12,91 +14,98 @@ import org.eclipse.swt.widgets.TableItem;
 
 public class TableComponent extends AbstractTableModel {
 
-    private Table          table;
+    private TableViewer viewer;
 
-    private List<String>   columnIdentifies;
+    private Composite   composite;
 
-    private List<String[]> rowData;
+    TableComponent(final Composite parent, final int style) {
 
-    TableComponent(final Composite composite, final int style) {
-
-        this.table = new Table(composite, style);
-        this.columnIdentifies = new ArrayList<String>();
-        this.rowData = new ArrayList<String[]>();
-        this.table.setLinesVisible(true);
-        this.table.setHeaderVisible(true);
-        final GridData layoutData = new GridData(GridData.FILL_BOTH);
-        this.table.setLayoutData(layoutData);
-        this.table.addListener(SWT.MouseDown, new RowSelectionListener(
-                this.table));
+        final GridLayout layout = new GridLayout(2, false);
+        parent.setLayout(layout);
+        createViewer(parent, style);
+        this.composite = parent;
 
     }
-    
-    public Table getTable() {
-        return this.table;
+
+    private void createViewer(final Composite parent, final int style) {
+
+        this.viewer = new TableViewer(parent, style);
+        final Table table = this.viewer.getTable();
+        table.setLinesVisible(true);
+        table.setHeaderVisible(true);
+        table.addListener(SWT.MouseDown, new RowSelectionListener(table));
+        final GridData gridData = new GridData();
+        gridData.verticalAlignment = GridData.FILL;
+        gridData.horizontalSpan = 2;
+        gridData.grabExcessHorizontalSpace = true;
+        gridData.grabExcessVerticalSpace = true;
+        gridData.horizontalAlignment = GridData.FILL;
+        this.viewer.getControl().setLayoutData(gridData);
     }
 
     public void addColumn(final String columnName) {
 
-        this.columnIdentifies.add(columnName);
-        final TableColumn column = new TableColumn(this.table, SWT.NONE);
-        column.setText(this.columnIdentifies.get(this.table.getColumnCount() - 1));
-        column.pack();
+        final int width = 120;
+        final TableColumn column = new TableColumn(this.viewer.getTable(),
+                SWT.NONE);
+        column.setText(columnName);
+        column.setWidth(width);
     }
 
     public void addColumn(final String[] columnNames) {
 
+        final Rectangle area = this.composite.getClientArea();
+        final int width = 120;
         for (int columnIndex = 0; columnIndex < columnNames.length; columnIndex++) {
-            this.columnIdentifies.add(columnNames[columnIndex]);
-            final TableColumn column = new TableColumn(this.table, SWT.NONE);
-            column.setText(this.columnIdentifies.get(this.table
-                    .getColumnCount() - 1));
-            column.pack();
+            final TableColumn column = new TableColumn(this.viewer.getTable(),
+                    SWT.NONE);
+            column.setText(columnNames[this.viewer.getTable().getColumnCount() - 1]);
+            column.setWidth(width);
         }
     }
 
     public void addRow(final List<? extends String[]> rowData) {
 
-        this.rowData.addAll(rowData);
         for (int index = 0; index < rowData.size(); index++) {
-            final TableItem tableItem = new TableItem(this.table, SWT.NONE);
-            tableItem.setText(this.rowData.get(index));
+            final TableItem tableItem = new TableItem(this.viewer.getTable(),
+                    SWT.NONE);
+            tableItem.setText(rowData.get(index));
         }
     }
-    
-    public String[] getRow(int rowIndex) {
-        return rowData.get(rowIndex);
+
+    public TableItem[] getRow(final int rowIndex) {
+
+        TableItem[] item;
+        return item = this.viewer.getTable().getItems();
     }
 
     @Override
     public int getColumnCount() {
 
-        return this.columnIdentifies.size();
+        return this.viewer.getTable().getColumnCount();
     }
 
     @Override
     public int getRowCount() {
 
-        return this.rowData.size();
+        return this.viewer.getTable().getItemCount();
     }
 
     @Override
     public String getColumnName(final int columnIndex) {
 
-        return this.columnIdentifies.get(columnIndex);
+        final TableColumn[] columns = this.viewer.getTable().getColumns();
+        return columns[columnIndex].getText();
     }
 
     @Override
     public Object getValue(final int row, final int column) {
 
-        return this.rowData.get(row - 1)[column - 1];
+        return new Object();
     }
 
     @Override
     void setValueAt(final String Value, final int row, final int column) {
 
-        final String[] rowValue = this.rowData.get(row - 1);
-        rowValue[column - 1] = Value.toString();
-        this.rowData.set(row, rowValue);
     }
 }
