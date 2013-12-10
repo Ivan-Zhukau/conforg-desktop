@@ -55,7 +55,10 @@ public class TextField extends Composite implements
     public void activate() {
 
         final Object value = this.valueBinder.getValue();
-        final String text = this.dataConverter.convert(value);
+        String text = "";
+        if (value != null) {
+            text = this.dataConverter.convert(value);
+        }
         this.input.setText(text);
     }
 
