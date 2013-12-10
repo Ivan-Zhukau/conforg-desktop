@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateDataConverter;
@@ -177,13 +178,13 @@ public class ConferenceEditorPart {
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setEndDate((Date) value);
+                        conf.setConferenceVenue((Address) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getEndDate();
+                        return conf.getConferenceVenue();
                     }
                 });
     }

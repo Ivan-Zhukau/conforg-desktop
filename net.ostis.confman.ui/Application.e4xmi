@@ -27,7 +27,7 @@
           <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">
             <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ConferenceEditorPart" label="Conference Data Editor" tooltip="Conference Data Editor"/>
             <children xsi:type="basic:Part" xmi:id="_v6-X4F3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.SectionEditorPart" label="Section Data Editor" tooltip="Section Data Editor"/>
-            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="Report Data Editor" tooltip="Report Data Editor"/>
+            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.report.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="Report Data Editor" tooltip="Report Data Editor"/>
           </children>
         </children>
       </children>
