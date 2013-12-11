@@ -18,6 +18,7 @@ public class ConfTreeContentProvider implements ITreeContentProvider {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void inputChanged(final Viewer viewer, final Object oldInput,
             final Object newInput) {
