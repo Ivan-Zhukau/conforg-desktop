@@ -136,7 +136,8 @@ public class SelectReportDialog extends TitleAreaDialog {
                         final Report report = (Report) element;
                         final Person person = report.getMainAuthor()
                                 .getPerson();
-                        return person.getFirstName() + ' ' + person.getSurname();
+                        return person.getFirstName() + ' '
+                                + person.getSurname();
                     }
                 });
         this.table.createColumn(

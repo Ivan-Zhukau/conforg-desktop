@@ -10,36 +10,37 @@ import org.eclipse.swt.widgets.Shell;
 
 public class DateTimeWidget {
 
-    
     public DateTimeWidget() {
+
         showWidget();
     }
-    
+
     private void showWidget() {
 
         // setup the SWT window
-        Display display = new Display();
+        final Display display = new Display();
         final Shell shell = new Shell(display);
         shell.setLayout(new RowLayout());
 
         // initialize a parent composite with a grid layout manager
-        Composite parent = new Composite(shell, SWT.NONE);
-        GridLayout gridLayout = new GridLayout();
+        final Composite parent = new Composite(shell, SWT.NONE);
+        final GridLayout gridLayout = new GridLayout();
         gridLayout.numColumns = 1;
         parent.setLayout(gridLayout);
-        DateTime calendar = new DateTime(parent, SWT.CALENDAR);
-        DateTime date = new DateTime(parent, SWT.DATE);
-        DateTime time = new DateTime(parent, SWT.TIME);
+        final DateTime calendar = new DateTime(parent, SWT.CALENDAR);
+        final DateTime date = new DateTime(parent, SWT.DATE);
+        final DateTime time = new DateTime(parent, SWT.TIME);
         // Date Selection as a drop-down
-        DateTime dateD = new DateTime(parent, SWT.DATE | SWT.DROP_DOWN);
+        final DateTime dateD = new DateTime(parent, SWT.DATE | SWT.DROP_DOWN);
 
         shell.pack();
         shell.open();
         while (!shell.isDisposed()) {
-            if (!display.readAndDispatch())
+            if (!display.readAndDispatch()) {
                 display.sleep();
+            }
         }
         // tear down the SWT window
         display.dispose();
     }
-} 
+}

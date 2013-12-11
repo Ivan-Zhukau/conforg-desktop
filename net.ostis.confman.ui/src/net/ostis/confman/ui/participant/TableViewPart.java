@@ -11,8 +11,11 @@ import net.ostis.confman.services.common.model.ParticipantRole;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.conference.ConferenceTopics;
 import net.ostis.confman.ui.table.DynamicalTable;
 
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -131,5 +134,13 @@ public class TableViewPart {
                         }
                     }
                 });
+    }
+
+    @Inject
+    @Optional
+    private void onConfDataUpdate(
+            @UIEventTopic(ConferenceTopics.TABLE_UPDATE) final String s) {
+
+        this.table.getViewer().refresh();
     }
 }

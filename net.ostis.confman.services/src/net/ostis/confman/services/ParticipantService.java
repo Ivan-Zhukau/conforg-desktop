@@ -10,4 +10,6 @@ public interface ParticipantService {
 
     void addParticipant(Participant participant);
 
+    void fireData();
+
 }

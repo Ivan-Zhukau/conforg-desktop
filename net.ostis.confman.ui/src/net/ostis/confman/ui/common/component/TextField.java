@@ -19,7 +19,7 @@ public class TextField extends Composite implements
     public TextField(final Composite parent, final String labelText) {
 
         super(parent, SWT.NONE);
-        GridLayout layout = new GridLayout(2, false);
+        final GridLayout layout = new GridLayout(2, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
         buildControl(labelText);
@@ -29,11 +29,11 @@ public class TextField extends Composite implements
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
-        
-        GridData dataGridInput = new GridData();
+
+        final GridData dataGridInput = new GridData();
         dataGridInput.grabExcessHorizontalSpace = true;
         dataGridInput.horizontalAlignment = GridData.FILL;
-        this.input = new Text(this,  SWT.BORDER);
+        this.input = new Text(this, SWT.BORDER);
         this.input.setLayoutData(dataGridInput);
     }
 

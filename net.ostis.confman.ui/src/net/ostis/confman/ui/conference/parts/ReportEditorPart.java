@@ -49,7 +49,7 @@ public class ReportEditorPart {
             return this.rk;
         }
     }
-    
+
     private enum ReportCombos implements Localizable {
         SECTION("section"),
         MAIN_AUTHOR("mainAuthor");
@@ -87,13 +87,14 @@ public class ReportEditorPart {
     }
 
     private final Map<ReportFields, EditableComponent<?>> editFields;
+
     private final Map<ReportCombos, EditableComponent<?>> combos;
 
     @Inject
-    private ESelectionService                                     selectionService;
+    private ESelectionService                             selectionService;
 
     @Inject
-    private IEventBroker                                          eventBroker;
+    private IEventBroker                                  eventBroker;
 
     public ReportEditorPart() {
 
@@ -145,36 +146,34 @@ public class ReportEditorPart {
                         return report.getTitle();
                     }
                 });
-        this.combos.get(ReportCombos.SECTION).setValueBinder(
-                new ValueBinder() {
+        this.combos.get(ReportCombos.SECTION).setValueBinder(new ValueBinder() {
 
-                    @Override
-                    public void setValue(final Object value) {
+            @Override
+            public void setValue(final Object value) {
 
-                        report.setSection((Section) value);
-                    }
+                report.setSection((Section) value);
+            }
 
-                    @Override
-                    public Object getValue() {
+            @Override
+            public Object getValue() {
 
-                        return report.getSection();
-                    }
-                });
-        this.combos.get(ReportCombos.SECTION).setValueBinder(
-                new ValueBinder() {
+                return report.getSection();
+            }
+        });
+        this.combos.get(ReportCombos.SECTION).setValueBinder(new ValueBinder() {
 
-                    @Override
-                    public void setValue(final Object value) {
+            @Override
+            public void setValue(final Object value) {
 
-                        report.setMainAuthor((Participant) value);
-                    }
+                report.setMainAuthor((Participant) value);
+            }
 
-                    @Override
-                    public Object getValue() {
+            @Override
+            public Object getValue() {
 
-                        return report.getMainAuthor();
-                    }
-                });
+                return report.getMainAuthor();
+            }
+        });
     }
 
     private void buildLayout(final Composite parent) {
@@ -187,10 +186,12 @@ public class ReportEditorPart {
         this.combos.put(ReportCombos.SECTION,
                 new ComboField(parent, util.translate(ReportCombos.SECTION))
                         .setDataConverter(new StringDataConverter()));
-        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboField(parent,
-                util.translate(ReportCombos.MAIN_AUTHOR))
-                .setDataConverter(new StringDataConverter()));
-        
+        this.combos
+                .put(ReportCombos.MAIN_AUTHOR,
+                        new ComboField(parent, util
+                                .translate(ReportCombos.MAIN_AUTHOR))
+                                .setDataConverter(new StringDataConverter()));
+
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

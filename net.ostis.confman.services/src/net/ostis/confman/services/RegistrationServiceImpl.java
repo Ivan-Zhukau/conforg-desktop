@@ -14,8 +14,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         final ArrayList<RegistrationForm> registrationForms = new ArrayList<RegistrationForm>();
 
         for (final String path : paths) {
-            registrationForms.add(new RegistrationFormParser()
-                    .parse(path));
+            registrationForms.add(new RegistrationFormParser().parse(path));
         }
         return registrationForms;
     }

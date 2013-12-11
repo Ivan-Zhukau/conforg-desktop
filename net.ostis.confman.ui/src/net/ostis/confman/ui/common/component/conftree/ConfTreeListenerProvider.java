@@ -241,7 +241,8 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    new SelectReportDialog(treeViewer.getControl().getShell());
+                    new SelectReportDialog(TreeMenuListener.this.treeViewer
+                            .getControl().getShell());
                 }
             };
             final String deleteSectionActionText = getLocalizedValue(SectionFields.DELETE);

@@ -6,12 +6,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 
 public class ComboField extends Composite implements
         EditableComponent<ComboField> {
 
-    private Combo          combo;
+    private Combo         combo;
 
     private DataConverter dataConverter;
 
@@ -20,7 +19,7 @@ public class ComboField extends Composite implements
     public ComboField(final Composite parent, final String labelText) {
 
         super(parent, SWT.NONE);
-        GridLayout layout = new GridLayout(2, false);
+        final GridLayout layout = new GridLayout(2, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
         buildControl(labelText);
@@ -30,13 +29,13 @@ public class ComboField extends Composite implements
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
-        
-        GridData dataGridInput = new GridData();
+
+        final GridData dataGridInput = new GridData();
         dataGridInput.grabExcessHorizontalSpace = true;
         dataGridInput.horizontalAlignment = GridData.FILL;
         this.combo = new Combo(this, SWT.BORDER);
         this.combo.setLayoutData(dataGridInput);
-        combo.setItems(new String[] { "Test 1", "Test 2", "Test 3" });
+        this.combo.setItems(new String[] { "Test 1", "Test 2", "Test 3" });
     }
 
     @Override

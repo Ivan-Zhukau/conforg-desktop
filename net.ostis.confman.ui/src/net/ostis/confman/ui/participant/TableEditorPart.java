@@ -6,9 +6,12 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
+import net.ostis.confman.services.ParticipantServiceImpl;
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.ContactInformation;
+import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
@@ -21,7 +24,9 @@ import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
@@ -135,8 +140,8 @@ public class TableEditorPart {
         applySurnameBinder(person);
         applyNameBinder(person);
         applyPatronymicBinder(person);
-        //applyAcademicDegreeBinder(academicInfo);
-        //applyAcademicTitleBinder(academicInfo);
+        // applyAcademicDegreeBinder(academicInfo);
+        // applyAcademicTitleBinder(academicInfo);
         applyCountryBinder(address);
         applySityBinder(address);
         applyEMAILBinder(contactInfo);
@@ -419,11 +424,25 @@ public class TableEditorPart {
         return translatedItems;
     }
 
+    @Inject
+    @Optional
+    private void onConfDataUpdate(
+            @UIEventTopic(ConferenceTopics.ADD_NEW_PARTICIPANT) final String s) {
+
+        final Participant participant = new Participant();
+        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        final FullModel model = converter.convertData();
+        model.getParticipants().add(participant);
+        onNewSelection(participant);
+    }
+
     private void onSave() {
 
         for (final TableFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null); // TODO
+        this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
+        final ParticipantServiceImpl impl = new ParticipantServiceImpl();
+        impl.fireData();
     }
 }

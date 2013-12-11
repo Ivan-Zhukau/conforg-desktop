@@ -20,7 +20,7 @@ public class ComboBoxField extends Composite implements
             final String[] items) {
 
         super(parent, SWT.NONE);
-        GridLayout layout = new GridLayout(2, false);
+        final GridLayout layout = new GridLayout(2, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
         buildControl(labelText, items);
