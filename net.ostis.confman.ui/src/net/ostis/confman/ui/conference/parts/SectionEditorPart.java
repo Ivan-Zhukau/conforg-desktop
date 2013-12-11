@@ -7,7 +7,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.ConferenceDto;
+import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -19,8 +20,10 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -29,17 +32,19 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 public class SectionEditorPart {
+    
+    public static final String PART_ID          = "net.ostis.confman.ui.part.section.editor";
 
     private static final int LAYOUT_COL_COUNT = 1;
 
-    private enum ConferenceFields implements Localizable {
+    private enum SectionFields implements Localizable {
         TITLE("sectionTitle"),
         DATE("sectionData"),
         CONFERENCE("conference");
 
         private String rk;
 
-        private ConferenceFields(final String rk) {
+        private SectionFields(final String rk) {
 
             this.rk = rk;
         }
@@ -69,7 +74,7 @@ public class SectionEditorPart {
 
     }
 
-    private final Map<ConferenceFields, EditableComponent<TextField>> editFields;
+    private final Map<SectionFields, EditableComponent<TextField>> editFields;
 
     @Inject
     private ESelectionService                                         selectionService;
@@ -77,10 +82,13 @@ public class SectionEditorPart {
     @Inject
     private IEventBroker                                              eventBroker;
 
+    @Inject
+    private EPartService                                              partService;
+    
     public SectionEditorPart() {
 
         super();
-        this.editFields = new EnumMap<>(ConferenceFields.class);
+        this.editFields = new EnumMap<>(SectionFields.class);
     }
 
     @PostConstruct
@@ -92,69 +100,75 @@ public class SectionEditorPart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (!(selection instanceof ConferenceDto)) {
-                    return;
+                if (selection instanceof Section) {
+                    final Section section = (Section) selection;
+                    onSectionEvent(section);
                 }
-                final ConferenceDto conf = (ConferenceDto) selection;
-                onNewSelection(conf);
             }
         });
         buildLayout(parent);
     }
 
-    private void onNewSelection(final ConferenceDto conf) {
+    protected void onSectionEvent(final Section section) {
 
-        applyValueBindings(conf);
-        for (final ConferenceFields field : this.editFields.keySet()) {
+        applyValueBindings(section);
+        for (final SectionFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
+        showConferencePart();
     }
 
-    private void applyValueBindings(final ConferenceDto conf) {
+    private void showConferencePart() {
 
-        this.editFields.get(ConferenceFields.TITLE).setValueBinder(
+        final MPart sectionPart = this.partService.findPart(PART_ID);
+        this.partService.showPart(sectionPart, PartState.VISIBLE);
+    }
+
+    private void applyValueBindings(final Section section) {
+
+        this.editFields.get(SectionFields.TITLE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setTitle((String) value);
+                        section.setTitle((String) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getTitle();
+                        return section.getTitle();
                     }
                 });
-        this.editFields.get(ConferenceFields.DATE).setValueBinder(
+        this.editFields.get(SectionFields.DATE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setStartDate((Date) value);
+                        section.setDate((Date) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getStartDate();
+                        return section.getDate();
                     }
                 });
-        this.editFields.get(ConferenceFields.CONFERENCE).setValueBinder(
+        this.editFields.get(SectionFields.CONFERENCE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setStartDate((Date) value);
+                        section.setConference((Conference) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getStartDate();
+                        return section.getConference();
                     }
                 });
     }
@@ -163,15 +177,15 @@ public class SectionEditorPart {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
-        this.editFields.put(ConferenceFields.TITLE,
-                new TextField(parent, util.translate(ConferenceFields.TITLE))
+        this.editFields.put(SectionFields.TITLE,
+                new TextField(parent, util.translate(SectionFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.editFields.put(ConferenceFields.DATE,
-                new TextField(parent, util.translate(ConferenceFields.DATE))
+        this.editFields.put(SectionFields.DATE,
+                new TextField(parent, util.translate(SectionFields.DATE))
                         .setDataConverter(dateConverter));
-        this.editFields.put(ConferenceFields.CONFERENCE, new TextField(parent,
-                util.translate(ConferenceFields.CONFERENCE))
+        this.editFields.put(SectionFields.CONFERENCE, new TextField(parent,
+                util.translate(SectionFields.CONFERENCE))
                 .setDataConverter(dateConverter));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
@@ -180,22 +194,25 @@ public class SectionEditorPart {
             @Override
             public void widgetSelected(final SelectionEvent e) {
 
-                onSave();
+                onUpdate();
             }
 
             @Override
             public void widgetDefaultSelected(final SelectionEvent e) {
 
-                onSave();
+                onUpdate();
             }
         });
     }
 
-    private void onSave() {
+    private void onUpdate() {
 
-        for (final ConferenceFields field : this.editFields.keySet()) {
+        for (final SectionFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
+
         }
+        // TODO: add getter (?) for ValueBinder in TextField and create\
+        // Conference obj with updated fiels.
         this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
     }
 }
