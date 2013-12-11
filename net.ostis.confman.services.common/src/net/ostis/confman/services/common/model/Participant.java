@@ -17,6 +17,10 @@ public class Participant {
     public Participant() {
 
         super();
+        this.role = new ParticipantRole();
+        this.arrival = new ParticipantArrival();
+        this.conference = new Conference();
+        this.person = new Person();
     }
 
     public ParticipantRole getRole() {

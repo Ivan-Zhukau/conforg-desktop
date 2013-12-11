@@ -127,41 +127,16 @@ public class TableEditorPart {
 
     private void applyValueBindings(final Participant participant) {
 
-        final Person person;
-        if (participant.getPerson() == null) {
-            person = new Person();
-        } else {
-            person = participant.getPerson();
-        }
-        final Address address;
-        if (person.getResidence() == null) {
-            address = new Address();
-        } else {
-            address = person.getResidence();
-        }
-        final WorkplaceInformation workplaceInformation;
-        if (person.getWorkplace() == null) {
-            workplaceInformation = new WorkplaceInformation();
-        } else {
-            workplaceInformation = person.getWorkplace();
-        }
-        final ContactInformation contactInfo;
-        if (person.getContacts() == null) {
-            contactInfo = new ContactInformation();
-        } else {
-            contactInfo = person.getContacts();
-        }
-        final AcademicInformation academicInfo;
-        if (person.getDegree() == null) {
-            academicInfo = new AcademicInformation();
-        } else {
-            academicInfo = person.getDegree();
-        }
+        final Person person = participant.getPerson();
+        final Address address = person.getResidence();
+        final WorkplaceInformation workplaceInformation = person.getWorkplace();
+        final ContactInformation contactInfo = person.getContacts();
+        final AcademicInformation academicInfo = person.getDegree();
         applySurnameBinder(person);
         applyNameBinder(person);
         applyPatronymicBinder(person);
-        applyAcademicDegreeBinder(academicInfo);
-        applyAcademicTitleBinder(academicInfo);
+        //applyAcademicDegreeBinder(academicInfo);
+        //applyAcademicTitleBinder(academicInfo);
         applyCountryBinder(address);
         applySityBinder(address);
         applyEMAILBinder(contactInfo);

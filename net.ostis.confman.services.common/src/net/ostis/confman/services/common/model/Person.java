@@ -19,6 +19,10 @@ public class Person {
     public Person() {
 
         super();
+        this.residence = new Address();
+        this.workplace = new WorkplaceInformation();
+        this.contacts = new ContactInformation();
+        this.degree = new AcademicInformation();
     }
 
     public String getSurname() {
