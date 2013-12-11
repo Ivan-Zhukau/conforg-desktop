@@ -2,8 +2,19 @@ package net.ostis.confman.ui.participant;
 
 import java.util.List;
 
+import net.ostis.confman.ui.participant.TableComponent.Listener;
+
+import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -13,6 +24,10 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public class TableComponent extends AbstractTableModel {
+
+    public interface Listener {
+        void onRowSelected();
+    }
 
     private TableViewer viewer;
 
@@ -33,7 +48,8 @@ public class TableComponent extends AbstractTableModel {
         final Table table = this.viewer.getTable();
         table.setLinesVisible(true);
         table.setHeaderVisible(true);
-        table.addListener(SWT.MouseDown, new RowSelectionListener(table));
+        table.addListener(SWT.MouseDown,
+                new RowSelectionListener(table, viewer));
         final GridData gridData = new GridData();
         gridData.verticalAlignment = GridData.FILL;
         gridData.horizontalSpan = 2;
@@ -41,6 +57,14 @@ public class TableComponent extends AbstractTableModel {
         gridData.grabExcessVerticalSpace = true;
         gridData.horizontalAlignment = GridData.FILL;
         this.viewer.getControl().setLayoutData(gridData);
+        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+
+                ISelection selection = viewer.getSelection();
+            }
+        });
     }
 
     public void addColumn(final String columnName) {
@@ -75,8 +99,7 @@ public class TableComponent extends AbstractTableModel {
 
     public TableItem[] getRow(final int rowIndex) {
 
-        TableItem[] item;
-        return item = this.viewer.getTable().getItems();
+        return this.viewer.getTable().getItems();
     }
 
     @Override
@@ -107,5 +130,10 @@ public class TableComponent extends AbstractTableModel {
     @Override
     void setValueAt(final String Value, final int row, final int column) {
 
+    }
+
+    public void addListener(Listener listener) {
+
+        
     }
 }
