@@ -13,6 +13,7 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
@@ -396,12 +397,8 @@ public class TableEditorPart {
         this.editFields.put(TableFields.PATRONYMIC,
                 new TextField(parent, util.translate(TableFields.PATRONYMIC))
                         .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
-                util.translate(TableFields.ACADEMIC_DEGREE))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.ACADEMIC_TITLE, new TextField(parent,
-                util.translate(TableFields.ACADEMIC_TITLE))
-                .setDataConverter(stringConverter));
+        new ComboBoxField(parent, util.translate(TableFields.ACADEMIC_DEGREE),translateItems(AcademicDegree.values(), util)).setDataConverter(stringConverter);
+        new ComboBoxField(parent, util.translate(TableFields.ACADEMIC_TITLE),translateItems(AcademicTitle.values(), util)).setDataConverter(stringConverter);
         this.editFields.put(TableFields.COUNTRY,
                 new TextField(parent, util.translate(TableFields.COUNTRY))
                         .setDataConverter(stringConverter));
@@ -437,7 +434,15 @@ public class TableEditorPart {
             }
         });
     }
-
+    
+    private String[] translateItems(Localizable [] items, LocalizationUtil util){
+        String [] translatedItems = new String[items.length];
+        for(int i=0; i<items.length; i++) {
+            translatedItems[i] = util.translate(items[i]); 
+        }
+        return translatedItems;
+    }
+    
     private void onSave() {
 
         for (final TableFields field : this.editFields.keySet()) {
