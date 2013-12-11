@@ -2,7 +2,7 @@ package net.ostis.confman.ui.participant;
 
 import net.ostis.confman.ui.common.Localizable;
 
-public enum AcademicTitle implements Localizable{
+public enum AcademicTitle implements Localizable {
 
     SENIOR("senior"),
     DOCENT("docent"),
@@ -15,7 +15,7 @@ public enum AcademicTitle implements Localizable{
 
         this.academicTitle = academicTitle;
     }
-    
+
     @Override
     public String getResourceKey() {
 

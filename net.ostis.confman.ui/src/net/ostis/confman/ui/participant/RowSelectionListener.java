@@ -15,10 +15,10 @@ import org.eclipse.swt.widgets.TableItem;
 
 public class RowSelectionListener implements Listener {
 
-    private Table table;
+    private Table                  table;
 
-    private int   rowIndex;
-    
+    private int                    rowIndex;
+
     private ParticipantServiceImpl participantService = new ParticipantServiceImpl();
 
     RowSelectionListener(final Table table) {
@@ -54,9 +54,11 @@ public class RowSelectionListener implements Listener {
             System.out.print(" " + rowData.get(index));
         }
         System.out.println();
-        
-        List<Participant> participants = participantService.getParticipants();
-        System.out.println(participants.get(rowIndex).getConference().getStartDate().toString());
+
+        final List<Participant> participants = this.participantService
+                .getParticipants();
+        System.out.println(participants.get(this.rowIndex).getConference()
+                .getStartDate().toString());
 
     }
 }

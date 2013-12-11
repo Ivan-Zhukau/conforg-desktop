@@ -6,28 +6,29 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+public class ComboBoxField extends Composite implements
+        EditableComponent<ComboBoxField> {
 
-public class ComboBoxField extends Composite implements EditableComponent<ComboBoxField>{
-    
-    private Combo comboBox;
-    
+    private Combo         comboBox;
+
     private DataConverter dataConverter;
 
     private ValueBinder   valueBinder;
-    
-    public ComboBoxField(Composite parent, String labelText, String [] items){
-        
+
+    public ComboBoxField(final Composite parent, final String labelText,
+            final String[] items) {
+
         super(parent, SWT.NONE);
         setLayout(new GridLayout(2, true));
-        buildControl(labelText,items);
+        buildControl(labelText, items);
     }
 
-    private void buildControl(final String labelText, String [] items) {
+    private void buildControl(final String labelText, final String[] items) {
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
         this.comboBox = new Combo(this, SWT.READ_ONLY);
-        comboBox.setItems(items);
+        this.comboBox.setItems(items);
     }
 
     @Override
@@ -50,14 +51,14 @@ public class ComboBoxField extends Composite implements EditableComponent<ComboB
     }
 
     @Override
-    public ComboBoxField setValueBinder(ValueBinder valueBinder) {
+    public ComboBoxField setValueBinder(final ValueBinder valueBinder) {
 
         this.valueBinder = valueBinder;
         return this;
     }
 
     @Override
-    public ComboBoxField setDataConverter(DataConverter converter) {
+    public ComboBoxField setDataConverter(final DataConverter converter) {
 
         this.dataConverter = converter;
         return this;

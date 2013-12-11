@@ -12,8 +12,6 @@ package net.ostis.confman.ui.parts;
 
 import javax.annotation.PostConstruct;
 
-import net.ostis.confman.model.datastore.StorageProvider;
-
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
