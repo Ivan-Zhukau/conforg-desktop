@@ -38,6 +38,15 @@ public class TableViewPart {
         initTableData();
         tableComponent.addColumn(getTableTitles());
         tableComponent.addRow(this.tableData);
+        tableComponent.addListener(new TableComponent.Listener(){
+
+            @Override
+            public void onRowSelected() {
+
+                
+            }
+            
+        });
 
     }
 

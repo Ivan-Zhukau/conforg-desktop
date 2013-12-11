@@ -35,8 +35,7 @@ public class SectionEditorPart {
 
     private enum SectionFields implements Localizable {
         TITLE("sectionTitle"),
-        DATE("sectionData"),
-        CONFERENCE("conference");
+        DATE("sectionDate");
 
         private String rk;
 
@@ -53,7 +52,8 @@ public class SectionEditorPart {
     }
 
     private enum Buttons implements Localizable {
-        SAVE("save");
+        SAVE("save"),
+        ADD_REPORT("addReport");
 
         private String rk;
 
@@ -142,27 +142,13 @@ public class SectionEditorPart {
                         return section.getDate();
                     }
                 });
-        this.editFields.get(SectionFields.CONFERENCE).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        section.setConference((Conference) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return section.getConference();
-                    }
-                });
     }
 
     private void buildLayout(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
+        
         this.editFields.put(SectionFields.TITLE,
                 new TextField(parent, util.translate(SectionFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
@@ -170,12 +156,26 @@ public class SectionEditorPart {
         this.editFields.put(SectionFields.DATE,
                 new TextField(parent, util.translate(SectionFields.DATE))
                         .setDataConverter(dateConverter));
-        this.editFields.put(SectionFields.CONFERENCE, new TextField(parent,
-                util.translate(SectionFields.CONFERENCE))
-                .setDataConverter(dateConverter));
-        final Button button = new Button(parent, SWT.PUSH);
-        button.setText(util.translate(Buttons.SAVE));
-        button.addSelectionListener(new SelectionListener() {
+        final Button saveButton = new Button(parent, SWT.PUSH);
+        saveButton.setText(util.translate(Buttons.SAVE));
+        saveButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                onUpdate();
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                onUpdate();
+            }
+        });
+        
+        final Button addButton = new Button(parent, SWT.PUSH);
+        addButton.setText(util.translate(Buttons.ADD_REPORT));
+        addButton.addSelectionListener(new SelectionListener() {
 
             @Override
             public void widgetSelected(final SelectionEvent e) {

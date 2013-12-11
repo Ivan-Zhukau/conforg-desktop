@@ -10,6 +10,7 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.ComboField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
@@ -33,13 +34,29 @@ public class ReportEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum ReportFields implements Localizable {
-        TITLE("reportTitle"),
+        TITLE("reportTitle");
+
+        private String rk;
+
+        private ReportFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
+    
+    private enum ReportCombos implements Localizable {
         SECTION("section"),
         MAIN_AUTHOR("mainAuthor");
 
         private String rk;
 
-        private ReportFields(final String rk) {
+        private ReportCombos(final String rk) {
 
             this.rk = rk;
         }
@@ -69,7 +86,8 @@ public class ReportEditorPart {
 
     }
 
-    private final Map<ReportFields, EditableComponent<TextField>> editFields;
+    private final Map<ReportFields, EditableComponent<?>> editFields;
+    private final Map<ReportCombos, EditableComponent<?>> combos;
 
     @Inject
     private ESelectionService                                     selectionService;
@@ -81,6 +99,7 @@ public class ReportEditorPart {
 
         super();
         this.editFields = new EnumMap<>(ReportFields.class);
+        this.combos = new EnumMap<>(ReportCombos.class);
     }
 
     @PostConstruct
@@ -126,7 +145,7 @@ public class ReportEditorPart {
                         return report.getTitle();
                     }
                 });
-        this.editFields.get(ReportFields.SECTION).setValueBinder(
+        this.combos.get(ReportCombos.SECTION).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -141,7 +160,7 @@ public class ReportEditorPart {
                         return report.getSection();
                     }
                 });
-        this.editFields.get(ReportFields.MAIN_AUTHOR).setValueBinder(
+        this.combos.get(ReportCombos.SECTION).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -165,12 +184,13 @@ public class ReportEditorPart {
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ReportFields.SECTION,
-                new TextField(parent, util.translate(ReportFields.SECTION))
+        this.combos.put(ReportCombos.SECTION,
+                new ComboField(parent, util.translate(ReportCombos.SECTION))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ReportFields.MAIN_AUTHOR, new TextField(parent,
-                util.translate(ReportFields.MAIN_AUTHOR))
+        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboField(parent,
+                util.translate(ReportCombos.MAIN_AUTHOR))
                 .setDataConverter(new StringDataConverter()));
+        
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

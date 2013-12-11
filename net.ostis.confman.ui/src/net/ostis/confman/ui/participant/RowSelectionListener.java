@@ -6,6 +6,9 @@ import java.util.List;
 import net.ostis.confman.services.ParticipantServiceImpl;
 import net.ostis.confman.services.common.model.Participant;
 
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Event;
@@ -21,9 +24,12 @@ public class RowSelectionListener implements Listener {
 
     private ParticipantServiceImpl participantService = new ParticipantServiceImpl();
 
-    RowSelectionListener(final Table table) {
+    private TableViewer            viewer;
+
+    RowSelectionListener(final Table table, TableViewer viewer) {
 
         this.table = table;
+        this.viewer = viewer;
     }
 
     @Override
@@ -55,10 +61,9 @@ public class RowSelectionListener implements Listener {
         }
         System.out.println();
 
-        final List<Participant> participants = this.participantService
-                .getParticipants();
-        System.out.println(participants.get(this.rowIndex).getConference()
+        List<Participant> participants = participantService.getParticipants();
+        System.out.println(participants.get(rowIndex).getConference()
                 .getStartDate().toString());
-
+        viewer.setSelection(new StructuredSelection(participants));
     }
 }
