@@ -20,10 +20,8 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -32,8 +30,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 public class SectionEditorPart {
-    
-    public static final String PART_ID          = "net.ostis.confman.ui.part.section.editor";
 
     private static final int LAYOUT_COL_COUNT = 1;
 
@@ -77,14 +73,11 @@ public class SectionEditorPart {
     private final Map<SectionFields, EditableComponent<TextField>> editFields;
 
     @Inject
-    private ESelectionService                                         selectionService;
+    private ESelectionService                                      selectionService;
 
     @Inject
-    private IEventBroker                                              eventBroker;
+    private IEventBroker                                           eventBroker;
 
-    @Inject
-    private EPartService                                              partService;
-    
     public SectionEditorPart() {
 
         super();
@@ -115,13 +108,6 @@ public class SectionEditorPart {
         for (final SectionFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
-        showConferencePart();
-    }
-
-    private void showConferencePart() {
-
-        final MPart sectionPart = this.partService.findPart(PART_ID);
-        this.partService.showPart(sectionPart, PartState.VISIBLE);
     }
 
     private void applyValueBindings(final Section section) {

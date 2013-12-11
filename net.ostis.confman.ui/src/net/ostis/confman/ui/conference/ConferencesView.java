@@ -13,6 +13,7 @@ import net.ostis.confman.ui.common.component.conftree.ConfTreeListenerProvider;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -33,6 +34,9 @@ public class ConferencesView {
 
     @Inject
     private ESelectionService selectionService;
+
+    @Inject
+    private EPartService      partService;
 
     private TreeViewer        treeViewer;
 
@@ -66,7 +70,7 @@ public class ConferencesView {
         addDragAndDropSupport(listenerProvider);
         this.treeViewer.addSelectionChangedListener(listenerProvider
                 .getSelectionChangedListener(this.treeViewer,
-                        this.selectionService));
+                        this.selectionService, this.partService));
         this.treeViewer.addDoubleClickListener(listenerProvider
                 .getDoubleClickListener());
         initContextMenu(listenerProvider);

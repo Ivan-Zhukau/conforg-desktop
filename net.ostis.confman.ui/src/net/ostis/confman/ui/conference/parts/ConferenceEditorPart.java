@@ -19,8 +19,6 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -32,9 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class ConferenceEditorPart {
 
-    public static final String PART_ID          = "net.ostis.confman.ui.part.conference.editor";
-
-    private static final int   LAYOUT_COL_COUNT = 1;
+    private static final int LAYOUT_COL_COUNT = 1;
 
     private enum ConferenceFields implements Localizable {
         TITLE("conferenceTitle"),
@@ -81,9 +77,6 @@ public class ConferenceEditorPart {
     @Inject
     private IEventBroker                                              eventBroker;
 
-    @Inject
-    private EPartService                                              partService;
-
     public ConferenceEditorPart() {
 
         super();
@@ -114,13 +107,6 @@ public class ConferenceEditorPart {
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
-        showConferencePart();
-    }
-
-    private void showConferencePart() {
-
-        final MPart confPart = this.partService.findPart(PART_ID);
-        this.partService.showPart(confPart, PartState.VISIBLE);
     }
 
     private void applyValueBindings(final Conference conf) {

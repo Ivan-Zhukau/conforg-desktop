@@ -19,10 +19,8 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -31,8 +29,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 public class ReportEditorPart {
-    
-    public static final String PART_ID          = "net.ostis.confman.ui.part.report.editor";
 
     private static final int LAYOUT_COL_COUNT = 1;
 
@@ -76,13 +72,10 @@ public class ReportEditorPart {
     private final Map<ReportFields, EditableComponent<TextField>> editFields;
 
     @Inject
-    private ESelectionService                                         selectionService;
+    private ESelectionService                                     selectionService;
 
     @Inject
-    private IEventBroker                                              eventBroker;
-    
-    @Inject
-    private EPartService                                              partService;
+    private IEventBroker                                          eventBroker;
 
     public ReportEditorPart() {
 
@@ -114,13 +107,6 @@ public class ReportEditorPart {
         for (final ReportFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
-        showConferencePart();
-    }
-
-    private void showConferencePart() {
-
-        final MPart reportPart = this.partService.findPart(PART_ID);
-        this.partService.showPart(reportPart, PartState.VISIBLE);
     }
 
     private void applyValueBindings(final Report report) {
@@ -179,9 +165,9 @@ public class ReportEditorPart {
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ReportFields.SECTION, new TextField(parent,
-                util.translate(ReportFields.SECTION))
-                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ReportFields.SECTION,
+                new TextField(parent, util.translate(ReportFields.SECTION))
+                        .setDataConverter(new StringDataConverter()));
         this.editFields.put(ReportFields.MAIN_AUTHOR, new TextField(parent,
                 util.translate(ReportFields.MAIN_AUTHOR))
                 .setDataConverter(new StringDataConverter()));

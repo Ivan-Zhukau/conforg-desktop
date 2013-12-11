@@ -7,7 +7,11 @@ import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.conference.parts.PartId;
 
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -34,9 +38,11 @@ public class ConfTreeListenerProvider {
 
     public ISelectionChangedListener getSelectionChangedListener(
             final TreeViewer treeViewer,
-            final ESelectionService selectionService) {
+            final ESelectionService selectionService,
+            final EPartService partService) {
 
-        return new TreeSelectionChangedListener(treeViewer, selectionService);
+        return new TreeSelectionChangedListener(treeViewer, selectionService,
+                partService);
     }
 
     public IDoubleClickListener getDoubleClickListener() {
@@ -66,12 +72,16 @@ public class ConfTreeListenerProvider {
 
         private ESelectionService selectionService;
 
+        private EPartService      partService;
+
         public TreeSelectionChangedListener(final TreeViewer treeViewer,
-                final ESelectionService selectionService) {
+                final ESelectionService selectionService,
+                final EPartService partService) {
 
             super();
             this.treeViewer = treeViewer;
             this.selectionService = selectionService;
+            this.partService = partService;
         }
 
         @Override
@@ -79,7 +89,26 @@ public class ConfTreeListenerProvider {
 
             final IStructuredSelection selection = (IStructuredSelection) this.treeViewer
                     .getSelection();
-            this.selectionService.setSelection(selection.getFirstElement());
+            final Object selectedElement = selection.getFirstElement();
+            switchParts(selectedElement);
+            this.selectionService.setSelection(selectedElement);
+        }
+
+        private void switchParts(final Object selectedElement) {
+
+            if (selectedElement instanceof Conference) {
+                showPart(PartId.CONFERENCE_PART);
+            } else if (selectedElement instanceof Section) {
+                showPart(PartId.SECTION_PART);
+            } else if (selectedElement instanceof Report) {
+                showPart(PartId.REPORT_PART);
+            }
+        }
+
+        private void showPart(final String partId) {
+
+            final MPart part = this.partService.findPart(partId);
+            this.partService.showPart(part, PartState.VISIBLE);
         }
     }
 
