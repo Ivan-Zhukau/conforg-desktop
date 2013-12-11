@@ -1,6 +1,7 @@
 package net.ostis.confman.ui.common.component;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -19,7 +20,9 @@ public class ComboBoxField extends Composite implements
             final String[] items) {
 
         super(parent, SWT.NONE);
-        setLayout(new GridLayout(2, true));
+        GridLayout layout = new GridLayout(2, false);
+        setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        setLayout(layout);
         buildControl(labelText, items);
     }
 
