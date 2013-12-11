@@ -56,7 +56,7 @@ public class ConferencesView {
 
     private void initTreeViewer(final Composite parent) {
 
-        this.treeViewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL
+        this.treeViewer = new TreeViewer(parent, SWT.SINGLE | SWT.H_SCROLL
                 | SWT.V_SCROLL);
         this.treeViewer.setContentProvider(new ConfTreeContentProvider());
         this.treeViewer.setLabelProvider(new ConfTreeLabelProvider());
@@ -112,9 +112,7 @@ public class ConferencesView {
 
         final Object data = getSelectedObject();
         if (data instanceof Conference) {
-            // TODO kfs: provide update support for received value from\
-            // ConferenceTopics.CONF_UPDATE
-            this.confService.updateConference((Conference) data, null);
+            this.confService.fireData();
         }
     }
 

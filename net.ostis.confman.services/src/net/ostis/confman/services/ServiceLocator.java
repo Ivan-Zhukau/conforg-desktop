@@ -23,6 +23,8 @@ public class ServiceLocator {
                 new RegistrationServiceImpl());
         this.serviceImpls.put(ConferenceService.class,
                 new ConferenceServiceImpl());
+        this.serviceImpls.put(ParticipantService.class,
+                new ParticipantServiceImpl());
     }
 
     public static ServiceLocator getInstance() {

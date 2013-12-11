@@ -10,15 +10,14 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.swt.widgets.Shell;
 
+public class NewParticipantActionListener {
 
-public class NewParticipantActionListener{
-    
     @Inject
     ESelectionService selectionService;
-    
+
     @Execute
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 
-        selectionService.setSelection(new Participant());
+        this.selectionService.setSelection(new Participant());
     }
 }

@@ -8,6 +8,7 @@ import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.parts.PartId;
+import net.ostis.confman.ui.reports.SelectReportDialog;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
@@ -240,8 +241,7 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    TreeMenuListener.this.conferenceService.addReport(
-                            selectedElement, null);
+                    new SelectReportDialog(treeViewer.getControl().getShell());
                 }
             };
             final String deleteSectionActionText = getLocalizedValue(SectionFields.DELETE);

@@ -1,89 +1,135 @@
 package net.ostis.confman.ui.participant;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.ParticipantServiceImpl;
+import net.ostis.confman.services.ParticipantService;
+import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Participant;
+import net.ostis.confman.services.common.model.ParticipantRole;
+import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.table.DynamicalTable;
 
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.swt.SWT;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
 
 public class TableViewPart {
 
+    private enum TableColumns implements Localizable {
+        NAME("participantTableAuthorName"),
+        CONFERENCE("participantTableConference"),
+        PARTICIPATION_FORM("participantTableParticipationRole");
+
+        private String rk;
+
+        private TableColumns(final String rk) {
+
+            this.rk = rk;
+        }
+
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
+
     @Inject
-    private ESelectionService            selectionService;
+    private ESelectionService  selectionService;
 
-    private org.eclipse.swt.widgets.List confUiList;
+    private ParticipantService participantService;
 
-    private List<String[]>               tableData          = new ArrayList<String[]>();
+    private DynamicalTable     table;
 
-    private String[]                     rowData;
+    public TableViewPart() {
 
-    private ParticipantServiceImpl       participantService = new ParticipantServiceImpl();
-
-    private List<Participant>            participants;
+        super();
+        this.participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
+    }
 
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        final TableComponent tableComponent = new TableComponent(parent,
-                SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
-
-        initTableData();
-        tableComponent.addColumn(getTableTitles());
-        tableComponent.addRow(this.tableData);
-
+        this.table = new DynamicalTable(parent);
+        createColumns();
+        addTableEventSupport();
     }
 
-    private String[] getTableTitles() {
+    private void createColumns() {
 
-        final String[] titles = { "PersonName", "ParticipantRole",
-                "ConfStartDate" };
-        return titles;
+        final LocalizationUtil localizationUtil = LocalizationUtil
+                .getInstance();
+        final int COLUMN_WIDTH = 150;
+        this.table.createColumn(localizationUtil.translate(TableColumns.NAME),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Participant participant = (Participant) element;
+                        final Person person = participant.getPerson();
+                        return person.getFirstName() + ' '
+                                + person.getSurname();
+                    }
+                });
+        this.table.createColumn(
+                localizationUtil.translate(TableColumns.CONFERENCE),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Participant participant = (Participant) element;
+                        final Conference conference = participant
+                                .getConference();
+                        return conference == null ? "" : conference.getTitle();
+                    }
+                });
+        this.table.createColumn(
+                localizationUtil.translate(TableColumns.PARTICIPATION_FORM),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Participant participant = (Participant) element;
+                        final ParticipantRole role = participant.getRole();
+                        return role == null ? "" : role.getParticipationForm();
+                    }
+                });
     }
 
-    private void initTableData() {
+    private void addTableEventSupport() {
 
-        this.participants = this.participantService.getParticipants();
-        for (int index = 0; index < this.participants.size(); index++) {
-            final String[] data = { getPersonName(index),
-                    getParticipantRole(index), getConferenceStartDate(index) };
-            this.tableData.add(data);
-        }
+        this.table.getViewer().setContentProvider(
+                ArrayContentProvider.getInstance());
+        this.table.getViewer().setInput(
+                this.participantService.getParticipants());
+        this.table.getViewer().addSelectionChangedListener(
+                new ISelectionChangedListener() {
+
+                    @Override
+                    public void selectionChanged(
+                            final SelectionChangedEvent event) {
+
+                        final IStructuredSelection selection = (IStructuredSelection) TableViewPart.this.table
+                                .getViewer().getSelection();
+                        final Object selectedElement = selection
+                                .getFirstElement();
+                        if (selectedElement instanceof Participant) {
+                            TableViewPart.this.selectionService
+                                    .setSelection(selectedElement);
+                        }
+                    }
+                });
     }
-
-    private String getPersonName(final int index) {
-
-        this.participants = this.participantService.getParticipants();
-        final String name = new String(this.participants.get(index).getPerson()
-                .getSurname()
-                + " "
-                + this.participants.get(index).getPerson().getFirstName()
-                + " "
-                + this.participants.get(index).getPerson().getPatronymic());
-        return name;
-    }
-
-    private String getParticipantRole(final int index) {
-
-        this.participants = this.participantService.getParticipants();
-        final String participantRole = this.participants.get(index).getRole()
-                .getParticipationForm();
-        return participantRole;
-    }
-
-    private String getConferenceStartDate(final int index) {
-
-        this.participants = this.participantService.getParticipants();
-        final Date startDate = this.participants.get(index).getConference()
-                .getStartDate();
-        return startDate.toString();
-    }
-
 }

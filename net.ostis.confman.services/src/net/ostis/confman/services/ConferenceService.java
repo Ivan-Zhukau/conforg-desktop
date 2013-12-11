@@ -23,4 +23,8 @@ public interface ConferenceService {
 
     void deleteReport(Report report);
 
+    List<Report> getReports();
+
+    void fireData();
+
 }

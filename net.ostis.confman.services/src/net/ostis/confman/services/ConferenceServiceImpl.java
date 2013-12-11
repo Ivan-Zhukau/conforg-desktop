@@ -62,7 +62,8 @@ class ConferenceServiceImpl implements ConferenceService {
         fireData();
     }
 
-    private void fireData() {
+    @Override
+    public void fireData() {
 
         final StorageProvider storageProvider = StorageProvider.getInstance();
         storageProvider.persist(this.model);
@@ -77,5 +78,12 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public void deleteSection(final Section selectedElement) {
 
+    }
+
+    @Override
+    public List<Report> getReports() {
+
+        // TODO kfs: provide better solution in future.
+        return this.conferences.get(0).getReports();
     }
 }
