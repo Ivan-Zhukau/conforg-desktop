@@ -31,7 +31,7 @@ public class OpenHandler {
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 
         final FileDialog dialog = new FileDialog(shell, SWT.MULTI);
-        final String[] filterExt = { "*.docx" };
+        final String[] filterExt = { "*.docx","*.doc" };
         dialog.setFilterExtensions(filterExt);
         final String filePath = dialog.open();
         final String parentPath = filePath.substring(0,
