@@ -13,6 +13,7 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
@@ -112,7 +113,7 @@ public class TableEditorPart {
                 onNewSelection(participant);
             }
         });
-        
+
         buildLayout(parent);
     }
 
@@ -127,38 +128,33 @@ public class TableEditorPart {
     private void applyValueBindings(final Participant participant) {
 
         final Person person;
-        if(participant.getPerson() == null){
+        if (participant.getPerson() == null) {
             person = new Person();
-        }
-        else{
+        } else {
             person = participant.getPerson();
         }
         final Address address;
-        if(person.getResidence() == null){
+        if (person.getResidence() == null) {
             address = new Address();
-        }
-        else{
+        } else {
             address = person.getResidence();
         }
         final WorkplaceInformation workplaceInformation;
-        if(person.getWorkplace() == null){
+        if (person.getWorkplace() == null) {
             workplaceInformation = new WorkplaceInformation();
-        }
-        else{
+        } else {
             workplaceInformation = person.getWorkplace();
         }
         final ContactInformation contactInfo;
-        if(person.getContacts() == null){
+        if (person.getContacts() == null) {
             contactInfo = new ContactInformation();
-        }
-        else{
+        } else {
             contactInfo = person.getContacts();
         }
         final AcademicInformation academicInfo;
-        if(person.getDegree() == null){
+        if (person.getDegree() == null) {
             academicInfo = new AcademicInformation();
-        }
-        else{
+        } else {
             academicInfo = person.getDegree();
         }
         applySurnameBinder(person);
@@ -396,12 +392,12 @@ public class TableEditorPart {
         this.editFields.put(TableFields.PATRONYMIC,
                 new TextField(parent, util.translate(TableFields.PATRONYMIC))
                         .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
-                util.translate(TableFields.ACADEMIC_DEGREE))
-                .setDataConverter(stringConverter));
-        this.editFields.put(TableFields.ACADEMIC_TITLE, new TextField(parent,
-                util.translate(TableFields.ACADEMIC_TITLE))
-                .setDataConverter(stringConverter));
+        new ComboBoxField(parent, util.translate(TableFields.ACADEMIC_DEGREE),
+                translateItems(AcademicDegree.values(), util))
+                .setDataConverter(stringConverter);
+        new ComboBoxField(parent, util.translate(TableFields.ACADEMIC_TITLE),
+                translateItems(AcademicTitle.values(), util))
+                .setDataConverter(stringConverter);
         this.editFields.put(TableFields.COUNTRY,
                 new TextField(parent, util.translate(TableFields.COUNTRY))
                         .setDataConverter(stringConverter));
@@ -436,6 +432,16 @@ public class TableEditorPart {
                 onSave();
             }
         });
+    }
+
+    private String[] translateItems(final Localizable[] items,
+            final LocalizationUtil util) {
+
+        final String[] translatedItems = new String[items.length];
+        for (int i = 0; i < items.length; i++) {
+            translatedItems[i] = util.translate(items[i]);
+        }
+        return translatedItems;
     }
 
     private void onSave() {

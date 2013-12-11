@@ -1,18 +1,24 @@
 package net.ostis.confman.model.registrationform;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArticleInformation {
 
-    private String titleEntry;
+    private String       titleEntry;
 
-    private String participationForm;
+    private List<String> coAuthors;
 
-    private String speaker;
+    private String       participationForm;
 
-    private String showLaunching;
+    private String       speaker;
+
+    private String       showLaunching;
 
     public ArticleInformation() {
 
         super();
+        this.coAuthors = new ArrayList<String>();
     }
 
     public String getTitleEntry() {
@@ -53,5 +59,15 @@ public class ArticleInformation {
     public void setTitleEntry(final String titleEntry) {
 
         this.titleEntry = titleEntry;
+    }
+
+    public List<String> getCoAuthors() {
+
+        return this.coAuthors;
+    }
+
+    public void setCoAuthors(final List<String> coAuthors) {
+
+        this.coAuthors = coAuthors;
     }
 }

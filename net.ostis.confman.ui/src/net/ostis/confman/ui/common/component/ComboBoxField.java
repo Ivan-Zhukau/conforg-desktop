@@ -3,58 +3,41 @@ package net.ostis.confman.ui.common.component;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 
-public class TextField extends Composite implements
-        EditableComponent<TextField> {
+public class ComboBoxField extends Composite implements
+        EditableComponent<ComboBoxField> {
 
-    private Text          input;
+    private Combo         comboBox;
 
     private DataConverter dataConverter;
 
     private ValueBinder   valueBinder;
 
-    public TextField(final Composite parent, final String labelText) {
+    public ComboBoxField(final Composite parent, final String labelText,
+            final String[] items) {
 
         super(parent, SWT.NONE);
         GridLayout layout = new GridLayout(2, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
-        buildControl(labelText);
+        buildControl(labelText, items);
     }
 
-    private void buildControl(final String labelText) {
+    private void buildControl(final String labelText, final String[] items) {
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
-        
-        GridData dataGridInput = new GridData();
-        dataGridInput.grabExcessHorizontalSpace = true;
-        dataGridInput.horizontalAlignment = GridData.FILL;
-        this.input = new Text(this,  SWT.BORDER);
-        this.input.setLayoutData(dataGridInput);
-    }
-
-    @Override
-    public TextField setValueBinder(final ValueBinder valueBinder) {
-
-        this.valueBinder = valueBinder;
-        return this;
-    }
-
-    @Override
-    public TextField setDataConverter(final DataConverter converter) {
-
-        this.dataConverter = converter;
-        return this;
+        this.comboBox = new Combo(this, SWT.READ_ONLY);
+        this.comboBox.setItems(items);
     }
 
     @Override
     public void apply() {
 
-        final String toApply = this.input.getText();
+        final String toApply = this.comboBox.getText();
         final Object applied = this.dataConverter.convert(toApply);
         this.valueBinder.setValue(applied);
     }
@@ -67,7 +50,21 @@ public class TextField extends Composite implements
         if (value != null) {
             text = this.dataConverter.convert(value);
         }
-        this.input.setText(text);
+        this.comboBox.setText(text);
+    }
+
+    @Override
+    public ComboBoxField setValueBinder(final ValueBinder valueBinder) {
+
+        this.valueBinder = valueBinder;
+        return this;
+    }
+
+    @Override
+    public ComboBoxField setDataConverter(final DataConverter converter) {
+
+        this.dataConverter = converter;
+        return this;
     }
 
 }
