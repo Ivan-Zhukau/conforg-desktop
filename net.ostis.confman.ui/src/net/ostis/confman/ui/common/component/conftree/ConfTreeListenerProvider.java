@@ -25,10 +25,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
+import org.eclipse.swt.widgets.Composite;
 
 public class ConfTreeListenerProvider {
 
@@ -188,6 +190,8 @@ public class ConfTreeListenerProvider {
         }
 
         private TreeViewer        treeViewer;
+        
+        private Composite parent;
 
         private ConferenceService conferenceService;
 
@@ -195,6 +199,7 @@ public class ConfTreeListenerProvider {
 
             super();
             this.treeViewer = treeViewer;
+            parent = treeViewer.getControl().getParent();
             this.conferenceService = (ConferenceService) ServiceLocator
                     .getInstance().getService(ConferenceService.class);
         }
@@ -241,8 +246,7 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    new SelectReportDialog(TreeMenuListener.this.treeViewer
-                            .getControl().getShell());
+                    showReportDialog(parent, selectedElement);
                 }
             };
             final String deleteSectionActionText = getLocalizedValue(SectionFields.DELETE);
@@ -258,6 +262,19 @@ public class ConfTreeListenerProvider {
             };
             manager.add(addReportAction);
             manager.add(deleteSectionAction);
+        }
+        
+        private void showReportDialog(final Composite parent, Section section) {
+
+            final SelectReportDialog dialog = new SelectReportDialog(
+                    parent.getShell());
+            dialog.create();
+            if (dialog.open() == Window.OK) {
+                final Report selectedReport = dialog.getSelectedReport();
+                if (selectedReport != null) {
+                    this.conferenceService.addReport(section, selectedReport);
+                }
+            }
         }
 
         private void addReportActions(final IMenuManager manager,
