@@ -35,40 +35,40 @@ public class DateChooserField extends Composite implements
         }
 
     }
-    
-    private Text          input;
 
-    private  DateTimeWidget dateTimeWidget;
-    
-    private DataConverter dataConverter;
+    private Text           input;
 
-    private ValueBinder   valueBinder;
+    private DateTimeWidget dateTimeWidget;
+
+    private DataConverter  dataConverter;
+
+    private ValueBinder    valueBinder;
 
     public DateChooserField(final Composite parent, final String labelText) {
 
         super(parent, SWT.NONE);
-        
+
         final GridLayout layout = new GridLayout(3, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
         buildControl(labelText, parent);
     }
 
-    private void buildControl(final String labelText,final Composite parent) {
-        
+    private void buildControl(final String labelText, final Composite parent) {
+
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
 
         final GridData dataGridInput = new GridData();
         dataGridInput.grabExcessHorizontalSpace = true;
         dataGridInput.horizontalAlignment = GridData.FILL;
-        this.input = new Text(this, SWT.BORDER|SWT.READ_ONLY);
-        this.input.setLayoutData(dataGridInput);        
+        this.input = new Text(this, SWT.BORDER | SWT.READ_ONLY);
+        this.input.setLayoutData(dataGridInput);
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         final Button button = new Button(this, SWT.PUSH | SWT.LEFT);
         button.setText(util.translate(Buttons.SELECT_DATE));
-        
+
         button.addSelectionListener(new SelectionListener() {
 
             @Override
@@ -117,16 +117,18 @@ public class DateChooserField extends Composite implements
         }
         this.input.setText(text);
     }
-    
+
     private void showCalendar(final Composite parent) {
 
-        dateTimeWidget = new DateTimeWidget(parent.getShell());
-        dateTimeWidget.create();
-        dateTimeWidget.getShell().pack();
-        dateTimeWidget.setDate(valueBinder.getValue());
-        if (dateTimeWidget.open() == Window.OK) {
-            this.valueBinder.setValue(dateTimeWidget.getDate());
-            this.activate();
+        if (this.valueBinder != null) {
+            this.dateTimeWidget = new DateTimeWidget(parent.getShell());
+            this.dateTimeWidget.create();
+            this.dateTimeWidget.getShell().pack();
+            this.dateTimeWidget.setDate(this.valueBinder.getValue());
+            if (this.dateTimeWidget.open() == Window.OK) {
+                this.valueBinder.setValue(this.dateTimeWidget.getDate());
+                this.activate();
+            }
         }
     }
 }

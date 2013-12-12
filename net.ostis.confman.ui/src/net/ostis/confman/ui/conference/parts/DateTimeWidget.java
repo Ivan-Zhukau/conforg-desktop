@@ -2,18 +2,12 @@ package net.ostis.confman.ui.conference.parts;
 
 import java.util.Date;
 
-import net.ostis.confman.services.ConferenceService;
-import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
-import net.ostis.confman.ui.table.DynamicalTable;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -45,15 +39,15 @@ public class DateTimeWidget extends Dialog {
     }
 
     private DateTime calendar;
-    
+
     private DateTime time;
-    
-    private Date date;
+
+    private Date     date;
 
     public DateTimeWidget(final Shell parentShell) {
 
         super(parentShell);
-        
+
     }
 
     @Override
@@ -64,36 +58,11 @@ public class DateTimeWidget extends Dialog {
 
     @Override
     protected Control createDialogArea(final Composite parent) {
-        
-        date  = new Date();
-        final Composite area = (Composite) super.createDialogArea(parent);        
+
+        this.date = new Date();
+        final Composite area = (Composite) super.createDialogArea(parent);
         createCalendarViewer(area);
         return area;
-    }
-
-    private void createTableViewer(final Composite container) {
-
-       /* final ConferenceService conferenceService = (ConferenceService) ServiceLocator
-                .getInstance().getService(ConferenceService.class);
-
-        this.table = new DynamicalTable(container);
-        this.table.getViewer().setContentProvider(
-                ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(conferenceService.getReports());*/
-        /*
-         * this.table.getViewer().addSelectionChangedListener( new
-         * ISelectionChangedListener() {
-         * 
-         * @Override public void selectionChanged( final SelectionChangedEvent
-         * event) {
-         * 
-         * final IStructuredSelection selection = (IStructuredSelection)
-         * SelectReportDialog.this.table .getViewer().getSelection(); final
-         * Object selectedElement = selection .getFirstElement(); if
-         * (selectedElement instanceof Report) {
-         * SelectReportDialog.this.selectedReport = (Report) selectedElement; }
-         * } });
-         */
     }
 
     @Override
@@ -128,81 +97,90 @@ public class DateTimeWidget extends Dialog {
     }
 
     private void createCalendarViewer(final Composite parent) {
-        GridLayout layout = new GridLayout();
+
+        final GridLayout layout = new GridLayout();
         layout.numColumns = 1;
         parent.setLayout(layout);
-        
-        GridData gridData = new GridData();
+
+        final GridData gridData = new GridData();
         gridData.horizontalAlignment = GridData.CENTER;
         gridData.grabExcessHorizontalSpace = true;
-        
-        GridData gridData1 = new GridData();
+
+        final GridData gridData1 = new GridData();
         gridData1.horizontalAlignment = GridData.CENTER;
         gridData1.grabExcessHorizontalSpace = true;
-        
-        calendar = new DateTime(parent, SWT.CALENDAR);
-        calendar.setLayoutData(gridData);
-        calendar.addSelectionListener(new SelectionListener() {
-            
+
+        this.calendar = new DateTime(parent, SWT.CALENDAR);
+        this.calendar.setLayoutData(gridData);
+        this.calendar.addSelectionListener(new SelectionListener() {
+
             @Override
-            public void widgetSelected(SelectionEvent e) {
-            
+            public void widgetSelected(final SelectionEvent e) {
+
                 changeDate();
-                
+
             }
-            
+
             @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
                 changeDate();
-                
-            }
-        });
-        
-        time = new DateTime(parent, SWT.TIME);
-        time.setLayoutData(gridData1);
-        time.addSelectionListener(new SelectionListener() {
-            
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-            
-                changeTime();
-                
-            }
-            
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            
-                changeTime();
-                
+
             }
         });
 
+        this.time = new DateTime(parent, SWT.TIME);
+        this.time.setLayoutData(gridData1);
+        this.time.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                changeTime();
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                changeTime();
+
+            }
+        });
+
     }
 
-    public void setDate(Object value) {
+    @SuppressWarnings("deprecation")
+    public void setDate(final Object value) {
 
-        date = (Date) value;
-        calendar.setDate(date.getYear(), date.getMonth(), date.getDay());
-        time.setTime(date.getHours(), date.getMinutes(), date.getSeconds());
-        
+        this.date = (Date) value;
+        this.calendar.setDate(this.date.getYear(), this.date.getMonth(),
+                this.date.getDay());
+        this.time.setTime(this.date.getHours(), this.date.getMinutes(),
+                this.date.getSeconds());
+
     }
-    
-    public Object getDate(){
-        return date;
+
+    public Object getDate() {
+
+        return this.date;
     }
-    
+
+    @SuppressWarnings("deprecation")
     private void changeDate() {
-        date.setYear(calendar.getYear());
-        date.setMonth(calendar.getMonth());
-        date.setDate(calendar.getDay());
+
+        this.date.setYear(this.calendar.getYear() - 1900);
+        this.date.setMonth(this.calendar.getMonth());
+        this.date.setDate(this.calendar.getDay());
     }
-    
+
+    @SuppressWarnings("deprecation")
     private void changeTime() {
-        date.setHours(time.getHours());
-        date.setMinutes(time.getMinutes());
-        date.setSeconds(time.getSeconds());
-        
+
+        this.date.setHours(this.time.getHours());
+        this.date.setMinutes(this.time.getMinutes());
+        this.date.setSeconds(this.time.getSeconds());
+
     }
-    
+
 }

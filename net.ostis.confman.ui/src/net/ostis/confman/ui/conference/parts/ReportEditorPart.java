@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.ComboBoxField;
@@ -154,12 +153,12 @@ public class ReportEditorPart {
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        
-        new ComboBoxField(parent, util.translate(ReportCombos.SECTION), new String[0])
-                .setDataConverter(new StringDataConverter());
 
-        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
-                .setDataConverter(new StringDataConverter());
+        new ComboBoxField(parent, util.translate(ReportCombos.SECTION),
+                new String[0]).setDataConverter(new StringDataConverter());
+
+        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR),
+                new String[0]).setDataConverter(new StringDataConverter());
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));

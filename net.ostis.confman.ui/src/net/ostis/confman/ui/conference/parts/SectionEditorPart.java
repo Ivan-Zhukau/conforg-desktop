@@ -140,7 +140,7 @@ public class SectionEditorPart {
         for (final SectionFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
-        
+
         for (final DateChooserFields field : this.dateChooserFields.keySet()) {
             this.dateChooserFields.get(field).activate();
         }
