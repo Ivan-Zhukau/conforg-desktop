@@ -10,43 +10,46 @@ public class ParticipantRole {
 
     private String  participationForm;
 
-    private Boolean exibitionStand;
+    private Boolean exhibitionStand;
 
     public ParticipantRole() {
 
         super();
     }
 
-    @XmlElement(name = "pcmember")
+    
     public Boolean getProgramCommitteeMember() {
-
-        return this.programCommitteeMember;
+    
+        return programCommitteeMember;
     }
 
-    public void setProgramCommitteeMember(final Boolean programCommitteeMember) {
-
+    
+    public void setProgramCommitteeMember(Boolean programCommitteeMember) {
+    
         this.programCommitteeMember = programCommitteeMember;
     }
 
-    @XmlElement(name = "form")
+    
     public String getParticipationForm() {
-
-        return this.participationForm;
+    
+        return participationForm;
     }
 
-    public void setParticipationForm(final String participationForm) {
-
+    
+    public void setParticipationForm(String participationForm) {
+    
         this.participationForm = participationForm;
     }
 
-    @XmlElement(name = "exhibition")
+    
     public Boolean getExhibitionStand() {
-
-        return this.exibitionStand;
+    
+        return exhibitionStand;
     }
 
-    public void setExibitionStand(final Boolean exibitionStand) {
-
-        this.exibitionStand = exibitionStand;
+    
+    public void setExhibitionStand(Boolean exhibitionStand) {
+    
+        this.exhibitionStand = exhibitionStand;
     }
 }

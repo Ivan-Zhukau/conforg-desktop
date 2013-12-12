@@ -190,8 +190,8 @@ public class ConfTreeListenerProvider {
         }
 
         private TreeViewer        treeViewer;
-        
-        private Composite parent;
+
+        private Composite         parent;
 
         private ConferenceService conferenceService;
 
@@ -199,7 +199,7 @@ public class ConfTreeListenerProvider {
 
             super();
             this.treeViewer = treeViewer;
-            parent = treeViewer.getControl().getParent();
+            this.parent = treeViewer.getControl().getParent();
             this.conferenceService = (ConferenceService) ServiceLocator
                     .getInstance().getService(ConferenceService.class);
         }
@@ -246,7 +246,8 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    showReportDialog(parent, selectedElement);
+                    showReportDialog(TreeMenuListener.this.parent,
+                            selectedElement);
                 }
             };
             final String deleteSectionActionText = getLocalizedValue(SectionFields.DELETE);
@@ -263,8 +264,9 @@ public class ConfTreeListenerProvider {
             manager.add(addReportAction);
             manager.add(deleteSectionAction);
         }
-        
-        private void showReportDialog(final Composite parent, Section section) {
+
+        private void showReportDialog(final Composite parent,
+                final Section section) {
 
             final SelectReportDialog dialog = new SelectReportDialog(
                     parent.getShell());
