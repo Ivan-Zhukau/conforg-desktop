@@ -11,7 +11,7 @@ public class DateDataConverter implements DataConverter {
     public DateDataConverter() {
 
         super();
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     }
 
     @Override
