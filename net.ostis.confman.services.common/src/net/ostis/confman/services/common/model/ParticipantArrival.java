@@ -11,6 +11,7 @@ public class ParticipantArrival {
     public ParticipantArrival() {
 
         super();
+        this.residencePlace = new Address();
     }
 
     public Boolean getHousing() {

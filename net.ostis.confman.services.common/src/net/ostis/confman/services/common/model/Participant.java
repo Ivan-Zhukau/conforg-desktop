@@ -1,5 +1,6 @@
 package net.ostis.confman.services.common.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Participant {
@@ -21,6 +22,7 @@ public class Participant {
         this.arrival = new ParticipantArrival();
         this.conference = new Conference();
         this.person = new Person();
+        this.reports = new ArrayList<>();
     }
 
     public ParticipantRole getRole() {

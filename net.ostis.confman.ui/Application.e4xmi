@@ -31,6 +31,13 @@
           </children>
         </children>
       </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_GlqAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.participantReport" label="Report Management">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_RujAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.0" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_rmgdIGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.1">
+            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.1" label="Report"/>
+          </children>
+        </children>
+      </children>
     </children>
     <mainMenu xmi:id="_SOyu6xpVEeOmro9kd1wSKw" elementId="menu:org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_SOyu7BpVEeOmro9kd1wSKw" label="File">
@@ -48,6 +55,9 @@
           </children>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_QJL4ECrOEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.registrationPerpective" label="Participant Managment" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_-4qR0CrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.1" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantPerspective"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_akpeoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.reportPerspective" label="Report Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+            <parameters xmi:id="__6b6QGMwEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.2" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantReport"/>
           </children>
         </children>
       </children>
