@@ -7,8 +7,10 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.AddressDataConverter;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
@@ -35,7 +37,8 @@ public class ConferenceEditorPart {
     private enum ConferenceFields implements Localizable {
         TITLE("conferenceTitle"),
         START_DATE("conferenceStartDate"),
-        END_DATE("conferenceEndDate");
+        END_DATE("conferenceEndDate"),
+        CONF_VENUE("conferenceVenue");
 
         private String rk;
 
@@ -126,6 +129,21 @@ public class ConferenceEditorPart {
                         return conf.getTitle();
                     }
                 });
+        this.editFields.get(ConferenceFields.CONF_VENUE).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.setConferenceVenue((Address) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getConferenceVenue();
+                    }
+                });
         this.editFields.get(ConferenceFields.START_DATE).setValueBinder(
                 new ValueBinder() {
 
@@ -165,6 +183,9 @@ public class ConferenceEditorPart {
         this.editFields.put(ConferenceFields.TITLE,
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.CONF_VENUE,
+                new TextField(parent, util.translate(ConferenceFields.CONF_VENUE))
+                        .setDataConverter(new AddressDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
         this.editFields.put(ConferenceFields.START_DATE, new TextField(parent,
                 util.translate(ConferenceFields.START_DATE))
@@ -196,10 +217,7 @@ public class ConferenceEditorPart {
 
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
-
         }
-        // TODO: add getter (?) for ValueBinder in TextField and create\
-        // Conference obj with updated fiels.
         this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
     }
 }
