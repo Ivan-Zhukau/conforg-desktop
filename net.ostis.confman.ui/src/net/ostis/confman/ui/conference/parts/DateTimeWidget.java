@@ -79,7 +79,7 @@ public class DateTimeWidget extends Dialog {
         final Composite area = (Composite) super.createDialogArea(parent);
         area.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         area.setLayout(layout);
-        
+
         createCalendarViewer(area);
         return area;
     }

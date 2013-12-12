@@ -184,12 +184,12 @@ public class ReportEditorPart {
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         this.combos.put(ReportCombos.SECTION,
-                new ComboBoxField(parent, util.translate(ReportCombos.SECTION), new String[0])
+                new ComboBoxField(parent, util.translate(ReportCombos.SECTION),
+                        new String[0])
                         .setDataConverter(new StringDataConverter()));
-        this.combos
-                .put(ReportCombos.MAIN_AUTHOR,
-                        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
-                                .setDataConverter(new StringDataConverter()));
+        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboBoxField(parent,
+                util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
+                .setDataConverter(new StringDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));

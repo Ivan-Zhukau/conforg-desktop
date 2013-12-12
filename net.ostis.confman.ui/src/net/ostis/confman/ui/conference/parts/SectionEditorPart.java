@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
@@ -55,7 +54,7 @@ public class SectionEditorPart {
             return this.rk;
         }
     }
-    
+
     private enum DateChooserFields implements Localizable {
         DATE("sectionDate");
 
@@ -93,19 +92,19 @@ public class SectionEditorPart {
 
     }
 
-    private final Map<SectionFields, EditableComponent<TextField>> editFields;
-    
+    private final Map<SectionFields, EditableComponent<TextField>>            editFields;
+
     private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
     @Inject
-    private ESelectionService                                      selectionService;
+    private ESelectionService                                                 selectionService;
 
     @Inject
-    private IEventBroker                                           eventBroker;
+    private IEventBroker                                                      eventBroker;
 
-    private ConferenceService                                      conferenceService;
+    private ConferenceService                                                 conferenceService;
 
-    private Section                                                section;
+    private Section                                                           section;
 
     public SectionEditorPart() {
 
@@ -185,13 +184,15 @@ public class SectionEditorPart {
                 new TextField(parent, util.translate(SectionFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.dateChooserFields.put(DateChooserFields.DATE,
-                new DateChooserField(parent, util.translate(DateChooserFields.DATE))
+        this.dateChooserFields.put(
+                DateChooserFields.DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.DATE))
                         .setDataConverter(dateConverter));
         addReportButton(parent, util);
         addApplyButton(parent, util);
     }
-  
+
     private void addApplyButton(final Composite parent,
             final LocalizationUtil util) {
 

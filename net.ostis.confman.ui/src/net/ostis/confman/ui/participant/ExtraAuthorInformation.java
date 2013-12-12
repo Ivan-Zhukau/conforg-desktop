@@ -11,6 +11,7 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.ParticipantArrival;
 import net.ostis.confman.services.common.model.ParticipantRole;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.CheckBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
@@ -78,7 +79,7 @@ public class ExtraAuthorInformation {
 
     private final Map<TableFields, EditableComponent<TextField>> editFields;
 
-    private final Map<Buttons, EditableComponent<Button>>        checkFields;
+    private final Map<Buttons, EditableComponent<CheckBoxField>> checkFields;
 
     @Inject
     private ESelectionService                                    selectionService;
@@ -117,6 +118,9 @@ public class ExtraAuthorInformation {
         applyValueBindings(participant);
         for (final TableFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
+        }
+        for (final Buttons button : this.checkFields.keySet()) {
+            this.checkFields.get(button).activate();
         }
     }
 
@@ -326,11 +330,16 @@ public class ExtraAuthorInformation {
         this.editFields.put(TableFields.STREET,
                 new TextField(parent, util.translate(TableFields.STREET))
                         .setDataConverter(stringConverter));
-        applyHousingButton(parent, util.translate(Buttons.HOUSING));
-        applyMeetingButton(parent, util.translate(Buttons.MEETING));
-        applyCommitteeButton(parent,
-                util.translate(Buttons.PROGRAMM_COMMITTEE_MEMBER));
-        applyStandButton(parent, util.translate(Buttons.EXIBITION_STAND));
+        this.checkFields.put(Buttons.EXIBITION_STAND, new CheckBoxField(parent,
+                util.translate(Buttons.EXIBITION_STAND)));
+        this.checkFields.put(Buttons.HOUSING,
+                new CheckBoxField(parent, util.translate(Buttons.HOUSING)));
+        this.checkFields.put(Buttons.MEETING,
+                new CheckBoxField(parent, util.translate(Buttons.MEETING)));
+        this.checkFields.put(
+                Buttons.PROGRAMM_COMMITTEE_MEMBER,
+                new CheckBoxField(parent, util
+                        .translate(Buttons.PROGRAMM_COMMITTEE_MEMBER)));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
@@ -349,100 +358,15 @@ public class ExtraAuthorInformation {
         });
     }
 
-    private void applyHousingButton(final Composite parent, final String title) {
-
-        final Button housingButton = new Button(parent, SWT.CHECK);
-        housingButton.setText(title);
-        housingButton.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-        });
-    }
-
-    private void applyMeetingButton(final Composite parent, final String title) {
-
-        final Button meetingButton = new Button(parent, SWT.CHECK);
-        meetingButton.setText(title);
-        meetingButton.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-        });
-    }
-
-    private void applyCommitteeButton(final Composite parent, final String title) {
-
-        final Button committeeButton = new Button(parent, SWT.CHECK);
-        committeeButton.setText(title);
-        committeeButton.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-        });
-    }
-
-    private void applyStandButton(final Composite parent, final String title) {
-
-        final Button standButton = new Button(parent, SWT.CHECK);
-        standButton.setText(title);
-        standButton.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                // TODO Auto-generated method stub
-
-            }
-        });
-    }
-
     private void onSave() {
 
         for (final TableFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null); // TODO
+        for (final Buttons button : this.checkFields.keySet()) {
+            this.checkFields.get(button).apply();
+        }
+        this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
     }
 
 }

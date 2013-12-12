@@ -70,7 +70,7 @@ public class ConferenceEditorPart {
             return this.rk;
         }
     }
-    
+
     private enum Buttons implements Localizable {
         SAVE("save");
 
@@ -89,15 +89,15 @@ public class ConferenceEditorPart {
 
     }
 
-    private final Map<ConferenceFields, EditableComponent<TextField>> editFields;
-    
+    private final Map<ConferenceFields, EditableComponent<TextField>>         editFields;
+
     private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
     @Inject
-    private ESelectionService                                         selectionService;
+    private ESelectionService                                                 selectionService;
 
     @Inject
-    private IEventBroker                                              eventBroker;
+    private IEventBroker                                                      eventBroker;
 
     public ConferenceEditorPart() {
 
@@ -164,8 +164,8 @@ public class ConferenceEditorPart {
                         return conf.getConferenceVenue();
                     }
                 });
-        this.dateChooserFields.get(DateChooserFields.START_DATE).setValueBinder(
-                new ValueBinder() {
+        this.dateChooserFields.get(DateChooserFields.START_DATE)
+                .setValueBinder(new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
@@ -203,18 +203,20 @@ public class ConferenceEditorPart {
         this.editFields.put(ConferenceFields.TITLE,
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.CONF_VENUE,
-                new TextField(parent, util.translate(ConferenceFields.CONF_VENUE))
-                        .setDataConverter(new AddressDataConverter()));
+        this.editFields.put(ConferenceFields.CONF_VENUE, new TextField(parent,
+                util.translate(ConferenceFields.CONF_VENUE))
+                .setDataConverter(new AddressDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.dateChooserFields.put(DateChooserFields.START_DATE, new DateChooserField(parent,
-                util.translate(DateChooserFields.START_DATE))
-                .setDataConverter(dateConverter));
-        this.dateChooserFields
-                .put(DateChooserFields.END_DATE,
-                        new DateChooserField(parent, util
-                                .translate(DateChooserFields.END_DATE))
-                                .setDataConverter(dateConverter));
+        this.dateChooserFields.put(
+                DateChooserFields.START_DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.START_DATE))
+                        .setDataConverter(dateConverter));
+        this.dateChooserFields.put(
+                DateChooserFields.END_DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.END_DATE))
+                        .setDataConverter(dateConverter));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

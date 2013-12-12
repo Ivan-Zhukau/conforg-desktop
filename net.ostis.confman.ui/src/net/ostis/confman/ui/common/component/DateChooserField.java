@@ -34,7 +34,7 @@ public class DateChooserField extends Composite implements
         }
 
     }
-    
+
     private Text          input;
 
     private DataConverter dataConverter;
@@ -44,28 +44,28 @@ public class DateChooserField extends Composite implements
     public DateChooserField(final Composite parent, final String labelText) {
 
         super(parent, SWT.NONE);
-        
+
         final GridLayout layout = new GridLayout(3, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
         buildControl(labelText, parent);
     }
 
-    private void buildControl(final String labelText,final Composite parent) {
-        
+    private void buildControl(final String labelText, final Composite parent) {
+
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
 
         final GridData dataGridInput = new GridData();
         dataGridInput.grabExcessHorizontalSpace = true;
         dataGridInput.horizontalAlignment = GridData.FILL;
-        this.input = new Text(this, SWT.BORDER|SWT.READ_ONLY);
-        this.input.setLayoutData(dataGridInput);        
+        this.input = new Text(this, SWT.BORDER | SWT.READ_ONLY);
+        this.input.setLayoutData(dataGridInput);
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         final Button button = new Button(this, SWT.PUSH | SWT.LEFT);
         button.setText(util.translate(Buttons.SELECT_DATE));
-        
+
         button.addSelectionListener(new SelectionListener() {
 
             @Override
@@ -114,20 +114,19 @@ public class DateChooserField extends Composite implements
         }
         this.input.setText(text);
     }
-    
+
     private void showCalendar(final Composite parent) {
 
-        final DateTimeWidget dateTimeWidget = new DateTimeWidget(parent.getShell());
+        final DateTimeWidget dateTimeWidget = new DateTimeWidget(
+                parent.getShell());
         dateTimeWidget.create();
         dateTimeWidget.open();
-        /*final SelectReportDialog dialog = new SelectReportDialog(
-                parent.getShell());
-        dialog.create();
-        if (dialog.open() == Window.OK) {
-            final Report selectedReport = dialog.getSelectedReport();
-            if (selectedReport != null) {
-                this.conferenceService.addReport(this.section, selectedReport);
-            }
-        }*/
+        /*
+         * final SelectReportDialog dialog = new SelectReportDialog(
+         * parent.getShell()); dialog.create(); if (dialog.open() == Window.OK)
+         * { final Report selectedReport = dialog.getSelectedReport(); if
+         * (selectedReport != null) {
+         * this.conferenceService.addReport(this.section, selectedReport); } }
+         */
     }
 }
