@@ -28,6 +28,7 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -95,6 +96,9 @@ public class TableEditorPart {
 
     @Inject
     private IEventBroker                                         eventBroker;
+    
+    @Inject 
+    private EPartService partService;
 
     public TableEditorPart() {
 
@@ -104,6 +108,9 @@ public class TableEditorPart {
 
     @PostConstruct
     public void createComposite(final Composite parent) {
+        
+        MPart extraAuthorPart = partService.findPart("net.ostis.confman.ui.part.0");
+        extraAuthorPart.setVisible(true);
 
         this.selectionService.addSelectionListener(new ISelectionListener() {
 
