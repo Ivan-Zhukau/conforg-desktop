@@ -10,7 +10,7 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
-import net.ostis.confman.ui.common.component.ComboField;
+import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
@@ -184,12 +184,11 @@ public class ReportEditorPart {
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         this.combos.put(ReportCombos.SECTION,
-                new ComboField(parent, util.translate(ReportCombos.SECTION))
+                new ComboBoxField(parent, util.translate(ReportCombos.SECTION), new String[0])
                         .setDataConverter(new StringDataConverter()));
         this.combos
                 .put(ReportCombos.MAIN_AUTHOR,
-                        new ComboField(parent, util
-                                .translate(ReportCombos.MAIN_AUTHOR))
+                        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
                                 .setDataConverter(new StringDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);
