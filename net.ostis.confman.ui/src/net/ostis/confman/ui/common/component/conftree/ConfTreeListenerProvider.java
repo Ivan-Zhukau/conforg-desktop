@@ -230,8 +230,7 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    TreeMenuListener.this.conferenceService.addSection(
-                            selectedElement, null);
+                    // TODO kfs: implement add section method.
                 }
             };
             manager.add(addSectionAction);
