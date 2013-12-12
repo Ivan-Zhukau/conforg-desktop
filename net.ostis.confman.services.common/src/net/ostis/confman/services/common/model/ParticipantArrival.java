@@ -2,9 +2,9 @@ package net.ostis.confman.services.common.model;
 
 public class ParticipantArrival {
 
-    private Boolean housing;
+    private Boolean housing = false;
 
-    private Boolean meeting;
+    private Boolean meeting = false;
 
     private Address residencePlace;
 

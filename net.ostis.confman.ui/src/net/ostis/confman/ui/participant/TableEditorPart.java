@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import net.ostis.confman.services.ParticipantService;
-import net.ostis.confman.services.ParticipantServiceImpl;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
@@ -29,6 +28,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -96,9 +96,9 @@ public class TableEditorPart {
 
     @Inject
     private IEventBroker                                         eventBroker;
-    
-    @Inject 
-    private EPartService partService;
+
+    @Inject
+    private EPartService                                         partService;
 
     public TableEditorPart() {
 
@@ -108,9 +108,10 @@ public class TableEditorPart {
 
     @PostConstruct
     public void createComposite(final Composite parent) {
-        
-        MPart extraAuthorPart = partService.findPart("net.ostis.confman.ui.part.0");
-        extraAuthorPart.setVisible(true);
+
+        final MPart extraAuthorPart = this.partService
+                .findPart("net.ostis.confman.ui.part.0");
+        this.partService.showPart(extraAuthorPart, PartState.ACTIVATE);
 
         this.selectionService.addSelectionListener(new ISelectionListener() {
 
@@ -442,6 +443,7 @@ public class TableEditorPart {
         participantService.addParticipant(participant);
         participantService.addPerson(participant.getPerson());
         onNewSelection(participant);
+        this.selectionService.setSelection(participant);
     }
 
     private void onSave() {

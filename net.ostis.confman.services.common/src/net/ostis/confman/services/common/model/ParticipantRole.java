@@ -2,11 +2,11 @@ package net.ostis.confman.services.common.model;
 
 public class ParticipantRole {
 
-    private Boolean programCommitteeMember;
+    private Boolean programCommitteeMember = false;
 
     private String  participationForm;
 
-    private Boolean exibitionStand;
+    private Boolean exibitionStand         = false;
 
     public ParticipantRole() {
 

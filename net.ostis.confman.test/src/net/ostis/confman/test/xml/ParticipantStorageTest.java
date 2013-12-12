@@ -30,7 +30,6 @@ public class ParticipantStorageTest {
         arrival.setResidencePlace(address);
         participant.setArrival(arrival);
         final ParticipantRole role = new ParticipantRole();
-        role.setExibitionStand(false);
         role.setParticipationForm("Reporter");
         role.setProgramCommitteeMember(true);
         participant.setRole(role);
