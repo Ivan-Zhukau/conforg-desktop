@@ -1,10 +1,9 @@
 package net.ostis.confman.ui.conference.parts;
 
+import java.util.Date;
+
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Person;
-import net.ostis.confman.services.common.model.Report;
-import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.table.DynamicalTable;
@@ -12,8 +11,11 @@ import net.ostis.confman.ui.table.DynamicalTable;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -25,13 +27,8 @@ import org.eclipse.swt.widgets.Shell;
 public class DateTimeWidget extends Dialog {
 
     private enum LocaleStrings implements Localizable {
-        DIALOG_TITLE("reportDialogTitle"),
-        DIALOG_MESSAGE("reportDialogMessage"),
         OK_BUTTON_TEXT("reportDialogOKText"),
-        CANCEL_BUTTON_TEXT("reportDialogCancelText"),
-        TABLE_REPORT("reportTableReport"),
-        TABLE_MAIN_AUTHOR("reportTableAuthor"),
-        TABLE_SECTION("reportTableSection");
+        CANCEL_BUTTON_TEXT("reportDialogCancelText");
 
         private String rk;
 
@@ -47,53 +44,42 @@ public class DateTimeWidget extends Dialog {
         }
     }
 
-    private DynamicalTable table;
-
-    private Report         selectedReport;
-
-    private Composite      parent;
+    private DateTime calendar;
+    
+    private DateTime time;
+    
+    private Date date;
 
     public DateTimeWidget(final Shell parentShell) {
 
         super(parentShell);
+        
     }
 
     @Override
     public void create() {
 
         super.create();
-        final LocalizationUtil localizationUtil = LocalizationUtil
-                .getInstance();
-        /*
-         * setTitle(localizationUtil.translate(LocaleStrings.DIALOG_TITLE));
-         * setMessage(localizationUtil.translate(LocaleStrings.DIALOG_MESSAGE),
-         * IMessageProvider.INFORMATION);
-         */
     }
 
     @Override
     protected Control createDialogArea(final Composite parent) {
-
-        final GridLayout layout = new GridLayout(1, false);
-
-        final Composite area = (Composite) super.createDialogArea(parent);
-        area.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        area.setLayout(layout);
         
+        date  = new Date();
+        final Composite area = (Composite) super.createDialogArea(parent);        
         createCalendarViewer(area);
         return area;
     }
 
     private void createTableViewer(final Composite container) {
 
-        final ConferenceService conferenceService = (ConferenceService) ServiceLocator
+       /* final ConferenceService conferenceService = (ConferenceService) ServiceLocator
                 .getInstance().getService(ConferenceService.class);
 
         this.table = new DynamicalTable(container);
-        createColumns();
         this.table.getViewer().setContentProvider(
                 ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(conferenceService.getReports());
+        this.table.getViewer().setInput(conferenceService.getReports());*/
         /*
          * this.table.getViewer().addSelectionChangedListener( new
          * ISelectionChangedListener() {
@@ -108,52 +94,6 @@ public class DateTimeWidget extends Dialog {
          * SelectReportDialog.this.selectedReport = (Report) selectedElement; }
          * } });
          */
-    }
-
-    private void createColumns() {
-
-        final LocalizationUtil localizationUtil = LocalizationUtil
-                .getInstance();
-        this.table.createColumn(
-                localizationUtil.translate(LocaleStrings.TABLE_REPORT),
-                new ColumnLabelProvider() {
-
-                    @Override
-                    public String getText(final Object element) {
-
-                        final Report report = (Report) element;
-                        return report.getTitle();
-                    }
-                });
-        this.table.createColumn(
-                localizationUtil.translate(LocaleStrings.TABLE_MAIN_AUTHOR),
-                new ColumnLabelProvider() {
-
-                    @Override
-                    public String getText(final Object element) {
-
-                        final Report report = (Report) element;
-                        final Person person = report.getMainAuthor()
-                                .getPerson();
-                        return person.getFirstName() + ' '
-                                + person.getSurname();
-                    }
-                });
-        this.table.createColumn(
-                localizationUtil.translate(LocaleStrings.TABLE_SECTION),
-                new ColumnLabelProvider() {
-
-                    @Override
-                    public String getText(final Object element) {
-
-                        final Report report = (Report) element;
-                        final Section section = report.getSection();
-                        if (section != null) {
-                            return section.getTitle();
-                        }
-                        return "";
-                    }
-                });
     }
 
     @Override
@@ -187,20 +127,82 @@ public class DateTimeWidget extends Dialog {
         return true;
     }
 
-    public Report getSelectedReport() {
-
-        return this.selectedReport;
-    }
-
     private void createCalendarViewer(final Composite parent) {
+        GridLayout layout = new GridLayout();
+        layout.numColumns = 1;
+        parent.setLayout(layout);
+        
+        GridData gridData = new GridData();
+        gridData.horizontalAlignment = GridData.CENTER;
+        gridData.grabExcessHorizontalSpace = true;
+        
+        GridData gridData1 = new GridData();
+        gridData1.horizontalAlignment = GridData.CENTER;
+        gridData1.grabExcessHorizontalSpace = true;
+        
+        calendar = new DateTime(parent, SWT.CALENDAR);
+        calendar.setLayoutData(gridData);
+        calendar.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                changeDate();
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                changeDate();
+                
+            }
+        });
+        
+        time = new DateTime(parent, SWT.TIME);
+        time.setLayoutData(gridData1);
+        time.addSelectionListener(new SelectionListener() {
+            
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+            
+                changeTime();
+                
+            }
+            
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
+                changeTime();
+                
+            }
+        });
 
-        final GridData dataGridInput = new GridData(SWT.FILL, SWT.FILL, true,
-                false);
-
-        final DateTime calendar = new DateTime(parent, SWT.CALENDAR);
-        calendar.setLayoutData(dataGridInput);
-
-        final DateTime time = new DateTime(parent, SWT.TIME);
-        time.setLayoutData(dataGridInput);
     }
+
+    public void setDate(Object value) {
+
+        date = (Date) value;
+        calendar.setDate(date.getYear(), date.getMonth(), date.getDay());
+        time.setTime(date.getHours(), date.getMinutes(), date.getSeconds());
+        
+    }
+    
+    public Object getDate(){
+        return date;
+    }
+    
+    private void changeDate() {
+        date.setYear(calendar.getYear());
+        date.setMonth(calendar.getMonth());
+        date.setDate(calendar.getDay());
+    }
+    
+    private void changeTime() {
+        date.setHours(time.getHours());
+        date.setMinutes(time.getMinutes());
+        date.setSeconds(time.getSeconds());
+        
+    }
+    
 }

@@ -8,7 +8,6 @@ import javax.inject.Inject;
 
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
-import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -146,34 +145,6 @@ public class ReportEditorPart {
                         return report.getTitle();
                     }
                 });
-        this.combos.get(ReportCombos.SECTION).setValueBinder(new ValueBinder() {
-
-            @Override
-            public void setValue(final Object value) {
-
-                report.setSection((Section) value);
-            }
-
-            @Override
-            public Object getValue() {
-
-                return report.getSection();
-            }
-        });
-        this.combos.get(ReportCombos.SECTION).setValueBinder(new ValueBinder() {
-
-            @Override
-            public void setValue(final Object value) {
-
-                report.setMainAuthor((Participant) value);
-            }
-
-            @Override
-            public Object getValue() {
-
-                return report.getMainAuthor();
-            }
-        });
     }
 
     private void buildLayout(final Composite parent) {
@@ -183,13 +154,12 @@ public class ReportEditorPart {
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.combos.put(ReportCombos.SECTION,
-                new ComboBoxField(parent, util.translate(ReportCombos.SECTION), new String[0])
-                        .setDataConverter(new StringDataConverter()));
-        this.combos
-                .put(ReportCombos.MAIN_AUTHOR,
-                        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
-                                .setDataConverter(new StringDataConverter()));
+        
+        new ComboBoxField(parent, util.translate(ReportCombos.SECTION), new String[0])
+                .setDataConverter(new StringDataConverter());
+
+        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
+                .setDataConverter(new StringDataConverter());
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));

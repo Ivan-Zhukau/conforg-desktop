@@ -4,6 +4,7 @@ import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.parts.DateTimeWidget;
 
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -37,6 +38,8 @@ public class DateChooserField extends Composite implements
     
     private Text          input;
 
+    private  DateTimeWidget dateTimeWidget;
+    
     private DataConverter dataConverter;
 
     private ValueBinder   valueBinder;
@@ -117,17 +120,13 @@ public class DateChooserField extends Composite implements
     
     private void showCalendar(final Composite parent) {
 
-        final DateTimeWidget dateTimeWidget = new DateTimeWidget(parent.getShell());
+        dateTimeWidget = new DateTimeWidget(parent.getShell());
         dateTimeWidget.create();
-        dateTimeWidget.open();
-        /*final SelectReportDialog dialog = new SelectReportDialog(
-                parent.getShell());
-        dialog.create();
-        if (dialog.open() == Window.OK) {
-            final Report selectedReport = dialog.getSelectedReport();
-            if (selectedReport != null) {
-                this.conferenceService.addReport(this.section, selectedReport);
-            }
-        }*/
+        dateTimeWidget.getShell().pack();
+        dateTimeWidget.setDate(valueBinder.getValue());
+        if (dateTimeWidget.open() == Window.OK) {
+            this.valueBinder.setValue(dateTimeWidget.getDate());
+            this.activate();
+        }
     }
 }
