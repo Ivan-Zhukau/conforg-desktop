@@ -40,8 +40,7 @@ public class SectionEditorPart {
 
     private enum SectionFields implements Localizable {
         TITLE("sectionTitle"),
-        DATE("sectionData"),
-        CONFERENCE("conference");
+        DATE("sectionDate");
 
         private String rk;
 
@@ -155,21 +154,6 @@ public class SectionEditorPart {
                         return section.getDate();
                     }
                 });
-        this.editFields.get(SectionFields.CONFERENCE).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        section.setConference((Conference) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return section.getConference();
-                    }
-                });
     }
 
     private void buildLayout(final Composite parent) {
@@ -183,9 +167,6 @@ public class SectionEditorPart {
         this.editFields.put(SectionFields.DATE,
                 new TextField(parent, util.translate(SectionFields.DATE))
                         .setDataConverter(dateConverter));
-        this.editFields.put(SectionFields.CONFERENCE, new TextField(parent,
-                util.translate(SectionFields.CONFERENCE))
-                .setDataConverter(dateConverter));
         addReportButton(parent, util);
         addApplyButton(parent, util);
     }
