@@ -11,6 +11,7 @@ import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.AddressDataConverter;
+import net.ostis.confman.ui.common.component.DateChooserField;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
@@ -36,13 +37,29 @@ public class ConferenceEditorPart {
 
     private enum ConferenceFields implements Localizable {
         TITLE("conferenceTitle"),
-        START_DATE("conferenceStartDate"),
-        END_DATE("conferenceEndDate"),
         CONF_VENUE("conferenceVenue");
 
         private String rk;
 
         private ConferenceFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
+
+    private enum DateChooserFields implements Localizable {
+        START_DATE("conferenceStartDate"),
+        END_DATE("conferenceEndDate");
+
+        private String rk;
+
+        private DateChooserFields(final String rk) {
 
             this.rk = rk;
         }
@@ -72,18 +89,21 @@ public class ConferenceEditorPart {
 
     }
 
-    private final Map<ConferenceFields, EditableComponent<TextField>> editFields;
+    private final Map<ConferenceFields, EditableComponent<TextField>>         editFields;
+
+    private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
     @Inject
-    private ESelectionService                                         selectionService;
+    private ESelectionService                                                 selectionService;
 
     @Inject
-    private IEventBroker                                              eventBroker;
+    private IEventBroker                                                      eventBroker;
 
     public ConferenceEditorPart() {
 
         super();
         this.editFields = new EnumMap<>(ConferenceFields.class);
+        this.dateChooserFields = new EnumMap<>(DateChooserFields.class);
     }
 
     @PostConstruct
@@ -110,6 +130,10 @@ public class ConferenceEditorPart {
         for (final ConferenceFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
+        
+        for (final DateChooserFields field : this.dateChooserFields.keySet()) {
+            this.dateChooserFields.get(field).activate();
+        }        
     }
 
     private void applyValueBindings(final Conference conf) {
@@ -144,8 +168,8 @@ public class ConferenceEditorPart {
                         return conf.getConferenceVenue();
                     }
                 });
-        this.editFields.get(ConferenceFields.START_DATE).setValueBinder(
-                new ValueBinder() {
+        this.dateChooserFields.get(DateChooserFields.START_DATE)
+                .setValueBinder(new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
@@ -159,7 +183,7 @@ public class ConferenceEditorPart {
                         return conf.getStartDate();
                     }
                 });
-        this.editFields.get(ConferenceFields.END_DATE).setValueBinder(
+        this.dateChooserFields.get(DateChooserFields.END_DATE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -183,18 +207,20 @@ public class ConferenceEditorPart {
         this.editFields.put(ConferenceFields.TITLE,
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.CONF_VENUE,
-                new TextField(parent, util.translate(ConferenceFields.CONF_VENUE))
-                        .setDataConverter(new AddressDataConverter()));
+        this.editFields.put(ConferenceFields.CONF_VENUE, new TextField(parent,
+                util.translate(ConferenceFields.CONF_VENUE))
+                .setDataConverter(new AddressDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.editFields.put(ConferenceFields.START_DATE, new TextField(parent,
-                util.translate(ConferenceFields.START_DATE))
-                .setDataConverter(dateConverter));
-        this.editFields
-                .put(ConferenceFields.END_DATE,
-                        new TextField(parent, util
-                                .translate(ConferenceFields.END_DATE))
-                                .setDataConverter(dateConverter));
+        this.dateChooserFields.put(
+                DateChooserFields.START_DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.START_DATE))
+                        .setDataConverter(dateConverter));
+        this.dateChooserFields.put(
+                DateChooserFields.END_DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.END_DATE))
+                        .setDataConverter(dateConverter));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {

@@ -9,10 +9,10 @@ import javax.inject.Inject;
 
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.DateChooserField;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
@@ -39,12 +39,28 @@ public class SectionEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum SectionFields implements Localizable {
-        TITLE("sectionTitle"),
-        DATE("sectionDate");
+        TITLE("sectionTitle");
 
         private String rk;
 
         private SectionFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
+
+    private enum DateChooserFields implements Localizable {
+        DATE("sectionDate");
+
+        private String rk;
+
+        private DateChooserFields(final String rk) {
 
             this.rk = rk;
         }
@@ -76,22 +92,25 @@ public class SectionEditorPart {
 
     }
 
-    private final Map<SectionFields, EditableComponent<TextField>> editFields;
+    private final Map<SectionFields, EditableComponent<TextField>>            editFields;
+
+    private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
     @Inject
-    private ESelectionService                                      selectionService;
+    private ESelectionService                                                 selectionService;
 
     @Inject
-    private IEventBroker                                           eventBroker;
+    private IEventBroker                                                      eventBroker;
 
-    private ConferenceService                                      conferenceService;
+    private ConferenceService                                                 conferenceService;
 
-    private Section                                                section;
+    private Section                                                           section;
 
     public SectionEditorPart() {
 
         super();
         this.editFields = new EnumMap<>(SectionFields.class);
+        this.dateChooserFields = new EnumMap<>(DateChooserFields.class);
         this.conferenceService = (ConferenceService) ServiceLocator
                 .getInstance().getService(ConferenceService.class);
     }
@@ -121,6 +140,10 @@ public class SectionEditorPart {
         for (final SectionFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
         }
+        
+        for (final DateChooserFields field : this.dateChooserFields.keySet()) {
+            this.dateChooserFields.get(field).activate();
+        }
     }
 
     private void applyValueBindings(final Section section) {
@@ -140,7 +163,7 @@ public class SectionEditorPart {
                         return section.getTitle();
                     }
                 });
-        this.editFields.get(SectionFields.DATE).setValueBinder(
+        this.dateChooserFields.get(DateChooserFields.DATE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -165,35 +188,15 @@ public class SectionEditorPart {
                 new TextField(parent, util.translate(SectionFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
-        this.editFields.put(SectionFields.DATE,
-                new TextField(parent, util.translate(SectionFields.DATE))
+        this.dateChooserFields.put(
+                DateChooserFields.DATE,
+                new DateChooserField(parent, util
+                        .translate(DateChooserFields.DATE))
                         .setDataConverter(dateConverter));
-        addCalendarButton(parent, util, SectionFields.DATE);
         addReportButton(parent, util);
         addApplyButton(parent, util);
     }
 
-    private void addCalendarButton(final Composite parent,
-            final LocalizationUtil util, SectionFields sectionField) {
-
-        final Button button = new Button(parent, SWT.PUSH);
-        button.setText(util.translate(Buttons.SELECT_DATE));
-        button.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                showCalendar(parent);
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                showCalendar(parent);
-            }
-        });
-    }
-    
     private void addApplyButton(final Composite parent,
             final LocalizationUtil util) {
 
@@ -257,20 +260,5 @@ public class SectionEditorPart {
                 this.conferenceService.addReport(this.section, selectedReport);
             }
         }
-    }
-    
-    private void showCalendar(final Composite parent) {
-
-        final DateTimeWidget dateTimeWidget = new DateTimeWidget(parent.getShell());
-        dateTimeWidget.open();
-        /*final SelectReportDialog dialog = new SelectReportDialog(
-                parent.getShell());
-        dialog.create();
-        if (dialog.open() == Window.OK) {
-            final Report selectedReport = dialog.getSelectedReport();
-            if (selectedReport != null) {
-                this.conferenceService.addReport(this.section, selectedReport);
-            }
-        }*/
     }
 }

@@ -6,12 +6,12 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
+import net.ostis.confman.services.ParticipantService;
 import net.ostis.confman.services.ParticipantServiceImpl;
+import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.ContactInformation;
-import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
@@ -430,9 +430,10 @@ public class TableEditorPart {
             @UIEventTopic(ConferenceTopics.ADD_NEW_PARTICIPANT) final String s) {
 
         final Participant participant = new Participant();
-        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
-        final FullModel model = converter.convertData();
-        model.getParticipants().add(participant);
+        final ParticipantService participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
+        participantService.addParticipant(participant);
+        participantService.addPerson(participant.getPerson());
         onNewSelection(participant);
     }
 
@@ -442,7 +443,8 @@ public class TableEditorPart {
             this.editFields.get(field).apply();
         }
         this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
-        final ParticipantServiceImpl impl = new ParticipantServiceImpl();
-        impl.fireData();
+        final ParticipantService participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
+        participantService.fireData();
     }
 }
