@@ -30,7 +30,12 @@ public class ComboBoxField extends Composite implements
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
+        
+        final GridData dataGridInput = new GridData();
+        dataGridInput.grabExcessHorizontalSpace = true;
+        dataGridInput.horizontalAlignment = GridData.FILL;
         this.comboBox = new Combo(this, SWT.READ_ONLY);
+        this.comboBox.setLayoutData(dataGridInput);
         this.comboBox.setItems(items);
     }
 

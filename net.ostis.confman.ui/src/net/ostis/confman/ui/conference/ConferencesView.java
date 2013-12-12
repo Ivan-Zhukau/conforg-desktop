@@ -17,18 +17,16 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TreeItem;
 
 public class ConferencesView {
 
-    private static final int  CONF_LEVEL_EXPAND   = 2;
-
-    private static final int  FIRST_SELECTED_NODE = 0;
+    private static final int  CONF_LEVEL_EXPAND = 2;
 
     private ConferenceService confService;
 
@@ -110,20 +108,12 @@ public class ConferencesView {
     private void onConfDataUpdate(
             @UIEventTopic(ConferenceTopics.CONF_UPDATE) final String s) {
 
-        final Object data = getSelectedObject();
+        final IStructuredSelection selection = (IStructuredSelection) this.treeViewer
+                .getSelection();
+        final Object data = selection.getFirstElement();
         if (data instanceof Conference) {
             this.confService.fireData();
         }
-    }
-
-    private Object getSelectedObject() {
-
-        final TreeItem[] selectedItems = this.treeViewer.getTree()
-                .getSelection();
-        if (selectedItems.length == 0) {
-            return null;
-        }
-        final Object data = selectedItems[FIRST_SELECTED_NODE].getData();
-        return data;
+        this.treeViewer.refresh();
     }
 }

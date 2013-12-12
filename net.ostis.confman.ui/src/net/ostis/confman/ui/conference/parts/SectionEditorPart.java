@@ -40,8 +40,7 @@ public class SectionEditorPart {
 
     private enum SectionFields implements Localizable {
         TITLE("sectionTitle"),
-        DATE("sectionData"),
-        CONFERENCE("conference");
+        DATE("sectionDate");
 
         private String rk;
 
@@ -59,7 +58,8 @@ public class SectionEditorPart {
 
     private enum Buttons implements Localizable {
         SAVE("save"),
-        SHOW_REPORT_DIALOG("showReportDialog");
+        SHOW_REPORT_DIALOG("showReportDialog"),
+        SELECT_DATE("selectDate");
 
         private String rk;
 
@@ -155,21 +155,6 @@ public class SectionEditorPart {
                         return section.getDate();
                     }
                 });
-        this.editFields.get(SectionFields.CONFERENCE).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        section.setConference((Conference) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return section.getConference();
-                    }
-                });
     }
 
     private void buildLayout(final Composite parent) {
@@ -183,13 +168,32 @@ public class SectionEditorPart {
         this.editFields.put(SectionFields.DATE,
                 new TextField(parent, util.translate(SectionFields.DATE))
                         .setDataConverter(dateConverter));
-        this.editFields.put(SectionFields.CONFERENCE, new TextField(parent,
-                util.translate(SectionFields.CONFERENCE))
-                .setDataConverter(dateConverter));
+        addCalendarButton(parent, util, SectionFields.DATE);
         addReportButton(parent, util);
         addApplyButton(parent, util);
     }
 
+    private void addCalendarButton(final Composite parent,
+            final LocalizationUtil util, SectionFields sectionField) {
+
+        final Button button = new Button(parent, SWT.PUSH);
+        button.setText(util.translate(Buttons.SELECT_DATE));
+        button.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                showCalendar(parent);
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                showCalendar(parent);
+            }
+        });
+    }
+    
     private void addApplyButton(final Composite parent,
             final LocalizationUtil util) {
 
@@ -253,5 +257,20 @@ public class SectionEditorPart {
                 this.conferenceService.addReport(this.section, selectedReport);
             }
         }
+    }
+    
+    private void showCalendar(final Composite parent) {
+
+        final DateTimeWidget dateTimeWidget = new DateTimeWidget(parent.getShell());
+        dateTimeWidget.open();
+        /*final SelectReportDialog dialog = new SelectReportDialog(
+                parent.getShell());
+        dialog.create();
+        if (dialog.open() == Window.OK) {
+            final Report selectedReport = dialog.getSelectedReport();
+            if (selectedReport != null) {
+                this.conferenceService.addReport(this.section, selectedReport);
+            }
+        }*/
     }
 }
