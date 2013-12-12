@@ -58,7 +58,7 @@ public class ParticipantConverter {
             final net.ostis.confman.services.common.model.ParticipantRole role) {
 
         final ParticipantRole participantRole = new ParticipantRole();
-        participantRole.setExibitionStand(role.getExhibitionStand());
+        participantRole.setExhibitionStand(role.getExhibitionStand());
         participantRole.setParticipationForm(role.getParticipationForm());
         participantRole.setProgramCommitteeMember(role
                 .getProgramCommitteeMember());

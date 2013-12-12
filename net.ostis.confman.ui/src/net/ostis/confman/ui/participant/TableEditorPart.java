@@ -443,7 +443,8 @@ public class TableEditorPart {
             this.editFields.get(field).apply();
         }
         this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
-        final ParticipantServiceImpl impl = new ParticipantServiceImpl();
-        impl.fireData();
+        final ParticipantService participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
+        participantService.fireData();
     }
 }

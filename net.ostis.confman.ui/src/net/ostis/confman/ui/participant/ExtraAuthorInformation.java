@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.ParticipantService;
+import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.ParticipantArrival;
@@ -367,6 +369,9 @@ public class ExtraAuthorInformation {
             this.checkFields.get(button).apply();
         }
         this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
+        final ParticipantService participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
+        participantService.fireData();
     }
 
 }
