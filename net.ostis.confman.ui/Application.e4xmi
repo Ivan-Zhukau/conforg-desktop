@@ -34,7 +34,18 @@
       <children xsi:type="advanced:Perspective" xmi:id="_GlqAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.participantReport" label="Report Management">
         <children xsi:type="basic:PartSashContainer" xmi:id="_RujAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_rmgdIGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.1">
-            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.1" label="Report"/>
+            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.reportPart" label="Report"/>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_2ElggGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.emailManagement" accessibilityPhrase="" label="Email Management">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_DTyswGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.1" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_EMuf4GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.2">
+            <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part." label="Email template editor part"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_E4bIQGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.3">
+            <children xsi:type="basic:Part" xmi:id="_GjQSYGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.emailTemplatesPart" label="Email templates part"/>
+            <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.participantsPart" label="Participants part"/>
           </children>
         </children>
       </children>
@@ -58,6 +69,9 @@
           </children>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_akpeoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.reportPerspective" label="Report Managment" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="__6b6QGMwEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.2" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantReport"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_rfCeIGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.emailPerspective" label="Email Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+            <parameters xmi:id="_vKEwAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.3" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.emailManagement"/>
           </children>
         </children>
       </children>
