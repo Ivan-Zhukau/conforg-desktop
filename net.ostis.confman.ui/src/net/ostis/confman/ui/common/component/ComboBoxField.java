@@ -38,7 +38,7 @@ public class ComboBoxField extends Composite implements
         this.comboBox.setLayoutData(dataGridInput);
         this.comboBox.setItems(items);
     }
-
+    
     @Override
     public void apply() {
 
