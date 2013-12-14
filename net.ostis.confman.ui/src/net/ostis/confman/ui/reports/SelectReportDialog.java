@@ -6,8 +6,8 @@ import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
-import net.ostis.confman.ui.table.DynamicalTable;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -18,8 +18,8 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -78,7 +78,7 @@ public class SelectReportDialog extends TitleAreaDialog {
         final GridData gridData = new GridData(SWT.FILL, SWT.FILL,
                 Boolean.TRUE, Boolean.TRUE);
         container.setLayoutData(gridData);
-        container.setLayout(new FillLayout());
+        container.setLayout(new GridLayout());
         createTableViewer(container);
         return area;
     }
@@ -88,27 +88,23 @@ public class SelectReportDialog extends TitleAreaDialog {
         final ConferenceService conferenceService = (ConferenceService) ServiceLocator
                 .getInstance().getService(ConferenceService.class);
 
-        this.table = new DynamicalTable(container);
+        this.table = new DynamicalTable(container, Boolean.TRUE);
         createColumns();
-        this.table.getViewer().setContentProvider(
-                ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(conferenceService.getReports());
-        this.table.getViewer().addSelectionChangedListener(
-                new ISelectionChangedListener() {
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
+        this.table.setInput(conferenceService.getReports());
+        this.table.addSelectionChangedListener(new ISelectionChangedListener() {
 
-                    @Override
-                    public void selectionChanged(
-                            final SelectionChangedEvent event) {
+            @Override
+            public void selectionChanged(final SelectionChangedEvent event) {
 
-                        final IStructuredSelection selection = (IStructuredSelection) SelectReportDialog.this.table
-                                .getViewer().getSelection();
-                        final Object selectedElement = selection
-                                .getFirstElement();
-                        if (selectedElement instanceof Report) {
-                            SelectReportDialog.this.selectedReport = (Report) selectedElement;
-                        }
-                    }
-                });
+                final IStructuredSelection selection = (IStructuredSelection) SelectReportDialog.this.table
+                        .getViewer().getSelection();
+                final Object selectedElement = selection.getFirstElement();
+                if (selectedElement instanceof Report) {
+                    SelectReportDialog.this.selectedReport = (Report) selectedElement;
+                }
+            }
+        });
     }
 
     private void createColumns() {

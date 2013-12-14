@@ -10,9 +10,9 @@ import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.ParticipantRole;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
-import net.ostis.confman.ui.table.DynamicalTable;
 
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 public class TableViewPart {
@@ -62,7 +63,8 @@ public class TableViewPart {
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        this.table = new DynamicalTable(parent);
+        parent.setLayout(new GridLayout(1, true));
+        this.table = new DynamicalTable(parent, Boolean.TRUE);
         createColumns();
         addTableEventSupport();
     }
@@ -113,27 +115,22 @@ public class TableViewPart {
 
     private void addTableEventSupport() {
 
-        this.table.getViewer().setContentProvider(
-                ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(
-                this.participantService.getParticipants());
-        this.table.getViewer().addSelectionChangedListener(
-                new ISelectionChangedListener() {
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
+        this.table.setInput(this.participantService.getParticipants());
+        this.table.addSelectionChangedListener(new ISelectionChangedListener() {
 
-                    @Override
-                    public void selectionChanged(
-                            final SelectionChangedEvent event) {
+            @Override
+            public void selectionChanged(final SelectionChangedEvent event) {
 
-                        final IStructuredSelection selection = (IStructuredSelection) TableViewPart.this.table
-                                .getViewer().getSelection();
-                        final Object selectedElement = selection
-                                .getFirstElement();
-                        if (selectedElement instanceof Participant) {
-                            TableViewPart.this.selectionService
-                                    .setSelection(selectedElement);
-                        }
-                    }
-                });
+                final IStructuredSelection selection = (IStructuredSelection) TableViewPart.this.table
+                        .getViewer().getSelection();
+                final Object selectedElement = selection.getFirstElement();
+                if (selectedElement instanceof Participant) {
+                    TableViewPart.this.selectionService
+                            .setSelection(selectedElement);
+                }
+            }
+        });
     }
 
     @Inject

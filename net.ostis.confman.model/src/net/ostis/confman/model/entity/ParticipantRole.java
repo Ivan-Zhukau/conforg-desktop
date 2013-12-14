@@ -1,6 +1,5 @@
 package net.ostis.confman.model.entity;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "partrole")
@@ -17,39 +16,33 @@ public class ParticipantRole {
         super();
     }
 
-    
     public Boolean getProgramCommitteeMember() {
-    
-        return programCommitteeMember;
+
+        return this.programCommitteeMember;
     }
 
-    
-    public void setProgramCommitteeMember(Boolean programCommitteeMember) {
-    
+    public void setProgramCommitteeMember(final Boolean programCommitteeMember) {
+
         this.programCommitteeMember = programCommitteeMember;
     }
 
-    
     public String getParticipationForm() {
-    
-        return participationForm;
+
+        return this.participationForm;
     }
 
-    
-    public void setParticipationForm(String participationForm) {
-    
+    public void setParticipationForm(final String participationForm) {
+
         this.participationForm = participationForm;
     }
 
-    
     public Boolean getExhibitionStand() {
-    
-        return exhibitionStand;
+
+        return this.exhibitionStand;
     }
 
-    
-    public void setExhibitionStand(Boolean exhibitionStand) {
-    
+    public void setExhibitionStand(final Boolean exhibitionStand) {
+
         this.exhibitionStand = exhibitionStand;
     }
 }
