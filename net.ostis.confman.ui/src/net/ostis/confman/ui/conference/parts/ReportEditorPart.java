@@ -6,12 +6,14 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
+import net.ostis.confman.ui.common.component.ToStringArrayConverter;
 import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
@@ -49,7 +51,6 @@ public class ReportEditorPart {
     }
 
     private enum ReportCombos implements Localizable {
-        SECTION("section"),
         MAIN_AUTHOR("mainAuthor");
 
         private String rk;
@@ -88,6 +89,8 @@ public class ReportEditorPart {
 
     private final Map<ReportCombos, EditableComponent<?>> combos;
 
+    private String[]                                      authorsArray;
+
     @Inject
     private ESelectionService                             selectionService;
 
@@ -99,6 +102,7 @@ public class ReportEditorPart {
         super();
         this.editFields = new EnumMap<>(ReportFields.class);
         this.combos = new EnumMap<>(ReportCombos.class);
+        this.authorsArray = new String[0];
     }
 
     @PostConstruct
@@ -112,18 +116,25 @@ public class ReportEditorPart {
 
                 if (selection instanceof Report) {
                     final Report report = (Report) selection;
-                    onReportEvent(report);
+                    onReportEvent(report, parent);
                 }
             }
         });
         buildLayout(parent);
     }
 
-    protected void onReportEvent(final Report report) {
+    protected void onReportEvent(final Report report, final Composite parent) {
+
+        this.authorsArray = new ToStringArrayConverter().convert(report
+                .getAllAuthors());
 
         applyValueBindings(report);
         for (final ReportFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
+        }
+
+        for (final ReportCombos field : this.combos.keySet()) {
+            this.combos.get(field).activate();
         }
     }
 
@@ -144,21 +155,37 @@ public class ReportEditorPart {
                         return report.getTitle();
                     }
                 });
+
+        this.combos.get(ReportCombos.MAIN_AUTHOR).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setMainAuthor((Participant) value);
+
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.getAllAuthors();
+                    }
+                });
     }
 
     private void buildLayout(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
+
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
 
-        new ComboBoxField(parent, util.translate(ReportCombos.SECTION),
-                new String[0]).setDataConverter(new StringDataConverter());
-
-        new ComboBoxField(parent, util.translate(ReportCombos.MAIN_AUTHOR),
-                new String[0]).setDataConverter(new StringDataConverter());
+        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboBoxField(parent,
+                util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
+                .setDataConverter(new StringDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
