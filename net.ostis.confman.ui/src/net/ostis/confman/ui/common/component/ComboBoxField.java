@@ -38,11 +38,12 @@ public class ComboBoxField extends Composite implements
         this.comboBox.setLayoutData(dataGridInput);
         this.comboBox.setItems(items);
     }
-    
+
     @Override
     public void apply() {
 
-        final String toApply = this.comboBox.getText();
+        final String toApply = this.comboBox.getItem(this.comboBox
+                .getSelectionIndex());
         final Object applied = this.dataConverter.convert(toApply);
         this.valueBinder.setValue(applied);
     }
@@ -51,11 +52,11 @@ public class ComboBoxField extends Composite implements
     public void activate() {
 
         final Object value = this.valueBinder.getValue();
-        String text = "";
+        String[] items = new String[0];
         if (value != null) {
-            text = this.dataConverter.convert(value);
+            items = new ToStringArrayConverter().convert(value);
         }
-        this.comboBox.setText(text);
+        this.comboBox.setItems(items);
     }
 
     @Override
@@ -70,6 +71,11 @@ public class ComboBoxField extends Composite implements
 
         this.dataConverter = converter;
         return this;
+    }
+
+    public void setItems(final String[] items) {
+
+        this.comboBox.setItems(items);
     }
 
 }

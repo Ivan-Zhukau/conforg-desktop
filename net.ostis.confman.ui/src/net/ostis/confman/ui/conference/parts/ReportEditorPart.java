@@ -1,6 +1,7 @@
 package net.ostis.confman.ui.conference.parts;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -88,8 +89,8 @@ public class ReportEditorPart {
     private final Map<ReportFields, EditableComponent<?>> editFields;
 
     private final Map<ReportCombos, EditableComponent<?>> combos;
-    
-    private String[] authorsArray;
+
+    private String[]                                      authorsArray;
 
     @Inject
     private ESelectionService                             selectionService;
@@ -102,13 +103,14 @@ public class ReportEditorPart {
         super();
         this.editFields = new EnumMap<>(ReportFields.class);
         this.combos = new EnumMap<>(ReportCombos.class);
-        authorsArray= new String[0];
+        this.authorsArray = new String[0];
     }
 
     @PostConstruct
     public void createComposite(final Composite parent) {
-        
+
         this.selectionService.addSelectionListener(new ISelectionListener() {
+
             @Override
             public void selectionChanged(final MPart part,
                     final Object selection) {
@@ -123,9 +125,10 @@ public class ReportEditorPart {
     }
 
     protected void onReportEvent(final Report report, final Composite parent) {
-        
-        authorsArray = new ToStringArrayConverter().convert(report.getAllAuthors());
-        
+
+        this.authorsArray = new ToStringArrayConverter().convert(report
+                .getAllAuthors());
+
         applyValueBindings(report);
         for (final ReportFields field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
@@ -153,38 +156,37 @@ public class ReportEditorPart {
                         return report.getTitle();
                     }
                 });
-        
-        /*this.combos.get(ReportCombos.MAIN_AUTHOR).setValueBinder(
-              new ValueBinder() {
-                
-                @Override
-                public void setValue(Object value) {
-                
-                    // TODO Auto-generated method stub
-                    
-                }
-                
-                @Override
-                public Object getValue() {
-                
-                    // TODO Auto-generated method stub
-                    return null;
-                }
-            });*/
+
+        this.combos.get(ReportCombos.MAIN_AUTHOR).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setAllAuthors((List<Participant>) value);
+
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.getAllAuthors();
+                    }
+                });
     }
 
     private void buildLayout(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
-        
+
         this.editFields.put(ReportFields.TITLE,
                 new TextField(parent, util.translate(ReportFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        
-        this.combos.put(ReportCombos.MAIN_AUTHOR, 
-                new ComboBoxField(parent, 
-                        util.translate(ReportCombos.MAIN_AUTHOR),authorsArray));
+
+        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboBoxField(parent,
+                util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
+                .setDataConverter(new StringDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
