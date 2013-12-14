@@ -156,24 +156,27 @@ public class SelectReportDialog extends TitleAreaDialog {
     @Override
     protected void createButtonsForButtonBar(final Composite parent) {
 
-        super.createButtonsForButtonBar(parent);
         final LocalizationUtil localizationUtil = LocalizationUtil
                 .getInstance();
-        localizeOkButton(localizationUtil);
-        localizeCancelButton(localizationUtil);
+        createOkButton(parent, localizationUtil);
+        createCancelButton(parent, localizationUtil);
     }
 
-    private void localizeCancelButton(final LocalizationUtil localizationUtil) {
+    private void createCancelButton(final Composite parent,
+            final LocalizationUtil localizationUtil) {
 
-        final Button cancel = getButton(IDialogConstants.CANCEL_ID);
+        final Button cancel = createButton(parent, IDialogConstants.CANCEL_ID,
+                IDialogConstants.CANCEL_LABEL, false);
         cancel.setText(localizationUtil
                 .translate(LocaleStrings.CANCEL_BUTTON_TEXT));
         setButtonLayoutData(cancel);
     }
 
-    private void localizeOkButton(final LocalizationUtil localizationUtil) {
+    private void createOkButton(final Composite parent,
+            final LocalizationUtil localizationUtil) {
 
-        final Button ok = getButton(IDialogConstants.OK_ID);
+        final Button ok = createButton(parent, IDialogConstants.OK_ID,
+                IDialogConstants.OK_LABEL, false);
         ok.setText(localizationUtil.translate(LocaleStrings.OK_BUTTON_TEXT));
         setButtonLayoutData(ok);
     }

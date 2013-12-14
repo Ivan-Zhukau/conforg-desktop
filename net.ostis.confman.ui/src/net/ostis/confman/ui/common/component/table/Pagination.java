@@ -2,52 +2,55 @@ package net.ostis.confman.ui.common.component.table;
 
 import java.util.List;
 
-
 public class Pagination {
-    
+
     private static final int STANDARD_COUNT_PER_PAGE = 15;
 
-    private List<?> data;
-    
-    private int itemsPerPage;
-    
-    private int currentPage;
-    
-    public Pagination(List<?> data) {
+    private List<?>          data;
+
+    private int              itemsPerPage;
+
+    private int              currentPage;
+
+    public Pagination(final List<?> data) {
 
         this(data, STANDARD_COUNT_PER_PAGE);
     }
-    
-    public Pagination(List<?> data, int itemsPerPage) {
+
+    public Pagination(final List<?> data, final int itemsPerPage) {
 
         super();
         this.data = data;
         this.itemsPerPage = itemsPerPage;
     }
-    
+
     public boolean hasPreviousPage() {
-        
-        return currentPage <= 1 ? false : true;
+
+        return this.currentPage <= 1 ? false : true;
     }
-    
+
     public boolean hasNextPage() {
-        
-        return currentPage >= getCountOfPages() ? false : true;
+
+        return this.currentPage >= getCountOfPages() ? false : true;
     }
-    
+
     public List<?> getPreviousPage() {
-        if(hasPreviousPage()) {
-            currentPage--;
-            List<?> page = data.subList(calcFirstIndex(), calcLastIndex());
+
+        if (hasPreviousPage()) {
+            this.currentPage--;
+            final List<?> page = this.data.subList(calcFirstIndex(),
+                    calcLastIndex());
             return page;
         }
         throw new IllegalArgumentException();
     }
 
     public List<?> getNextPage() {
-        if(hasNextPage()) {
-            currentPage++;
-            List<?> page = data.subList(calcFirstIndex(), calcLastIndex());
+
+        if (hasNextPage()) {
+            this.currentPage++;
+            final List<?> page = this.data.subList(calcFirstIndex(),
+                    calcLastIndex());
             return page;
         }
         throw new IllegalArgumentException();
@@ -55,39 +58,47 @@ public class Pagination {
 
     private int calcFirstIndex() {
 
-        return (currentPage - 1) * itemsPerPage;        // discrepancy between array index and real value
+        return (this.currentPage - 1) * this.itemsPerPage; // discrepancy
+                                                           // between array
+                                                           // index and real
+                                                           // value
     }
-    
+
     private int calcLastIndex() {
 
-        if(getCountOfPages() == currentPage) {
+        if (getCountOfPages() == this.currentPage) {
             return getItemCount();
         }
-        return currentPage * itemsPerPage;      // discrepancy between array index and real value
+        return this.currentPage * this.itemsPerPage; // discrepancy between
+                                                     // array index and real
+                                                     // value
     }
-    
+
     public int getItemCount() {
-        return data.size();
+
+        return this.data.size();
     }
-    
+
     public int getCountOfPages() {
-        return (int) Math.ceil(((double) getItemCount()) / itemsPerPage);
+
+        return (int) Math.ceil(((double) getItemCount()) / this.itemsPerPage);
     }
 
     public int getCurrentPage() {
 
-        return currentPage;
+        return this.currentPage;
     }
 
     public List<?> getFirstPage() {
 
-        currentPage = 0;
+        this.currentPage = 0;
         return getNextPage();
     }
 
-    public boolean tryToPage(int pageNumber) {
+    public boolean tryToPage(final int pageNumber) {
+
         if (pageNumber >= 1 && pageNumber <= getCountOfPages()) {
-            currentPage = pageNumber;
+            this.currentPage = pageNumber;
             return true;
         }
         return false;
@@ -95,6 +106,16 @@ public class Pagination {
 
     public List<?> getPage() {
 
-        return data.subList(calcFirstIndex(), calcLastIndex());
+        return this.data.subList(calcFirstIndex(), calcLastIndex());
+    }
+
+    public int getItemsPerPage() {
+
+        return this.itemsPerPage;
+    }
+
+    public void setItemsPerPage(final int itemsPerPage) {
+
+        this.itemsPerPage = itemsPerPage;
     }
 }
