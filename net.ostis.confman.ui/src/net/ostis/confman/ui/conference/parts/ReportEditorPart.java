@@ -1,7 +1,6 @@
 package net.ostis.confman.ui.conference.parts;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -163,7 +162,7 @@ public class ReportEditorPart {
                     @Override
                     public void setValue(final Object value) {
 
-                        report.setAllAuthors((List<Participant>) value);
+                        report.setMainAuthor((Participant) value);
 
                     }
 
