@@ -6,11 +6,14 @@ import javax.inject.Inject;
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Report;
+import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeContentProvider;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeLabelProvider;
 import net.ostis.confman.ui.common.component.conftree.ConfTreeListenerProvider;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
@@ -35,6 +38,9 @@ public class ConferencesView {
 
     @Inject
     private EPartService      partService;
+
+    @Inject
+    private IEventBroker      eventBroker;
 
     private TreeViewer        treeViewer;
 
@@ -91,8 +97,8 @@ public class ConferencesView {
 
         final MenuManager manager = new MenuManager();
         manager.setRemoveAllWhenShown(true);
-        manager.addMenuListener(listenerProvider
-                .getIMenuListener(this.treeViewer));
+        manager.addMenuListener(listenerProvider.getIMenuListener(
+                this.treeViewer, this.eventBroker, this.partService));
         this.treeViewer.getControl().setMenu(
                 manager.createContextMenu(this.treeViewer.getControl()));
     }
@@ -111,7 +117,8 @@ public class ConferencesView {
         final IStructuredSelection selection = (IStructuredSelection) this.treeViewer
                 .getSelection();
         final Object data = selection.getFirstElement();
-        if (data instanceof Conference) {
+        if (data instanceof Conference || data instanceof Section
+                || data instanceof Report) {
             this.confService.fireData();
         }
         this.treeViewer.refresh();

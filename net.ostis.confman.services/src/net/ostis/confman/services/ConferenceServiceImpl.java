@@ -13,6 +13,10 @@ class ConferenceServiceImpl implements ConferenceService {
 
     private List<Conference> conferences;
 
+    private List<Section>    sections;
+
+    private List<Report>     reports;
+
     private FullModel        model;
 
     public ConferenceServiceImpl() {
@@ -20,6 +24,8 @@ class ConferenceServiceImpl implements ConferenceService {
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
         this.conferences = this.model.getConferences();
+        this.sections = this.model.getSections();
+        this.reports = this.model.getReports();
     }
 
     @Override
@@ -32,7 +38,9 @@ class ConferenceServiceImpl implements ConferenceService {
     public void addSection(final Conference conference, final Section section) {
 
         conference.getSections().add(section);
-        fireData();
+        section.setConference(conference);
+        this.sections.add(section);
+        //fireData();
     }
 
     @Override
@@ -40,6 +48,7 @@ class ConferenceServiceImpl implements ConferenceService {
 
         section.getConference().getReports().add(report);
         section.getReports().add(report);
+        this.reports.add(report);
         fireData();
     }
 
@@ -59,6 +68,7 @@ class ConferenceServiceImpl implements ConferenceService {
         final Section section = report.getSection();
         section.getConference().getReports().remove(report);
         section.getReports().remove(report);
+        report.setSection(null);
         fireData();
     }
 
@@ -78,12 +88,13 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public void deleteSection(final Section selectedElement) {
 
+        selectedElement.getConference().getSections().remove(selectedElement);
+        selectedElement.setConference(null);
     }
 
     @Override
     public List<Report> getReports() {
 
-        // TODO kfs: provide better solution in future.
-        return this.conferences.get(0).getReports();
+        return this.reports;
     }
 }

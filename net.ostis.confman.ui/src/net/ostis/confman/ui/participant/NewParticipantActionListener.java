@@ -10,13 +10,12 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.services.internal.events.EventBroker;
 import org.eclipse.swt.widgets.Shell;
 
+@SuppressWarnings("restriction")
 public class NewParticipantActionListener {
 
-    @SuppressWarnings("restriction")
     @Inject
     EventBroker eventBroker;
 
-    @SuppressWarnings("restriction")
     @Execute
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 

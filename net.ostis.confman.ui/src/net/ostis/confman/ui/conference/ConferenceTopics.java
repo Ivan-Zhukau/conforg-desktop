@@ -10,6 +10,8 @@ public final class ConferenceTopics {
 
     public static final String EXTRA_AUTHOR_INFO_UPDATE = "INFO_UPDATE";
 
+    public static final String ADD_NEW_SECTION          = "TOPIC_CONFERENCE/ADD_SECTION";
+
     private ConferenceTopics() {
 
         super();

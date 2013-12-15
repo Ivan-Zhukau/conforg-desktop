@@ -7,9 +7,11 @@ import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.conference.ConferenceTopics;
 import net.ostis.confman.ui.conference.parts.PartId;
 import net.ostis.confman.ui.reports.SelectReportDialog;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
@@ -53,9 +55,9 @@ public class ConfTreeListenerProvider {
         return new TreeDoubleClickListener();
     }
 
-    public IMenuListener getIMenuListener(final TreeViewer treeViewer) {
+    public IMenuListener getIMenuListener(final TreeViewer treeViewer, IEventBroker eventBroker, final EPartService partService) {
 
-        return new TreeMenuListener(treeViewer);
+        return new TreeMenuListener(treeViewer, eventBroker, partService);
     }
 
     public DragSourceListener getDragSourceListener(final TreeViewer treeViewer) {
@@ -195,10 +197,16 @@ public class ConfTreeListenerProvider {
 
         private ConferenceService conferenceService;
 
-        public TreeMenuListener(final TreeViewer treeViewer) {
+        private IEventBroker eventBroker;
+
+        private EPartService partService;
+
+        public TreeMenuListener(final TreeViewer treeViewer, IEventBroker eventBroker, EPartService partService) {
 
             super();
             this.treeViewer = treeViewer;
+            this.eventBroker = eventBroker;
+            this.partService = partService;
             this.parent = treeViewer.getControl().getParent();
             this.conferenceService = (ConferenceService) ServiceLocator
                     .getInstance().getService(ConferenceService.class);
@@ -230,7 +238,9 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    // TODO kfs: implement add section method.
+                    final MPart part = partService.findPart(PartId.SECTION_PART);
+                    partService.showPart(part, PartState.VISIBLE);
+                    eventBroker.post(ConferenceTopics.ADD_NEW_SECTION, null);
                 }
             };
             manager.add(addSectionAction);

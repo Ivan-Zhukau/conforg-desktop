@@ -2,6 +2,7 @@ package net.ostis.confman.ui.reports;
 
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
@@ -34,7 +35,8 @@ public class SelectReportDialog extends TitleAreaDialog {
         CANCEL_BUTTON_TEXT("reportDialogCancelText"),
         TABLE_REPORT("reportTableReport"),
         TABLE_MAIN_AUTHOR("reportTableAuthor"),
-        TABLE_SECTION("reportTableSection");
+        TABLE_SECTION("reportTableSection"),
+        TABLE_CONFERENCE("reportTableConference");
 
         private String rk;
 
@@ -147,6 +149,22 @@ public class SelectReportDialog extends TitleAreaDialog {
                         final Section section = report.getSection();
                         if (section != null) {
                             return section.getTitle();
+                        }
+                        return "";
+                    }
+                });
+        this.table.createColumn(
+                localizationUtil.translate(LocaleStrings.TABLE_CONFERENCE),
+                new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Report report = (Report) element;
+                        final Section section = report.getSection();
+                        if (section != null) {
+                            final Conference conf = section.getConference();
+                            return conf == null ? "" : conf.getTitle();
                         }
                         return "";
                     }

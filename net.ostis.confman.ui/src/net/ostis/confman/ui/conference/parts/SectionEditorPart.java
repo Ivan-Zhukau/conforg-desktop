@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
@@ -22,7 +23,9 @@ import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 import net.ostis.confman.ui.reports.SelectReportDialog;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
@@ -259,6 +262,19 @@ public class SectionEditorPart {
             if (selectedReport != null) {
                 this.conferenceService.addReport(this.section, selectedReport);
             }
+        }
+    }
+
+    @Inject
+    @Optional
+    private void onConfDataUpdate(
+            @UIEventTopic(ConferenceTopics.ADD_NEW_SECTION) final String s) {
+
+        final Object selection = this.selectionService.getSelection();
+        if (selection instanceof Conference) {
+            final Section section = new Section();
+            this.conferenceService.addSection((Conference) selection, section);
+            this.selectionService.setSelection(section);
         }
     }
 }
