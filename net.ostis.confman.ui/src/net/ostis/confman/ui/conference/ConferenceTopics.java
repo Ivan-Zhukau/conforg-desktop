@@ -14,6 +14,8 @@ public final class ConferenceTopics {
 
     public static final String CONF_TREE_UPDATE         = "TOPIC_CONFERENCE/UPDATE_TREE";
 
+    public static final String TEMPLATES_TABLE_UPDATE   = "TEMPLATES_TABLE_UPDATE";
+
     private ConferenceTopics() {
 
         super();
