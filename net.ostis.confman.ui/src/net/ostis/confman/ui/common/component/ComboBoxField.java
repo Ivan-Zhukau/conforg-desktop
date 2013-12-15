@@ -63,21 +63,24 @@ public class ComboBoxField extends Composite implements
         }
         final String[] itemValues = getItemsValues(items);
         this.comboBox.setItems(itemValues);
-        this.comboBox.select(0);
+        //this.comboBox.select(0);
     }
 
     private String[] getItemsValues(final String[] items) {
 
         final String[] itemsValues = new String[items.length];
 
-        if (((List<Object>) this.valueBinder.getValue()).get(0) instanceof Participant) {
-            int index = 0;
-            for (final Participant participant : (List<Participant>) this.valueBinder
-                    .getValue()) {
-                itemsValues[index] = participant.getPerson().getFirstName()
-                        + " " + participant.getPerson().getSurname() + " "
-                        + participant.getPerson().getPatronymic();
-                ++index;
+        if(this.valueBinder.getValue()!=null){
+            if (((List<Object>) this.valueBinder.getValue()).get(0) instanceof Participant) {
+                List<Participant>  participants= (List<Participant>) this.valueBinder.getValue();
+                int index = 0;
+                for (final Participant participant : participants) {
+                    
+                    itemsValues[index] = participant.getPerson().getFirstName()
+                            + " " + participant.getPerson().getSurname() + " "
+                            + participant.getPerson().getPatronymic();
+                    ++index;
+                }
             }
         }
         // TODO: You can add options

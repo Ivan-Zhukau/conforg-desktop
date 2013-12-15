@@ -3,6 +3,7 @@ package net.ostis.confman.model.datastore.local.convert;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ostis.confman.model.registrationform.ArticleInformation;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;
@@ -13,6 +14,7 @@ import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 public class DataConverter {
@@ -40,6 +42,10 @@ public class DataConverter {
         for (final RegistrationForm currentRegForm : rForm) {
             final List<AuthorInformation> authorsInformation = currentRegForm
                     .getAuthorsInformation();
+            final ArticleInformation articleInformation = currentRegForm
+                    .getArticleInformation();
+            final List<Participant> participantsList = new ArrayList<>();
+            final Report report = setReport(articleInformation);
             for (final AuthorInformation currentAuthor : authorsInformation) {
                 final Participant participant = new Participant();
                 final Person person = new Person();
@@ -54,10 +60,20 @@ public class DataConverter {
                 participant.setPerson(person);
                 participants.add(participant);
                 model.getPersons().add(person);
-                model.getParticipants().add(participant);
+                participant.getReports().add(report);
+                participantsList.add(participant);
             }
-
+            report.setAllAuthors(participantsList);
+            model.getReports().add(report);
         }
+        model.getParticipants().addAll(participants);
+    }
+
+    private Report setReport(final ArticleInformation articleInformation) {
+
+        final Report report = new Report();
+        report.setTitle(articleInformation.getTitleEntry());
+        return report;
     }
 
     private void setPersonInfo(final Person person,
