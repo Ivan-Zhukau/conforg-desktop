@@ -123,4 +123,12 @@ public class ConferencesView {
         }
         this.treeViewer.refresh();
     }
+
+    @Inject
+    @Optional
+    private void onTreeDataUpdate(
+            @UIEventTopic(ConferenceTopics.CONF_TREE_UPDATE) final String s) {
+
+        this.treeViewer.refresh();
+    }
 }

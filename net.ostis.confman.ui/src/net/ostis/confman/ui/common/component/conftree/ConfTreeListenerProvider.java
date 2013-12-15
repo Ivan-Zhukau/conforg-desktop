@@ -268,6 +268,7 @@ public class ConfTreeListenerProvider {
 
                     TreeMenuListener.this.conferenceService
                             .deleteSection(selectedElement);
+                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
                 }
             };
             manager.add(addReportAction);
@@ -284,6 +285,7 @@ public class ConfTreeListenerProvider {
                 final Report selectedReport = dialog.getSelectedReport();
                 if (selectedReport != null) {
                     this.conferenceService.addReport(section, selectedReport);
+                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
                 }
             }
         }
@@ -299,6 +301,7 @@ public class ConfTreeListenerProvider {
 
                     TreeMenuListener.this.conferenceService
                             .deleteReport(selectedElement);
+                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
                 }
             };
             manager.add(deleteReportAction);

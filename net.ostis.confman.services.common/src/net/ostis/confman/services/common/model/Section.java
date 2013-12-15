@@ -1,5 +1,6 @@
 package net.ostis.confman.services.common.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Section {
     public Section() {
 
         super();
+        this.reports = new ArrayList<>();
     }
 
     public String getTitle() {

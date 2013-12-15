@@ -39,16 +39,29 @@ class ConferenceServiceImpl implements ConferenceService {
 
         conference.getSections().add(section);
         section.setConference(conference);
-        this.sections.add(section);
+        if (!sections.contains(section)) {
+            this.sections.add(section);
+        }
         //fireData();
     }
 
     @Override
     public void addReport(final Section section, final Report report) {
 
-        section.getConference().getReports().add(report);
-        section.getReports().add(report);
-        this.reports.add(report);
+        if (report.getSection() != null) {
+            report.getSection().getReports().remove(report);
+        }
+        Conference conf = section.getConference();
+        if (!conf.getReports().contains(report)) {
+            conf.getReports().add(report);
+        }
+        if (!section.getReports().contains(report)) {
+            section.getReports().add(report);
+        }
+        report.setSection(section);
+        if (!reports.contains(report)) {
+            this.reports.add(report);
+        }
         fireData();
     }
 

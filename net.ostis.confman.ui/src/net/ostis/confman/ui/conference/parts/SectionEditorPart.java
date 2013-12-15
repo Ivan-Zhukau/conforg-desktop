@@ -267,7 +267,7 @@ public class SectionEditorPart {
 
     @Inject
     @Optional
-    private void onConfDataUpdate(
+    private void onSectionAdd(
             @UIEventTopic(ConferenceTopics.ADD_NEW_SECTION) final String s) {
 
         final Object selection = this.selectionService.getSelection();
@@ -275,6 +275,7 @@ public class SectionEditorPart {
             final Section section = new Section();
             this.conferenceService.addSection((Conference) selection, section);
             this.selectionService.setSelection(section);
+            onSectionEvent(section);
         }
     }
 }

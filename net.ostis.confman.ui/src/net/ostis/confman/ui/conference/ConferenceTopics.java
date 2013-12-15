@@ -12,6 +12,8 @@ public final class ConferenceTopics {
 
     public static final String ADD_NEW_SECTION          = "TOPIC_CONFERENCE/ADD_SECTION";
 
+    public static final String CONF_TREE_UPDATE         = "TOPIC_CONFERENCE/UPDATE_TREE";
+
     private ConferenceTopics() {
 
         super();
