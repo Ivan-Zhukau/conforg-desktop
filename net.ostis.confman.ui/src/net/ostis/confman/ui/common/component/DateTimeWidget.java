@@ -1,4 +1,4 @@
-package net.ostis.confman.ui.conference.parts;
+package net.ostis.confman.ui.common.component;
 
 import java.util.Date;
 
