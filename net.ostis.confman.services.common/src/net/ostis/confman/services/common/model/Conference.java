@@ -1,5 +1,6 @@
 package net.ostis.confman.services.common.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,10 @@ public class Conference {
     public Conference() {
 
         super();
+        this.sections = new ArrayList<>();
+        this.reports = new ArrayList<>();
+        this.participants = new ArrayList<>();
+        this.conferenceVenue = new Address();
     }
 
     public String getTitle() {
