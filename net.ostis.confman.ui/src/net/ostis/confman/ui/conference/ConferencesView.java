@@ -71,7 +71,8 @@ public class ConferencesView {
     private void addEventSupport() {
 
         final ConfTreeListenerProvider listenerProvider = new ConfTreeListenerProvider();
-        addDragAndDropSupport(listenerProvider);
+        // TODO kfs: fix drag and drop bugs in TreeViewer
+        //addDragAndDropSupport(listenerProvider);
         this.treeViewer.addSelectionChangedListener(listenerProvider
                 .getSelectionChangedListener(this.treeViewer,
                         this.selectionService, this.partService));
