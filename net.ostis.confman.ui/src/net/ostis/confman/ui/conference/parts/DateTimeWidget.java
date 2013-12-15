@@ -153,11 +153,13 @@ public class DateTimeWidget extends Dialog {
     @SuppressWarnings("deprecation")
     public void setDate(final Object value) {
 
-        this.date = (Date) value;
-        this.calendar.setDate(this.date.getYear(), this.date.getMonth(),
-                this.date.getDay());
-        this.time.setTime(this.date.getHours(), this.date.getMinutes(),
-                this.date.getSeconds());
+        if (value != null) {
+            this.date = (Date) value;
+            this.calendar.setDate(this.date.getYear(), this.date.getMonth(),
+                    this.date.getDay());
+            this.time.setTime(this.date.getHours(), this.date.getMinutes(),
+                    this.date.getSeconds());
+        }
 
     }
 

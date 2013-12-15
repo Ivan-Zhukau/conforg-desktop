@@ -31,7 +31,6 @@ public class CheckBoxField extends Composite implements
     public void apply() {
 
         final Boolean toApply = this.checkBox.getSelection();
-        // final Object applied = this.dataConverter.convert(toApply);
         this.valueBinder.setValue(toApply);
     }
 

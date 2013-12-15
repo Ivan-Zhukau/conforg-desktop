@@ -3,7 +3,6 @@ package net.ostis.confman.test.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ostis.confman.model.datastore.local.convert.DataConverter;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.ContactInformation;
 import net.ostis.confman.model.registrationform.PersonalInformation;
@@ -46,7 +45,7 @@ public class TableEditorPartTest {
         authorInfo.add(author);
 
         registrationForm.setAuthorsInformation(authorInfo);
-        
+
         final RegistrationForm registrationForm1 = new RegistrationForm();
         final List<AuthorInformation> authorInfo1 = new ArrayList<AuthorInformation>();
         final AuthorInformation author1 = new AuthorInformation();
@@ -76,12 +75,13 @@ public class TableEditorPartTest {
         authorInfo1.add(author1);
 
         registrationForm1.setAuthorsInformation(authorInfo1);
-        
-        List<RegistrationForm> rInfo = new ArrayList<RegistrationForm>();
-        rInfo.add(registrationForm);
-        rInfo.add(registrationForm1);        
 
-        //ConferenceInformation aList = DataConverter.getInstance().convertAuthors(rInfo);
-        
+        final List<RegistrationForm> rInfo = new ArrayList<RegistrationForm>();
+        rInfo.add(registrationForm);
+        rInfo.add(registrationForm1);
+
+        // ConferenceInformation aList =
+        // DataConverter.getInstance().convertAuthors(rInfo);
+
     }
 }

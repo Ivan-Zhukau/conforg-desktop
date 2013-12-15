@@ -37,10 +37,11 @@ public class ConcurrencyThreadExecutor {
 
         this.executor.execute(task);
     }
-    
-    public Object callTask(Callable<?> task) throws InterruptedException, ExecutionException {
-        
-        Future<?> result = executor.submit(task);
+
+    public Object callTask(final Callable<?> task) throws InterruptedException,
+            ExecutionException {
+
+        final Future<?> result = this.executor.submit(task);
         return result.get();
     }
 

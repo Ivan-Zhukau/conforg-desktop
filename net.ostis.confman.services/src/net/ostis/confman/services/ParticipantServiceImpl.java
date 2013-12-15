@@ -12,16 +12,16 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     List<Participant> participants;
 
-    List<Person> persons;
-    
-    FullModel model;
+    List<Person>      persons;
+
+    FullModel         model;
 
     public ParticipantServiceImpl() {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
-        this.participants = model.getParticipants();
-        this.persons = model.getPersons();
+        this.participants = this.model.getParticipants();
+        this.persons = this.model.getPersons();
     }
 
     @Override
@@ -35,9 +35,10 @@ public class ParticipantServiceImpl implements ParticipantService {
 
         this.participants.add(participant);
     }
-    
+
     @Override
-    public void addPerson(Person person){
+    public void addPerson(final Person person) {
+
         this.persons.add(person);
     }
 
