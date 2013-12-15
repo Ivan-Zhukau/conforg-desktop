@@ -1,5 +1,9 @@
 package net.ostis.confman.ui.common.component;
 
+import java.util.List;
+
+import net.ostis.confman.services.common.model.Participant;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -42,9 +46,10 @@ public class ComboBoxField extends Composite implements
     @Override
     public void apply() {
 
-        final String toApply = this.comboBox.getItem(this.comboBox
-                .getSelectionIndex());
-        final Object applied = this.dataConverter.convert(toApply);
+        final Object value = this.valueBinder.getValue();
+        final String[] values = new ToStringArrayConverter().convert(value);
+        final Object applied = this.dataConverter.convert(values[this.comboBox
+                .getSelectionIndex()]);
         this.valueBinder.setValue(applied);
     }
 
@@ -56,7 +61,27 @@ public class ComboBoxField extends Composite implements
         if (value != null) {
             items = new ToStringArrayConverter().convert(value);
         }
-        this.comboBox.setItems(items);
+        final String[] itemValues = getItemsValues(items);
+        this.comboBox.setItems(itemValues);
+        this.comboBox.select(0);
+    }
+
+    private String[] getItemsValues(final String[] items) {
+
+        final String[] itemsValues = new String[items.length];
+
+        if (((List<Object>) this.valueBinder.getValue()).get(0) instanceof Participant) {
+            int index = 0;
+            for (final Participant participant : (List<Participant>) this.valueBinder
+                    .getValue()) {
+                itemsValues[index] = participant.getPerson().getFirstName()
+                        + " " + participant.getPerson().getSurname() + " "
+                        + participant.getPerson().getPatronymic();
+                ++index;
+            }
+        }
+        // TODO: You can add options
+        return itemsValues;
     }
 
     @Override

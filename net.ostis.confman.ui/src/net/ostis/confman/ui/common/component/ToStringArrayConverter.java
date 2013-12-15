@@ -3,8 +3,6 @@ package net.ostis.confman.ui.common.component;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ostis.confman.services.common.model.Participant;
-
 public class ToStringArrayConverter {
 
     public ToStringArrayConverter() {
@@ -13,11 +11,11 @@ public class ToStringArrayConverter {
 
     public String[] convert(final Object object) {
 
-        final List<Participant> list = (List<Participant>) object;
+        final List<Object> list = (List<Object>) object;
         final String[] array = new String[list.size()];
         int index = 0;
-        for (final Participant partisipant : list) {
-            array[index] = new StringDataConverter().convert(object);
+        for (final Object element : list) {
+            array[index] = new StringDataConverter().convert(element);
             ++index;
         }
         return array;
