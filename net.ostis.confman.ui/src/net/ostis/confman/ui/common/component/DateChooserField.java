@@ -2,7 +2,6 @@ package net.ostis.confman.ui.common.component;
 
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
-import net.ostis.confman.ui.conference.parts.DateTimeWidget;
 
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
