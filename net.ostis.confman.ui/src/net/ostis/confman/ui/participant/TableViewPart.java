@@ -138,6 +138,6 @@ public class TableViewPart {
     private void onConfDataUpdate(
             @UIEventTopic(ConferenceTopics.TABLE_UPDATE) final String s) {
 
-        this.table.getViewer().refresh();
+        this.table.refresh();
     }
 }

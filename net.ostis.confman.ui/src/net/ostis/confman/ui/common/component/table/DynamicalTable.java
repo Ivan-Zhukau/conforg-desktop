@@ -101,4 +101,10 @@ public class DynamicalTable {
 
         this.tableViewer.setInput(input);
     }
+    
+    public void refresh() {
+
+        tableViewer.setInput(pagination.getPage());
+        tableViewer.refresh();
+    }
 }
