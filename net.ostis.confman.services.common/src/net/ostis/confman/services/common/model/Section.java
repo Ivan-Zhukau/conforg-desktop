@@ -18,6 +18,7 @@ public class Section {
 
         super();
         this.reports = new ArrayList<>();
+        this.conference = new Conference();
     }
 
     public String getTitle() {

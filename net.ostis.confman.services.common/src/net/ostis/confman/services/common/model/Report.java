@@ -1,5 +1,6 @@
 package net.ostis.confman.services.common.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Report {
@@ -15,6 +16,9 @@ public class Report {
     public Report() {
 
         super();
+        this.section = new Section();
+        this.allAuthors = new ArrayList<>();
+        this.mainAuthor = new Participant();
     }
 
     public String getTitle() {
