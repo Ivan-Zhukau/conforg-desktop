@@ -3,7 +3,6 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.mail.entity.Template;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
@@ -11,6 +10,8 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -58,20 +59,19 @@ public class TemplatesEditorPart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (!(selection instanceof Template)) {
+                if (!(selection instanceof EmailedParticipants)) {
                     return;
                 }
-                final Template template = (Template) selection;
-                onNewSelection(template);
+                final EmailedParticipants participants = (EmailedParticipants) selection;
+                onNewSelection(participants);
             }
         });
-
         buildLayout(parent);
     }
 
-    private void onNewSelection(final Template template) {
+    private void onNewSelection(final EmailedParticipants participants) {
 
-        this.textArea.setText(template.getName());
+        this.textArea.setText(participants.getTemplate().getName());
     }
 
     private void buildLayout(final Composite parent) {
@@ -100,6 +100,26 @@ public class TemplatesEditorPart {
         final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
                 Boolean.FALSE, Boolean.FALSE);
         nextButton.setLayoutData(gridData);
+        nextButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                // TODO Auto-generated method stub
+
+            }
+
+            private void onSelection() {
+
+            }
+        });
     }
 
 }

@@ -1,11 +1,17 @@
 package net.ostis.confman.ui.mail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import net.ostis.confman.model.mail.entity.Template;
-import net.ostis.confman.services.EmailService;
+import net.ostis.confman.services.ParticipantService;
 import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Participant;
+import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
@@ -17,6 +23,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -28,11 +35,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class TemplatesViewPart {
+public class ParticipantsChoosePart {
 
     private enum Captions implements Localizable {
-        NAME("templateName"),
-        LANGUAGE("templateLanguage"),
+        NAME("participantTableAuthorName"),
+        CONFERENCE("participantTableConference"),
+        SECTION("participantTableSection"),
         NEXT("nextStep");
 
         private String rk;
@@ -49,7 +57,7 @@ public class TemplatesViewPart {
         }
     }
 
-    protected static final String PARTICIPANTS_PART_ID = "net.ostis.confman.ui.part.email.participantsPart";
+    protected static final String TEMPLATES_EDITOR_PART_ID = "net.ostis.confman.ui.part.email.editor";
 
     @Inject
     private ESelectionService     selectionService;
@@ -57,24 +65,38 @@ public class TemplatesViewPart {
     @Inject
     private EPartService          partService;
 
-    private EmailService          emailService;
+    private ParticipantService    participantService;
 
     private DynamicalTable        table;
 
-    public TemplatesViewPart() {
+    private Template              template;
+
+    public ParticipantsChoosePart() {
 
         super();
-        this.emailService = (EmailService) ServiceLocator.getInstance()
-                .getService(EmailService.class);
+        this.participantService = (ParticipantService) ServiceLocator
+                .getInstance().getService(ParticipantService.class);
     }
 
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        final MPart part = this.partService.findPart(PARTICIPANTS_PART_ID);
+        this.selectionService.addSelectionListener(new ISelectionListener() {
+
+            @Override
+            public void selectionChanged(final MPart part,
+                    final Object selection) {
+
+                if (!(selection instanceof Template)) {
+                    return;
+                }
+                ParticipantsChoosePart.this.template = (Template) selection;
+            }
+        });
+        final MPart part = this.partService.findPart(TEMPLATES_EDITOR_PART_ID);
         this.partService.showPart(part, PartState.ACTIVATE);
         parent.setLayout(new GridLayout(1, true));
-        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
+        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.MULTI);
         createNextStepButton(parent);
         createColumns();
         addTableEventSupport();
@@ -105,18 +127,24 @@ public class TemplatesViewPart {
 
             private void onSelected() {
 
-                final IStructuredSelection selection = (IStructuredSelection) TemplatesViewPart.this.table
+                final IStructuredSelection selection = (IStructuredSelection) ParticipantsChoosePart.this.table
                         .getViewer().getSelection();
-                final Object selectedElement = selection.getFirstElement();
-                if (selectedElement instanceof Template) {
-                    TemplatesViewPart.this.selectionService
-                            .setSelection(selectedElement);
-                    final MPart part = TemplatesViewPart.this.partService
-                            .findPart(PARTICIPANTS_PART_ID);
-                    TemplatesViewPart.this.partService.activate(part);
+                final Object[] selectedElements = selection.toArray();
+                if (selection.getFirstElement() instanceof Participant) {
+                    final List<Participant> participants = new ArrayList<>();
+                    for (final Object object : selectedElements) {
+                        final Participant participant = (Participant) object;
+                        participants.add(participant);
+                    }
+                    final EmailedParticipants ep = new EmailedParticipants(
+                            participants, ParticipantsChoosePart.this.template);
+                    ParticipantsChoosePart.this.selectionService
+                            .setSelection(ep);
+                    final MPart part = ParticipantsChoosePart.this.partService
+                            .findPart(TEMPLATES_EDITOR_PART_ID);
+                    ParticipantsChoosePart.this.partService.activate(part);
 
                 } else {
-
                     // TODO vadim-mihalovski: add warning dialog: empty
                     // selection
                 }
@@ -135,28 +163,31 @@ public class TemplatesViewPart {
                     @Override
                     public String getText(final Object element) {
 
-                        final Template template = (Template) element;
-                        return template.getName();
+                        final Participant participant = (Participant) element;
+                        final Person person = participant.getPerson();
+                        return person.getFirstName() + ' '
+                                + person.getSurname();
                     }
                 });
-        this.table.createColumn(localizationUtil.translate(Captions.LANGUAGE),
-                COLUMN_WIDTH, new ColumnLabelProvider() {
+        this.table.createColumn(
+                localizationUtil.translate(Captions.CONFERENCE), COLUMN_WIDTH,
+                new ColumnLabelProvider() {
 
                     @Override
                     public String getText(final Object element) {
 
-                        final Template template = (Template) element;
-                        return localizationUtil.translate(template
-                                .getLanguage());
+                        final Participant participant = (Participant) element;
+                        final Conference conference = participant
+                                .getConference();
+                        return conference == null ? "" : conference.getTitle();
                     }
                 });
     }
 
     private void addTableEventSupport() {
 
-        this.table.getViewer().setContentProvider(
-                ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(this.emailService.getTemplates());
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
+        this.table.setInput(this.participantService.getParticipants());
     }
 
     @Inject

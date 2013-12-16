@@ -25,14 +25,16 @@ public class DynamicalTable {
 
     private boolean          showPaging;
 
-    public DynamicalTable(final Composite parent, final boolean showPaging) {
+    public DynamicalTable(final Composite parent, final boolean showPaging,
+            final int selectionBehaviour) {
 
         super();
         this.showPaging = showPaging;
-        createComposite(parent);
+        createComposite(parent, selectionBehaviour);
     }
 
-    private void createComposite(final Composite parent) {
+    private void createComposite(final Composite parent,
+            final int selectionBehaviour) {
 
         parent.setLayout(new GridLayout(1, true));
         final GridData layoutData = new GridData();
@@ -40,8 +42,8 @@ public class DynamicalTable {
         layoutData.grabExcessVerticalSpace = true;
         layoutData.horizontalAlignment = GridData.FILL;
         layoutData.grabExcessHorizontalSpace = true;
-        this.tableViewer = new TableViewer(parent, SWT.SINGLE | SWT.H_SCROLL
-                | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+        this.tableViewer = new TableViewer(parent, selectionBehaviour
+                | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
         final Table table = this.tableViewer.getTable();
         this.tableViewer.getControl().setLayoutData(layoutData);
         table.setHeaderVisible(true);

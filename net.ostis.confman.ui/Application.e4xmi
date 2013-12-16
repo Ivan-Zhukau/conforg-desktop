@@ -42,8 +42,8 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_DTyswGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.1" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_EMuf4GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.2">
             <children xsi:type="basic:Part" xmi:id="_GjQSYGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.emailTemplatesPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesViewPart" label="Email templates part"/>
-            <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part." contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="Email template editor part"/>
-            <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.participantsPart" label="Participants part"/>
+            <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.participantsPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ParticipantsChoosePart" label="Participants part"/>
+            <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="Email template editor part"/>
           </children>
         </children>
       </children>
