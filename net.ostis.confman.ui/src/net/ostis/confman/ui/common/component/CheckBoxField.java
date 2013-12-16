@@ -8,11 +8,9 @@ import org.eclipse.swt.widgets.Composite;
 public class CheckBoxField extends Composite implements
         EditableComponent<CheckBoxField> {
 
-    private Button        checkBox;
+    private Button      checkBox;
 
-    private DataConverter dataConverter;
-
-    private ValueBinder   valueBinder;
+    private ValueBinder valueBinder;
 
     public CheckBoxField(final Composite parent, final String buttonText) {
 
@@ -51,7 +49,7 @@ public class CheckBoxField extends Composite implements
     @Override
     public CheckBoxField setDataConverter(final DataConverter converter) {
 
-        this.dataConverter = converter;
+        // do nothing
         return this;
     }
 
