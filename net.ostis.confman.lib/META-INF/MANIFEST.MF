@@ -25,4 +25,7 @@ Bundle-ClassPath: log4j/log4j-1.2.17.jar,
 Export-Package: org.apache.log4j,
  org.apache.poi.ss.usermodel,
  org.apache.poi.xssf.usermodel,
- org.apache.poi.xwpf.usermodel
+ org.apache.poi.xwpf.usermodel,
+ org.apache.poi.hwpf.usermodel,
+ org.apache.poi.hwpf,
+ org.apache.poi.poifs.filesystem
