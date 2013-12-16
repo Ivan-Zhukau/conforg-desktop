@@ -1,6 +1,7 @@
 package net.ostis.confman.ui.conference.parts;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
 import net.ostis.confman.ui.common.component.ToStringArrayConverter;
 import net.ostis.confman.ui.common.component.ValueBinder;
+import net.ostis.confman.ui.common.component.ValueComboBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
@@ -156,20 +158,33 @@ public class ReportEditorPart {
                     }
                 });
 
-        this.combos.get(ReportCombos.MAIN_AUTHOR).setValueBinder(
-                new ValueBinder() {
-
+        this.combos.get(ReportCombos.MAIN_AUTHOR).setValueComboBinder(
+                new ValueComboBinder() {
+                    
                     @Override
-                    public void setValue(final Object value) {
-
-                        report.setMainAuthor((Participant) value);
-
+                    public void setValues(Object value) {
+                    
+                        report.setAllAuthors((List<Participant>) value);
+                        
                     }
-
+                    
                     @Override
-                    public Object getValue() {
-
+                    public void setCurrentValue(Object value) {
+                    
+                        report.setMainAuthor((Participant) value);
+                        
+                    }
+                    
+                    @Override
+                    public Object getValues() {
+                    
                         return report.getAllAuthors();
+                    }
+                    
+                    @Override
+                    public Object getCurrentValue() {
+                    
+                        return report.getMainAuthor();
                     }
                 });
     }
@@ -209,6 +224,10 @@ public class ReportEditorPart {
 
         for (final ReportFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
+
+        }
+        for (final ReportCombos field : this.combos.keySet()) {
+            this.combos.get(field).apply();
 
         }
         // TODO: add getter (?) for ValueBinder in TextField and create\

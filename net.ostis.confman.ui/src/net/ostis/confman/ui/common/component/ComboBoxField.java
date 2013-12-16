@@ -18,7 +18,7 @@ public class ComboBoxField extends Composite implements
 
     private DataConverter dataConverter;
 
-    private ValueBinder   valueBinder;
+    private ValueComboBinder   valueBinder;
 
     public ComboBoxField(final Composite parent, final String labelText,
             final String[] items) {
@@ -46,49 +46,62 @@ public class ComboBoxField extends Composite implements
     @Override
     public void apply() {
 
-        final Object value = this.valueBinder.getValue();
-        final String[] values = new ToStringArrayConverter().convert(value);
-        final Object applied = this.dataConverter.convert(values[this.comboBox
-                .getSelectionIndex()]);
-        this.valueBinder.setValue(applied);
+        final Object value = this.valueBinder.getValues();
+        final Object applied = ((List<Object>)value).get(this.comboBox
+                .getSelectionIndex());
+        this.valueBinder.setCurrentValue(applied);
     }
 
     @Override
     public void activate() {
 
-        final Object value = this.valueBinder.getValue();
+        final Object value = this.valueBinder.getValues();
         String[] items = new String[0];
         if (value != null) {
-            items = new ToStringArrayConverter().convert(value);
+            items = getItemsValues(value);
         }
-        final String[] itemValues = getItemsValues(items);
-        this.comboBox.setItems(itemValues);
-        //this.comboBox.select(0);
+        this.comboBox.setItems(items);
+        setSelectedItem();
     }
 
-    private String[] getItemsValues(final String[] items) {
+    private String[] getItemsValues(final Object object) {
+        String[] itemsValues = new String[0];
+        
+            if (((List<Object>) object).get(0) instanceof Participant) {                
+                itemsValues = getParticipantItems(object);
+            }
+            
+        return itemsValues;
+    }
 
-        final String[] itemsValues = new String[items.length];
-
-        if(this.valueBinder.getValue()!=null){
-            if (((List<Object>) this.valueBinder.getValue()).get(0) instanceof Participant) {
-                List<Participant>  participants= (List<Participant>) this.valueBinder.getValue();
-                int index = 0;
-                for (final Participant participant : participants) {
-                    
-                    itemsValues[index] = participant.getPerson().getFirstName()
-                            + " " + participant.getPerson().getSurname() + " "
-                            + participant.getPerson().getPatronymic();
-                    ++index;
+    private void setSelectedItem() {
+        if(this.valueBinder.getCurrentValue()!=null){
+            List<Object> objects = (List<Object>)this.valueBinder.getValues();
+            for(Object object: objects){
+                if(object.equals(this.valueBinder.getCurrentValue())){
+                   this.comboBox.select(objects.indexOf(object)); 
+                   break;
                 }
             }
+        }        
+    }
+
+    private String[] getParticipantItems(final Object object) {
+
+        String[] itemsValues;
+        List<Participant>  participants = (List<Participant>) object;
+        itemsValues = new String[participants.size()];
+        int index = 0;
+        for (final Participant participant : participants) {
+            
+            itemsValues[index] = participant.getPerson().getFullName();
+            ++index;
         }
-        // TODO: You can add options
         return itemsValues;
     }
 
     @Override
-    public ComboBoxField setValueBinder(final ValueBinder valueBinder) {
+    public ComboBoxField setValueComboBinder(final ValueComboBinder valueBinder) {
 
         this.valueBinder = valueBinder;
         return this;
@@ -104,6 +117,13 @@ public class ComboBoxField extends Composite implements
     public void setItems(final String[] items) {
 
         this.comboBox.setItems(items);
+    }
+
+    @Override
+    public ComboBoxField setValueBinder(ValueBinder valueBinder) {
+
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

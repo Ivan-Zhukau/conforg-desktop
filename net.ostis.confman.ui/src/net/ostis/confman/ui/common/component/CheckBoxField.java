@@ -55,4 +55,11 @@ public class CheckBoxField extends Composite implements
         return this;
     }
 
+    @Override
+    public CheckBoxField setValueComboBinder(ValueComboBinder valueBinder) {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
