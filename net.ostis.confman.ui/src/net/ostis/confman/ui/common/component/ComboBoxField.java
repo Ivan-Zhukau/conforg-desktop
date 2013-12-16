@@ -14,11 +14,11 @@ import org.eclipse.swt.widgets.Label;
 public class ComboBoxField extends Composite implements
         EditableComponent<ComboBoxField> {
 
-    private Combo         comboBox;
+    private Combo            comboBox;
 
-    private DataConverter dataConverter;
+    private DataConverter    dataConverter;
 
-    private ValueComboBinder   valueBinder;
+    private ValueComboBinder valueBinder;
 
     public ComboBoxField(final Composite parent, final String labelText,
             final String[] items) {
@@ -47,7 +47,7 @@ public class ComboBoxField extends Composite implements
     public void apply() {
 
         final Object value = this.valueBinder.getValues();
-        final Object applied = ((List<Object>)value).get(this.comboBox
+        final Object applied = ((List<Object>) value).get(this.comboBox
                 .getSelectionIndex());
         this.valueBinder.setCurrentValue(applied);
     }
@@ -65,35 +65,38 @@ public class ComboBoxField extends Composite implements
     }
 
     private String[] getItemsValues(final Object object) {
+
         String[] itemsValues = new String[0];
-        
-            if (((List<Object>) object).get(0) instanceof Participant) {                
-                itemsValues = getParticipantItems(object);
-            }
-            
+
+        if (((List<Object>) object).get(0) instanceof Participant) {
+            itemsValues = getParticipantItems(object);
+        }
+
         return itemsValues;
     }
 
     private void setSelectedItem() {
-        if(this.valueBinder.getCurrentValue()!=null){
-            List<Object> objects = (List<Object>)this.valueBinder.getValues();
-            for(Object object: objects){
-                if(object.equals(this.valueBinder.getCurrentValue())){
-                   this.comboBox.select(objects.indexOf(object)); 
-                   break;
+
+        if (this.valueBinder.getCurrentValue() != null) {
+            final List<Object> objects = (List<Object>) this.valueBinder
+                    .getValues();
+            for (final Object object : objects) {
+                if (object.equals(this.valueBinder.getCurrentValue())) {
+                    this.comboBox.select(objects.indexOf(object));
+                    break;
                 }
             }
-        }        
+        }
     }
 
     private String[] getParticipantItems(final Object object) {
 
         String[] itemsValues;
-        List<Participant>  participants = (List<Participant>) object;
+        final List<Participant> participants = (List<Participant>) object;
         itemsValues = new String[participants.size()];
         int index = 0;
         for (final Participant participant : participants) {
-            
+
             itemsValues[index] = participant.getPerson().getFullName();
             ++index;
         }
@@ -120,7 +123,7 @@ public class ComboBoxField extends Composite implements
     }
 
     @Override
-    public ComboBoxField setValueBinder(ValueBinder valueBinder) {
+    public ComboBoxField setValueBinder(final ValueBinder valueBinder) {
 
         // TODO Auto-generated method stub
         return null;

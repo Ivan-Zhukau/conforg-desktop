@@ -55,7 +55,8 @@ public class ConfTreeListenerProvider {
         return new TreeDoubleClickListener();
     }
 
-    public IMenuListener getIMenuListener(final TreeViewer treeViewer, IEventBroker eventBroker, final EPartService partService) {
+    public IMenuListener getIMenuListener(final TreeViewer treeViewer,
+            final IEventBroker eventBroker, final EPartService partService) {
 
         return new TreeMenuListener(treeViewer, eventBroker, partService);
     }
@@ -197,11 +198,12 @@ public class ConfTreeListenerProvider {
 
         private ConferenceService conferenceService;
 
-        private IEventBroker eventBroker;
+        private IEventBroker      eventBroker;
 
-        private EPartService partService;
+        private EPartService      partService;
 
-        public TreeMenuListener(final TreeViewer treeViewer, IEventBroker eventBroker, EPartService partService) {
+        public TreeMenuListener(final TreeViewer treeViewer,
+                final IEventBroker eventBroker, final EPartService partService) {
 
             super();
             this.treeViewer = treeViewer;
@@ -238,9 +240,12 @@ public class ConfTreeListenerProvider {
                 @Override
                 public void run() {
 
-                    final MPart part = partService.findPart(PartId.SECTION_PART);
-                    partService.showPart(part, PartState.VISIBLE);
-                    eventBroker.post(ConferenceTopics.ADD_NEW_SECTION, null);
+                    final MPart part = TreeMenuListener.this.partService
+                            .findPart(PartId.SECTION_PART);
+                    TreeMenuListener.this.partService.showPart(part,
+                            PartState.VISIBLE);
+                    TreeMenuListener.this.eventBroker.post(
+                            ConferenceTopics.ADD_NEW_SECTION, null);
                 }
             };
             manager.add(addSectionAction);
@@ -268,7 +273,8 @@ public class ConfTreeListenerProvider {
 
                     TreeMenuListener.this.conferenceService
                             .deleteSection(selectedElement);
-                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
+                    TreeMenuListener.this.eventBroker.post(
+                            ConferenceTopics.CONF_TREE_UPDATE, null);
                 }
             };
             manager.add(addReportAction);
@@ -285,7 +291,8 @@ public class ConfTreeListenerProvider {
                 final Report selectedReport = dialog.getSelectedReport();
                 if (selectedReport != null) {
                     this.conferenceService.addReport(section, selectedReport);
-                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
+                    this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE,
+                            null);
                 }
             }
         }
@@ -301,7 +308,8 @@ public class ConfTreeListenerProvider {
 
                     TreeMenuListener.this.conferenceService
                             .deleteReport(selectedElement);
-                    eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
+                    TreeMenuListener.this.eventBroker.post(
+                            ConferenceTopics.CONF_TREE_UPDATE, null);
                 }
             };
             manager.add(deleteReportAction);

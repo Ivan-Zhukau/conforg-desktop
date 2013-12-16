@@ -1,0 +1,6 @@
+<email-templates>
+	<email-template>
+		<name>First.vm</name>
+		<language>ruRU</language>
+	</email-template>
+</email-templates>

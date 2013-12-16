@@ -31,4 +31,9 @@ public final class LocalizationUtil {
         return bundle.getString(toTranslate.getResourceKey());
     }
 
+    public String translate(final String toTranslate) {
+
+        return bundle.getString(toTranslate);
+    }
+
 }
