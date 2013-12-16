@@ -130,4 +130,11 @@ public class DateChooserField extends Composite implements
             }
         }
     }
+
+    @Override
+    public DateChooserField setValueComboBinder(ValueComboBinder valueBinder) {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

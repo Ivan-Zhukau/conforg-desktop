@@ -70,4 +70,11 @@ public class TextField extends Composite implements
         this.input.setText(text);
     }
 
+    @Override
+    public TextField setValueComboBinder(ValueComboBinder valueBinder) {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

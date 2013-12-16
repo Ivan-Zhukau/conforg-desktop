@@ -25,7 +25,6 @@ public class DocParser {
     }
 
     public List<String> parse(final FileInputStream inputStream) {
-
         POIFSFileSystem fileSystem = null;
         HWPFDocument doc = null;
         try {
