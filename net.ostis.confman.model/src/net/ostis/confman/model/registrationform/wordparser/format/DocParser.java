@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.registrationform.wordparser.RegistrationFormConstant;
+import net.ostis.confman.model.registrationform.wordparser.SymbolCleaner;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Paragraph;
@@ -41,6 +42,7 @@ public class DocParser {
 
         final Range range = doc.getRange();
         final Paragraph tablePar = range.getParagraph(0);
+        SymbolCleaner cleaner = new SymbolCleaner();
         if (tablePar.isInTable()) {
             final Table table = range.getTable(tablePar);
             for (int rowIdx = 0; rowIdx < table.numRows(); rowIdx++) {
@@ -49,7 +51,8 @@ public class DocParser {
                     if (rowIdx != 0
                             && colIdx == RegistrationFormConstant.INFORMATION_COLUNM) {
                         final TableCell cell = row.getCell(colIdx);
-                        this.infoList.add(cell.getParagraph(0).text());
+                        this.infoList.add(cleaner.check(cell.getParagraph(0).text()
+                                .substring(0, cell.getParagraph(0).text().length()-1)));
                     }
                 }
             }

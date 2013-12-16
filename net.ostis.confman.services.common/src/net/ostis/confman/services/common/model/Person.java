@@ -97,7 +97,7 @@ public class Person {
     
     public String getFullName() {
 
-        return this.firstName+" "+this.surname+" "+this.patronymic;
+        return this.firstName+" "+this.patronymic+" "+this.surname;
     }
 
 }
