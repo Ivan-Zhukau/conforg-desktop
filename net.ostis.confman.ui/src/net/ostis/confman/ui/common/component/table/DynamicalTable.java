@@ -36,19 +36,35 @@ public class DynamicalTable {
     private void createComposite(final Composite parent,
             final int selectionBehaviour) {
 
-        parent.setLayout(new GridLayout(1, true));
-        final GridData layoutData = new GridData();
-        layoutData.verticalAlignment = GridData.FILL;
-        layoutData.grabExcessVerticalSpace = true;
-        layoutData.horizontalAlignment = GridData.FILL;
-        layoutData.grabExcessHorizontalSpace = true;
-        this.tableViewer = new TableViewer(parent, selectionBehaviour
+        final Composite composite = createWrapper(parent);
+        final GridData layoutData = createTableLayoutData();
+        this.tableViewer = new TableViewer(composite, selectionBehaviour
                 | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
         final Table table = this.tableViewer.getTable();
         this.tableViewer.getControl().setLayoutData(layoutData);
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
-        createPaging(parent);
+        createPaging(composite);
+    }
+
+    private GridData createTableLayoutData() {
+
+        final GridData layoutData = new GridData();
+        layoutData.verticalAlignment = GridData.FILL;
+        layoutData.grabExcessVerticalSpace = true;
+        layoutData.horizontalAlignment = GridData.FILL;
+        layoutData.grabExcessHorizontalSpace = true;
+        return layoutData;
+    }
+
+    private Composite createWrapper(final Composite parent) {
+
+        final Composite composite = new Composite(parent, SWT.NONE);
+        composite.setLayout(new GridLayout(1, true));
+        final GridData gridData = new GridData(SWT.FILL, SWT.FILL,
+                Boolean.TRUE, Boolean.TRUE);
+        composite.setLayoutData(gridData);
+        return composite;
     }
 
     private void createPaging(final Composite parent) {

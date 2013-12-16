@@ -3,12 +3,19 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Participant;
+import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -24,6 +31,9 @@ public class TemplatesEditorPart {
     private static final int LAYOUT_COL_COUNT = 1;
 
     private enum Captions implements Localizable {
+        NAME("participantTableAuthorName"),
+        CONFERENCE("participantTableConference"),
+        SECTION("participantTableSection"),
         NEXT_STEP("nextStep");
 
         private String rk;
@@ -41,9 +51,13 @@ public class TemplatesEditorPart {
     }
 
     @Inject
-    private ESelectionService selectionService;
+    private ESelectionService   selectionService;
 
-    private Text              textArea;
+    private Text                textArea;
+
+    private DynamicalTable      table;
+
+    private EmailedParticipants participants;
 
     public TemplatesEditorPart() {
 
@@ -62,11 +76,10 @@ public class TemplatesEditorPart {
                 if (!(selection instanceof EmailedParticipants)) {
                     return;
                 }
-                final EmailedParticipants participants = (EmailedParticipants) selection;
-                onNewSelection(participants);
+                TemplatesEditorPart.this.participants = (EmailedParticipants) selection;
+                buildLayout(parent);
             }
         });
-        buildLayout(parent);
     }
 
     private void onNewSelection(final EmailedParticipants participants) {
@@ -76,9 +89,23 @@ public class TemplatesEditorPart {
 
     private void buildLayout(final Composite parent) {
 
-        parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, Boolean.FALSE));
-        createTextArea(parent);
-        createNextStepButton(parent);
+        parent.setLayout(new FillLayout());
+        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
+        createColumns();
+        addTableEventSupport();
+        final Composite composite = createTextWrapper(parent);
+        createTextArea(composite);
+        createNextStepButton(composite);
+    }
+
+    private Composite createTextWrapper(final Composite parent) {
+
+        final Composite composite = new Composite(parent, SWT.NONE);
+        composite.setLayout(new GridLayout(LAYOUT_COL_COUNT, Boolean.FALSE));
+        final GridData gridData = new GridData(SWT.FILL, SWT.FILL,
+                Boolean.TRUE, Boolean.TRUE);
+        composite.setLayoutData(gridData);
+        return composite;
     }
 
     private void createTextArea(final Composite parent) {
@@ -90,6 +117,44 @@ public class TemplatesEditorPart {
         this.textArea = new Text(composite, SWT.MULTI | SWT.BORDER
                 | SWT.V_SCROLL | SWT.H_SCROLL);
         composite.setLayoutData(gridData);
+    }
+
+    private void createColumns() {
+
+        final LocalizationUtil localizationUtil = LocalizationUtil
+                .getInstance();
+        final int COLUMN_WIDTH = 200;
+        this.table.createColumn(localizationUtil.translate(Captions.NAME),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Participant participant = (Participant) element;
+                        final Person person = participant.getPerson();
+                        return person.getFirstName() + ' '
+                                + person.getSurname();
+                    }
+                });
+        this.table.createColumn(
+                localizationUtil.translate(Captions.CONFERENCE), COLUMN_WIDTH,
+                new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Participant participant = (Participant) element;
+                        final Conference conference = participant
+                                .getConference();
+                        return conference == null ? "" : conference.getTitle();
+                    }
+                });
+    }
+
+    private void addTableEventSupport() {
+
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
+        this.table.setInput(this.participants.getParticipants());
     }
 
     private void createNextStepButton(final Composite parent) {
@@ -105,19 +170,31 @@ public class TemplatesEditorPart {
             @Override
             public void widgetSelected(final SelectionEvent e) {
 
-                // TODO Auto-generated method stub
+                onSelection();
 
             }
 
             @Override
             public void widgetDefaultSelected(final SelectionEvent e) {
 
-                // TODO Auto-generated method stub
+                onSelection();
 
             }
 
             private void onSelection() {
 
+                final IStructuredSelection selection = (IStructuredSelection) TemplatesEditorPart.this.table
+                        .getViewer().getSelection();
+                final Object selectedElement = selection.getFirstElement();
+                if (selectedElement instanceof EmailedParticipants) {
+                    final EmailedParticipants emailedParticipants = (EmailedParticipants) selectedElement;
+                    onNewSelection(emailedParticipants);
+                    
+                } else {
+
+                    // TODO vadim-mihalovski: add warning dialog: empty
+                    // selection
+                }
             }
         });
     }
