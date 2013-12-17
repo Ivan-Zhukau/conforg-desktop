@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -64,7 +65,7 @@ public class TableViewPart {
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        parent.setLayout(new GridLayout(1, true));
+        parent.setLayout(new FillLayout());
         this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
         createColumns();
         addTableEventSupport();
