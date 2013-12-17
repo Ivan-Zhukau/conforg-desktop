@@ -27,6 +27,8 @@ public class ServiceLocator {
                 new ParticipantServiceImpl());
         this.serviceImpls.put(EmailService.class,
                 new EmailServiceImpl());
+        this.serviceImpls.put(SectionService.class,
+                new SectionServiceImpl());
     }
 
     public static ServiceLocator getInstance() {
