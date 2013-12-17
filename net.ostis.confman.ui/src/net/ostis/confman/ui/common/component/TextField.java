@@ -71,7 +71,7 @@ public class TextField extends Composite implements
     }
 
     @Override
-    public TextField setValueComboBinder(ValueComboBinder valueBinder) {
+    public TextField setValueComboBinder(final ValueComboBinder valueBinder) {
 
         // TODO Auto-generated method stub
         return null;

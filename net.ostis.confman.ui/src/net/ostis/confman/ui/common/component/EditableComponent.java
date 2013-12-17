@@ -7,7 +7,7 @@ public interface EditableComponent<T> {
     void activate();
 
     T setValueBinder(ValueBinder valueBinder);
-    
+
     T setValueComboBinder(ValueComboBinder valueBinder);
 
     T setDataConverter(DataConverter converter);
