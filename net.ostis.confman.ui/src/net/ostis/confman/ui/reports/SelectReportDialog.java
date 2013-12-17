@@ -132,10 +132,20 @@ public class SelectReportDialog extends TitleAreaDialog {
                     public String getText(final Object element) {
 
                         final Report report = (Report) element;
-                        final Person person = report.getMainAuthor()
-                                .getPerson();
-                        return person.getFirstName() + ' '
-                                + person.getSurname();
+                        if (report.getMainAuthor() != null) {
+                            final Person person = report.getMainAuthor()
+                                    .getPerson();
+                            return checkPersonFields(person) ? person
+                                    .getFirstName() + ' ' + person.getSurname()
+                                    : "";
+                        }
+                        return "";
+                    }
+
+                    private boolean checkPersonFields(final Person person) {
+
+                        return person != null && person.getFirstName() != null
+                                && person.getSurname() != null;
                     }
                 });
         this.table.createColumn(
