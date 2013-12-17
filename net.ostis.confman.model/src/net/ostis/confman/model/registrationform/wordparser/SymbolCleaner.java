@@ -10,12 +10,12 @@ public class SymbolCleaner {
 
         final StringBuilder tempString = new StringBuilder(string);
         for (int index = 0; index < tempString.length(); ++index) {
-            if (!(tempString.charAt(index) >= '!' && tempString.charAt(index) <= 'z')) {
-                if (!(tempString.charAt(index) >= 'А' && tempString
-                        .charAt(index) <= 'я')) {
-                    if (!(tempString.charAt(index) == 'ё' || tempString
-                            .charAt(index) == 'Ё')) {
-                        tempString.setCharAt(index, ' ');
+            if (!(tempString.charAt(index) >= 33 && tempString.charAt(index) <= 122)) {
+                if (!(tempString.charAt(index) >= 1040 && tempString
+                        .charAt(index) <= 1103)) {
+                    if (!(tempString.charAt(index) == 1105 || tempString
+                            .charAt(index) == 1025)) {
+                        tempString.setCharAt(index, (char) 32);
                     }
                 }
             }

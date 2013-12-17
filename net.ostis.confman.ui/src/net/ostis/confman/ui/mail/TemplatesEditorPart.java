@@ -11,6 +11,8 @@ import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -34,6 +36,7 @@ public class TemplatesEditorPart {
         NAME("participantTableAuthorName"),
         CONFERENCE("participantTableConference"),
         SECTION("participantTableSection"),
+        PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep");
 
         private String rk;
@@ -50,18 +53,24 @@ public class TemplatesEditorPart {
         }
     }
 
+    protected final static String PARTICIPANTS_CHOOSE_PART_ID = "net.ostis.confman.ui.part.email.participantsPart";
+
     @Inject
-    private ESelectionService   selectionService;
+    private EPartService          partService;
 
-    private Text                textArea;
+    @Inject
+    private ESelectionService     selectionService;
 
-    private DynamicalTable      table;
+    private Text                  textArea;
 
-    private EmailedParticipants participants;
+    private DynamicalTable        table;
+
+    private EmailedParticipants   participants;
 
     public TemplatesEditorPart() {
 
         super();
+        this.participants = new EmailedParticipants();
     }
 
     @PostConstruct
@@ -77,9 +86,10 @@ public class TemplatesEditorPart {
                     return;
                 }
                 TemplatesEditorPart.this.participants = (EmailedParticipants) selection;
-                buildLayout(parent);
+                addTableEventSupport();
             }
         });
+        buildLayout(parent);
     }
 
     private void onNewSelection(final EmailedParticipants participants) {
@@ -92,10 +102,10 @@ public class TemplatesEditorPart {
         parent.setLayout(new FillLayout());
         this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
         createColumns();
-        addTableEventSupport();
         final Composite composite = createTextWrapper(parent);
         createTextArea(composite);
         createNextStepButton(composite);
+        createPreviousStepButton(composite);
     }
 
     private Composite createTextWrapper(final Composite parent) {
@@ -189,12 +199,46 @@ public class TemplatesEditorPart {
                 if (selectedElement instanceof EmailedParticipants) {
                     final EmailedParticipants emailedParticipants = (EmailedParticipants) selectedElement;
                     onNewSelection(emailedParticipants);
-                    
+
                 } else {
 
                     // TODO vadim-mihalovski: add warning dialog: empty
                     // selection
                 }
+            }
+        });
+    }
+
+    private void createPreviousStepButton(final Composite composite) {
+
+        final LocalizationUtil util = LocalizationUtil.getInstance();
+        final Button previousButton = new Button(composite, SWT.NONE);
+        previousButton.setText(util.translate(Captions.PREVIOUS_STEP));
+        final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
+                Boolean.FALSE, Boolean.FALSE);
+        previousButton.setLayoutData(gridData);
+        previousButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                previousStep();
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                previousStep();
+
+            }
+
+            private void previousStep() {
+
+                final MPart part = TemplatesEditorPart.this.partService
+                        .findPart(PARTICIPANTS_CHOOSE_PART_ID);
+                TemplatesEditorPart.this.partService.showPart(part,
+                        PartState.VISIBLE);
             }
         });
     }

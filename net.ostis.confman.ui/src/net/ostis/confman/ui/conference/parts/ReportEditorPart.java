@@ -160,30 +160,30 @@ public class ReportEditorPart {
 
         this.combos.get(ReportCombos.MAIN_AUTHOR).setValueComboBinder(
                 new ValueComboBinder() {
-                    
+
                     @Override
-                    public void setValues(Object value) {
-                    
+                    public void setValues(final Object value) {
+
                         report.setAllAuthors((List<Participant>) value);
-                        
+
                     }
-                    
+
                     @Override
-                    public void setCurrentValue(Object value) {
-                    
+                    public void setCurrentValue(final Object value) {
+
                         report.setMainAuthor((Participant) value);
-                        
+
                     }
-                    
+
                     @Override
                     public Object getValues() {
-                    
+
                         return report.getAllAuthors();
                     }
-                    
+
                     @Override
                     public Object getCurrentValue() {
-                    
+
                         return report.getMainAuthor();
                     }
                 });

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.registrationform.wordparser.RegistrationFormConstant;
+import net.ostis.confman.model.registrationform.wordparser.SymbolCleaner;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
@@ -35,12 +36,13 @@ public class DocxParser {
 
     private void readTables(final List<XWPFTable> tables) {
 
+        SymbolCleaner cleaner = new SymbolCleaner();
         for (final XWPFTable table : tables) {
             for (final XWPFTableRow row : table.getRows()) {
                 for (final XWPFTableCell cell : row.getTableCells()) {
                     if (row.getTableCells().indexOf(cell) == RegistrationFormConstant.INFORMATION_COLUNM
                             && table.getRows().indexOf(row) != 0) {
-                        this.infoList.add(cell.getText());
+                        this.infoList.add(cleaner.check(cell.getText()));
                     }
                 }
             }

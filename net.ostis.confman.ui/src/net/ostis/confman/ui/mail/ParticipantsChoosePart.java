@@ -41,7 +41,8 @@ public class ParticipantsChoosePart {
         NAME("participantTableAuthorName"),
         CONFERENCE("participantTableConference"),
         SECTION("participantTableSection"),
-        NEXT("nextStep");
+        PREVIOUS_STEP("previousStep"),
+        NEXT_STEP("nextStep");
 
         private String rk;
 
@@ -58,6 +59,8 @@ public class ParticipantsChoosePart {
     }
 
     protected static final String TEMPLATES_EDITOR_PART_ID = "net.ostis.confman.ui.part.email.editor";
+
+    protected static final String TEMPLATES_VIEW_PART_ID   = "net.ostis.confman.ui.part.emailTemplatesPart";
 
     @Inject
     private ESelectionService     selectionService;
@@ -98,6 +101,7 @@ public class ParticipantsChoosePart {
         parent.setLayout(new GridLayout(1, true));
         this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.MULTI);
         createNextStepButton(parent);
+        createPreviousStepButton(parent);
         createColumns();
         addTableEventSupport();
     }
@@ -107,7 +111,7 @@ public class ParticipantsChoosePart {
         final LocalizationUtil localizationUtil = LocalizationUtil
                 .getInstance();
         final Button nextButton = new Button(parent, SWT.NONE);
-        nextButton.setText(localizationUtil.translate(Captions.NEXT));
+        nextButton.setText(localizationUtil.translate(Captions.NEXT_STEP));
         final GridData gridData = new GridData(SWT.RIGHT, SWT.CENTER,
                 Boolean.FALSE, Boolean.FALSE);
         nextButton.setLayoutData(gridData);
@@ -145,9 +149,45 @@ public class ParticipantsChoosePart {
                     ParticipantsChoosePart.this.partService.activate(part);
 
                 } else {
-                    // TODO vadim-mihalovski: add warning dialog: empty
-                    // selection
+                    final InformationDialog dialog = new InformationDialog(
+                            parent.getShell());
+                    dialog.create();
+                    dialog.open();
                 }
+            }
+        });
+    }
+
+    private void createPreviousStepButton(final Composite composite) {
+
+        final LocalizationUtil util = LocalizationUtil.getInstance();
+        final Button previousButton = new Button(composite, SWT.NONE);
+        previousButton.setText(util.translate(Captions.PREVIOUS_STEP));
+        final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
+                Boolean.FALSE, Boolean.FALSE);
+        previousButton.setLayoutData(gridData);
+        previousButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                previousStep();
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                previousStep();
+
+            }
+
+            private void previousStep() {
+
+                final MPart part = ParticipantsChoosePart.this.partService
+                        .findPart(TEMPLATES_VIEW_PART_ID);
+                ParticipantsChoosePart.this.partService.showPart(part,
+                        PartState.VISIBLE);
             }
         });
     }

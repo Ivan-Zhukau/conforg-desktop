@@ -117,8 +117,10 @@ public class TemplatesViewPart {
 
                 } else {
 
-                    // TODO vadim-mihalovski: add warning dialog: empty
-                    // selection
+                    final InformationDialog dialog = new InformationDialog(
+                            parent.getShell());
+                    dialog.create();
+                    dialog.open();
                 }
             }
         });
