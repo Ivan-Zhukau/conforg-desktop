@@ -37,7 +37,10 @@ public class ConferenceEditorPart {
 
     private enum ConferenceFields implements Localizable {
         TITLE("conferenceTitle"),
-        CONF_VENUE("conferenceVenue");
+        COUNTRY("country"),
+        CITY("city"),
+        STREET("street"),
+        HOUSE("houseNumber");
 
         private String rk;
 
@@ -153,19 +156,64 @@ public class ConferenceEditorPart {
                         return conf.getTitle();
                     }
                 });
-        this.editFields.get(ConferenceFields.CONF_VENUE).setValueBinder(
+        this.editFields.get(ConferenceFields.COUNTRY).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setConferenceVenue((Address) value);
+                        conf.getConferenceVenue().setCountry((String) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getConferenceVenue();
+                        return conf.getConferenceVenue().getCountry();
+                    }
+                });
+        this.editFields.get(ConferenceFields.CITY).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getConferenceVenue().setCity((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getConferenceVenue().getCity();
+                    }
+                });
+        this.editFields.get(ConferenceFields.STREET).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getConferenceVenue().setStreet((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getConferenceVenue().getStreet();
+                    }
+                });
+        this.editFields.get(ConferenceFields.HOUSE).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getConferenceVenue().setHouseNumber((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getConferenceVenue().getHouseNumber();
                     }
                 });
         this.dateChooserFields.get(DateChooserFields.START_DATE)
@@ -207,9 +255,18 @@ public class ConferenceEditorPart {
         this.editFields.put(ConferenceFields.TITLE,
                 new TextField(parent, util.translate(ConferenceFields.TITLE))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.CONF_VENUE, new TextField(parent,
-                util.translate(ConferenceFields.CONF_VENUE))
-                .setDataConverter(new AddressDataConverter()));
+        this.editFields.put(ConferenceFields.COUNTRY, new TextField(parent,
+                util.translate(ConferenceFields.COUNTRY))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.CITY, new TextField(parent,
+                util.translate(ConferenceFields.CITY))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.STREET, new TextField(parent,
+                util.translate(ConferenceFields.STREET))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.HOUSE, new TextField(parent,
+                util.translate(ConferenceFields.HOUSE))
+                .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
         this.dateChooserFields.put(
                 DateChooserFields.START_DATE,
