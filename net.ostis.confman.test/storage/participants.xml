@@ -16,9 +16,9 @@
             <report>5</report>
         </reports>
         <partrole>
-            <exhibition>false</exhibition>
-            <form>Reporter</form>
-            <pcmember>true</pcmember>
+            <exhibitionStand>false</exhibitionStand>
+            <participationForm></participationForm>
+            <programCommitteeMember>true</programCommitteeMember>
         </partrole>
     </participant>
 </participants>

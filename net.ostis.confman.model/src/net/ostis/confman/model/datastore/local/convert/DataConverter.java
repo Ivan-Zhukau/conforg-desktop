@@ -3,6 +3,7 @@ package net.ostis.confman.model.datastore.local.convert;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.ostis.confman.model.datastore.StorageProvider;
 import net.ostis.confman.model.registrationform.ArticleInformation;
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.ContactInformation;
@@ -67,6 +68,13 @@ public class DataConverter {
             model.getReports().add(report);
         }
         model.getParticipants().addAll(participants);
+        saveModel(model);
+    }
+
+    private void saveModel(FullModel model) {
+
+        StorageProvider storageProvider = StorageProvider.getInstance();
+        storageProvider.persist(model);
     }
 
     private Report setReport(final ArticleInformation articleInformation) {

@@ -34,6 +34,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.MessageBox;
 
 public class ParticipantsChoosePart {
 
@@ -149,9 +150,12 @@ public class ParticipantsChoosePart {
                     ParticipantsChoosePart.this.partService.activate(part);
 
                 } else {
-                    final InformationDialog dialog = new InformationDialog(
-                            parent.getShell());
-                    dialog.create();
+                    final MessageBox dialog = new MessageBox(parent.getShell(),
+                            SWT.ICON_QUESTION | SWT.OK);
+                    dialog.setText(localizationUtil
+                            .translate("warningDialogTitle"));
+                    dialog.setMessage(localizationUtil
+                            .translate("warningDialogMessage"));
                     dialog.open();
                 }
             }
