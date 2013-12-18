@@ -12,7 +12,7 @@ import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateChooserField;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
-import net.ostis.confman.ui.common.component.StringDataConverter;
+import net.ostis.confman.ui.common.component.IntegerDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
 import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
@@ -37,7 +37,9 @@ public class SectionTimeEditorPart {
         TIME_CHAIRMAN("sectionTimeChairman"),
         TIME_REPORT("sectionTimeReport"),
         TIME_PLENARY_REPORT("sectionTimePlenaryReport"),
-        TIME_SMALL_BREAK("sectionTimeSmallBreak");
+        TIME_SMALL_BREAK("sectionTimeSmallBreak"),
+        NUMBER_COFFEE_BREAK("sectionTimeNumberCoffeeBreak"),
+        TIME_COFFEE_BREAK("sectionTimeCoffeeBreak");
 
         private String rk;
 
@@ -154,48 +156,98 @@ public class SectionTimeEditorPart {
                     }
                 });
 
-        /*
-         * this.editFields.get(TextFields.TIME_CHAIRMAN).setValueBinder( new
-         * ValueBinder() {
-         * 
-         * @Override public void setValue(final Object value) {
-         * 
-         * conf.setChairmanTime((int) value); }
-         * 
-         * @Override public Object getValue() {
-         * 
-         * return conf.getChairmanTime(); } });
-         * this.editFields.get(TextFields.TIME_REPORT).setValueBinder( new
-         * ValueBinder() {
-         * 
-         * @Override public void setValue(final Object value) {
-         * 
-         * conf.setReportTime((int) value); }
-         * 
-         * @Override public Object getValue() {
-         * 
-         * return conf.getReportTime(); } });
-         * this.editFields.get(TextFields.TIME_PLENARY_REPORT).setValueBinder(
-         * new ValueBinder() {
-         * 
-         * @Override public void setValue(final Object value) {
-         * 
-         * conf.setPlenaryReportTime((int) value); }
-         * 
-         * @Override public Object getValue() {
-         * 
-         * return conf.getPlenaryReportTime(); } });
-         * this.editFields.get(TextFields.TIME_SMALL_BREAK).setValueBinder( new
-         * ValueBinder() {
-         * 
-         * @Override public void setValue(final Object value) {
-         * 
-         * conf.setBreakTime((int) value); }
-         * 
-         * @Override public Object getValue() {
-         * 
-         * return conf.getBreakTime(); } });
-         */
+        this.editFields.get(TextFields.TIME_CHAIRMAN).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings().setChairmanTime((Integer) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getChairmanTime();
+                    }
+                });
+        this.editFields.get(TextFields.TIME_REPORT).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings().setReportTime((Integer) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getReportTime();
+                    }
+                });
+        this.editFields.get(TextFields.TIME_PLENARY_REPORT).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings()
+                                .setPlenaryReportTime((Integer) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getPlenaryReportTime();
+                    }
+                });
+        this.editFields.get(TextFields.TIME_SMALL_BREAK).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings().setBreakTime((int) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getBreakTime();
+                    }
+                });
+        this.editFields.get(TextFields.NUMBER_COFFEE_BREAK).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings().setCoffeeBreakNumber((int) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getCoffeeBreakNumber();
+                    }
+                });
+        this.editFields.get(TextFields.TIME_COFFEE_BREAK).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        conf.getSettings().setCoffeeBreakTime((int) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getSettings().getCoffeeBreakTime();
+                    }
+                });
+
     }
 
     private void buildLayout(final Composite parent) {
@@ -212,16 +264,22 @@ public class SectionTimeEditorPart {
 
         this.editFields.put(TextFields.TIME_CHAIRMAN, new TextField(parent,
                 util.translate(TextFields.TIME_CHAIRMAN))
-                .setDataConverter(new StringDataConverter()));
+                .setDataConverter(new IntegerDataConverter()));
         this.editFields.put(TextFields.TIME_REPORT,
                 new TextField(parent, util.translate(TextFields.TIME_REPORT))
-                        .setDataConverter(new StringDataConverter()));
+                        .setDataConverter(new IntegerDataConverter()));
         this.editFields.put(TextFields.TIME_PLENARY_REPORT, new TextField(
                 parent, util.translate(TextFields.TIME_PLENARY_REPORT))
-                .setDataConverter(new StringDataConverter()));
+                .setDataConverter(new IntegerDataConverter()));
         this.editFields.put(TextFields.TIME_SMALL_BREAK, new TextField(parent,
                 util.translate(TextFields.TIME_SMALL_BREAK))
-                .setDataConverter(new StringDataConverter()));
+                .setDataConverter(new IntegerDataConverter()));
+        this.editFields.put(TextFields.NUMBER_COFFEE_BREAK, new TextField(
+                parent, util.translate(TextFields.NUMBER_COFFEE_BREAK))
+                .setDataConverter(new IntegerDataConverter()));
+        this.editFields.put(TextFields.TIME_COFFEE_BREAK, new TextField(parent,
+                util.translate(TextFields.TIME_COFFEE_BREAK))
+                .setDataConverter(new IntegerDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
@@ -242,6 +300,10 @@ public class SectionTimeEditorPart {
     }
 
     private void onUpdate() {
+        
+        for (final DateChooserFields field : this.dateChooserFields.keySet()) {
+            this.dateChooserFields.get(field).apply();
+        }
 
         for (final TextFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
