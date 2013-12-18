@@ -3,7 +3,6 @@ package net.ostis.confman.ui.sectiontime;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-
 import net.ostis.confman.services.SectionService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Section;
@@ -45,17 +44,17 @@ public class SectionTimeTablePart {
     }
 
     @Inject
-    private ESelectionService  selectionService;
+    private ESelectionService selectionService;
 
-    private SectionService sectionService;
+    private SectionService    sectionService;
 
-    private DynamicalTable     table;
+    private DynamicalTable    table;
 
     public SectionTimeTablePart() {
 
         super();
-        this.sectionService = (SectionService) ServiceLocator
-                .getInstance().getService(SectionService.class);
+        this.sectionService = (SectionService) ServiceLocator.getInstance()
+                .getService(SectionService.class);
     }
 
     @PostConstruct
@@ -90,7 +89,8 @@ public class SectionTimeTablePart {
                     public String getText(final Object element) {
 
                         final Section section = (Section) element;
-                        return new DateDataConverter().convert(section.getDate());
+                        return new DateDataConverter().convert(section
+                                .getDate());
                     }
                 });
     }
@@ -104,13 +104,14 @@ public class SectionTimeTablePart {
             @Override
             public void selectionChanged(final SelectionChangedEvent event) {
 
-               /* final IStructuredSelection selection = (IStructuredSelection) TableViewPart.this.table
-                        .getViewer().getSelection();
-                final Object selectedElement = selection.getFirstElement();
-                if (selectedElement instanceof Participant) {
-                    TableViewPart.this.selectionService
-                            .setSelection(selectedElement);
-                }*/
+                /*
+                 * final IStructuredSelection selection = (IStructuredSelection)
+                 * TableViewPart.this.table .getViewer().getSelection(); final
+                 * Object selectedElement = selection.getFirstElement(); if
+                 * (selectedElement instanceof Participant) {
+                 * TableViewPart.this.selectionService
+                 * .setSelection(selectedElement); }
+                 */
             }
         });
     }

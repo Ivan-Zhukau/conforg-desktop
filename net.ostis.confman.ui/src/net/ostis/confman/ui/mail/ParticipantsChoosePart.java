@@ -150,10 +150,12 @@ public class ParticipantsChoosePart {
                     ParticipantsChoosePart.this.partService.activate(part);
 
                 } else {
-                    MessageBox dialog = 
-                            new MessageBox(parent.getShell(), SWT.ICON_QUESTION | SWT.OK);
-                          dialog.setText(localizationUtil.translate("warningDialogTitle"));
-                          dialog.setMessage(localizationUtil.translate("warningDialogMessage"));
+                    final MessageBox dialog = new MessageBox(parent.getShell(),
+                            SWT.ICON_QUESTION | SWT.OK);
+                    dialog.setText(localizationUtil
+                            .translate("warningDialogTitle"));
+                    dialog.setMessage(localizationUtil
+                            .translate("warningDialogMessage"));
                     dialog.open();
                 }
             }

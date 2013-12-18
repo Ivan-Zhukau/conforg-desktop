@@ -56,7 +56,7 @@ public class SectionTimeEditorPart {
     }
 
     private enum DateChooserFields implements Localizable {
-        START("sectionTimeStart"),;
+        START("sectionTimeStart"), ;
 
         private String rk;
 
@@ -90,7 +90,7 @@ public class SectionTimeEditorPart {
 
     }
 
-    private final Map<TextFields, EditableComponent<TextField>>         editFields;
+    private final Map<TextFields, EditableComponent<TextField>>               editFields;
 
     private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
@@ -138,22 +138,22 @@ public class SectionTimeEditorPart {
     }
 
     private void applyValueBindings(final Conference conf) {
-        
-        this.dateChooserFields.get(DateChooserFields.START)
-        .setValueBinder(new ValueBinder() {
 
-            @Override
-            public void setValue(final Object value) {
+        this.dateChooserFields.get(DateChooserFields.START).setValueBinder(
+                new ValueBinder() {
 
-                conf.setStartDate((Date) value);
-            }
+                    @Override
+                    public void setValue(final Object value) {
 
-            @Override
-            public Object getValue() {
+                        conf.setStartDate((Date) value);
+                    }
 
-                return conf.getStartDate();
-            }
-        });
+                    @Override
+                    public Object getValue() {
+
+                        return conf.getStartDate();
+                    }
+                });
 
         this.editFields.get(TextFields.TIME_CHAIRMAN).setValueBinder(
                 new ValueBinder() {
@@ -222,26 +222,26 @@ public class SectionTimeEditorPart {
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
         final DateDataConverter dateConverter = new DateDataConverter();
-        
+
         this.dateChooserFields.put(
                 DateChooserFields.START,
                 new DateChooserField(parent, util
                         .translate(DateChooserFields.START))
                         .setDataConverter(dateConverter));
-        
-        this.editFields.put(TextFields.TIME_CHAIRMAN,
-                new TextField(parent, util.translate(TextFields.TIME_CHAIRMAN))
-                        .setDataConverter(new StringDataConverter()));
-        this.editFields.put(TextFields.TIME_REPORT, new TextField(parent,
-                util.translate(TextFields.TIME_REPORT))
-                .setDataConverter(new AddressDataConverter()));
-        this.editFields.put(TextFields.TIME_PLENARY_REPORT, new TextField(parent,
-                util.translate(TextFields.TIME_PLENARY_REPORT))
+
+        this.editFields.put(TextFields.TIME_CHAIRMAN, new TextField(parent,
+                util.translate(TextFields.TIME_CHAIRMAN))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(TextFields.TIME_REPORT,
+                new TextField(parent, util.translate(TextFields.TIME_REPORT))
+                        .setDataConverter(new AddressDataConverter()));
+        this.editFields.put(TextFields.TIME_PLENARY_REPORT, new TextField(
+                parent, util.translate(TextFields.TIME_PLENARY_REPORT))
                 .setDataConverter(new AddressDataConverter()));
         this.editFields.put(TextFields.TIME_SMALL_BREAK, new TextField(parent,
                 util.translate(TextFields.TIME_SMALL_BREAK))
                 .setDataConverter(new AddressDataConverter()));
-        
+
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
