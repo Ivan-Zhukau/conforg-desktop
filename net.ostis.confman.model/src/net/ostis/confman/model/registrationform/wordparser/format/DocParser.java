@@ -26,6 +26,7 @@ public class DocParser {
     }
 
     public List<String> parse(final FileInputStream inputStream) {
+
         POIFSFileSystem fileSystem = null;
         HWPFDocument doc = null;
         try {
@@ -42,7 +43,7 @@ public class DocParser {
 
         final Range range = doc.getRange();
         final Paragraph tablePar = range.getParagraph(0);
-        SymbolCleaner cleaner = new SymbolCleaner();
+        final SymbolCleaner cleaner = new SymbolCleaner();
         if (tablePar.isInTable()) {
             final Table table = range.getTable(tablePar);
             for (int rowIdx = 0; rowIdx < table.numRows(); rowIdx++) {
@@ -51,8 +52,14 @@ public class DocParser {
                     if (rowIdx != 0
                             && colIdx == RegistrationFormConstant.INFORMATION_COLUNM) {
                         final TableCell cell = row.getCell(colIdx);
-                        this.infoList.add(cleaner.check(cell.getParagraph(0).text()
-                                .substring(0, cell.getParagraph(0).text().length()-1)));
+                        this.infoList.add(cleaner
+                                .check(cell
+                                        .getParagraph(0)
+                                        .text()
+                                        .substring(
+                                                0,
+                                                cell.getParagraph(0).text()
+                                                        .length() - 1)));
                     }
                 }
             }

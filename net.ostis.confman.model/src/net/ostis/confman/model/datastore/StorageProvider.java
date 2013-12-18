@@ -13,6 +13,8 @@ import net.ostis.confman.model.datastore.local.PersonWriter;
 import net.ostis.confman.model.datastore.local.ReportReader;
 import net.ostis.confman.model.datastore.local.ReportWriter;
 import net.ostis.confman.model.datastore.local.SectionReader;
+import net.ostis.confman.model.datastore.local.SectionSettingsReader;
+import net.ostis.confman.model.datastore.local.SectionSettingsWriter;
 import net.ostis.confman.model.datastore.local.SectionWriter;
 import net.ostis.confman.model.datastore.local.convert.EntityConverter;
 import net.ostis.confman.model.entity.Conference;
@@ -24,6 +26,8 @@ import net.ostis.confman.model.entity.Persons;
 import net.ostis.confman.model.entity.Report;
 import net.ostis.confman.model.entity.Reports;
 import net.ostis.confman.model.entity.Section;
+import net.ostis.confman.model.entity.SectionBreaks;
+import net.ostis.confman.model.entity.SectionSettings;
 import net.ostis.confman.model.entity.Sections;
 import net.ostis.confman.services.common.model.FullModel;
 
@@ -44,6 +48,8 @@ public class StorageProvider {
     private Sections               sections;
 
     private Conferences            conferences;
+
+    private SectionSettings        sectionSettings;
 
     private StorageProvider() {
 
@@ -66,6 +72,7 @@ public class StorageProvider {
         this.reports = loadReports();
         this.sections = loadSections();
         this.conferences = loadConferences();
+        this.sectionSettings = loadSectionSettings();
     }
 
     private Persons loadPersons() {
@@ -103,6 +110,13 @@ public class StorageProvider {
         return loadedData;
     }
 
+    private SectionSettings loadSectionSettings() {
+
+        final SectionSettingsReader reader = new SectionSettingsReader();
+        final SectionSettings settings = (SectionSettings) load(reader);
+        return settings;
+    }
+
     private Object load(final Callable<?> reader) {
 
         try {
@@ -115,8 +129,21 @@ public class StorageProvider {
     public void persist(final FullModel model) {
 
         final EntityConverter converter = new EntityConverter();
+        updateSectionSettings(model);
         converter.convertModel(model);
         saveData(converter);
+    }
+
+    private void updateSectionSettings(final FullModel model) {
+
+        final List<net.ostis.confman.services.common.model.Section> sectionList = model
+                .getSections();
+        final List<net.ostis.confman.services.common.model.SectionSettings> settings = model
+                .getSectionSettings();
+        settings.clear();
+        for (final net.ostis.confman.services.common.model.Section section : sectionList) {
+            settings.add(section.getSettings());
+        }
     }
 
     private synchronized void saveData(final EntityConverter converter) {
@@ -126,6 +153,7 @@ public class StorageProvider {
         saveReports(converter.getReports());
         savePersons(converter.getPersons());
         saveParticipants(converter.getParticipants());
+        saveSectionSettings(converter.getSectionSettings());
     }
 
     private synchronized void saveConferences(
@@ -162,6 +190,14 @@ public class StorageProvider {
         save(writer);
     }
 
+    private synchronized void saveSectionSettings(
+            final SectionSettings sectionSettings) {
+
+        final SectionSettingsWriter writer = new SectionSettingsWriter(
+                sectionSettings);
+        save(writer);
+    }
+
     private synchronized void save(final Runnable command) {
 
         final ConcurrencyThreadExecutor threadExecutor = ConcurrencyThreadExecutor
@@ -192,6 +228,11 @@ public class StorageProvider {
     public List<Conference> getConferences() {
 
         return this.conferences.getConferences();
+    }
+
+    public List<SectionBreaks> getSectionBreaks() {
+
+        return this.sectionSettings.getSectionBreaks();
     }
 
     public Person getPerson(final long id) {
@@ -253,12 +294,13 @@ public class StorageProvider {
 
     public void update(final Persons persons, final Participants participants,
             final Conferences conferences, final Sections sections,
-            final Reports reports) {
+            final Reports reports, final SectionSettings sectionSettings) {
 
         this.persons = persons;
         this.participants = participants;
         this.conferences = conferences;
         this.sections = sections;
         this.reports = reports;
+        this.sectionSettings = sectionSettings;
     }
 }

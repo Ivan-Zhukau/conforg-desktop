@@ -16,8 +16,10 @@ import net.ostis.confman.model.entity.ParticipantRole;
 import net.ostis.confman.model.entity.Person;
 import net.ostis.confman.model.entity.Report;
 import net.ostis.confman.model.entity.Section;
+import net.ostis.confman.model.entity.SectionBreaks;
 import net.ostis.confman.model.entity.WorkplaceInformation;
 import net.ostis.confman.services.common.model.FullModel;
+import net.ostis.confman.services.common.model.SectionSettings;
 
 public class ConverterFromStorageProvider {
 
@@ -57,6 +59,8 @@ public class ConverterFromStorageProvider {
                 participants);
         setExtraReportInfo(sectionsMap, reportsMap, reports);
         setExtraSectionsInfo(conferencesMap, sectionsMap, sections);
+        model.setSectionSettings(convertSectionSettingsList(
+                storageProvider.getSectionBreaks(), sectionsMap));
         return model;
     }
 
@@ -350,5 +354,34 @@ public class ConverterFromStorageProvider {
             sectionsList.add(sectionsMap.get(temp));
         }
         return sectionsList;
+    }
+
+    private List<SectionSettings> convertSectionSettingsList(
+            final List<SectionBreaks> sectionBreaks,
+            final Map<Long, net.ostis.confman.services.common.model.Section> sectionsMap) {
+
+        final List<SectionSettings> sectionSettingsList = new ArrayList<>();
+        for (final SectionBreaks sectionSettings : sectionBreaks) {
+            final SectionSettings settings = convertSectionSettings(
+                    sectionSettings, sectionsMap);
+            sectionSettingsList.add(settings);
+        }
+        return sectionSettingsList;
+    }
+
+    private SectionSettings convertSectionSettings(
+            final SectionBreaks sectionSettings,
+            final Map<Long, net.ostis.confman.services.common.model.Section> sectionsMap) {
+
+        final SectionSettings settings = new SectionSettings();
+        final net.ostis.confman.services.common.model.Section section = sectionsMap
+                .get(sectionSettings.getSectionId());
+        settings.setSection(section);
+        section.setSettings(settings);
+        settings.setChairmanTime(sectionSettings.getChairmanTime());
+        settings.setBreakTime(sectionSettings.getBreakTime());
+        settings.setPlenaryReportTime(sectionSettings.getPlenaryReportTime());
+        settings.setReportTime(sectionSettings.getReportTime());
+        return settings;
     }
 }

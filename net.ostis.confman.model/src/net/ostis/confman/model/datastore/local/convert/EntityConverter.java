@@ -6,20 +6,23 @@ import net.ostis.confman.model.entity.Conferences;
 import net.ostis.confman.model.entity.Participants;
 import net.ostis.confman.model.entity.Persons;
 import net.ostis.confman.model.entity.Reports;
+import net.ostis.confman.model.entity.SectionSettings;
 import net.ostis.confman.model.entity.Sections;
 import net.ostis.confman.services.common.model.FullModel;
 
 public class EntityConverter {
 
-    private Conferences  conferences;
+    private Conferences     conferences;
 
-    private Sections     sections;
+    private Sections        sections;
 
-    private Reports      reports;
+    private Reports         reports;
 
-    private Persons      persons;
+    private Persons         persons;
 
-    private Participants participants;
+    private Participants    participants;
+
+    private SectionSettings sectionSettings;
 
     public EntityConverter() {
 
@@ -35,8 +38,11 @@ public class EntityConverter {
         this.conferences = ConferenceConverter.convert(model, idProvider);
         this.sections = SectionConverter.convert(model, idProvider);
         this.reports = ReportConverter.convert(model, idProvider);
+        this.sectionSettings = SectionSettingsConverter.convert(model,
+                idProvider);
         StorageProvider.getInstance().update(this.persons, this.participants,
-                this.conferences, this.sections, this.reports);
+                this.conferences, this.sections, this.reports,
+                this.sectionSettings);
     }
 
     public Conferences getConferences() {
@@ -62,5 +68,10 @@ public class EntityConverter {
     public Participants getParticipants() {
 
         return this.participants;
+    }
+
+    public SectionSettings getSectionSettings() {
+
+        return this.sectionSettings;
     }
 }

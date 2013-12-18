@@ -36,7 +36,7 @@ public class DocxParser {
 
     private void readTables(final List<XWPFTable> tables) {
 
-        SymbolCleaner cleaner = new SymbolCleaner();
+        final SymbolCleaner cleaner = new SymbolCleaner();
         for (final XWPFTable table : tables) {
             for (final XWPFTableRow row : table.getRows()) {
                 for (final XWPFTableCell cell : row.getTableCells()) {

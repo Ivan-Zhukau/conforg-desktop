@@ -94,10 +94,10 @@ public class Person {
 
         this.degree = degree;
     }
-    
+
     public String getFullName() {
 
-        return this.firstName+" "+this.patronymic+" "+this.surname;
+        return this.firstName + " " + this.patronymic + " " + this.surname;
     }
 
 }

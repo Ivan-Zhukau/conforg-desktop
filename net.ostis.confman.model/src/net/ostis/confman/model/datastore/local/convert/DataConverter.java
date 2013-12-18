@@ -71,9 +71,9 @@ public class DataConverter {
         saveModel(model);
     }
 
-    private void saveModel(FullModel model) {
+    private void saveModel(final FullModel model) {
 
-        StorageProvider storageProvider = StorageProvider.getInstance();
+        final StorageProvider storageProvider = StorageProvider.getInstance();
         storageProvider.persist(model);
     }
 

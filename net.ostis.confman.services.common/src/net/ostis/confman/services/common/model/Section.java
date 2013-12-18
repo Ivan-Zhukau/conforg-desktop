@@ -6,19 +6,23 @@ import java.util.List;
 
 public class Section {
 
-    private String       title;
+    private String          title;
 
-    private Date         date;
+    private Date            date;
 
-    private Conference   conference;
+    private Conference      conference;
 
-    private List<Report> reports;
+    private List<Report>    reports;
+
+    private SectionSettings settings;
 
     public Section() {
 
         super();
         this.reports = new ArrayList<>();
         this.conference = new Conference();
+        this.settings = new SectionSettings();
+        this.settings.setSection(this);
     }
 
     public String getTitle() {
@@ -59,5 +63,15 @@ public class Section {
     public void setConference(final Conference conference) {
 
         this.conference = conference;
+    }
+
+    public SectionSettings getSettings() {
+
+        return this.settings;
+    }
+
+    public void setSettings(final SectionSettings settings) {
+
+        this.settings = settings;
     }
 }

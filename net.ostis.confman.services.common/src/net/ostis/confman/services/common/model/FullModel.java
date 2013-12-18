@@ -4,15 +4,17 @@ import java.util.List;
 
 public class FullModel {
 
-    private List<Conference>  conferences;
+    private List<Conference>      conferences;
 
-    private List<Section>     sections;
+    private List<Section>         sections;
 
-    private List<Participant> participants;
+    private List<Participant>     participants;
 
-    private List<Person>      persons;
+    private List<Person>          persons;
 
-    private List<Report>      reports;
+    private List<Report>          reports;
+
+    private List<SectionSettings> sectionSettings;
 
     public FullModel() {
 
@@ -67,6 +69,16 @@ public class FullModel {
     public void setReports(final List<Report> reports) {
 
         this.reports = reports;
+    }
+
+    public List<SectionSettings> getSectionSettings() {
+
+        return this.sectionSettings;
+    }
+
+    public void setSectionSettings(final List<SectionSettings> sectionSettings) {
+
+        this.sectionSettings = sectionSettings;
     }
 
 }

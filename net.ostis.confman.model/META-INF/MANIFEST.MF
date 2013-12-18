@@ -374,3 +374,4 @@ Export-Package: javax.xml,
  schemasMicrosoftComVml.impl
 Require-Bundle: net.ostis.confman.lib;bundle-version="1.0.0",
  net.ostis.confman.services.common;bundle-version="1.0.0"
+Import-Package: org.apache.xmlbeans.impl.xb.xsdschema
