@@ -7,14 +7,13 @@ import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvi
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Section;
 
-
-public class SectionServiceImpl implements SectionService{
+public class TimeSectionServiceImpl implements TimeSectionService {
 
     List<Section> sections;
 
-    FullModel         model;
-    
-    public SectionServiceImpl() {
+    FullModel     model;
+
+    public TimeSectionServiceImpl() {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
@@ -22,22 +21,15 @@ public class SectionServiceImpl implements SectionService{
     }
 
     @Override
-    public List<Section> getSections() {
-        
-        return this.sections;
-    }
-
-    @Override
-    public void addSection(Section section) {
-
-        sections.add(section);        
-    }
-
-    @Override
     public void fireData() {
 
         final StorageProvider storageProvider = StorageProvider.getInstance();
-        storageProvider.persist(this.model);        
+        storageProvider.persist(this.model);
     }
 
+    @Override
+    public List<Section> getSections() {
+
+        return this.sections;
+    }
 }

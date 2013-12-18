@@ -4,12 +4,9 @@ import java.util.List;
 
 import net.ostis.confman.services.common.model.Section;
 
-
-public interface SectionService {
+public interface TimeSectionService {
 
     List<Section> getSections();
-
-    void addSection(Section section);
 
     void fireData();
 }

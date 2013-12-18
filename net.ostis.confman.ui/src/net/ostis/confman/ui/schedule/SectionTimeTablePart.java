@@ -1,16 +1,10 @@
-package net.ostis.confman.ui.sectiontime;
+package net.ostis.confman.ui.schedule;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.datastore.local.convert.DataConverter;
-import net.ostis.confman.services.ParticipantService;
-import net.ostis.confman.services.SectionService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Conference;
-import net.ostis.confman.services.common.model.Participant;
-import net.ostis.confman.services.common.model.ParticipantRole;
-import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.services.TimeSectionService;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateDataConverter;
@@ -53,15 +47,15 @@ public class SectionTimeTablePart {
     @Inject
     private ESelectionService  selectionService;
 
-    private SectionService sectionService;
+    private TimeSectionService sectionService;
 
     private DynamicalTable     table;
 
     public SectionTimeTablePart() {
 
         super();
-        this.sectionService = (SectionService) ServiceLocator
-                .getInstance().getService(SectionService.class);
+        this.sectionService = (TimeSectionService) ServiceLocator.getInstance()
+                .getService(TimeSectionService.class);
     }
 
     @PostConstruct
@@ -96,7 +90,8 @@ public class SectionTimeTablePart {
                     public String getText(final Object element) {
 
                         final Section section = (Section) element;
-                        return new DateDataConverter().convert(section.getDate());
+                        return new DateDataConverter().convert(section
+                                .getDate());
                     }
                 });
     }
@@ -110,13 +105,13 @@ public class SectionTimeTablePart {
             @Override
             public void selectionChanged(final SelectionChangedEvent event) {
 
-               /* final IStructuredSelection selection = (IStructuredSelection) TableViewPart.this.table
+                final IStructuredSelection selection = (IStructuredSelection) SectionTimeTablePart.this.table
                         .getViewer().getSelection();
                 final Object selectedElement = selection.getFirstElement();
-                if (selectedElement instanceof Participant) {
-                    TableViewPart.this.selectionService
+                if (selectedElement instanceof Section) {
+                    SectionTimeTablePart.this.selectionService
                             .setSelection(selectedElement);
-                }*/
+                }
             }
         });
     }

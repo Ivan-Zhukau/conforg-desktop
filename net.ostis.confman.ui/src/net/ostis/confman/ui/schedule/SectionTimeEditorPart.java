@@ -1,4 +1,4 @@
-package net.ostis.confman.ui.sectiontime;
+package net.ostis.confman.ui.schedule;
 
 import java.util.Date;
 import java.util.EnumMap;
@@ -7,10 +7,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.common.model.Address;
-import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
-import net.ostis.confman.ui.common.component.AddressDataConverter;
 import net.ostis.confman.ui.common.component.DateChooserField;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -56,7 +54,7 @@ public class SectionTimeEditorPart {
     }
 
     private enum DateChooserFields implements Localizable {
-        START("sectionTimeStart"),;
+        START("sectionTimeStart"), ;
 
         private String rk;
 
@@ -90,7 +88,7 @@ public class SectionTimeEditorPart {
 
     }
 
-    private final Map<TextFields, EditableComponent<TextField>>         editFields;
+    private final Map<TextFields, EditableComponent<TextField>>               editFields;
 
     private final Map<DateChooserFields, EditableComponent<DateChooserField>> dateChooserFields;
 
@@ -116,8 +114,8 @@ public class SectionTimeEditorPart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (selection instanceof Conference) {
-                    final Conference conf = (Conference) selection;
+                if (selection instanceof Section) {
+                    final Section conf = (Section) selection;
                     onConferenceEvent(conf);
                 }
             }
@@ -125,96 +123,79 @@ public class SectionTimeEditorPart {
         buildLayout(parent);
     }
 
-    protected void onConferenceEvent(final Conference conf) {
+    protected void onConferenceEvent(final Section conf) {
 
         applyValueBindings(conf);
-        for (final TextFields field : this.editFields.keySet()) {
-            this.editFields.get(field).activate();
-        }
 
         for (final DateChooserFields field : this.dateChooserFields.keySet()) {
             this.dateChooserFields.get(field).activate();
         }
+
+        for (final TextFields field : this.editFields.keySet()) {
+            this.editFields.get(field).activate();
+        }
     }
 
-    private void applyValueBindings(final Conference conf) {
-        
-        this.dateChooserFields.get(DateChooserFields.START)
-        .setValueBinder(new ValueBinder() {
+    private void applyValueBindings(final Section conf) {
 
-            @Override
-            public void setValue(final Object value) {
-
-                conf.setStartDate((Date) value);
-            }
-
-            @Override
-            public Object getValue() {
-
-                return conf.getStartDate();
-            }
-        });
-
-        this.editFields.get(TextFields.TIME_CHAIRMAN).setValueBinder(
+        this.dateChooserFields.get(DateChooserFields.START).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.setTitle((String) value);
+                        conf.setDate((Date) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return conf.getTitle();
+                        return conf.getDate();
                     }
                 });
-        this.editFields.get(TextFields.TIME_REPORT).setValueBinder(
-                new ValueBinder() {
 
-                    @Override
-                    public void setValue(final Object value) {
-
-                        conf.setConferenceVenue((Address) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return conf.getConferenceVenue();
-                    }
-                });
-        this.editFields.get(TextFields.TIME_PLENARY_REPORT).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        conf.setConferenceVenue((Address) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return conf.getConferenceVenue();
-                    }
-                });
-        this.editFields.get(TextFields.TIME_SMALL_BREAK).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        conf.setConferenceVenue((Address) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return conf.getConferenceVenue();
-                    }
-                });
+        /*
+         * this.editFields.get(TextFields.TIME_CHAIRMAN).setValueBinder( new
+         * ValueBinder() {
+         * 
+         * @Override public void setValue(final Object value) {
+         * 
+         * conf.setChairmanTime((int) value); }
+         * 
+         * @Override public Object getValue() {
+         * 
+         * return conf.getChairmanTime(); } });
+         * this.editFields.get(TextFields.TIME_REPORT).setValueBinder( new
+         * ValueBinder() {
+         * 
+         * @Override public void setValue(final Object value) {
+         * 
+         * conf.setReportTime((int) value); }
+         * 
+         * @Override public Object getValue() {
+         * 
+         * return conf.getReportTime(); } });
+         * this.editFields.get(TextFields.TIME_PLENARY_REPORT).setValueBinder(
+         * new ValueBinder() {
+         * 
+         * @Override public void setValue(final Object value) {
+         * 
+         * conf.setPlenaryReportTime((int) value); }
+         * 
+         * @Override public Object getValue() {
+         * 
+         * return conf.getPlenaryReportTime(); } });
+         * this.editFields.get(TextFields.TIME_SMALL_BREAK).setValueBinder( new
+         * ValueBinder() {
+         * 
+         * @Override public void setValue(final Object value) {
+         * 
+         * conf.setBreakTime((int) value); }
+         * 
+         * @Override public Object getValue() {
+         * 
+         * return conf.getBreakTime(); } });
+         */
     }
 
     private void buildLayout(final Composite parent) {
@@ -222,26 +203,26 @@ public class SectionTimeEditorPart {
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
         final DateDataConverter dateConverter = new DateDataConverter();
-        
+
         this.dateChooserFields.put(
                 DateChooserFields.START,
                 new DateChooserField(parent, util
                         .translate(DateChooserFields.START))
                         .setDataConverter(dateConverter));
-        
-        this.editFields.put(TextFields.TIME_CHAIRMAN,
-                new TextField(parent, util.translate(TextFields.TIME_CHAIRMAN))
+
+        this.editFields.put(TextFields.TIME_CHAIRMAN, new TextField(parent,
+                util.translate(TextFields.TIME_CHAIRMAN))
+                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(TextFields.TIME_REPORT,
+                new TextField(parent, util.translate(TextFields.TIME_REPORT))
                         .setDataConverter(new StringDataConverter()));
-        this.editFields.put(TextFields.TIME_REPORT, new TextField(parent,
-                util.translate(TextFields.TIME_REPORT))
-                .setDataConverter(new AddressDataConverter()));
-        this.editFields.put(TextFields.TIME_PLENARY_REPORT, new TextField(parent,
-                util.translate(TextFields.TIME_PLENARY_REPORT))
-                .setDataConverter(new AddressDataConverter()));
+        this.editFields.put(TextFields.TIME_PLENARY_REPORT, new TextField(
+                parent, util.translate(TextFields.TIME_PLENARY_REPORT))
+                .setDataConverter(new StringDataConverter()));
         this.editFields.put(TextFields.TIME_SMALL_BREAK, new TextField(parent,
                 util.translate(TextFields.TIME_SMALL_BREAK))
-                .setDataConverter(new AddressDataConverter()));
-        
+                .setDataConverter(new StringDataConverter()));
+
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
