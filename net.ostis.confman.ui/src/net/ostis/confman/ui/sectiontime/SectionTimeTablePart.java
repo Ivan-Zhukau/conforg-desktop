@@ -3,14 +3,9 @@ package net.ostis.confman.ui.sectiontime;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.datastore.local.convert.DataConverter;
-import net.ostis.confman.services.ParticipantService;
+
 import net.ostis.confman.services.SectionService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Conference;
-import net.ostis.confman.services.common.model.Participant;
-import net.ostis.confman.services.common.model.ParticipantRole;
-import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateDataConverter;
@@ -24,10 +19,9 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 public class SectionTimeTablePart {
@@ -67,7 +61,7 @@ public class SectionTimeTablePart {
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        parent.setLayout(new GridLayout(1, true));
+        parent.setLayout(new FillLayout());
         this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
         createColumns();
         addTableEventSupport();

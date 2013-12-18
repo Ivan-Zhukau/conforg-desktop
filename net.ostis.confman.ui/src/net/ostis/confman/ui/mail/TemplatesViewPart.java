@@ -27,6 +27,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.MessageBox;
 
 public class TemplatesViewPart {
 
@@ -117,9 +118,10 @@ public class TemplatesViewPart {
 
                 } else {
 
-                    final InformationDialog dialog = new InformationDialog(
-                            parent.getShell());
-                    dialog.create();
+                    MessageBox dialog = 
+                            new MessageBox(parent.getShell(), SWT.ICON_QUESTION | SWT.OK);
+                          dialog.setText(localizationUtil.translate("warningDialogTitle"));
+                          dialog.setMessage(localizationUtil.translate("warningDialogMessage"));
                     dialog.open();
                 }
             }

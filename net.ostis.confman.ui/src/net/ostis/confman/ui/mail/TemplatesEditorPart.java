@@ -1,5 +1,6 @@
 package net.ostis.confman.ui.mail;
 
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -12,9 +13,9 @@ import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
+import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -52,20 +53,20 @@ public class TemplatesEditorPart {
             return this.rk;
         }
     }
-
+    
     protected final static String PARTICIPANTS_CHOOSE_PART_ID = "net.ostis.confman.ui.part.email.participantsPart";
-
+    
     @Inject
     private EPartService          partService;
 
     @Inject
-    private ESelectionService     selectionService;
+    private ESelectionService   selectionService;
 
-    private Text                  textArea;
+    private Text                textArea;
 
-    private DynamicalTable        table;
+    private DynamicalTable      table;
 
-    private EmailedParticipants   participants;
+    private EmailedParticipants participants;
 
     public TemplatesEditorPart() {
 
@@ -106,7 +107,7 @@ public class TemplatesEditorPart {
         createTextArea(composite);
         createNextStepButton(composite);
         createPreviousStepButton(composite);
-    }
+    }    
 
     private Composite createTextWrapper(final Composite parent) {
 
@@ -199,7 +200,7 @@ public class TemplatesEditorPart {
                 if (selectedElement instanceof EmailedParticipants) {
                     final EmailedParticipants emailedParticipants = (EmailedParticipants) selectedElement;
                     onNewSelection(emailedParticipants);
-
+                    
                 } else {
 
                     // TODO vadim-mihalovski: add warning dialog: empty
@@ -208,37 +209,35 @@ public class TemplatesEditorPart {
             }
         });
     }
-
-    private void createPreviousStepButton(final Composite composite) {
+    
+    private void createPreviousStepButton(Composite composite) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         final Button previousButton = new Button(composite, SWT.NONE);
         previousButton.setText(util.translate(Captions.PREVIOUS_STEP));
         final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
                 Boolean.FALSE, Boolean.FALSE);
-        previousButton.setLayoutData(gridData);
+        previousButton.setLayoutData(gridData);  
         previousButton.addSelectionListener(new SelectionListener() {
-
+            
             @Override
-            public void widgetSelected(final SelectionEvent e) {
-
+            public void widgetSelected(SelectionEvent e) {
+            
                 previousStep();
-
+                
             }
-
+            
             @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
+            public void widgetDefaultSelected(SelectionEvent e) {
+            
                 previousStep();
-
+                
             }
 
             private void previousStep() {
 
-                final MPart part = TemplatesEditorPart.this.partService
-                        .findPart(PARTICIPANTS_CHOOSE_PART_ID);
-                TemplatesEditorPart.this.partService.showPart(part,
-                        PartState.VISIBLE);
+                final MPart part = partService.findPart(PARTICIPANTS_CHOOSE_PART_ID);
+                partService.showPart(part, PartState.VISIBLE);
             }
         });
     }
