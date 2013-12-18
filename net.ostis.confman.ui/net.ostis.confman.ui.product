@@ -10,6 +10,7 @@
    <launcherArgs>
       <programArgs>-clearPersistedState</programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+      <vmArgsWin>-Dfile.encoding=UTF-8</vmArgsWin>
    </launcherArgs>
 
    <windowImages/>
@@ -25,7 +26,6 @@
 
    <vm>
    </vm>
-
 
    <plugins>
       <plugin id="com.ibm.icu"/>
