@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.ostis.confman.model.registrationform.AuthorInformation;
 import net.ostis.confman.model.registrationform.RegistrationForm;
+import net.ostis.confman.model.registrationform.wordparser.AcademicDegreeParser;
+import net.ostis.confman.model.registrationform.wordparser.AcademicTitleParser;
 import net.ostis.confman.model.registrationform.wordparser.RegistrationFormConstant;
 
 public class AuthorParser {
@@ -48,12 +50,12 @@ public class AuthorParser {
             }
             case RegistrationFormConstant.ACADEMIC_DEGREE: {
                 this.authorInformation.getPersonalInformation()
-                        .setAcademicDegree(info);
+                        .setAcademicDegree(new AcademicDegreeParser().parse(info));
                 break;
             }
             case RegistrationFormConstant.ACADEMIC_TITLE: {
                 this.authorInformation.getPersonalInformation()
-                        .setAcademicTitle(info);
+                        .setAcademicTitle(new AcademicTitleParser().parse(info));
                 break;
             }
             case RegistrationFormConstant.COUNTRY: {
