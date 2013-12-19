@@ -34,13 +34,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_GlqAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.participantReport" label="SectionTimeReport Management">
         <children xsi:type="basic:PartSashContainer" xmi:id="_RujAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_rmgdIGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.1">
-            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.sectionSchedulePart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeTablePart" label="Section Table">
-              <menus xmi:id="_njps0GZ2EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.menu.reportMenu" label="Menu">
-                <children xsi:type="menu:Menu" xmi:id="_yNIM8GZ2EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.menu.report" label="Report">
-                  <children xsi:type="menu:HandledMenuItem" xmi:id="_CKzxoGZ3EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.handledmenuitem.save" label="SaveReport" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
-                </children>
-              </menus>
-            </children>
+            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.sectionSchedulePart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeTablePart" label="Section Table"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_RttmMGZ0EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.partstack.3">
             <children xsi:type="basic:Part" xmi:id="_haluwGZ0EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.part.scheduleEditorPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeEditorPart" label="Section Editor Part"/>
@@ -79,10 +73,13 @@
           </children>
           <children xsi:type="menu:Menu" xmi:id="_wyNYsGfXEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.menu.reportManagment" label="Report Managment">
             <children xsi:type="menu:HandledMenuItem" xmi:id="_C_oycGfYEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.handledmenuitem.sectionTimePart" label="Section Time Report" command="_88j54CrHEeOTVPtjqnvy9g">
-              <parameters xmi:id="_pNUikGflEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.parameter.4" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantReport"/>
+              <parameters xmi:id="_pNUikGflEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.parameter.gene" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantReport"/>
             </children>
           </children>
         </children>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_dCim4GjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.menu.tools" label="Tools">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="Generate Section Report" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">
