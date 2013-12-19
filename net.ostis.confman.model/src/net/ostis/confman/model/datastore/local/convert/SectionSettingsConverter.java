@@ -43,6 +43,8 @@ public class SectionSettingsConverter {
         breaks.setChairmanTime(settings.getChairmanTime());
         breaks.setPlenaryReportTime(settings.getPlenaryReportTime());
         breaks.setReportTime(settings.getReportTime());
+        breaks.setCoffeeBreaksNum(settings.getCoffeeBreakNumber());
+        breaks.setCoffeeBreaksTime(settings.getCoffeeBreakTime());
         return breaks;
     }
 

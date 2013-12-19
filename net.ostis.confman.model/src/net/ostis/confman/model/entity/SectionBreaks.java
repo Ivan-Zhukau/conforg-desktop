@@ -15,6 +15,10 @@ public class SectionBreaks {
     private int  plenaryReportTime;
 
     private int  breakTime;
+    
+    private int coffeeBreaksNum;
+    
+    private int coffeeBreaksTime;
 
     public SectionBreaks() {
 
@@ -74,6 +78,28 @@ public class SectionBreaks {
     public void setBreakTime(final int breakTime) {
 
         this.breakTime = breakTime;
+    }
+    
+    @XmlElement(name = "coffee-break-time")
+    public int getCoffeeBreaksNum() {
+
+        return coffeeBreaksNum;
+    }
+    
+    @XmlElement(name = "coffee-break-num")
+    public int getCoffeeBreaksTime() {
+
+        return coffeeBreaksTime;
+    }
+        
+    public void setCoffeeBreaksNum(int coffeeBreaksNum) {
+
+        this.coffeeBreaksNum = coffeeBreaksNum;
+    }
+    
+    public void setCoffeeBreaksTime(int coffeeBreaksTime) {
+
+        this.coffeeBreaksTime = coffeeBreaksTime;
     }
 
 }
