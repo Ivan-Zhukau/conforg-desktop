@@ -5,6 +5,17 @@
         <chairman-time>0</chairman-time>
         <plenary-time>0</plenary-time>
         <report-time>0</report-time>
-        <section-id>0</section-id>
+		<coffee-break-num>921</coffee-break-num>
+		<coffee-break-time>921</coffee-break-time>
+        <section-id>12</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>0</break-time>
+        <chairman-time>0</chairman-time>
+        <plenary-time>0</plenary-time>
+        <report-time>0</report-time>
+		<coffee-break-num>921</coffee-break-num>
+		<coffee-break-time>921</coffee-break-time>
+        <section-id>921</section-id>
     </section-report-break>
 </section-report-data>

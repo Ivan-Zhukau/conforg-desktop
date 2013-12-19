@@ -4,17 +4,17 @@ public class SectionSettings {
 
     private Section section;
 
-    private Integer     chairmanTime;
+    private Integer chairmanTime;
 
-    private Integer     reportTime;
+    private Integer reportTime;
 
-    private Integer     plenaryReportTime;
+    private Integer plenaryReportTime;
 
-    private Integer     breakTime;
-    
-    private Integer     coffeeBreakNumber;
-    
-    private Integer     coffeeBreakTime;
+    private Integer breakTime;
+
+    private Integer coffeeBreakNumber;
+
+    private Integer coffeeBreakTime;
 
     public SectionSettings() {
 
@@ -70,23 +70,23 @@ public class SectionSettings {
 
         this.breakTime = breakTime;
     }
-    
+
     public Integer getCoffeeBreakNumber() {
 
-        return coffeeBreakNumber;
+        return this.coffeeBreakNumber;
     }
-    
-    public Integer getCoffeeBreakTime() {
 
-        return coffeeBreakTime;
-    }
-    
-    public void setCoffeeBreakNumber(Integer coffeeBreakNumber) {
+    public void setCoffeeBreakNumber(final Integer coffeeBreakNumber) {
 
         this.coffeeBreakNumber = coffeeBreakNumber;
     }
-    
-    public void setCoffeeBreakTime(Integer coffeeBreakTime) {
+
+    public Integer getCoffeeBreakTime() {
+
+        return this.coffeeBreakTime;
+    }
+
+    public void setCoffeeBreakTime(final Integer coffeeBreakTime) {
 
         this.coffeeBreakTime = coffeeBreakTime;
     }

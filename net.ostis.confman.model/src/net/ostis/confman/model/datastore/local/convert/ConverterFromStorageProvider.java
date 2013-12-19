@@ -382,6 +382,8 @@ public class ConverterFromStorageProvider {
         settings.setBreakTime(sectionSettings.getBreakTime());
         settings.setPlenaryReportTime(sectionSettings.getPlenaryReportTime());
         settings.setReportTime(sectionSettings.getReportTime());
+        settings.setCoffeeBreakNumber(sectionSettings.getCoffeeBreakNumber());
+        settings.setCoffeeBreakTime(sectionSettings.getCoffeeBreakTime());
         return settings;
     }
 }
