@@ -31,6 +31,8 @@ public class ServiceLocator {
                 new TimeSectionServiceImpl());
         this.serviceImpls.put(ScheduleService.class,
                 new ScheduleServiceImpl());
+        this.serviceImpls.put(ReportService.class,
+                new ReportServiceImpl());
     }
 
     public static ServiceLocator getInstance() {
