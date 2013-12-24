@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_SOfz8BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ide.application" bindingContexts="_SOfz-RpVEeOmro9kd1wSKw">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" selectedElement="_SOyu8hpVEeOmro9kd1wSKw" label="net.ostis.confman.ui" width="700" height="560">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" selectedElement="_SOyu8hpVEeOmro9kd1wSKw" label="%trimmedwindow.label.1" width="700" height="560">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_SOyu8hpVEeOmro9kd1wSKw" elementId="" selectedElement="_BVLAYCk9EeOe4N68_VhelA">
-      <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="Participant Managment">
+      <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="%perspective.label.1">
         <children xsi:type="basic:PartSashContainer" xmi:id="_SOyu9BpVEeOmro9kd1wSKw" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_SOyu9RpVEeOmro9kd1wSKw">
-            <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableViewPart" label="TableViewPart"/>
+            <children xsi:type="basic:Part" xmi:id="_SOyu9hpVEeOmro9kd1wSKw" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableViewPart" label="%part.label.1"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_MTrhkC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.partstack.0" selectedElement="_N_kboC9tEeOySL0dBxDQBw">
-            <children xsi:type="basic:Part" xmi:id="_N_kboC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.part.participant.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableEditorPart" label="TableEditorPart">
+            <children xsi:type="basic:Part" xmi:id="_N_kboC9tEeOySL0dBxDQBw" elementId="net.ostis.confman.ui.part.participant.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.TableEditorPart" label="%part.label.2">
               <toolbar xmi:id="_Nl4jEFU6EeOlDudWAZ42EQ" elementId="net.ostis.confman.ui.toolbar.0">
                 <children xsi:type="menu:DirectToolItem" xmi:id="_WBF00FU6EeOlDudWAZ42EQ" elementId="net.ostis.confman.ui.directtoolitem.0" iconURI="platform:/plugin/net.ostis.confman.ui/icons/new.png" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.NewParticipantActionListener"/>
               </toolbar>
             </children>
-            <children xsi:type="basic:Part" xmi:id="_LYtvkFhpEeO5h8HvaUnikA" elementId="net.ostis.confman.ui.part.0" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.ExtraAuthorInformation" label="Extra participant information"/>
+            <children xsi:type="basic:Part" xmi:id="_LYtvkFhpEeO5h8HvaUnikA" elementId="net.ostis.confman.ui.part.0" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.ExtraAuthorInformation" label="%part.label.3"/>
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_BVLAYCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.perspective.conference" label="Conference Management">
+      <children xsi:type="advanced:Perspective" xmi:id="_BVLAYCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.perspective.conference" label="%perspective.label.2">
         <children xsi:type="basic:PartSashContainer" xmi:id="_WyzmoCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partsashcontainer.conference.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_fOZS4Ck9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.tree">
-            <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="TreeView">
+            <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="%part.label.4">
               <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1"/>
             </children>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">
-            <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ConferenceEditorPart" label="Conference Data Editor" tooltip="Conference Data Editor"/>
-            <children xsi:type="basic:Part" xmi:id="_v6-X4F3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.SectionEditorPart" label="Section Data Editor" tooltip="Section Data Editor"/>
-            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.report.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="Report Data Editor" tooltip="Report Data Editor"/>
+            <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ConferenceEditorPart" label="%part.label.5" tooltip="%part.tooltip.1"/>
+            <children xsi:type="basic:Part" xmi:id="_v6-X4F3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.SectionEditorPart" label="%part.label.6" tooltip="%part.tooltip.2"/>
+            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.report.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="%part.label.7" tooltip="%part.tooltip.3"/>
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_GlqAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.participantReport" label="SectionTimeReport Management">
+      <children xsi:type="advanced:Perspective" xmi:id="_GlqAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.participantReport" label="%perspective.label.3">
         <children xsi:type="basic:PartSashContainer" xmi:id="_RujAoGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.0" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_rmgdIGMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.1">
-            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.sectionSchedulePart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeTablePart" label="Section Table"/>
+            <children xsi:type="basic:Part" xmi:id="_sjfp0GMnEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.sectionSchedulePart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeTablePart" label="%part.label.8"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_RttmMGZ0EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.partstack.3">
-            <children xsi:type="basic:Part" xmi:id="_haluwGZ0EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.part.scheduleEditorPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeEditorPart" label="Section Editor Part"/>
+            <children xsi:type="basic:Part" xmi:id="_haluwGZ0EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.part.scheduleEditorPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.schedule.SectionTimeEditorPart" label="%part.label.9"/>
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_2ElggGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.emailManagement" accessibilityPhrase="" label="Email Management">
+      <children xsi:type="advanced:Perspective" xmi:id="_2ElggGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.perspective.emailManagement" accessibilityPhrase="" label="%perspective.label.4">
         <children xsi:type="basic:PartSashContainer" xmi:id="_DTyswGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.1" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_EMuf4GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.2">
-            <children xsi:type="basic:Part" xmi:id="_GjQSYGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.emailTemplatesPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesViewPart" label="Email templates part"/>
-            <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.participantsPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ParticipantsChoosePart" label="Participants part"/>
-            <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="Email template editor part"/>
+            <children xsi:type="basic:Part" xmi:id="_GjQSYGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.emailTemplatesPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesViewPart" label="%part.label.10"/>
+            <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.participantsPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ParticipantsChoosePart" label="%part.label.11"/>
+            <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="%part.label.12"/>
           </children>
         </children>
       </children>
     </children>
     <mainMenu xmi:id="_SOyu6xpVEeOmro9kd1wSKw" elementId="menu:org.eclipse.ui.main.menu">
-      <children xsi:type="menu:Menu" xmi:id="_SOyu7BpVEeOmro9kd1wSKw" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7RpVEeOmro9kd1wSKw" label="Open" iconURI="platform:/plugin/net.ostis.confman.ui/icons/sample.gif" command="_SOyu4hpVEeOmro9kd1wSKw"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7hpVEeOmro9kd1wSKw" label="Save" iconURI="platform:/plugin/net.ostis.confman.ui/icons/save_edit.gif" command="_SOyu5RpVEeOmro9kd1wSKw"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7xpVEeOmro9kd1wSKw" label="Quit" command="_SOfz_BpVEeOmro9kd1wSKw"/>
+      <children xsi:type="menu:Menu" xmi:id="_SOyu7BpVEeOmro9kd1wSKw" label="%menu.label.1">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7RpVEeOmro9kd1wSKw" label="%handledmenuitem.label.1" iconURI="platform:/plugin/net.ostis.confman.ui/icons/sample.gif" command="_SOyu4hpVEeOmro9kd1wSKw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7hpVEeOmro9kd1wSKw" label="%handledmenuitem.label.2" iconURI="platform:/plugin/net.ostis.confman.ui/icons/save_edit.gif" command="_SOyu5RpVEeOmro9kd1wSKw"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu7xpVEeOmro9kd1wSKw" label="%handledmenuitem.label.3" command="_SOfz_BpVEeOmro9kd1wSKw"/>
       </children>
-      <children xsi:type="menu:Menu" xmi:id="_SOyu8BpVEeOmro9kd1wSKw" label="Help">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu8RpVEeOmro9kd1wSKw" label="About" command="_SOyu6BpVEeOmro9kd1wSKw"/>
+      <children xsi:type="menu:Menu" xmi:id="_SOyu8BpVEeOmro9kd1wSKw" label="%menu.label.2">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_SOyu8RpVEeOmro9kd1wSKw" label="%handledmenuitem.label.4" command="_SOyu6BpVEeOmro9kd1wSKw"/>
       </children>
-      <children xsi:type="menu:Menu" xmi:id="_f2ESkCrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.window" label="Window">
-        <children xsi:type="menu:Menu" xmi:id="_nPBdICrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.openPerspective" label="Open Perspective">
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_ouTpICrNEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.confPerspectiveSwitcher" label="Conference Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+      <children xsi:type="menu:Menu" xmi:id="_f2ESkCrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.window" label="%menu.label.3">
+        <children xsi:type="menu:Menu" xmi:id="_nPBdICrMEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.menu.openPerspective" label="%menu.label.4">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_ouTpICrNEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.confPerspectiveSwitcher" label="%handledmenuitem.label.5" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_1hGFgCrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.0" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.conference"/>
           </children>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_QJL4ECrOEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.registrationPerpective" label="Participant Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_QJL4ECrOEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handledmenuitem.registrationPerpective" label="%handledmenuitem.label.6" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_-4qR0CrVEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.parameter.1" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantPerspective"/>
           </children>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_rfCeIGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.emailPerspective" label="Email Managment" command="_88j54CrHEeOTVPtjqnvy9g">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_rfCeIGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.emailPerspective" label="%handledmenuitem.label.7" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_vKEwAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.3" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.emailManagement"/>
           </children>
-          <children xsi:type="menu:Menu" xmi:id="_wyNYsGfXEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.menu.reportManagment" label="Report Managment">
-            <children xsi:type="menu:HandledMenuItem" xmi:id="_C_oycGfYEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.handledmenuitem.sectionTimePart" label="Section Time Report" command="_88j54CrHEeOTVPtjqnvy9g">
+          <children xsi:type="menu:Menu" xmi:id="_wyNYsGfXEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.menu.reportManagment" label="%menu.label.5">
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_C_oycGfYEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.handledmenuitem.sectionTimePart" label="%handledmenuitem.label.8" command="_88j54CrHEeOTVPtjqnvy9g">
               <parameters xmi:id="_pNUikGflEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.parameter.gene" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.participantReport"/>
             </children>
           </children>
         </children>
       </children>
-      <children xsi:type="menu:Menu" xmi:id="_dCim4GjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.menu.tools" label="Tools">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="Generate Section Report" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_CDNwQGm2EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handledmenuitem.generateSortedMemberList" label="Generate Sorted Member List" command="_6iW8AGm3EeOpMcisa9NY1w"/>
+      <children xsi:type="menu:Menu" xmi:id="_dCim4GjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.menu.tools" label="%menu.label.6">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="%handledmenuitem.label.9" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_CDNwQGm2EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handledmenuitem.generateSortedMemberList" label="%handledmenuitem.label.10" command="_6iW8AGm3EeOpMcisa9NY1w"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">
@@ -107,15 +107,15 @@
     <children xmi:id="_SOfz-hpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
     <children xmi:id="_SOfz-xpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   </rootContext>
-  <commands xmi:id="_SOfz_BpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
-  <commands xmi:id="_SOyu4hpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.open" commandName="openCommand"/>
-  <commands xmi:id="_SOyu5RpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
-  <commands xmi:id="_SOyu6BpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
-  <commands xmi:id="_88j54CrHEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.command.switchperspective" commandName="switchPerspective">
+  <commands xmi:id="_SOfz_BpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.file.exit" commandName="%command.commandname.1"/>
+  <commands xmi:id="_SOyu4hpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.open" commandName="%command.commandname.2"/>
+  <commands xmi:id="_SOyu5RpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.file.save" commandName="%command.commandname.3"/>
+  <commands xmi:id="_SOyu6BpVEeOmro9kd1wSKw" elementId="org.eclipse.ui.help.aboutAction" commandName="%command.commandname.4"/>
+  <commands xmi:id="_88j54CrHEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.command.switchperspective" commandName="%command.commandname.5">
     <parameters xmi:id="_ahrxYCrYEeOE7riNv-mKnA" elementId="net.ostis.confman.ui.parameter.perspectiveId" name="perspectiveId" typeId=""/>
   </commands>
-  <commands xmi:id="_89JIAGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.command.saveReport" commandName="saveReportCommand"/>
-  <commands xmi:id="_6iW8AGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.command.generateSortedMemberList" commandName="generateSortedMemberList"/>
+  <commands xmi:id="_89JIAGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.command.saveReport" commandName="%command.commandname.6"/>
+  <commands xmi:id="_6iW8AGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.command.generateSortedMemberList" commandName="%command.commandname.7"/>
   <addons xmi:id="_SOfz8hpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_SOfz8xpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_SOfz9BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

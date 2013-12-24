@@ -28,3 +28,4 @@ Import-Package: javax.annotation;version="1.0.0",
  net.ostis.confman.services.common.model
 Export-Package: net.ostis.confman.ui.handlers,
  net.ostis.confman.ui.parts
+Bundle-Localization: OSGI-INF/l10n/bundle 
