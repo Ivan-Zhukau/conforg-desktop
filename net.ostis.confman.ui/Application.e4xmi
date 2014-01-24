@@ -77,6 +77,7 @@
             </children>
           </children>
         </children>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_eOpAgHS0EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.handledmenuitem.preferences" label="%handledmenuitem.label.11" command="_s0uDoHS1EeO3BvPyRqUeWQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_dCim4GjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.menu.tools" label="%menu.label.6">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="%handledmenuitem.label.9" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
@@ -97,6 +98,7 @@
   <handlers xmi:id="_HijBICrIEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handler.switchPerspective" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SwitchPerspectiveHandler" command="_88j54CrHEeOTVPtjqnvy9g"/>
   <handlers xmi:id="_5kbfwGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.handler.saveReport" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveReportHandler" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
   <handlers xmi:id="_urT1gGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handler.generateSortedMemberList" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSortedMemberListHandler" command="_6iW8AGm3EeOpMcisa9NY1w"/>
+  <handlers xmi:id="_lrCEIHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.handler.preferencesDialog" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.ShowPreferencesDialog" command="_s0uDoHS1EeO3BvPyRqUeWQ"/>
   <bindingTables xmi:id="_SOyu4BpVEeOmro9kd1wSKw" bindingContext="_SOfz-RpVEeOmro9kd1wSKw">
     <bindings xmi:id="_SOyu4RpVEeOmro9kd1wSKw" keySequence="M1+Q" command="_SOfz_BpVEeOmro9kd1wSKw"/>
     <bindings xmi:id="_SOyu5BpVEeOmro9kd1wSKw" keySequence="M1+O" command="_SOyu4hpVEeOmro9kd1wSKw"/>
@@ -116,6 +118,7 @@
   </commands>
   <commands xmi:id="_89JIAGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.command.saveReport" commandName="%command.commandname.6"/>
   <commands xmi:id="_6iW8AGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.command.generateSortedMemberList" commandName="%command.commandname.7"/>
+  <commands xmi:id="_s0uDoHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.command.showPerspectiveDialog" commandName="%command.commandname.8"/>
   <addons xmi:id="_SOfz8hpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_SOfz8xpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_SOfz9BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

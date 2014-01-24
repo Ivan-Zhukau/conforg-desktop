@@ -6,7 +6,6 @@ import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 
-
 public interface ScheduleService {
 
     List<Conference> getConferences();

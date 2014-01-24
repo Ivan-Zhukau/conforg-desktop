@@ -39,10 +39,10 @@ class ConferenceServiceImpl implements ConferenceService {
 
         conference.getSections().add(section);
         section.setConference(conference);
-        if (!sections.contains(section)) {
+        if (!this.sections.contains(section)) {
             this.sections.add(section);
         }
-        //fireData();
+        // fireData();
     }
 
     @Override
@@ -51,7 +51,7 @@ class ConferenceServiceImpl implements ConferenceService {
         if (report.getSection() != null) {
             report.getSection().getReports().remove(report);
         }
-        Conference conf = section.getConference();
+        final Conference conf = section.getConference();
         if (!conf.getReports().contains(report)) {
             conf.getReports().add(report);
         }
@@ -59,7 +59,7 @@ class ConferenceServiceImpl implements ConferenceService {
             section.getReports().add(report);
         }
         report.setSection(section);
-        if (!reports.contains(report)) {
+        if (!this.reports.contains(report)) {
             this.reports.add(report);
         }
         fireData();

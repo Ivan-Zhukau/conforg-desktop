@@ -4,5 +4,6 @@ Bundle-Name: Services
 Bundle-SymbolicName: net.ostis.confman.services
 Bundle-Version: 1.0.0.qualifier
 Export-Package: net.ostis.confman.services
-Require-Bundle: net.ostis.confman.model;bundle-version="1.0.0"
+Require-Bundle: net.ostis.confman.model;bundle-version="1.0.0",
+ org.eclipse.equinox.security;bundle-version="1.2.0"
 Import-Package: net.ostis.confman.services.common.model

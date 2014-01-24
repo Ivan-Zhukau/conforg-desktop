@@ -25,14 +25,11 @@ public class ServiceLocator {
                 new ConferenceServiceImpl());
         this.serviceImpls.put(ParticipantService.class,
                 new ParticipantServiceImpl());
-        this.serviceImpls.put(EmailService.class,
-                new EmailServiceImpl());
+        this.serviceImpls.put(EmailService.class, new EmailServiceImpl());
         this.serviceImpls.put(TimeSectionService.class,
                 new TimeSectionServiceImpl());
-        this.serviceImpls.put(ScheduleService.class,
-                new ScheduleServiceImpl());
-        this.serviceImpls.put(ReportService.class,
-                new ReportServiceImpl());
+        this.serviceImpls.put(ScheduleService.class, new ScheduleServiceImpl());
+        this.serviceImpls.put(ReportService.class, new ReportServiceImpl());
     }
 
     public static ServiceLocator getInstance() {

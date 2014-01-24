@@ -6,7 +6,6 @@ import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 
-
 public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
@@ -17,46 +16,47 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void updateConference(Conference storedConference,
-            Conference updatedConference) {
+    public void updateConference(final Conference storedConference,
+            final Conference updatedConference) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void addSection(Conference conference, Section section) {
+    public void addSection(final Conference conference, final Section section) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void deleteSection(Section selectedElement) {
+    public void deleteSection(final Section selectedElement) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void addReport(Section section, Report report) {
+    public void addReport(final Section section, final Report report) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void moveReport(Report report, Section from, Section to) {
+    public void moveReport(final Report report, final Section from,
+            final Section to) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void deleteReport(Report report) {
+    public void deleteReport(final Report report) {
 
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void fireData() {
 
         // TODO Auto-generated method stub
-        
+
     }
 
 }

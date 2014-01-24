@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import net.ostis.confman.model.common.report.PersonLexicographicComparator;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
@@ -42,13 +41,14 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public void generateSortedMemberList() {
+
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
         List<Person> sortedPersonsList = new ArrayList<>();
-        ConferenceServiceImpl cs = new ConferenceServiceImpl();
+        final ConferenceServiceImpl cs = new ConferenceServiceImpl();
         this.table = new SpreadsheetTable();
         this.excelBuilder = new ExcelBuilder();
-        System.out.println(model.getPersons().get(0).getSurname());
+        System.out.println(this.model.getPersons().get(0).getSurname());
         if (this.model.getPersons() != null) {
             sortedPersonsList = this.model.getPersons();
         } else {
