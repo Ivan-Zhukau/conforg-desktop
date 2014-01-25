@@ -209,6 +209,9 @@ public class ConverterFromStorageProvider {
         for (final Report temp : reports) {
             final net.ostis.confman.services.common.model.Report report = new net.ostis.confman.services.common.model.Report();
             report.setTitle(temp.getTitle());
+            report.setYoungScientistReport(temp.getYoungScientistReport());
+            report.setReportAccepted(temp.getAccepted());
+            report.setReportCanceled(temp.getCanceled());
             report.setMainAuthor(participantMap.get(temp.getReporter()));
             report.setAllAuthors(findNecessaryParticipants(participantMap,
                     temp.getParticipants()));

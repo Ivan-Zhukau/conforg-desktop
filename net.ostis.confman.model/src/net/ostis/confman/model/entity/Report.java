@@ -19,6 +19,12 @@ public class Report {
 
     private Long       reporter;
 
+    private Boolean    youngScientistReport;
+
+    private Boolean    accepted;
+
+    private Boolean    canceled;
+
     public Report() {
 
         super();
@@ -77,5 +83,36 @@ public class Report {
     public void setReporter(final Long reporter) {
 
         this.reporter = reporter;
+    }
+
+    @XmlElement(name = "young-sc-rep")
+    public Boolean getYoungScientistReport() {
+
+        return this.youngScientistReport;
+    }
+
+    public void setYoungScientistReport(final Boolean youngScientistReport) {
+
+        this.youngScientistReport = youngScientistReport;
+    }
+
+    public Boolean getAccepted() {
+
+        return this.accepted;
+    }
+
+    public void setAccepted(final Boolean accepted) {
+
+        this.accepted = accepted;
+    }
+
+    public Boolean getCanceled() {
+
+        return this.canceled;
+    }
+
+    public void setCanceled(final Boolean canceled) {
+
+        this.canceled = canceled;
     }
 }

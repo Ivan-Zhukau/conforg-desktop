@@ -50,6 +50,16 @@
           </children>
         </children>
       </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_2yWr4IWUEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.perspective.reportManagement" label="%perspective.label.5">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_NSzaAIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.partsashcontainer.reportManagement" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_SZAe0IWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.partstack.reportView">
+            <children xsi:type="basic:Part" xmi:id="_O8KIMIW7EeOIDYoHG3ExhA" elementId="net.ostis.confman.ui.part.reportView" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.reports.ReportView" label="%part.label.13"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_TMRHwIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.partstack.reportEditorPart2">
+            <children xsi:type="basic:Part" xmi:id="_PSx4cIW7EeOIDYoHG3ExhA" elementId="net.ostis.confman.ui.part.reportEditorPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="%part.label.7"/>
+          </children>
+        </children>
+      </children>
     </children>
     <mainMenu xmi:id="_SOyu6xpVEeOmro9kd1wSKw" elementId="menu:org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_SOyu7BpVEeOmro9kd1wSKw" label="%menu.label.1">
@@ -70,6 +80,9 @@
           </children>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_rfCeIGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.emailPerspective" label="%handledmenuitem.label.7" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_vKEwAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.3" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.emailManagement"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_c5_KQIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.handledmenuitem.reportManagement" label="%handledmenuitem.label.9" command="_88j54CrHEeOTVPtjqnvy9g">
+            <parameters xmi:id="_FQ7Y0IWWEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.parameter.5" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.reportManagement"/>
           </children>
           <children xsi:type="menu:Menu" xmi:id="_wyNYsGfXEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.menu.reportManagment" label="%menu.label.5">
             <children xsi:type="menu:HandledMenuItem" xmi:id="_C_oycGfYEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.handledmenuitem.sectionTimePart" label="%handledmenuitem.label.8" command="_88j54CrHEeOTVPtjqnvy9g">

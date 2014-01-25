@@ -45,6 +45,9 @@ public class ReportConverter {
         reportToStore.setSectionId(idProvider.getId(report.getSection()));
         reportToStore.setParticipants(getParticipantId(report.getAllAuthors(),
                 idProvider));
+        reportToStore.setYoungScientistReport(report.isYoungScientistReport());
+        reportToStore.setAccepted(report.isReportAccepted());
+        reportToStore.setCanceled(report.isReportCanceled());
         return reportToStore;
     }
 

@@ -13,6 +13,12 @@ public class Report {
 
     private Participant       mainAuthor;
 
+    private boolean           youngScientistReport;
+
+    private boolean           reportCanceled;
+
+    private boolean           reportAccepted;
+
     public Report() {
 
         super();
@@ -59,5 +65,35 @@ public class Report {
     public void setMainAuthor(final Participant mainAuthor) {
 
         this.mainAuthor = mainAuthor;
+    }
+
+    public boolean isYoungScientistReport() {
+
+        return this.youngScientistReport;
+    }
+
+    public void setYoungScientistReport(final boolean youngScientistReport) {
+
+        this.youngScientistReport = youngScientistReport;
+    }
+
+    public boolean isReportCanceled() {
+
+        return this.reportCanceled;
+    }
+
+    public void setReportCanceled(final boolean cancelReport) {
+
+        this.reportCanceled = cancelReport;
+    }
+
+    public boolean isReportAccepted() {
+
+        return this.reportAccepted;
+    }
+
+    public void setReportAccepted(final boolean acceptReport) {
+
+        this.reportAccepted = acceptReport;
     }
 }

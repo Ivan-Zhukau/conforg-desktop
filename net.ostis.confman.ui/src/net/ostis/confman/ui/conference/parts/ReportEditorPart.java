@@ -10,11 +10,11 @@ import javax.inject.Inject;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.CheckBoxField;
 import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
-import net.ostis.confman.ui.common.component.ToStringArrayConverter;
 import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.ValueComboBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
@@ -35,46 +35,17 @@ public class ReportEditorPart {
 
     private static final int LAYOUT_COL_COUNT = 1;
 
-    private enum ReportFields implements Localizable {
-        TITLE("reportTitle");
-
-        private String rk;
-
-        private ReportFields(final String rk) {
-
-            this.rk = rk;
-        }
-
-        @Override
-        public String getResourceKey() {
-
-            return this.rk;
-        }
-    }
-
-    private enum ReportCombos implements Localizable {
-        MAIN_AUTHOR("mainAuthor");
-
-        private String rk;
-
-        private ReportCombos(final String rk) {
-
-            this.rk = rk;
-        }
-
-        @Override
-        public String getResourceKey() {
-
-            return this.rk;
-        }
-    }
-
-    private enum Buttons implements Localizable {
+    private enum ReportCaptions implements Localizable {
+        TITLE("reportTitle"),
+        MAIN_AUTHOR("mainAuthor"),
+        YOUNG_REPORT("youngScientistReport"),
+        ACCEPT_REPORT("acceptReport"),
+        CANCEL_REPORT("cancelReport"),
         SAVE("save");
 
         private String rk;
 
-        private Buttons(final String rk) {
+        private ReportCaptions(final String rk) {
 
             this.rk = rk;
         }
@@ -84,27 +55,20 @@ public class ReportEditorPart {
 
             return this.rk;
         }
-
     }
 
-    private final Map<ReportFields, EditableComponent<?>> editFields;
-
-    private final Map<ReportCombos, EditableComponent<?>> combos;
-
-    private String[]                                      authorsArray;
+    private final Map<ReportCaptions, EditableComponent<?>> editFields;
 
     @Inject
-    private ESelectionService                             selectionService;
+    private ESelectionService                               selectionService;
 
     @Inject
-    private IEventBroker                                  eventBroker;
+    private IEventBroker                                    eventBroker;
 
     public ReportEditorPart() {
 
         super();
-        this.editFields = new EnumMap<>(ReportFields.class);
-        this.combos = new EnumMap<>(ReportCombos.class);
-        this.authorsArray = new String[0];
+        this.editFields = new EnumMap<>(ReportCaptions.class);
     }
 
     @PostConstruct
@@ -127,22 +91,15 @@ public class ReportEditorPart {
 
     protected void onReportEvent(final Report report, final Composite parent) {
 
-        this.authorsArray = new ToStringArrayConverter().convert(report
-                .getAllAuthors());
-
         applyValueBindings(report);
-        for (final ReportFields field : this.editFields.keySet()) {
+        for (final ReportCaptions field : this.editFields.keySet()) {
             this.editFields.get(field).activate();
-        }
-
-        for (final ReportCombos field : this.combos.keySet()) {
-            this.combos.get(field).activate();
         }
     }
 
     private void applyValueBindings(final Report report) {
 
-        this.editFields.get(ReportFields.TITLE).setValueBinder(
+        this.editFields.get(ReportCaptions.TITLE).setValueBinder(
                 new ValueBinder() {
 
                     @Override
@@ -158,21 +115,19 @@ public class ReportEditorPart {
                     }
                 });
 
-        this.combos.get(ReportCombos.MAIN_AUTHOR).setValueComboBinder(
+        this.editFields.get(ReportCaptions.MAIN_AUTHOR).setValueComboBinder(
                 new ValueComboBinder() {
 
                     @Override
                     public void setValues(final Object value) {
 
                         report.setAllAuthors((List<Participant>) value);
-
                     }
 
                     @Override
                     public void setCurrentValue(final Object value) {
 
                         report.setMainAuthor((Participant) value);
-
                     }
 
                     @Override
@@ -187,23 +142,71 @@ public class ReportEditorPart {
                         return report.getMainAuthor();
                     }
                 });
+        this.editFields.get(ReportCaptions.YOUNG_REPORT).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setYoungScientistReport((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.isYoungScientistReport();
+                    }
+                });
+        this.editFields.get(ReportCaptions.ACCEPT_REPORT).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setReportAccepted((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.isReportAccepted();
+                    }
+                });
+        this.editFields.get(ReportCaptions.CANCEL_REPORT).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setReportCanceled((Boolean) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.isReportCanceled();
+                    }
+                });
     }
 
     private void buildLayout(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
-
-        this.editFields.put(ReportFields.TITLE,
-                new TextField(parent, util.translate(ReportFields.TITLE))
+        this.editFields.put(ReportCaptions.TITLE,
+                new TextField(parent, util.translate(ReportCaptions.TITLE))
                         .setDataConverter(new StringDataConverter()));
-
-        this.combos.put(ReportCombos.MAIN_AUTHOR, new ComboBoxField(parent,
-                util.translate(ReportCombos.MAIN_AUTHOR), new String[0])
-                .setDataConverter(new StringDataConverter()));
-
+        this.editFields.put(ReportCaptions.MAIN_AUTHOR, new ComboBoxField(
+                parent, util.translate(ReportCaptions.MAIN_AUTHOR),
+                new String[0]).setDataConverter(new StringDataConverter()));
+        this.editFields.put(ReportCaptions.YOUNG_REPORT, new CheckBoxField(
+                parent, util.translate(ReportCaptions.YOUNG_REPORT)));
+        this.editFields.put(ReportCaptions.ACCEPT_REPORT, new CheckBoxField(
+                parent, util.translate(ReportCaptions.ACCEPT_REPORT)));
+        this.editFields.put(ReportCaptions.CANCEL_REPORT, new CheckBoxField(
+                parent, util.translate(ReportCaptions.CANCEL_REPORT)));
         final Button button = new Button(parent, SWT.PUSH);
-        button.setText(util.translate(Buttons.SAVE));
+        button.setText(util.translate(ReportCaptions.SAVE));
         button.addSelectionListener(new SelectionListener() {
 
             @Override
@@ -222,16 +225,11 @@ public class ReportEditorPart {
 
     private void onUpdate() {
 
-        for (final ReportFields field : this.editFields.keySet()) {
+        for (final ReportCaptions field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
-
         }
-        for (final ReportCombos field : this.combos.keySet()) {
-            this.combos.get(field).apply();
-
-        }
-        // TODO: add getter (?) for ValueBinder in TextField and create\
-        // Conference obj with updated fiels.
+        this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
         this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
+        this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
     }
 }
