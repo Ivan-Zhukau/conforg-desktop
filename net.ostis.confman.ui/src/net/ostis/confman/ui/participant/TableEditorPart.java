@@ -379,6 +379,7 @@ public class TableEditorPart {
         this.editFields.put(TableFields.PATRONYMIC,
                 new TextField(parent, util.translate(TableFields.PATRONYMIC))
                         .setDataConverter(stringConverter));
+
         /*
          * new ComboBoxField(parent,
          * util.translate(TableFields.ACADEMIC_DEGREE),
@@ -388,6 +389,7 @@ public class TableEditorPart {
          * translateItems(AcademicTitle.values(), util))
          * .setDataConverter(stringConverter);
          */
+
         this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
                 util.translate(TableFields.ACADEMIC_DEGREE))
                 .setDataConverter(stringConverter));

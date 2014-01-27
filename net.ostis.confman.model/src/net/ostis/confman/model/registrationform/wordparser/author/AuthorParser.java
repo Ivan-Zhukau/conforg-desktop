@@ -50,11 +50,13 @@ public class AuthorParser {
             }
             case RegistrationFormConstant.ACADEMIC_DEGREE: {
                 this.authorInformation.getPersonalInformation()
-                        .setAcademicDegree(new AcademicDegreeParser().parse(info));
+                        .setAcademicDegree(
+                                new AcademicDegreeParser().parse(info));
                 break;
             }
             case RegistrationFormConstant.ACADEMIC_TITLE: {
-                this.authorInformation.getPersonalInformation()
+                this.authorInformation
+                        .getPersonalInformation()
                         .setAcademicTitle(new AcademicTitleParser().parse(info));
                 break;
             }

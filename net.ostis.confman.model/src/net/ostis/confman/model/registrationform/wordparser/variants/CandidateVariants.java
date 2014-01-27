@@ -1,8 +1,7 @@
 package net.ostis.confman.model.registrationform.wordparser.variants;
 
+public enum CandidateVariants implements Variants {
 
-public enum CandidateVariants implements Variants{
-    
     CANDIDATE("Кандидат"),
     CANDIDATE_SMALL("кандидат"),
     CANDIDATE_EN("Candidate"),

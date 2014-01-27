@@ -300,7 +300,7 @@ public class SectionTimeEditorPart {
     }
 
     private void onUpdate() {
-        
+
         for (final DateChooserFields field : this.dateChooserFields.keySet()) {
             this.dateChooserFields.get(field).apply();
         }

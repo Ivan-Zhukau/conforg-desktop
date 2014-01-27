@@ -1,8 +1,7 @@
 package net.ostis.confman.model.registrationform.wordparser.variants;
 
+public enum DoctorVariants implements Variants {
 
-public enum DoctorVariants implements Variants{
-    
     DOCTOR("Доктор"),
     DOCTOR_SMALL("доктор"),
     DOCTOR_EN("Doctor"),

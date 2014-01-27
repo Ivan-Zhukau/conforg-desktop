@@ -1,6 +1,6 @@
 package net.ostis.confman.model.registrationform.wordparser.academic;
 
-public enum AcademicTitle{
+public enum AcademicTitle {
 
     SENIOR("senior"),
     DOCENT("docent"),
@@ -13,8 +13,9 @@ public enum AcademicTitle{
 
         this.academicTitle = academicTitle;
     }
-    
-    public String getValue(){
+
+    public String getValue() {
+
         return this.academicTitle;
     }
 }

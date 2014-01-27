@@ -7,10 +7,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
-import net.ostis.confman.ui.common.component.AddressDataConverter;
 import net.ostis.confman.ui.common.component.DateChooserField;
 import net.ostis.confman.ui.common.component.DateDataConverter;
 import net.ostis.confman.ui.common.component.EditableComponent;
@@ -207,7 +205,8 @@ public class ConferenceEditorPart {
                     @Override
                     public void setValue(final Object value) {
 
-                        conf.getConferenceVenue().setHouseNumber((String) value);
+                        conf.getConferenceVenue()
+                                .setHouseNumber((String) value);
                     }
 
                     @Override
@@ -258,15 +257,15 @@ public class ConferenceEditorPart {
         this.editFields.put(ConferenceFields.COUNTRY, new TextField(parent,
                 util.translate(ConferenceFields.COUNTRY))
                 .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.CITY, new TextField(parent,
-                util.translate(ConferenceFields.CITY))
-                .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.STREET, new TextField(parent,
-                util.translate(ConferenceFields.STREET))
-                .setDataConverter(new StringDataConverter()));
-        this.editFields.put(ConferenceFields.HOUSE, new TextField(parent,
-                util.translate(ConferenceFields.HOUSE))
-                .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.CITY,
+                new TextField(parent, util.translate(ConferenceFields.CITY))
+                        .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.STREET,
+                new TextField(parent, util.translate(ConferenceFields.STREET))
+                        .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ConferenceFields.HOUSE,
+                new TextField(parent, util.translate(ConferenceFields.HOUSE))
+                        .setDataConverter(new StringDataConverter()));
         final DateDataConverter dateConverter = new DateDataConverter();
         this.dateChooserFields.put(
                 DateChooserFields.START_DATE,

@@ -1,7 +1,6 @@
 package net.ostis.confman.model.registrationform.wordparser.variants;
 
-
-public enum SeniorVariants implements Variants{
+public enum SeniorVariants implements Variants {
 
     SENIOR("Сотрудник"),
     SENIOR_SMALL("сотрудник"),
@@ -17,7 +16,7 @@ public enum SeniorVariants implements Variants{
 
     @Override
     public String getVariant() {
-        
+
         return this.academicTitle;
     }
 }

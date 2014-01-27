@@ -48,7 +48,6 @@ public class ReportServiceImpl implements ReportService {
         final ConferenceServiceImpl cs = new ConferenceServiceImpl();
         this.table = new SpreadsheetTable();
         this.excelBuilder = new ExcelBuilder();
-        System.out.println(this.model.getPersons().get(0).getSurname());
         if (this.model.getPersons() != null) {
             sortedPersonsList = this.model.getPersons();
         } else {

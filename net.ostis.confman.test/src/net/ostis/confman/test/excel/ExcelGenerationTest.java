@@ -2,6 +2,7 @@ package net.ostis.confman.test.excel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
@@ -48,11 +49,16 @@ public class ExcelGenerationTest {
         row3.addCell(cell5);
 
         row4.addCell(cell4);
-        row4.addCell(cell5);
+        row4.addCell(cell5);       
 
         final ExcelBuilder builder = new ExcelBuilder();
         final OutputStream stream = new FileOutputStream("table.xlsx");
         builder.generate(stream, tableModel);
+        try {
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

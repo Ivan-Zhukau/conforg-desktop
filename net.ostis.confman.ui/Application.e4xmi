@@ -95,6 +95,7 @@
       <children xsi:type="menu:Menu" xmi:id="_dCim4GjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.menu.tools" label="%menu.label.6">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="%handledmenuitem.label.9" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_CDNwQGm2EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handledmenuitem.generateSortedMemberList" label="%handledmenuitem.label.10" command="_6iW8AGm3EeOpMcisa9NY1w"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_l0_aEIbMEeO1TNrkSNlzug" elementId="net.ostis.confman.ui.handledmenuitem.generateSectionReports" label="%handledmenuitem.label.12"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">

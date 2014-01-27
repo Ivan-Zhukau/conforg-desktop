@@ -12,8 +12,9 @@ public enum AcademicDegree {
 
         this.academicDegree = academicDegree;
     }
-    
-    public String getValue(){
+
+    public String getValue() {
+
         return this.academicDegree;
     }
 }
