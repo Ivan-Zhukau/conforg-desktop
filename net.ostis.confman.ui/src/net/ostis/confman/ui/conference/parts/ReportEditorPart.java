@@ -41,6 +41,7 @@ public class ReportEditorPart {
         YOUNG_REPORT("youngScientistReport"),
         ACCEPT_REPORT("acceptReport"),
         CANCEL_REPORT("cancelReport"),
+        NUMBER_OF_PAGES("numberOfPages"),
         SAVE("save");
 
         private String rk;
@@ -112,6 +113,22 @@ public class ReportEditorPart {
                     public Object getValue() {
 
                         return report.getTitle();
+                    }
+                });
+
+        this.editFields.get(ReportCaptions.NUMBER_OF_PAGES).setValueBinder(
+                new ValueBinder() {
+
+                    @Override
+                    public void setValue(final Object value) {
+
+                        report.setNumberOfPages((String) value);
+                    }
+
+                    @Override
+                    public Object getValue() {
+
+                        return report.getNumberOfPages();
                     }
                 });
 
@@ -196,6 +213,9 @@ public class ReportEditorPart {
         this.editFields.put(ReportCaptions.TITLE,
                 new TextField(parent, util.translate(ReportCaptions.TITLE))
                         .setDataConverter(new StringDataConverter()));
+        this.editFields.put(ReportCaptions.NUMBER_OF_PAGES, new TextField(
+                parent, util.translate(ReportCaptions.NUMBER_OF_PAGES))
+                .setDataConverter(new StringDataConverter()));
         this.editFields.put(ReportCaptions.MAIN_AUTHOR, new ComboBoxField(
                 parent, util.translate(ReportCaptions.MAIN_AUTHOR),
                 new String[0]).setDataConverter(new StringDataConverter()));

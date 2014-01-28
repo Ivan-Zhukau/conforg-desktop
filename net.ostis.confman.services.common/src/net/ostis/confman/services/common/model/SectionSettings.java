@@ -23,12 +23,13 @@ public class SectionSettings {
     }
 
     private void setAllNull() {
+
         this.breakTime = 0;
         this.chairmanTime = 0;
         this.coffeeBreakNumber = 0;
         this.coffeeBreakTime = 0;
         this.plenaryReportTime = 0;
-        this.reportTime = 0;        
+        this.reportTime = 0;
     }
 
     public Section getSection() {

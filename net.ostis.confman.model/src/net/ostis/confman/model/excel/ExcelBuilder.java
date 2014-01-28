@@ -35,6 +35,21 @@ public class ExcelBuilder {
         writeDocumentToStream(outputStream);
     }
 
+    public void generate(final OutputStream outputStream,
+            final List<SpreadsheetTable> tableModels) {
+
+        buildSheets(tableModels);
+        writeDocumentToStream(outputStream);
+    }
+
+    private void buildSheets(final List<SpreadsheetTable> tableModels) {
+
+        for (final SpreadsheetTable temp : tableModels) {
+            final Sheet sheet = this.workbook.createSheet();
+            buildRows(sheet, temp.getRows());
+        }
+    }
+
     private void buildSheet(final SpreadsheetTable tableModel) {
 
         final Sheet sheet = this.workbook.createSheet();

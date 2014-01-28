@@ -48,6 +48,7 @@ public class ReportConverter {
         reportToStore.setYoungScientistReport(report.isYoungScientistReport());
         reportToStore.setAccepted(report.isReportAccepted());
         reportToStore.setCanceled(report.isReportCanceled());
+        reportToStore.setNumberOfPages(report.getNumberOfPages());
         return reportToStore;
     }
 

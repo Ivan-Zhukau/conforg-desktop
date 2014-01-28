@@ -19,6 +19,8 @@ public class Report {
 
     private boolean           reportAccepted;
 
+    private String            numberOfPages;
+
     public Report() {
 
         super();
@@ -95,5 +97,15 @@ public class Report {
     public void setReportAccepted(final boolean acceptReport) {
 
         this.reportAccepted = acceptReport;
+    }
+
+    public String getNumberOfPages() {
+
+        return this.numberOfPages;
+    }
+
+    public void setNumberOfPages(final String numberOfPages) {
+
+        this.numberOfPages = numberOfPages;
     }
 }

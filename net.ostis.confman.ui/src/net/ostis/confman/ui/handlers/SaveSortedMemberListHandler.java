@@ -13,6 +13,7 @@ package net.ostis.confman.ui.handlers;
 import javax.inject.Named;
 
 import net.ostis.confman.services.ReportServiceImpl;
+import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -24,9 +25,10 @@ public class SaveSortedMemberListHandler {
     @Execute
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 
+        final LocalizationUtil util = LocalizationUtil.getInstance();
         final ReportServiceImpl generateMemberList = new ReportServiceImpl();
         generateMemberList.generateSortedMemberList();
-        MessageDialog.openInformation(shell, "Info",
-                "SortedMemberList.xlsx file was created.");
+        MessageDialog.openInformation(shell, "Info", "SortedMemberList.xlsx "
+                + util.translate("fileWasCreated"));
     }
 }

@@ -215,6 +215,7 @@ public class ConverterFromStorageProvider {
             report.setMainAuthor(participantMap.get(temp.getReporter()));
             report.setAllAuthors(findNecessaryParticipants(participantMap,
                     temp.getParticipants()));
+            report.setNumberOfPages(temp.getNumberOfPages());
             reportsMap.put(temp.getId(), report);
             listReports.add(report);
         }

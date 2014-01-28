@@ -25,6 +25,8 @@ public class Report {
 
     private Boolean    canceled;
 
+    private String     numberOfPages;
+
     public Report() {
 
         super();
@@ -114,5 +116,16 @@ public class Report {
     public void setCanceled(final Boolean canceled) {
 
         this.canceled = canceled;
+    }
+
+    @XmlElement
+    public String getNumberOfPages() {
+
+        return this.numberOfPages;
+    }
+
+    public void setNumberOfPages(final String numberOfPages) {
+
+        this.numberOfPages = numberOfPages;
     }
 }
