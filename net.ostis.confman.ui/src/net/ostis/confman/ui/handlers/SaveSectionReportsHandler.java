@@ -6,7 +6,8 @@ import java.io.FileOutputStream;
 
 import javax.inject.Named;
 
-import net.ostis.confman.services.SectionServiceImpl;
+import net.ostis.confman.services.SectionService;
+import net.ostis.confman.services.ServiceLocator;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -26,7 +27,7 @@ public class SaveSectionReportsHandler {
         final String filePath = dialog.open();
         if (filePath != null) {
             try {
-                new SectionServiceImpl()
+                ((SectionService) ServiceLocator.getInstance().getService(SectionService.class))
                         .generateSectionReporList(new FileOutputStream(
                                 new File(filePath)));
             } catch (final FileNotFoundException e) {
