@@ -1,76 +1,105 @@
 package net.ostis.confman.services;
 
-import java.util.List;
+import java.io.OutputStream;
+import java.util.Date;
 
-import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
+import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
+import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
+import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
+import net.ostis.confman.model.entity.Conference;
+import net.ostis.confman.model.excel.ExcelBuilder;
+import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 
+
 public class ScheduleServiceImpl implements ScheduleService {
 
-    @Override
-    public List<Conference> getConferences() {
-
-        // TODO Auto-generated method stub
-        return null;
+    private FullModel model;
+    private Date currentDate;
+    private SpreadsheetCell emptyCell;
+    private SpreadsheetRow emptyRow;
+    
+    public ScheduleServiceImpl(){
+        
+        emptyCell = new SpreadsheetCell("");
+        emptyRow = new SpreadsheetRow();
+        emptyRow.addCell(emptyCell);
+        
+        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        this.model = converter.convertData();
     }
 
     @Override
-    public void updateConference(final Conference storedConference,
-            final Conference updatedConference) {
+    public void save(OutputStream outputStream) {
 
-        // TODO Auto-generated method stub
-
+        createSchedule(outputStream);        
+    }
+    
+    void createSchedule(OutputStream outputStream){
+        
+        SpreadsheetTable table = new SpreadsheetTable();
+        for(net.ostis.confman.services.common.model.Conference conference : model.getConferences()){
+            whriteConference(conference, table);
+        }
+        
+        ExcelBuilder builder = new ExcelBuilder();        
+        builder.generate(outputStream, table);
     }
 
-    @Override
-    public void addSection(final Conference conference, final Section section) {
+    private void whriteConference(
+            net.ostis.confman.services.common.model.Conference conference,
+            SpreadsheetTable table) {  
 
-        // TODO Auto-generated method stub
+        SpreadsheetCell nameCell = new SpreadsheetCell(conference.getTitle());
+        SpreadsheetRow row = new SpreadsheetRow();
+        row.addCell(nameCell);        
 
+        table.addRow(emptyRow).addRow(row).addRow(emptyRow);
+        
+        for(Section section : model.getSections()){
+            if(section.getConference()!=null && section.getConference().equals(conference)){
+                whriteSection(section, table);                             
+            }
+        }       
     }
 
-    @Override
-    public void deleteSection(final Section selectedElement) {
+    private void whriteSection(Section section, SpreadsheetTable table) {
 
-        // TODO Auto-generated method stub
-
+        SpreadsheetCell nameCell = new SpreadsheetCell(section.getTitle());
+        SpreadsheetCell dateCell = new SpreadsheetCell(section.getDate().toString());
+        SpreadsheetRow row = new SpreadsheetRow();
+        row.addCell(nameCell).addCell(dateCell);
+        
+        SpreadsheetCell leaderCell = new SpreadsheetCell("Слово председателя:");
+        SpreadsheetRow leaderRow = new SpreadsheetRow();
+        leaderRow.addCell(leaderCell).addCell(emptyCell);
+        
+        table.addRow(emptyRow).addRow(row).addRow(emptyRow).addRow(leaderRow).addRow(emptyRow);
+        
+        for(Report report : model.getReports()){
+            if(report.getSection()!=null && report.getSection().equals(section)){
+                whriteReport(report, table, new Date());   
+            }            
+        }
     }
 
-    @Override
-    public void addReport(final Section section, final Report report) {
+    private void whriteReport(Report report, SpreadsheetTable table, Date date) {
 
-        // TODO Auto-generated method stub
-
+        SpreadsheetCell nameCell = new SpreadsheetCell(report.getTitle());
+        SpreadsheetCell speakerCell;
+        if(report.getMainAuthor()!=null){            
+            speakerCell = new SpreadsheetCell(report.getMainAuthor().getPerson().getFullName());            
+        }
+        else{
+            speakerCell = new SpreadsheetCell("");
+        }
+        SpreadsheetCell timeCell = new SpreadsheetCell(date.toString());
+        
+        SpreadsheetRow row = new SpreadsheetRow();
+        row.addCell(nameCell).addCell(speakerCell).addCell(timeCell);
+        
+        table.addRow(row);
     }
-
-    @Override
-    public void moveReport(final Report report, final Section from,
-            final Section to) {
-
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void deleteReport(final Report report) {
-
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public List<Report> getReports() {
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void fireData() {
-
-        // TODO Auto-generated method stub
-
-    }
-
 }

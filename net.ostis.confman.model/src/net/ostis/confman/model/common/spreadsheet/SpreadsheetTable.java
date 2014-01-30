@@ -14,9 +14,10 @@ public class SpreadsheetTable {
         this.rows = new ArrayList<SpreadsheetRow>();
     }
 
-    public void addRow(final SpreadsheetRow row) {
+    public SpreadsheetTable addRow(final SpreadsheetRow row) {
 
         this.rows.add(row);
+        return this;
     }
 
     public List<SpreadsheetRow> getRows() {
