@@ -96,6 +96,7 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_g3eREGjZEeOrgabYwiQalg" elementId="net.ostis.confman.ui.handledmenuitem.generateTimeReport" label="%handledmenuitem.label.9" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_CDNwQGm2EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handledmenuitem.generateSortedMemberList" label="%handledmenuitem.label.10" command="_6iW8AGm3EeOpMcisa9NY1w"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_l0_aEIbMEeO1TNrkSNlzug" elementId="net.ostis.confman.ui.handledmenuitem.generateSectionReports" label="%handledmenuitem.label.12" command="_q0qDcIgIEeOx6IFkJvaeqQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_lE-OwImzEeOZc-dBP8rpCg" elementId="net.ostis.confman.ui.handledmenuitem.saveSectionSchedule" label="%handledmenuitem.label.13" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">
@@ -110,7 +111,7 @@
   <handlers xmi:id="_SOyu5hpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.handler.saveCommand" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveHandler" command="_SOyu5RpVEeOmro9kd1wSKw"/>
   <handlers xmi:id="_SOyu6RpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.handler.aboutCommand" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.AboutHandler" command="_SOyu6BpVEeOmro9kd1wSKw"/>
   <handlers xmi:id="_HijBICrIEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.handler.switchPerspective" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SwitchPerspectiveHandler" command="_88j54CrHEeOTVPtjqnvy9g"/>
-  <handlers xmi:id="_5kbfwGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.handler.saveReport" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveReportHandler" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
+  <handlers xmi:id="_5kbfwGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.handler.saveSectionSchedule" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSectionTimeReportHandler" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
   <handlers xmi:id="_urT1gGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handler.generateSortedMemberList" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSortedMemberListHandler" command="_6iW8AGm3EeOpMcisa9NY1w"/>
   <handlers xmi:id="_lrCEIHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.handler.preferencesDialog" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.ShowPreferencesDialog" command="_s0uDoHS1EeO3BvPyRqUeWQ"/>
   <handlers xmi:id="_mV-4sIgIEeOx6IFkJvaeqQ" elementId="net.ostis.confman.ui.handler.generateSectionReport" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSectionReportsHandler" command="_q0qDcIgIEeOx6IFkJvaeqQ"/>
@@ -131,7 +132,7 @@
   <commands xmi:id="_88j54CrHEeOTVPtjqnvy9g" elementId="net.ostis.confman.ui.command.switchperspective" commandName="%command.commandname.5">
     <parameters xmi:id="_ahrxYCrYEeOE7riNv-mKnA" elementId="net.ostis.confman.ui.parameter.perspectiveId" name="perspectiveId" typeId=""/>
   </commands>
-  <commands xmi:id="_89JIAGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.command.saveReport" commandName="%command.commandname.6"/>
+  <commands xmi:id="_89JIAGZ4EeO5iZw5OUBRJA" elementId="net.ostis.confman.ui.command.saveSectionSchedule" commandName="%command.commandname.6"/>
   <commands xmi:id="_6iW8AGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.command.generateSortedMemberList" commandName="%command.commandname.7"/>
   <commands xmi:id="_s0uDoHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.command.showPerspectiveDialog" commandName="%command.commandname.8"/>
   <commands xmi:id="_q0qDcIgIEeOx6IFkJvaeqQ" elementId="net.ostis.confman.ui.command.generateSectionReport" commandName="%command.commandname.9"/>
