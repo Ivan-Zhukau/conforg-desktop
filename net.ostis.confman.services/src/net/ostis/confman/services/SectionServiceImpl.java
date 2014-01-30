@@ -24,7 +24,7 @@ import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 import org.apache.log4j.Logger;
 
-public class SectionServiceImpl implements SectionService {
+class SectionServiceImpl implements SectionService {
 
     protected static final Logger  LOGGER = Logger.getLogger(SectionService.class);
 
@@ -160,8 +160,6 @@ public class SectionServiceImpl implements SectionService {
         try {
             this.excelBuilder.generate(fileOutputStream, this.tables);
             fileOutputStream.close();
-        } catch (final FileNotFoundException exception) {
-            LOGGER.error(exception);
         } catch (final IOException exception) {
             LOGGER.error(exception);
         }

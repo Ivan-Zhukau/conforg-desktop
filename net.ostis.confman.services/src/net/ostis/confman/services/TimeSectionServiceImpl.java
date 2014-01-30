@@ -7,7 +7,7 @@ import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvi
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Section;
 
-public class TimeSectionServiceImpl implements TimeSectionService {
+class TimeSectionServiceImpl implements TimeSectionService {
 
     List<Section> sections;
 

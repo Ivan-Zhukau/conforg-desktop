@@ -6,7 +6,7 @@ import java.util.List;
 import net.ostis.confman.model.registrationform.RegistrationForm;
 import net.ostis.confman.model.registrationform.wordparser.RegistrationFormParser;
 
-public class RegistrationServiceImpl implements RegistrationService {
+class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public List<RegistrationForm> parseForm(final List<String> paths) {

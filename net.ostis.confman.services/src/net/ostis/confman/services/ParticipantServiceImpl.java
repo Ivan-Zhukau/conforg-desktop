@@ -8,7 +8,7 @@ import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 
-public class ParticipantServiceImpl implements ParticipantService {
+class ParticipantServiceImpl implements ParticipantService {
 
     List<Participant> participants;
 

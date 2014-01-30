@@ -7,7 +7,7 @@ import net.ostis.confman.model.mail.TemplateProvider;
 import net.ostis.confman.model.mail.entity.MailDto;
 import net.ostis.confman.model.mail.entity.Template;
 
-public class EmailServiceImpl implements EmailService {
+class EmailServiceImpl implements EmailService {
 
     @Override
     public MailDto getMailInfo() {

@@ -12,7 +12,7 @@ import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 
-public class ScheduleServiceImpl implements ScheduleService {
+class ScheduleServiceImpl implements ScheduleService {
 
     private FullModel       model;
 

@@ -3,7 +3,7 @@ package net.ostis.confman.services;
 import org.eclipse.equinox.security.storage.ISecurePreferences;
 import org.eclipse.equinox.security.storage.SecurePreferencesFactory;
 
-public class PreferenceServiceImpl implements PreferenceService {
+class PreferenceServiceImpl implements PreferenceService {
 
     private enum ProxyPreferences {
 
