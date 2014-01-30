@@ -26,15 +26,15 @@ import org.apache.log4j.Logger;
 
 public class SectionServiceImpl implements SectionService {
 
-    protected static final Logger LOGGER = Logger.getLogger(SectionService.class);
+    protected static final Logger  LOGGER = Logger.getLogger(SectionService.class);
 
-    private ExcelBuilder          excelBuilder;
+    private ExcelBuilder           excelBuilder;
 
-    private List<SpreadsheetTable>      tables;
+    private List<SpreadsheetTable> tables;
 
-    private FullModel             model;
+    private FullModel              model;
 
-    private List<Section>         sectionsList;
+    private List<Section>          sectionsList;
 
     public SectionServiceImpl() {
 
@@ -42,11 +42,11 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public void generateSectionReporList() {
+    public void generateSectionReporList(final FileOutputStream fileOutputStream) {
 
         initTools();
         addSectionsInformation();
-        saveTheTable();
+        saveTheTable(fileOutputStream);
     }
 
     private void initTools() {
@@ -63,21 +63,23 @@ public class SectionServiceImpl implements SectionService {
     }
 
     private void addSectionsInformation() {
-        
-        for(Section temp : sectionsList){
+
+        for (final Section temp : this.sectionsList) {
             int numberOfPerformances = 1;
-            SpreadsheetTable tempTable = new SpreadsheetTable();
-            SpreadsheetRow title = new SpreadsheetRow();
+            final SpreadsheetTable tempTable = new SpreadsheetTable();
+            final SpreadsheetRow title = new SpreadsheetRow();
             title.addCell(new SpreadsheetCell(temp.getTitle()));
             tempTable.addRow(title);
             createHeaders(tempTable);
             this.tables.add(tempTable);
             tempTable.addRow(new SpreadsheetRow());
-            List<Report> reports = temp.getReports();
-            for(Report tempReport : reports){
-                List<Participant> participants = tempReport.getAllAuthors();
-                for(Participant tempParticipant : participants){
-                    tempTable.addRow(addNewRow(tempParticipant,numberOfPerformances,tempReport));
+            final List<Report> reports = temp.getReports();
+            for (final Report tempReport : reports) {
+                final List<Participant> participants = tempReport
+                        .getAllAuthors();
+                for (final Participant tempParticipant : participants) {
+                    tempTable.addRow(addNewRow(tempParticipant,
+                            numberOfPerformances, tempReport));
                 }
                 numberOfPerformances++;
             }
@@ -85,15 +87,17 @@ public class SectionServiceImpl implements SectionService {
         }
     }
 
-    private void addRowAllPages(SpreadsheetTable tempTable, List<Report> reports) {
+    private void addRowAllPages(final SpreadsheetTable tempTable,
+            final List<Report> reports) {
 
-        SpreadsheetRow allPages = new SpreadsheetRow();
+        final SpreadsheetRow allPages = new SpreadsheetRow();
         allPages.addCell(new SpreadsheetCell("Общее число страниц"));
-        allPages.addCell(new SpreadsheetCell(Integer.toString(calculateAllPages(reports))));
+        allPages.addCell(new SpreadsheetCell(Integer
+                .toString(calculateAllPages(reports))));
         tempTable.addRow(allPages);
     }
 
-    private void createHeaders(SpreadsheetTable table) {
+    private void createHeaders(final SpreadsheetTable table) {
 
         final SpreadsheetRow headers = new SpreadsheetRow();
         headers.addCell(new SpreadsheetCell("Количество страниц"));
@@ -110,49 +114,52 @@ public class SectionServiceImpl implements SectionService {
         headers.addCell(new SpreadsheetCell("Адрес"));
         table.addRow(headers);
     }
-    
-    private SpreadsheetRow addNewRow(Participant tempParticipant, int numberOfPerformances, Report tempReport){
-        
+
+    private SpreadsheetRow addNewRow(final Participant tempParticipant,
+            final int numberOfPerformances, final Report tempReport) {
+
         final SpreadsheetRow report = new SpreadsheetRow();
-        Person person = tempParticipant.getPerson();
-        ContactInformation contactInformation = person.getContacts();
-        WorkplaceInformation workplaceInformation = person.getWorkplace();
-        AcademicInformation academicInformation = person.getDegree();
-        Address address = person.getResidence();
-        ParticipantRole participantRole = tempParticipant.getRole();
+        final Person person = tempParticipant.getPerson();
+        final ContactInformation contactInformation = person.getContacts();
+        final WorkplaceInformation workplaceInformation = person.getWorkplace();
+        final AcademicInformation academicInformation = person.getDegree();
+        final Address address = person.getResidence();
+        final ParticipantRole participantRole = tempParticipant.getRole();
         report.addCell(new SpreadsheetCell(tempReport.getNumberOfPages()));
-        report.addCell(new SpreadsheetCell(Integer.toString(numberOfPerformances)));
+        report.addCell(new SpreadsheetCell(Integer
+                .toString(numberOfPerformances)));
         report.addCell(new SpreadsheetCell(person.getSurname()));
         report.addCell(new SpreadsheetCell(person.getFirstName()));
         report.addCell(new SpreadsheetCell(person.getPatronymic()));
         report.addCell(new SpreadsheetCell(contactInformation.geteMail()));
         report.addCell(new SpreadsheetCell(tempReport.getTitle()));
-        report.addCell(new SpreadsheetCell(academicInformation.getDegree() + "," + academicInformation.getTitle()));
+        report.addCell(new SpreadsheetCell(academicInformation.getDegree()
+                + "," + academicInformation.getTitle()));
         report.addCell(new SpreadsheetCell(workplaceInformation.getAffliation()));
         report.addCell(new SpreadsheetCell(workplaceInformation.getPosition()));
-        report.addCell(new SpreadsheetCell(participantRole.getParticipationForm()));
-        report.addCell(new SpreadsheetCell(address.getCountry() + "," + address.getCity()));
+        report.addCell(new SpreadsheetCell(participantRole
+                .getParticipationForm()));
+        report.addCell(new SpreadsheetCell(address.getCountry() + ","
+                + address.getCity()));
         return report;
     }
-    
-    private int calculateAllPages(List<Report> reports){
-        
+
+    private int calculateAllPages(final List<Report> reports) {
+
         int numberOfPages = 0;
-        for (Report report : reports) {
-            if(report.getNumberOfPages() != null){
+        for (final Report report : reports) {
+            if (report.getNumberOfPages() != null) {
                 numberOfPages += Integer.parseInt(report.getNumberOfPages());
             }
         }
         return numberOfPages;
     }
 
-    private void saveTheTable() {
+    private void saveTheTable(final FileOutputStream fileOutputStream) {
 
-        FileOutputStream excelFile;
         try {
-            excelFile = new FileOutputStream("SectionReports.xlsx");
-            this.excelBuilder.generate(excelFile, this.tables);
-            excelFile.close();
+            this.excelBuilder.generate(fileOutputStream, this.tables);
+            fileOutputStream.close();
         } catch (final FileNotFoundException exception) {
             LOGGER.error(exception);
         } catch (final IOException exception) {
