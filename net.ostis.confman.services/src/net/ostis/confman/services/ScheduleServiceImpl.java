@@ -11,7 +11,7 @@ import net.ostis.confman.model.excel.ExcelBuilder;
 import net.ostis.confman.model.schedule.Schedule;
 import net.ostis.confman.services.common.model.FullModel;
 
-public class ScheduleServiceImpl implements ScheduleService {
+class ScheduleServiceImpl implements ScheduleService {
 
     private FullModel       model;
     

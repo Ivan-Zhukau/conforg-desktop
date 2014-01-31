@@ -19,7 +19,7 @@ import net.ostis.confman.services.common.model.Person;
 
 import org.apache.log4j.Logger;
 
-public class ReportServiceImpl implements ReportService {
+class ReportServiceImpl implements ReportService {
 
     protected static final Logger LOGGER = Logger.getLogger(ReportService.class);
 

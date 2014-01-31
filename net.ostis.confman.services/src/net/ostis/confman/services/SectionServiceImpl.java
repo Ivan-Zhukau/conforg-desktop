@@ -1,6 +1,5 @@
 package net.ostis.confman.services;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import net.ostis.confman.services.common.model.WorkplaceInformation;
 
 import org.apache.log4j.Logger;
 
-public class SectionServiceImpl implements SectionService {
+class SectionServiceImpl implements SectionService {
 
     protected static final Logger  LOGGER = Logger.getLogger(SectionService.class);
 
@@ -58,7 +57,7 @@ public class SectionServiceImpl implements SectionService {
         if (this.model.getSections() != null) {
             this.sectionsList = this.model.getSections();
         } else {
-            LOGGER.error("Empty list of Sections");
+            LOGGER.error(Messages.getString("SectionServiceImpl.0")); //$NON-NLS-1$
         }
     }
 
@@ -91,7 +90,8 @@ public class SectionServiceImpl implements SectionService {
             final List<Report> reports) {
 
         final SpreadsheetRow allPages = new SpreadsheetRow();
-        allPages.addCell(new SpreadsheetCell("Общее число страниц"));
+        allPages.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.1"))); //$NON-NLS-1$
         allPages.addCell(new SpreadsheetCell(Integer
                 .toString(calculateAllPages(reports))));
         tempTable.addRow(allPages);
@@ -100,18 +100,30 @@ public class SectionServiceImpl implements SectionService {
     private void createHeaders(final SpreadsheetTable table) {
 
         final SpreadsheetRow headers = new SpreadsheetRow();
-        headers.addCell(new SpreadsheetCell("Количество страниц"));
-        headers.addCell(new SpreadsheetCell("Порядок выступления в программе"));
-        headers.addCell(new SpreadsheetCell("Фамилия"));
-        headers.addCell(new SpreadsheetCell("Имя"));
-        headers.addCell(new SpreadsheetCell("Отчество"));
-        headers.addCell(new SpreadsheetCell("Email"));
-        headers.addCell(new SpreadsheetCell("Название доклада"));
-        headers.addCell(new SpreadsheetCell("Учёная степень,звание"));
-        headers.addCell(new SpreadsheetCell("Организация"));
-        headers.addCell(new SpreadsheetCell("Должность"));
-        headers.addCell(new SpreadsheetCell("Форма участия"));
-        headers.addCell(new SpreadsheetCell("Адрес"));
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.2"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.3"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.4"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.5"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.6"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.7"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.8"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.9"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.10"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.11"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.12"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages
+                .getString("SectionServiceImpl.13"))); //$NON-NLS-1$
         table.addRow(headers);
     }
 
@@ -134,12 +146,12 @@ public class SectionServiceImpl implements SectionService {
         report.addCell(new SpreadsheetCell(contactInformation.geteMail()));
         report.addCell(new SpreadsheetCell(tempReport.getTitle()));
         report.addCell(new SpreadsheetCell(academicInformation.getDegree()
-                + "," + academicInformation.getTitle()));
+                + "," + academicInformation.getTitle())); //$NON-NLS-1$
         report.addCell(new SpreadsheetCell(workplaceInformation.getAffliation()));
         report.addCell(new SpreadsheetCell(workplaceInformation.getPosition()));
         report.addCell(new SpreadsheetCell(participantRole
                 .getParticipationForm()));
-        report.addCell(new SpreadsheetCell(address.getCountry() + ","
+        report.addCell(new SpreadsheetCell(address.getCountry() + "," //$NON-NLS-1$
                 + address.getCity()));
         return report;
     }
@@ -160,8 +172,6 @@ public class SectionServiceImpl implements SectionService {
         try {
             this.excelBuilder.generate(fileOutputStream, this.tables);
             fileOutputStream.close();
-        } catch (final FileNotFoundException exception) {
-            LOGGER.error(exception);
         } catch (final IOException exception) {
             LOGGER.error(exception);
         }

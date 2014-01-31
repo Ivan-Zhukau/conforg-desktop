@@ -16,7 +16,8 @@ import java.io.FileOutputStream;
 
 import javax.inject.Named;
 
-import net.ostis.confman.services.ScheduleServiceImpl;
+import net.ostis.confman.services.ScheduleService;
+import net.ostis.confman.services.ServiceLocator;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -36,7 +37,7 @@ public class SaveSectionTimeReportHandler {
         final String filePath = dialog.open();
         if (filePath != null) {
             try {
-                new ScheduleServiceImpl().save(new FileOutputStream(new File(
+                ((ScheduleService) ServiceLocator.getInstance().getService(ScheduleService.class)).save(new FileOutputStream(new File(
                         filePath)));
             } catch (final FileNotFoundException e) {
                 e.printStackTrace();
