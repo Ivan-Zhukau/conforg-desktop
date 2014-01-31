@@ -8,26 +8,15 @@ import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.model.excel.ExcelBuilder;
+import net.ostis.confman.model.schedule.Schedule;
 import net.ostis.confman.services.common.model.FullModel;
-import net.ostis.confman.services.common.model.Report;
-import net.ostis.confman.services.common.model.Section;
 
 public class ScheduleServiceImpl implements ScheduleService {
 
     private FullModel       model;
-
-    private Date            currentDate;
-
-    private SpreadsheetCell emptyCell;
-
-    private SpreadsheetRow  emptyRow;
-
+    
     public ScheduleServiceImpl() {
-
-        this.emptyCell = new SpreadsheetCell("");
-        this.emptyRow = new SpreadsheetRow();
-        this.emptyRow.addCell(this.emptyCell);
-
+        
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
     }
@@ -39,18 +28,26 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     void createSchedule(final OutputStream outputStream) {
-
+        
         final SpreadsheetTable table = new SpreadsheetTable();
+        Schedule schedule = new Schedule();
+        schedule.setSkeleton(model);
+        schedule.setTimes(model);
+        schedule.write(table);
+        final ExcelBuilder builder = new ExcelBuilder();
+        builder.generate(outputStream, table);
+
+        /*final SpreadsheetTable table = new SpreadsheetTable();
         for (final net.ostis.confman.services.common.model.Conference conference : this.model
                 .getConferences()) {
             whriteConference(conference, table);
         }
 
         final ExcelBuilder builder = new ExcelBuilder();
-        builder.generate(outputStream, table);
+        builder.generate(outputStream, table);*/
     }
 
-    private void whriteConference(
+   /* private void whriteConference(
             final net.ostis.confman.services.common.model.Conference conference,
             final SpreadsheetTable table) {
 
@@ -111,5 +108,5 @@ public class ScheduleServiceImpl implements ScheduleService {
         row.addCell(nameCell).addCell(speakerCell).addCell(timeCell);
 
         table.addRow(row);
-    }
+    }*/
 }
