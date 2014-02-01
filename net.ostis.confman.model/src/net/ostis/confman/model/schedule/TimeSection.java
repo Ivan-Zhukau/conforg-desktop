@@ -10,44 +10,42 @@ import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 
-
 public class TimeSection implements TimeEntity {
 
     private List<TimeEntity> sons;
 
-    private Date start;
-    
-    private Date end;
-    
-    private String name;    
-    
-    
+    private Date             start;
+
+    private Date             end;
+
+    private String           name;
+
     public TimeSection() {
-        
+
         init();
     }
-    
-    public TimeSection(String name) {
-        
+
+    public TimeSection(final String name) {
+
         init();
         setName(name);
     }
-    
-    private void init(){
-        
+
+    private void init() {
+
         this.start = new Date();
         this.end = new Date();
-        this.sons = new LinkedList<>();        
+        this.sons = new LinkedList<>();
     }
-    
+
     @Override
     public Date getStart() {
-        
+
         return this.start;
     }
 
     @Override
-    public void setSrart(Date date) {
+    public void setSrart(final Date date) {
 
         this.start = date;
 
@@ -60,7 +58,7 @@ public class TimeSection implements TimeEntity {
     }
 
     @Override
-    public void setEnd(Date date) {
+    public void setEnd(final Date date) {
 
         this.end = date;
 
@@ -68,22 +66,22 @@ public class TimeSection implements TimeEntity {
 
     @Override
     public String getName() {
-        
-        if(this.name == null){
+
+        if (this.name == null) {
             return "";
         }
         return this.name;
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
 
         this.name = name;
-        
+
     }
 
     @Override
-    public void setSons(List<TimeEntity> sons) {
+    public void setSons(final List<TimeEntity> sons) {
 
         this.sons = sons;
 
@@ -91,26 +89,26 @@ public class TimeSection implements TimeEntity {
 
     @Override
     public List<TimeEntity> getSons() {
-        
+
         return this.sons;
     }
 
     @Override
-    public void write(SpreadsheetTable table) {
-        
-        DateFormat format = new SimpleDateFormat("HH:mm");
-        
-        SpreadsheetRow emptyRow = new SpreadsheetRow();
+    public void write(final SpreadsheetTable table) {
+
+        final DateFormat format = new SimpleDateFormat("HH:mm");
+
+        final SpreadsheetRow emptyRow = new SpreadsheetRow();
         emptyRow.addCell(new SpreadsheetCell(""));
-        
-        SpreadsheetRow row = new SpreadsheetRow();
-        SpreadsheetCell start = new SpreadsheetCell(format.format(getStart()));
-        SpreadsheetCell end = new SpreadsheetCell(format.format(getEnd()));
-        SpreadsheetCell name = new SpreadsheetCell(getName());
-        row.addCell(start).addCell(end).addCell(name);         
-        table.addRow(emptyRow).addRow(row).addRow(emptyRow);  
-        
-        for(TimeEntity entity: getSons()){
+
+        final SpreadsheetRow row = new SpreadsheetRow();
+        final SpreadsheetCell start = new SpreadsheetCell(
+                format.format(getStart()));
+        final SpreadsheetCell name = new SpreadsheetCell(getName());
+        row.addCell(start).addCell(new SpreadsheetCell("")).addCell(name);
+        table.addRow(emptyRow).addRow(row).addRow(emptyRow);
+
+        for (final TimeEntity entity : getSons()) {
             entity.write(table);
         }
     }

@@ -5,35 +5,33 @@ import java.util.List;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 
-
 public class TimeBreak implements TimeEntity {
 
-    private Date start;
-    
-    private Date end;
-    
+    private Date   start;
+
+    private Date   end;
+
     private String name;
-    
-    
+
     public TimeBreak() {
 
         init();
     }
-    
-    private void init(){
-        
+
+    private void init() {
+
         this.start = new Date();
-        this.end = new Date();       
+        this.end = new Date();
     }
-    
+
     @Override
     public Date getStart() {
-        
+
         return this.start;
     }
 
     @Override
-    public void setSrart(Date date) {
+    public void setSrart(final Date date) {
 
         this.start = date;
 
@@ -46,14 +44,14 @@ public class TimeBreak implements TimeEntity {
     }
 
     @Override
-    public void setEnd(Date date) {
+    public void setEnd(final Date date) {
 
         this.end = date;
 
     }
 
     @Override
-    public void setSons(List<TimeEntity> sons) {
+    public void setSons(final List<TimeEntity> sons) {
 
         // TODO Auto-generated method stub
 
@@ -67,7 +65,7 @@ public class TimeBreak implements TimeEntity {
     }
 
     @Override
-    public void write(SpreadsheetTable table) {
+    public void write(final SpreadsheetTable table) {
 
         // TODO Auto-generated method stub
 
@@ -80,10 +78,10 @@ public class TimeBreak implements TimeEntity {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
 
         this.name = name;
-        
+
     }
 
 }

@@ -2,7 +2,6 @@ package net.ostis.confman.model.schedule;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,41 +9,39 @@ import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 
-
 public class TimeReport implements TimeEntity {
 
-    private Date start;
-    
-    private Date end;
-    
-    private String name; 
+    private Date   start;
 
-    
+    private Date   end;
+
+    private String name;
+
     public TimeReport() {
-        
+
         init();
     }
-    
-    public TimeReport(String name) {
-        
+
+    public TimeReport(final String name) {
+
         init();
         setName(name);
     }
-    
-    private void init(){
-        
+
+    private void init() {
+
         this.start = new Date();
-        this.end = new Date();       
+        this.end = new Date();
     }
-    
+
     @Override
     public Date getStart() {
-        
+
         return this.start;
     }
 
     @Override
-    public void setSrart(Date date) {
+    public void setSrart(final Date date) {
 
         this.start = date;
 
@@ -57,7 +54,7 @@ public class TimeReport implements TimeEntity {
     }
 
     @Override
-    public void setEnd(Date date) {
+    public void setEnd(final Date date) {
 
         this.end = date;
 
@@ -65,22 +62,22 @@ public class TimeReport implements TimeEntity {
 
     @Override
     public String getName() {
-        
-        if(this.name == null){
+
+        if (this.name == null) {
             return "";
         }
         return this.name;
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
 
         this.name = name;
-        
+
     }
 
     @Override
-    public void setSons(List<TimeEntity> sons) {
+    public void setSons(final List<TimeEntity> sons) {
 
         // TODO Auto-generated method stub
 
@@ -94,16 +91,17 @@ public class TimeReport implements TimeEntity {
     }
 
     @Override
-    public void write(SpreadsheetTable table) {
-        
-        DateFormat format = new SimpleDateFormat("HH:mm");
-        
-        SpreadsheetRow row = new SpreadsheetRow();
-        SpreadsheetCell start = new SpreadsheetCell(format.format(getStart()));
-        SpreadsheetCell end = new SpreadsheetCell(format.format(getEnd()));
-        SpreadsheetCell name = new SpreadsheetCell(getName());
-        row.addCell(start).addCell(end).addCell(name);         
-        table.addRow(row);  
+    public void write(final SpreadsheetTable table) {
+
+        final DateFormat format = new SimpleDateFormat("HH:mm");
+
+        final SpreadsheetRow row = new SpreadsheetRow();
+        final SpreadsheetCell start = new SpreadsheetCell(
+                format.format(getStart()));
+        final SpreadsheetCell end = new SpreadsheetCell(format.format(getEnd()));
+        final SpreadsheetCell name = new SpreadsheetCell(getName());
+        row.addCell(start).addCell(end).addCell(name);
+        table.addRow(row);
     }
 
 }
