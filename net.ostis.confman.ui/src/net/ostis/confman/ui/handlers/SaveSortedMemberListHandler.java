@@ -10,15 +10,19 @@
  *******************************************************************************/
 package net.ostis.confman.ui.handlers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import javax.inject.Named;
 
 import net.ostis.confman.services.ReportService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class SaveSortedMemberListHandler {
@@ -26,9 +30,21 @@ public class SaveSortedMemberListHandler {
     @Execute
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 
-        final LocalizationUtil util = LocalizationUtil.getInstance();
-        ((ReportService) ServiceLocator.getInstance().getService(ReportService.class)).generateSortedMemberList();
-        MessageDialog.openInformation(shell, "Info", "SortedMemberList.xlsx "
-                + util.translate("fileWasCreated"));
+        final FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+        dialog.setFilterNames(new String[] { "xlsx", "xls" });
+        dialog.setFilterExtensions(new String[] { "*.xlsx", "*.xls" });
+        dialog.setFileName("Sorted_member_list.xlsx");
+        final String filePath = dialog.open();
+        if (filePath != null) {
+            try {
+                ((ReportService) ServiceLocator.getInstance().getService(
+                        ReportService.class))
+                        .generateSortedMemberList(new FileOutputStream(
+                                new File(filePath)));
+            } catch (final FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

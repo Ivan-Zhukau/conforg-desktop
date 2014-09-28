@@ -2,8 +2,8 @@ package net.ostis.confman.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,12 +40,11 @@ class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public void generateSortedMemberList() {
+    public void generateSortedMemberList(final OutputStream outputStream) {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
         List<Person> sortedPersonsList = new ArrayList<>();
-        final ConferenceServiceImpl cs = new ConferenceServiceImpl();
         this.table = new SpreadsheetTable();
         this.excelBuilder = new ExcelBuilder();
         if (this.model.getPersons() != null) {
@@ -53,6 +52,23 @@ class ReportServiceImpl implements ReportService {
         } else {
             LOGGER.error("Empty list of Persons");
         }
+
+        createHeader(this.table, this.model);
+
+        createBody(sortedPersonsList);
+
+        try {
+            this.excelBuilder.generate(outputStream, this.table);
+            outputStream.close();
+        } catch (final FileNotFoundException exception) {
+            LOGGER.error(exception);
+        } catch (final IOException exception) {
+            LOGGER.error(exception);
+        }
+    }
+
+    private void createBody(List<Person> sortedPersonsList) {
+
         Collections
                 .sort(sortedPersonsList, new PersonLexicographicComparator());
         for (final Person personList : sortedPersonsList) {
@@ -62,15 +78,26 @@ class ReportServiceImpl implements ReportService {
             row.addCell(new SpreadsheetCell(personList.getPatronymic()));
             this.table.addRow(row);
         }
-        FileOutputStream excelFile;
-        try {
-            excelFile = new FileOutputStream("SortedMemberList.xlsx");
-            this.excelBuilder.generate(excelFile, this.table);
-            excelFile.close();
-        } catch (final FileNotFoundException exception) {
-            LOGGER.error(exception);
-        } catch (final IOException exception) {
-            LOGGER.error(exception);
-        }
+    }
+
+    private void createHeader(SpreadsheetTable table2, FullModel model2) {
+
+        SpreadsheetRow titleRow = new SpreadsheetRow();
+        titleRow.addCell(new SpreadsheetCell(""));
+        titleRow.addCell(new SpreadsheetCell(Messages.getString("conference")
+                + ": "
+                + model2.getConferences()
+                        .get(model2.getConferences().size() - 1).getTitle()));
+        titleRow.addCell(new SpreadsheetCell(""));
+
+        SpreadsheetRow headerRow = new SpreadsheetRow();
+        headerRow.addCell(new SpreadsheetCell(Messages.getString("surname")));
+        headerRow
+                .addCell(new SpreadsheetCell(Messages.getString("first_name")));
+        headerRow
+                .addCell(new SpreadsheetCell(Messages.getString("patronymic")));
+
+        table2.addRow(titleRow);
+        table2.addRow(headerRow);
     }
 }

@@ -1,6 +1,10 @@
 package net.ostis.confman.services;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
+
+import org.apache.log4j.Logger;
 
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
@@ -10,10 +14,12 @@ import net.ostis.confman.services.common.model.FullModel;
 
 class ScheduleServiceImpl implements ScheduleService {
 
-    private FullModel       model;
-    
+    private FullModel             model;
+
+    protected static final Logger LOGGER = Logger.getLogger(ScheduleService.class);
+
     public ScheduleServiceImpl() {
-        
+
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
     }
@@ -25,13 +31,21 @@ class ScheduleServiceImpl implements ScheduleService {
     }
 
     void createSchedule(final OutputStream outputStream) {
-        
-        final SpreadsheetTable table = new SpreadsheetTable();
-        Schedule schedule = new Schedule();
-        schedule.setSkeleton(model);
-        schedule.setTimes(model);
-        schedule.write(table);
-        final ExcelBuilder builder = new ExcelBuilder();
-        builder.generate(outputStream, table);
+
+        try {
+            final SpreadsheetTable table = new SpreadsheetTable();
+            Schedule schedule = new Schedule();
+            schedule.setSkeleton(model);
+            schedule.setTimes(model);
+            schedule.write(table);
+            final ExcelBuilder builder = new ExcelBuilder();
+            builder.generate(outputStream, table);
+            outputStream.close();
+
+        } catch (final FileNotFoundException exception) {
+            LOGGER.error(exception);
+        } catch (final IOException exception) {
+            LOGGER.error(exception);
+        }
     }
 }

@@ -104,12 +104,9 @@ class SectionServiceImpl implements SectionService {
                 .getString("SectionServiceImpl.2"))); //$NON-NLS-1$
         headers.addCell(new SpreadsheetCell(Messages
                 .getString("SectionServiceImpl.3"))); //$NON-NLS-1$
-        headers.addCell(new SpreadsheetCell(Messages
-                .getString("SectionServiceImpl.4"))); //$NON-NLS-1$
-        headers.addCell(new SpreadsheetCell(Messages
-                .getString("SectionServiceImpl.5"))); //$NON-NLS-1$
-        headers.addCell(new SpreadsheetCell(Messages
-                .getString("SectionServiceImpl.6"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages.getString("surname"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages.getString("first_name"))); //$NON-NLS-1$
+        headers.addCell(new SpreadsheetCell(Messages.getString("patronymic"))); //$NON-NLS-1$
         headers.addCell(new SpreadsheetCell(Messages
                 .getString("SectionServiceImpl.7"))); //$NON-NLS-1$
         headers.addCell(new SpreadsheetCell(Messages
