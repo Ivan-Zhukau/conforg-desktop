@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.Label;
 public class ComboBoxField extends Composite implements
         EditableComponent<ComboBoxField> {
 
+    private static final int DEFAULT_INDEX = 0;
+    
     private Combo            comboBox;
 
     private DataConverter    dataConverter;
@@ -47,8 +49,7 @@ public class ComboBoxField extends Composite implements
     public void apply() {
 
         final Object value = this.valueBinder.getValues();
-        final Object applied = ((List<Object>) value).get(this.comboBox
-                .getSelectionIndex());
+        final Object applied = ((List<Object>) value).get(this.comboBox.getSelectionIndex());
         this.valueBinder.setCurrentValue(applied);
     }
 
@@ -69,7 +70,12 @@ public class ComboBoxField extends Composite implements
         String[] itemsValues = new String[0];
 
         if (((List<Object>) object).get(0) instanceof Participant) {
-            itemsValues = getParticipantItems(object);
+            ItemHelper<Participant> helper = new ItemHelper<Participant>();
+            itemsValues = helper.getItems(object);
+        }
+        if (((List<Object>) object).get(0) instanceof String) {
+            ItemHelper<String> helper = new ItemHelper<String>();
+            itemsValues = helper.getItems(object);
         }
 
         return itemsValues;
@@ -86,23 +92,11 @@ public class ComboBoxField extends Composite implements
                     break;
                 }
             }
+        }else{
+            this.comboBox.select(DEFAULT_INDEX);
         }
     }
-
-    private String[] getParticipantItems(final Object object) {
-
-        String[] itemsValues;
-        final List<Participant> participants = (List<Participant>) object;
-        itemsValues = new String[participants.size()];
-        int index = 0;
-        for (final Participant participant : participants) {
-
-            itemsValues[index] = participant.getPerson().getFullName();
-            ++index;
-        }
-        return itemsValues;
-    }
-
+    
     @Override
     public ComboBoxField setValueComboBinder(final ValueComboBinder valueBinder) {
 
@@ -129,4 +123,19 @@ public class ComboBoxField extends Composite implements
         return null;
     }
 
+    public class ItemHelper<T> {
+
+        public String[] getItems(Object object) {
+            String[] itemsValues;
+            final List<T> elems = (List<T>) object;
+            itemsValues = new String[elems.size()];
+            int index = 0;
+            for (final T elem : elems) {
+
+                itemsValues[index] = elem.toString();
+                ++index;
+            }
+            return itemsValues;
+        }
+    }
 }

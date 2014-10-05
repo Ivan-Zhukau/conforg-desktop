@@ -1,6 +1,8 @@
 package net.ostis.confman.ui.participant;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -14,15 +16,18 @@ import net.ostis.confman.services.common.model.ParticipantArrival;
 import net.ostis.confman.services.common.model.ParticipantRole;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.CheckBoxField;
+import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
 import net.ostis.confman.ui.common.component.ValueBinder;
+import net.ostis.confman.ui.common.component.ValueComboBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.workbench.UIEvents.Item;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -35,6 +40,29 @@ import org.eclipse.swt.widgets.Composite;
 public class ExtraAuthorInformation {
 
     private static final int LAYOUT_COL_COUNT = 1;
+
+    private enum ComboFields implements Localizable {
+        DEFAULT("defaultComboItem"),
+        REPORT("reportParticipationForm"),
+        PUBLICATION("publicationParticipationForm");
+
+        private String rk;
+
+        private ComboFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        public String getValue(){
+            return this.rk;
+        }
+        
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
 
     private enum TableFields implements Localizable {
         PATICIPATION_FORM("participationForm"),
@@ -79,7 +107,7 @@ public class ExtraAuthorInformation {
 
     }
 
-    private final Map<TableFields, EditableComponent<TextField>> editFields;
+    private final Map<TableFields, EditableComponent<?>> editFields;
 
     private final Map<Buttons, EditableComponent<CheckBoxField>> checkFields;
 
@@ -131,34 +159,14 @@ public class ExtraAuthorInformation {
         final ParticipantArrival participantArrival = participant.getArrival();
         final ParticipantRole participantRole = participant.getRole();
         final Address address = participantArrival.getResidencePlace();
-        applyParticipationFormBinder(participantRole);
+        applyParticipationFormBinder(participant);
         applyCityBinder(address);
         applyCountryBinder(address);
         applyHouseBinder(address);
         applyStreetBinder(address);
         applyHousingBinder(participantArrival);
         applyMeetingBinder(participantArrival);
-        applyExibitionBinder(participantRole);
         applyCommitteeBinder(participantRole);
-    }
-
-    private void applyExibitionBinder(final ParticipantRole role) {
-
-        this.checkFields.get(Buttons.EXIBITION_STAND).setValueBinder(
-                new ValueBinder() {
-
-                    @Override
-                    public void setValue(final Object value) {
-
-                        role.setExibitionStand((Boolean) value);
-                    }
-
-                    @Override
-                    public Object getValue() {
-
-                        return role.getExhibitionStand();
-                    }
-                });
     }
 
     private void applyCommitteeBinder(final ParticipantRole role) {
@@ -292,21 +300,38 @@ public class ExtraAuthorInformation {
     }
 
     private void applyParticipationFormBinder(
-            final ParticipantRole participantRole) {
+            final Participant participant) {
 
-        this.editFields.get(TableFields.PATICIPATION_FORM).setValueBinder(
-                new ValueBinder() {
+        this.editFields.get(TableFields.PATICIPATION_FORM).setValueComboBinder(
+                new ValueComboBinder() {
+                    final LocalizationUtil util = LocalizationUtil.getInstance();
 
                     @Override
-                    public void setValue(final Object value) {
-
-                        participantRole.setParticipationForm((String) value);
+                    public void setValues(final Object value) {
                     }
 
                     @Override
-                    public Object getValue() {
+                    public void setCurrentValue(final Object value) {
+                        if(!util.translate(ComboFields.DEFAULT).equals((String) value)) {
+                            participant.getRole().setParticipationForm((String) value);
+                        } else {
+                            participant.getRole().setParticipationForm(null);
+                        }
+                    }
 
-                        return participantRole.getParticipationForm();
+                    @Override
+                    public Object getValues() {
+                        
+                        List<String> list = new ArrayList<String>();
+                        for(ComboFields item: ComboFields.values()) {
+                            list.add(util.translate(item));
+                        }
+                        return list;
+                    }
+
+                    @Override
+                    public Object getCurrentValue() {
+                        return participant.getRole().getParticipationForm(); 
                     }
                 });
     }
@@ -317,9 +342,10 @@ public class ExtraAuthorInformation {
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
 
         final StringDataConverter stringConverter = new StringDataConverter();
-        this.editFields.put(TableFields.PATICIPATION_FORM, new TextField(
-                parent, util.translate(TableFields.PATICIPATION_FORM))
-                .setDataConverter(stringConverter));
+        
+        this.editFields.put(TableFields.PATICIPATION_FORM, new ComboBoxField(
+                parent, util.translate(TableFields.PATICIPATION_FORM),
+                new String[0]).setDataConverter(new StringDataConverter()));        
         this.editFields.put(TableFields.CITY,
                 new TextField(parent, util.translate(TableFields.CITY))
                         .setDataConverter(stringConverter));
@@ -332,8 +358,6 @@ public class ExtraAuthorInformation {
         this.editFields.put(TableFields.STREET,
                 new TextField(parent, util.translate(TableFields.STREET))
                         .setDataConverter(stringConverter));
-        this.checkFields.put(Buttons.EXIBITION_STAND, new CheckBoxField(parent,
-                util.translate(Buttons.EXIBITION_STAND)));
         this.checkFields.put(Buttons.HOUSING,
                 new CheckBoxField(parent, util.translate(Buttons.HOUSING)));
         this.checkFields.put(Buttons.MEETING,
