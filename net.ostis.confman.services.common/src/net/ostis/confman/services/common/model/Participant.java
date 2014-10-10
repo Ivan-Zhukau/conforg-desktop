@@ -74,4 +74,8 @@ public class Participant {
 
         this.reports = reports;
     }
+    
+    public String toString(){
+        return getPerson().getFullName();
+    }
 }

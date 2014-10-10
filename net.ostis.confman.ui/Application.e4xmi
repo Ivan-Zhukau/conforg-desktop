@@ -81,7 +81,7 @@
           <children xsi:type="menu:HandledMenuItem" xmi:id="_rfCeIGQiEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.handledmenuitem.emailPerspective" label="%handledmenuitem.label.7" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_vKEwAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.parameter.3" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.emailManagement"/>
           </children>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_c5_KQIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.handledmenuitem.reportManagement" label="%handledmenuitem.label.9" command="_88j54CrHEeOTVPtjqnvy9g">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_c5_KQIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.handledmenuitem.reportManagement" label="%handledmenuitem.label.14" command="_88j54CrHEeOTVPtjqnvy9g">
             <parameters xmi:id="_FQ7Y0IWWEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.parameter.5" name="net.ostis.confman.ui.parameter.perspectiveId" value="net.ostis.confman.ui.perspective.reportManagement"/>
           </children>
           <children xsi:type="menu:Menu" xmi:id="_wyNYsGfXEeOmncHwokVlwQ" elementId="net.ostis.confman.ui.menu.reportManagment" label="%menu.label.5">

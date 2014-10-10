@@ -33,8 +33,7 @@ public class ReportView {
     private enum TableCaptions implements Localizable {
         TITLE("reportTableReportTitle"),
         MAIN_AUTHOR("reportTableMainAuthor"),
-        AUTHORS("reportTableAuthors"),
-        EMPTY("reportTableEmptyElement");
+        AUTHORS("reportTableAuthors");
 
         private String rk;
 
@@ -86,8 +85,7 @@ public class ReportView {
                     public String getText(final Object element) {
 
                         final Report report = (Report) element;
-                        return report.getTitle() == null ? localizationUtil
-                                .translate(TableCaptions.EMPTY) : report
+                        return report == null ? null : report
                                 .getTitle();
                     }
                 });
@@ -103,12 +101,9 @@ public class ReportView {
                         if (mainAuthor != null
                                 && mainAuthor.getPerson() != null) {
                             final Person person = mainAuthor.getPerson();
-                            return person.getSurname() == null ? localizationUtil
-                                    .translate(TableCaptions.EMPTY) : person
-                                    .getFullName();
+                            return person.getFullName();
                         } else {
-                            return localizationUtil
-                                    .translate(TableCaptions.EMPTY);
+                            return null;
                         }
                     }
                 });
@@ -136,8 +131,7 @@ public class ReportView {
                                 temp.append(", ");
                             }
                         }
-                        return "".equals(temp.toString()) ? localizationUtil
-                                .translate(TableCaptions.EMPTY) : temp
+                        return "".equals(temp.toString()) ? null : temp
                                 .toString();
                     }
                 });

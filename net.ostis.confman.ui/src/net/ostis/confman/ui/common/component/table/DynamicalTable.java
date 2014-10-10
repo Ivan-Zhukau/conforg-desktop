@@ -8,10 +8,13 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 
 public class DynamicalTable {
 
@@ -24,6 +27,8 @@ public class DynamicalTable {
     private PagingElement    pagingElement;
 
     private boolean          showPaging;
+
+    private SortComparator   comparator;
 
     public DynamicalTable(final Composite parent, final boolean showPaging,
             final int selectionBehaviour) {
@@ -40,6 +45,7 @@ public class DynamicalTable {
         final GridData layoutData = createTableLayoutData();
         this.tableViewer = new TableViewer(composite, selectionBehaviour
                 | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+
         final Table table = this.tableViewer.getTable();
         this.tableViewer.getControl().setLayoutData(layoutData);
         table.setHeaderVisible(true);
@@ -80,14 +86,24 @@ public class DynamicalTable {
         createColumn(text, COLUMN_WIDTH, cellLabelProvider);
     }
 
-    public void createColumn(final String text, final int columnWidth,
-            final CellLabelProvider cellLabelProvider) {
+    public TableViewerColumn createColumn(final String text,
+            final int columnWidth, final CellLabelProvider cellLabelProvider) {
 
         final TableViewerColumn col = new TableViewerColumn(this.tableViewer,
                 SWT.NONE);
         col.getColumn().setWidth(columnWidth);
         col.getColumn().setText(text);
         col.setLabelProvider(cellLabelProvider);
+        return col;
+    }
+
+    public void createSortColumn(final String text, final int columnWidth,
+            final CellLabelProvider cellLabelProvider, int colNumber) {
+
+        final TableViewerColumn col = createColumn(text, COLUMN_WIDTH,
+                cellLabelProvider);
+        col.getColumn().addSelectionListener(
+                getSelectionAdapter(col.getColumn(), colNumber));
     }
 
     public TableViewer getViewer() {
@@ -125,4 +141,29 @@ public class DynamicalTable {
         this.tableViewer.setInput(this.pagination.getPage());
         this.tableViewer.refresh();
     }
+
+    public void setComparator(SortComparator comparator) {
+
+        this.comparator = comparator;
+        this.tableViewer.setComparator(comparator);
+    }
+
+    private SelectionAdapter getSelectionAdapter(final TableColumn column,
+            final int index) {
+
+        SelectionAdapter selectionAdapter = new SelectionAdapter() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+
+                comparator.setColumn(index);
+                int dir = comparator.getDirection();
+                tableViewer.getTable().setSortDirection(dir);
+                tableViewer.getTable().setSortColumn(column);
+                tableViewer.refresh();
+            }
+        };
+        return selectionAdapter;
+    }
+
 }
