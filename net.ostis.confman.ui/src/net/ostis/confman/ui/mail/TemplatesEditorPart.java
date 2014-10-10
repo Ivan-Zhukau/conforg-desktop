@@ -3,7 +3,6 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
@@ -34,7 +33,7 @@ public class TemplatesEditorPart {
 
     private enum Captions implements Localizable {
         NAME("participantTableAuthorName"),
-        CONFERENCE("participantTableConference"),
+        EMAIL("participantTableEmail"),
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep");
@@ -146,17 +145,16 @@ public class TemplatesEditorPart {
                                 + person.getSurname();
                     }
                 });
-        this.table.createColumn(
-                localizationUtil.translate(Captions.CONFERENCE), COLUMN_WIDTH,
-                new ColumnLabelProvider() {
+        this.table.createColumn(localizationUtil.translate(Captions.EMAIL),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
 
                     @Override
                     public String getText(final Object element) {
 
                         final Participant participant = (Participant) element;
-                        final Conference conference = participant
-                                .getConference();
-                        return conference == null ? "" : conference.getTitle();
+                        final String email = participant.getPerson()
+                                .getContacts().geteMail();
+                        return email == null ? "" : email;
                     }
                 });
     }
