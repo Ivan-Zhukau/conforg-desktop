@@ -12,6 +12,8 @@ public class ParticipantArrival {
 
     private Address residencePlace;
 
+    private Boolean isHostelReservation;
+
     public ParticipantArrival() {
 
         super();
@@ -48,5 +50,16 @@ public class ParticipantArrival {
     public void setResidencePlace(final Address residencePlace) {
 
         this.residencePlace = residencePlace;
+    }
+    
+    @XmlElement(name = "hostel_reservation")
+    public Boolean getIsHostelReservation() {
+
+        return isHostelReservation;
+    }
+
+    public void setIsHostelReservation(Boolean isHostelReservation) {
+
+        this.isHostelReservation = isHostelReservation;
     }
 }

@@ -8,6 +8,8 @@ public class Participant {
     private ParticipantRole    role;
 
     private ParticipantArrival arrival;
+    
+    private ParticipationInConference participationInConference;
 
     private List<Report>       reports;
 
@@ -20,6 +22,7 @@ public class Participant {
         super();
         this.role = new ParticipantRole();
         this.arrival = new ParticipantArrival();
+        this.participationInConference = new ParticipationInConference();
         this.conference = new Conference();
         this.person = new Person();
         this.reports = new ArrayList<>();
@@ -77,5 +80,15 @@ public class Participant {
     
     public String toString(){
         return getPerson().getFullName();
+    }
+
+    public ParticipationInConference getParticipationInConference() {
+
+        return participationInConference;
+    }
+
+    public void setParticipationInConference(ParticipationInConference participationInConference) {
+
+        this.participationInConference = participationInConference;
     }
 }
