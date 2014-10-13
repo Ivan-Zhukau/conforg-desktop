@@ -62,6 +62,7 @@ public class ParticipantConverter {
         final ParticipantRole participantRole = new ParticipantRole();
         participantRole.setExhibitionStand(role.getExhibitionStand());
         participantRole.setParticipationForm(role.getParticipationForm());
+        participantRole.setParticipationCategory(role.getParticipationCategory());
         participantRole.setProgramCommitteeMember(role
                 .getProgramCommitteeMember());
         return participantRole;

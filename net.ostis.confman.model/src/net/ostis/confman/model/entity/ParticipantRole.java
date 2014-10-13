@@ -8,6 +8,8 @@ public class ParticipantRole {
     private Boolean programCommitteeMember;
 
     private String  participationForm;
+    
+    private String  participationCategory;
 
     private Boolean exhibitionStand;
 
@@ -44,5 +46,15 @@ public class ParticipantRole {
     public void setExhibitionStand(final Boolean exhibitionStand) {
 
         this.exhibitionStand = exhibitionStand;
+    }
+
+    public String getParticipationCategory() {
+
+        return participationCategory;
+    }
+
+    public void setParticipationCategory(String participationCategory) {
+
+        this.participationCategory = participationCategory;
     }
 }

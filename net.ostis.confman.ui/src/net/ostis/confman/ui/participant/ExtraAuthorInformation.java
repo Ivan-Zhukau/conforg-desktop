@@ -86,9 +86,39 @@ public class ExtraAuthorInformation {
             return this.rk;
         }
     }
+    private enum ParticipationCategoryFields implements Localizable {
+        DEFAULT("defaultComboItem"),
+        PROGRAM_COMMITTEE("programCommittee"),
+        VIP("vip"),
+        ORDINARY_PARTISIPANT("ordinaryParticipant"),
+        NEW_PARTISIPANT("newParticipant"),
+        ORG_COMMITTEE("orgCommittee"),
+        OFFICIAL_ORG_COMMITTEE("officialOrgCommittee"),
+        STUD_ORG_COMMITTEE("studOrgCommittee"),
+        INVITED("invited"),
+        REPRESENTATIVE_OF_COORGANIZER("representativeOfCoOrganizer");
+
+        private String rk;
+
+        private ParticipationCategoryFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        public String getValue(){
+            return this.rk;
+        }
+        
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
     
     private enum TextFields implements Localizable {
         PATICIPATION_FORM("participationForm"),
+        PATICIPATION_CATEGORY("participationCategory"),
         COUNTRY("country"),
         CITY("city"),
         STREET("street"),
@@ -175,14 +205,50 @@ public class ExtraAuthorInformation {
     private void applyValueBindings(final Participant participant) {
 
         final ParticipantArrival participantArrival = participant.getArrival();
-        final ParticipantRole participantRole = participant.getRole();
         final Address address = participantArrival.getResidencePlace();
         applyCheckBoxes(participant);
         applyParticipationFormBinder(participant);
+        applyParticipationCategoryBinder(participant);
         applyCityBinder(address);
         applyCountryBinder(address);
         applyHouseBinder(address);
         applyStreetBinder(address);
+    }
+
+    private void applyParticipationCategoryBinder(final Participant participant) {
+
+        this.editFields.get(TextFields.PATICIPATION_CATEGORY).setValueComboBinder(
+                new ValueComboBinder() {
+                    final LocalizationUtil util = LocalizationUtil.getInstance();
+
+                    @Override
+                    public void setValues(final Object value) {
+                    }
+
+                    @Override
+                    public void setCurrentValue(final Object value) {
+                        if(!util.translate(ParticipationCategoryFields.DEFAULT).equals((String) value)) {
+                            participant.getRole().setParticipationCategory((String) value);
+                        } else {
+                            participant.getRole().setParticipationCategory(null);
+                        }
+                    }
+
+                    @Override
+                    public Object getValues() {
+                        
+                        List<String> list = new ArrayList<String>();
+                        for(ParticipationCategoryFields item: ParticipationCategoryFields.values()) {
+                            list.add(util.translate(item));
+                        }
+                        return list;
+                    }
+
+                    @Override
+                    public Object getCurrentValue() {
+                        return participant.getRole().getParticipationCategory(); 
+                    }
+                });
     }
 
     private void applyCheckBoxes(final Participant participant) {
@@ -391,7 +457,10 @@ public class ExtraAuthorInformation {
         
         this.editFields.put(TextFields.PATICIPATION_FORM, new ComboBoxField(
                 parent, util.translate(TextFields.PATICIPATION_FORM),
-                new String[0]).setDataConverter(new StringDataConverter()));        
+                new String[0]).setDataConverter(new StringDataConverter()));   
+        this.editFields.put(TextFields.PATICIPATION_CATEGORY, new ComboBoxField(
+                parent, util.translate(TextFields.PATICIPATION_CATEGORY),
+                new String[0]).setDataConverter(new StringDataConverter()));      
         this.editFields.put(TextFields.CITY,
                 new TextField(parent, util.translate(TextFields.CITY))
                         .setDataConverter(stringConverter));
