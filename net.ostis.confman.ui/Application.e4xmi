@@ -97,6 +97,7 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_CDNwQGm2EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handledmenuitem.generateSortedMemberList" label="%handledmenuitem.label.10" command="_6iW8AGm3EeOpMcisa9NY1w"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_l0_aEIbMEeO1TNrkSNlzug" elementId="net.ostis.confman.ui.handledmenuitem.generateSectionReports" label="%handledmenuitem.label.12" command="_q0qDcIgIEeOx6IFkJvaeqQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_lE-OwImzEeOZc-dBP8rpCg" elementId="net.ostis.confman.ui.handledmenuitem.saveSectionSchedule" label="%handledmenuitem.label.13" command="_89JIAGZ4EeO5iZw5OUBRJA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_LFbpIFSOEeSSm6vgHJkhRg" elementId="net.ostis.confman.ui.handledmenuitem.saveParticipantsByCategory" label="%handledmenuitem.label.15" command="_B9ohsFSPEeSSm6vgHJkhRg"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_SOyu9xpVEeOmro9kd1wSKw">
@@ -115,6 +116,7 @@
   <handlers xmi:id="_urT1gGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.handler.generateSortedMemberList" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSortedMemberListHandler" command="_6iW8AGm3EeOpMcisa9NY1w"/>
   <handlers xmi:id="_lrCEIHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.handler.preferencesDialog" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.ShowPreferencesDialog" command="_s0uDoHS1EeO3BvPyRqUeWQ"/>
   <handlers xmi:id="_mV-4sIgIEeOx6IFkJvaeqQ" elementId="net.ostis.confman.ui.handler.generateSectionReport" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveSectionReportsHandler" command="_q0qDcIgIEeOx6IFkJvaeqQ"/>
+  <handlers xmi:id="_VGHOcFSPEeSSm6vgHJkhRg" elementId="net.ostis.confman.ui.handler.saveParticipantsByCategory" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.handlers.SaveParticipantsByCategory" command="_B9ohsFSPEeSSm6vgHJkhRg"/>
   <bindingTables xmi:id="_SOyu4BpVEeOmro9kd1wSKw" bindingContext="_SOfz-RpVEeOmro9kd1wSKw">
     <bindings xmi:id="_SOyu4RpVEeOmro9kd1wSKw" keySequence="M1+Q" command="_SOfz_BpVEeOmro9kd1wSKw"/>
     <bindings xmi:id="_SOyu5BpVEeOmro9kd1wSKw" keySequence="M1+O" command="_SOyu4hpVEeOmro9kd1wSKw"/>
@@ -136,6 +138,7 @@
   <commands xmi:id="_6iW8AGm3EeOpMcisa9NY1w" elementId="net.ostis.confman.ui.command.generateSortedMemberList" commandName="%command.commandname.7"/>
   <commands xmi:id="_s0uDoHS1EeO3BvPyRqUeWQ" elementId="net.ostis.confman.ui.command.showPerspectiveDialog" commandName="%command.commandname.8"/>
   <commands xmi:id="_q0qDcIgIEeOx6IFkJvaeqQ" elementId="net.ostis.confman.ui.command.generateSectionReport" commandName="%command.commandname.9"/>
+  <commands xmi:id="_B9ohsFSPEeSSm6vgHJkhRg" elementId="net.ostis.confman.ui.command.saveParticipantsByCategory" commandName="%command.commandname.10"/>
   <addons xmi:id="_SOfz8hpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_SOfz8xpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_SOfz9BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
