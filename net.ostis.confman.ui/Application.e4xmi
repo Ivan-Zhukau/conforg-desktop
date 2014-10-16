@@ -14,6 +14,7 @@
               </toolbar>
             </children>
             <children xsi:type="basic:Part" xmi:id="_LYtvkFhpEeO5h8HvaUnikA" elementId="net.ostis.confman.ui.part.0" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.ExtraAuthorInformation" label="%part.label.3"/>
+            <children xsi:type="basic:Part" xmi:id="_f7iaoFVlEeSvefnGLYBR6g" elementId="net.ostis.confman.ui.part.newParticipant" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.NewParticipantPart" label="%part.label.14"/>
           </children>
         </children>
       </children>
