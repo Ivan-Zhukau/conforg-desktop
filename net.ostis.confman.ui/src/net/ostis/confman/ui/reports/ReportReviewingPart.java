@@ -180,8 +180,10 @@ public class ReportReviewingPart {
         if (currentReport != null) {
             currentReport.setReportAccepted(false);
             currentReport.setReportCanceled(true);
+            if(currentReport.getSection() != null && currentReport.getSection().getConference() != null) {
+                conferenceService.deleteReport(currentReport);
+            }
         }
-        conferenceService.deleteReport(currentReport);
     }
 
     private void save() {
