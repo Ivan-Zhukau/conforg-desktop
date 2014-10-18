@@ -57,7 +57,7 @@
             <children xsi:type="basic:Part" xmi:id="_O8KIMIW7EeOIDYoHG3ExhA" elementId="net.ostis.confman.ui.part.reportView" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.reports.ReportView" label="%part.label.13"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_TMRHwIWVEeOhfrbLhgWadA" elementId="net.ostis.confman.ui.partstack.reportEditorPart2">
-            <children xsi:type="basic:Part" xmi:id="_PSx4cIW7EeOIDYoHG3ExhA" elementId="net.ostis.confman.ui.part.reportEditorPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="%part.label.7"/>
+            <children xsi:type="basic:Part" xmi:id="_PSx4cIW7EeOIDYoHG3ExhA" elementId="net.ostis.confman.ui.part.reportReviewing" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.reports.ReportReviewingPart" label="%part.label.7"/>
           </children>
         </children>
       </children>

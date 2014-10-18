@@ -120,7 +120,9 @@ public class DynamicalTable {
 
         if (input instanceof List<?>) {
             this.pagination = new Pagination((List<?>) input);
-            this.tableViewer.setInput(this.pagination.getFirstPage());
+            if(!((List) input).isEmpty()) {
+                this.tableViewer.setInput(this.pagination.getFirstPage());
+            } 
             this.pagingElement.setPagination(this.pagination);
         }
     }

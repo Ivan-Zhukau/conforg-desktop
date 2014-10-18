@@ -1,5 +1,8 @@
 package net.ostis.confman.ui.reports;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Conference;
@@ -92,8 +95,8 @@ public class SelectReportDialog extends TitleAreaDialog {
 
         this.table = new DynamicalTable(container, Boolean.TRUE, SWT.SINGLE);
         createColumns();
-        this.table.setContentProvider(ArrayContentProvider.getInstance());
-        this.table.setInput(conferenceService.getReports());
+        this.table.setContentProvider(ArrayContentProvider.getInstance()); 
+        this.table.setInput(getAcceptedReports(conferenceService.getReports()));
         this.table.addSelectionChangedListener(new ISelectionChangedListener() {
 
             @Override
@@ -107,6 +110,17 @@ public class SelectReportDialog extends TitleAreaDialog {
                 }
             }
         });
+    }
+
+    private List<Report> getAcceptedReports(List<Report> reports) {
+
+        List<Report> acceptedReports = new ArrayList<Report>(); 
+        for(Report report : reports) {
+            if(report.isReportAccepted()) {
+                acceptedReports.add(report);
+            }
+        }
+        return acceptedReports;
     }
 
     private void createColumns() {

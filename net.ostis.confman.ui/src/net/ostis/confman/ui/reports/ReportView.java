@@ -31,9 +31,12 @@ import org.eclipse.swt.widgets.Composite;
 public class ReportView {
 
     private enum TableCaptions implements Localizable {
+        REVIEWING("reviewing"),
         TITLE("reportTableReportTitle"),
         MAIN_AUTHOR("reportTableMainAuthor"),
-        AUTHORS("reportTableAuthors");
+        AUTHORS("reportTableAuthors"),
+        ACCEPT_REPORT("acceptReport"),
+        CANCEL_REPORT("cancelReport");
 
         private String rk;
 
@@ -77,6 +80,21 @@ public class ReportView {
         final LocalizationUtil localizationUtil = LocalizationUtil
                 .getInstance();
         final int COLUMN_WIDTH = 150;
+        final int FIRST_WIDTH = 20;
+        this.table.createColumn("", FIRST_WIDTH,
+                new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Report report = (Report) element;
+                        if(report != null) {
+                            return report.isReportAccepted() ? "+" : "-";
+                        } else {
+                            return null;                            
+                        }
+                    }
+                });
         this.table.createColumn(
                 localizationUtil.translate(TableCaptions.TITLE), COLUMN_WIDTH,
                 new ColumnLabelProvider() {
