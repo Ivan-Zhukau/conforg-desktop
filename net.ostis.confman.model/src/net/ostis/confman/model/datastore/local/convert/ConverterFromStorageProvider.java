@@ -212,6 +212,7 @@ public class ConverterFromStorageProvider {
             return role;
         }
         role.setExibitionStand(participantRole.getExhibitionStand());
+        role.setParticipationCategory(participantRole.getParticipationCategory());
         role.setParticipationForm(participantRole.getParticipationForm());
         role.setProgramCommitteeMember(participantRole
                 .getProgramCommitteeMember());

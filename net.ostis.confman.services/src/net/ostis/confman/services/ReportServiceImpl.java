@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.ostis.confman.model.common.report.ParticipantByCategoryComparator;
 import net.ostis.confman.model.common.report.PersonLexicographicComparator;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetCell;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
@@ -16,6 +17,7 @@ import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvi
 import net.ostis.confman.model.excel.ExcelBuilder;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.services.common.model.Participant;
 
 import org.apache.log4j.Logger;
 
@@ -53,9 +55,13 @@ class ReportServiceImpl implements ReportService {
             LOGGER.error("Empty list of Persons");
         }
 
-        createHeader(this.table, this.model);
+        String[] headers = { Messages.getString("surname"),
+                Messages.getString("first_name"),
+                Messages.getString("patronymic") };
 
-        createBody(sortedPersonsList);
+        createHeader(this.table, this.model, headers);
+
+        createSortedMembersBody(sortedPersonsList);
 
         try {
             this.excelBuilder.generate(outputStream, this.table);
@@ -67,7 +73,7 @@ class ReportServiceImpl implements ReportService {
         }
     }
 
-    private void createBody(List<Person> sortedPersonsList) {
+    private void createSortedMembersBody(List<Person> sortedPersonsList) {
 
         Collections
                 .sort(sortedPersonsList, new PersonLexicographicComparator());
@@ -80,24 +86,112 @@ class ReportServiceImpl implements ReportService {
         }
     }
 
-    private void createHeader(SpreadsheetTable table2, FullModel model2) {
+    private void createHeader(SpreadsheetTable table2, FullModel model2,
+            String[] headers) {
 
         SpreadsheetRow titleRow = new SpreadsheetRow();
         titleRow.addCell(new SpreadsheetCell(""));
         titleRow.addCell(new SpreadsheetCell(Messages.getString("conference")
                 + ": "
                 + model2.getConferences()
-                        .get(model2.getConferences().size() - 1).getTitle()));
+                        .get(model2.getConferences().size() - 1).getTitle())); // implement
+                                                                               // method
+                                                                               // of
+                                                                               // getting
+                                                                               // current
+                                                                               // conference
+                                                                               // name
         titleRow.addCell(new SpreadsheetCell(""));
 
         SpreadsheetRow headerRow = new SpreadsheetRow();
-        headerRow.addCell(new SpreadsheetCell(Messages.getString("surname")));
-        headerRow
-                .addCell(new SpreadsheetCell(Messages.getString("first_name")));
-        headerRow
-                .addCell(new SpreadsheetCell(Messages.getString("patronymic")));
+
+        for (String title : headers) {
+            headerRow.addCell(new SpreadsheetCell(title));
+        }
 
         table2.addRow(titleRow);
         table2.addRow(headerRow);
+    }
+
+    @Override
+    public void generateParticipantsCategoryList(final OutputStream outputStream) {
+
+        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        this.model = converter.convertData();
+        List<Participant> allParticipants = new ArrayList<>();
+        this.table = new SpreadsheetTable();
+        this.excelBuilder = new ExcelBuilder();
+        if (this.model.getParticipants() != null) {
+            allParticipants = this.model.getParticipants();
+        } else {
+            LOGGER.error("Empty list of Participants");
+        }
+
+        String[] headers = { Messages.getString("category"),
+                Messages.getString("surname"),
+                Messages.getString("first_name"),
+                Messages.getString("patronymic") };
+
+        createHeader(this.table, this.model, headers);
+
+        createParticipantsCategoryBody(allParticipants);
+
+        try {
+            this.excelBuilder.generate(outputStream, this.table);
+            outputStream.close();
+        } catch (final FileNotFoundException exception) {
+            LOGGER.error(exception);
+        } catch (final IOException exception) {
+            LOGGER.error(exception);
+        }
+    }
+
+    private void createParticipantsCategoryBody(
+            List<Participant> allParticipants) {
+
+        List<Participant> withCategoryParticipants = new ArrayList<Participant>();
+        List<Participant> withoutCategoryParticipants = new ArrayList<Participant>();
+
+        for (Participant participant : allParticipants) {
+            if (participant.getRole() != null
+                    && participant.getRole().getParticipationCategory() != null) {
+                withCategoryParticipants.add(participant);
+            } else {
+                withoutCategoryParticipants.add(participant);
+            }
+        }
+
+        Collections.sort(withCategoryParticipants,
+                new ParticipantByCategoryComparator());
+
+        for (final Participant participant : withCategoryParticipants) {
+            final SpreadsheetRow row = new SpreadsheetRow();
+
+            row.addCell(new SpreadsheetCell(participant.getRole()
+                    .getParticipationCategory()));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getSurname()));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getFirstName()));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getPatronymic()));
+
+            this.table.addRow(row);
+        }
+
+        for (final Participant participant : withoutCategoryParticipants) {
+            final SpreadsheetRow row = new SpreadsheetRow();
+
+            row.addCell(new SpreadsheetCell(""));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getSurname()));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getFirstName()));
+            row.addCell(new SpreadsheetCell(participant.getPerson()
+                    .getPatronymic()));
+
+            this.table.addRow(row);
+        }
+
     }
 }

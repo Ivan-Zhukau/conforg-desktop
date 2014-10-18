@@ -13,7 +13,6 @@ import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Address;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.ParticipantArrival;
-import net.ostis.confman.services.common.model.ParticipantRole;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.CheckBoxField;
 import net.ostis.confman.ui.common.component.ComboBoxField;
@@ -27,7 +26,6 @@ import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.workbench.UIEvents.Item;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.swt.SWT;
@@ -53,10 +51,11 @@ public class ExtraAuthorInformation {
             this.rk = rk;
         }
 
-        public String getValue(){
+        public String getValue() {
+
             return this.rk;
         }
-        
+
         @Override
         public String getResourceKey() {
 
@@ -76,19 +75,21 @@ public class ExtraAuthorInformation {
             this.rk = rk;
         }
 
-        public String getValue(){
+        public String getValue() {
+
             return this.rk;
         }
-        
+
         @Override
         public String getResourceKey() {
 
             return this.rk;
         }
     }
-    
+
     private enum TextFields implements Localizable {
         PATICIPATION_FORM("participationForm"),
+        PATICIPATION_CATEGORY("participationCategory"),
         COUNTRY("country"),
         CITY("city"),
         STREET("street"),
@@ -98,7 +99,7 @@ public class ExtraAuthorInformation {
         CULTURAL_PROGRAM("culturalProgram"),
         EVENING_MEETING_PC("eveningMeetingPC"),
         HOSTEL_RESERVATION("hotelReservation");
-        
+
         private String rk;
 
         private TextFields(final String rk) {
@@ -134,10 +135,10 @@ public class ExtraAuthorInformation {
     private final Map<TextFields, EditableComponent<?>> editFields;
 
     @Inject
-    private ESelectionService                                    selectionService;
+    private ESelectionService                           selectionService;
 
     @Inject
-    private IEventBroker                                         eventBroker;
+    private IEventBroker                                eventBroker;
 
     public ExtraAuthorInformation() {
 
@@ -175,98 +176,153 @@ public class ExtraAuthorInformation {
     private void applyValueBindings(final Participant participant) {
 
         final ParticipantArrival participantArrival = participant.getArrival();
-        final ParticipantRole participantRole = participant.getRole();
         final Address address = participantArrival.getResidencePlace();
         applyCheckBoxes(participant);
         applyParticipationFormBinder(participant);
+        applyParticipationCategoryBinder(participant);
         applyCityBinder(address);
         applyCountryBinder(address);
         applyHouseBinder(address);
         applyStreetBinder(address);
     }
 
+    private void applyParticipationCategoryBinder(final Participant participant) {
+
+        this.editFields.get(TextFields.PATICIPATION_CATEGORY)
+                .setValueComboBinder(new ValueComboBinder() {
+
+                    final LocalizationUtil util = LocalizationUtil
+                                                        .getInstance();
+
+                    @Override
+                    public void setValues(final Object value) {
+
+                    }
+
+                    @Override
+                    public void setCurrentValue(final Object value) {
+
+                        if (!util.translate(ParticipationCategory.DEFAULT)
+                                .equals(value)) {
+                            participant.getRole().setParticipationCategory(
+                                    (String) value);
+                        } else {
+                            participant.getRole()
+                                    .setParticipationCategory(null);
+                        }
+                    }
+
+                    @Override
+                    public Object getValues() {
+
+                        List<String> list = new ArrayList<String>();
+                        for (ParticipationCategory item : ParticipationCategory
+                                .values()) {
+                            list.add(util.translate(item));
+                        }
+                        return list;
+                    }
+
+                    @Override
+                    public Object getCurrentValue() {
+
+                        return participant.getRole().getParticipationCategory();
+                    }
+                });
+    }
+
     private void applyCheckBoxes(final Participant participant) {
-        
-        this.editFields.get(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS).setValueBinder(
-                new ValueBinder() {
+
+        this.editFields.get(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS)
+                .setValueBinder(new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
-                        
-                        participant.getParticipationInConference().setExhibitionPresentationOfeports((Boolean) value);
+
+                        participant.getParticipationInConference()
+                                .setExhibitionPresentationOfeports(
+                                        (Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return participant.getParticipationInConference().getExhibitionPresentationOfeports();
+                        return participant.getParticipationInConference()
+                                .getExhibitionPresentationOfeports();
                     }
                 });
-        
-        this.editFields.get(TextFields.TOUR_OF_THE_CITY_OF_MINSK).setValueBinder(
-                new ValueBinder() {
+
+        this.editFields.get(TextFields.TOUR_OF_THE_CITY_OF_MINSK)
+                .setValueBinder(new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
-                        
-                        participant.getParticipationInConference().setTourOfTheCityOfMinsk((Boolean) value);
+
+                        participant.getParticipationInConference()
+                                .setTourOfTheCityOfMinsk((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return participant.getParticipationInConference().getTourOfTheCityOfMinsk();
+                        return participant.getParticipationInConference()
+                                .getTourOfTheCityOfMinsk();
                     }
                 });
-        
+
         this.editFields.get(TextFields.CULTURAL_PROGRAM).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
-                        
-                        participant.getParticipationInConference().setCulturalProgram((Boolean) value);
+
+                        participant.getParticipationInConference()
+                                .setCulturalProgram((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return participant.getParticipationInConference().getCulturalProgram();
+                        return participant.getParticipationInConference()
+                                .getCulturalProgram();
                     }
                 });
-        
+
         this.editFields.get(TextFields.EVENING_MEETING_PC).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        participant.getParticipationInConference().setEveningMeetingPC((Boolean) value);
+                        participant.getParticipationInConference()
+                                .setEveningMeetingPC((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return participant.getParticipationInConference().getEveningMeetingPC();
+                        return participant.getParticipationInConference()
+                                .getEveningMeetingPC();
                     }
                 });
-        
+
         this.editFields.get(TextFields.HOSTEL_RESERVATION).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        participant.getArrival().setHostelReservation((Boolean) value);
+                        participant.getArrival().setHostelReservation(
+                                (Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return  participant.getArrival().getHostelReservation();
+                        return participant.getArrival().getHostelReservation();
                     }
                 });
-        
+
     }
 
     private void applyCityBinder(final Address address) {
@@ -344,21 +400,26 @@ public class ExtraAuthorInformation {
                 });
     }
 
-    private void applyParticipationFormBinder(
-            final Participant participant) {
+    private void applyParticipationFormBinder(final Participant participant) {
 
         this.editFields.get(TextFields.PATICIPATION_FORM).setValueComboBinder(
                 new ValueComboBinder() {
-                    final LocalizationUtil util = LocalizationUtil.getInstance();
+
+                    final LocalizationUtil util = LocalizationUtil
+                                                        .getInstance();
 
                     @Override
                     public void setValues(final Object value) {
+
                     }
 
                     @Override
                     public void setCurrentValue(final Object value) {
-                        if(!util.translate(ParticipationFormFields.DEFAULT).equals((String) value)) {
-                            participant.getRole().setParticipationForm((String) value);
+
+                        if (!util.translate(ParticipationFormFields.DEFAULT)
+                                .equals(value)) {
+                            participant.getRole().setParticipationForm(
+                                    (String) value);
                         } else {
                             participant.getRole().setParticipationForm(null);
                         }
@@ -366,9 +427,10 @@ public class ExtraAuthorInformation {
 
                     @Override
                     public Object getValues() {
-                        
+
                         List<String> list = new ArrayList<String>();
-                        for(ParticipationFormFields item: ParticipationFormFields.values()) {
+                        for (ParticipationFormFields item : ParticipationFormFields
+                                .values()) {
                             list.add(util.translate(item));
                         }
                         return list;
@@ -376,77 +438,84 @@ public class ExtraAuthorInformation {
 
                     @Override
                     public Object getCurrentValue() {
-                        return participant.getRole().getParticipationForm(); 
+
+                        return participant.getRole().getParticipationForm();
                     }
                 });
     }
 
-  
     private void buildLayout(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
 
         final StringDataConverter stringConverter = new StringDataConverter();
-        
+
         this.editFields.put(TextFields.PATICIPATION_FORM, new ComboBoxField(
                 parent, util.translate(TextFields.PATICIPATION_FORM),
-                new String[0]).setDataConverter(new StringDataConverter()));        
+                new String[0]).setDataConverter(new StringDataConverter()));
+        this.editFields.put(
+                TextFields.PATICIPATION_CATEGORY,
+                new ComboBoxField(parent, util
+                        .translate(TextFields.PATICIPATION_CATEGORY),
+                        new String[0])
+                        .setDataConverter(new StringDataConverter()));
         this.editFields.put(TextFields.CITY,
                 new TextField(parent, util.translate(TextFields.CITY))
                         .setDataConverter(stringConverter));
         this.editFields.put(TextFields.COUNTRY,
                 new TextField(parent, util.translate(TextFields.COUNTRY))
                         .setDataConverter(stringConverter));
-        this.editFields.put(TextFields.HOUSE_NUMBER, new TextField(parent,
-                util.translate(TextFields.HOUSE_NUMBER))
-                .setDataConverter(stringConverter));
+        this.editFields.put(TextFields.HOUSE_NUMBER,
+                new TextField(parent, util.translate(TextFields.HOUSE_NUMBER))
+                        .setDataConverter(stringConverter));
         this.editFields.put(TextFields.STREET,
                 new TextField(parent, util.translate(TextFields.STREET))
                         .setDataConverter(stringConverter));
 
-        Group group1 =  new Group(parent, SWT.READ_ONLY);
+        Group group1 = new Group(parent, SWT.READ_ONLY);
         group1.setText(util.translate(GroupButtons.PARTICIPATION_IN_CONFERENCE));
-        
-        CheckBoxField boxField1 = new CheckBoxField(group1, 
+
+        CheckBoxField boxField1 = new CheckBoxField(group1,
                 util.translate(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS));
         boxField1.setLocation(5, 20);
         boxField1.pack();
-        
-        CheckBoxField boxField2 = new CheckBoxField(group1, 
+
+        CheckBoxField boxField2 = new CheckBoxField(group1,
                 util.translate(TextFields.TOUR_OF_THE_CITY_OF_MINSK));
         boxField2.setLocation(5, 40);
         boxField2.pack();
-        
-        CheckBoxField boxField3 = new CheckBoxField(group1, 
+
+        CheckBoxField boxField3 = new CheckBoxField(group1,
                 util.translate(TextFields.CULTURAL_PROGRAM));
         boxField3.setLocation(5, 60);
         boxField3.pack();
-        
-        CheckBoxField boxField4 = new CheckBoxField(group1, 
+
+        CheckBoxField boxField4 = new CheckBoxField(group1,
                 util.translate(TextFields.EVENING_MEETING_PC));
         boxField4.setLocation(5, 80);
         boxField4.pack();
-        
-        this.editFields.put(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS, boxField1);
+
+        this.editFields.put(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS,
+                boxField1);
         this.editFields.put(TextFields.TOUR_OF_THE_CITY_OF_MINSK, boxField2);
         this.editFields.put(TextFields.CULTURAL_PROGRAM, boxField3);
         this.editFields.put(TextFields.EVENING_MEETING_PC, boxField4);
-        
+
         group1.pack();
-        
-        Group group2 =  new Group(parent, SWT.READ_ONLY);
+
+        Group group2 = new Group(parent, SWT.READ_ONLY);
         group2.setText(util.translate(GroupButtons.ARRIVAL));
-        
-        CheckBoxField boxField5 = new CheckBoxField(group2, 
+
+        CheckBoxField boxField5 = new CheckBoxField(group2,
                 util.translate(TextFields.HOSTEL_RESERVATION));
         boxField5.setLocation(5, 20);
         boxField5.pack();
-        
+
         this.editFields.put(TextFields.HOSTEL_RESERVATION, boxField5);
-        
+
         group2.pack();
-        
+
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(Buttons.SAVE));
         button.addSelectionListener(new SelectionListener() {
@@ -465,7 +534,7 @@ public class ExtraAuthorInformation {
         });
     }
 
-    private void onSave() {     
+    private void onSave() {
 
         for (final TextFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
