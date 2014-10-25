@@ -1,6 +1,5 @@
 package net.ostis.confman.test.excel;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
