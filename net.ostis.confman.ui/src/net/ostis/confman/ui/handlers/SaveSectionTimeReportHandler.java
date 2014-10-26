@@ -37,8 +37,9 @@ public class SaveSectionTimeReportHandler {
         final String filePath = dialog.open();
         if (filePath != null) {
             try {
-                ((ScheduleService) ServiceLocator.getInstance().getService(ScheduleService.class)).save(new FileOutputStream(new File(
-                        filePath)));
+                ((ScheduleService) ServiceLocator.getInstance().getService(
+                        ScheduleService.class)).save(new FileOutputStream(
+                        new File(filePath)));
             } catch (final FileNotFoundException e) {
                 e.printStackTrace();
             }

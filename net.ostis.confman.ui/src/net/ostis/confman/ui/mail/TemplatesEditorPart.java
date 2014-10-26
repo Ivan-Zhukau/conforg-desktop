@@ -3,6 +3,7 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.model.mail.entity.Template;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
@@ -25,6 +26,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class TemplatesEditorPart {
@@ -36,7 +38,9 @@ public class TemplatesEditorPart {
         EMAIL("participantTableEmail"),
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
-        NEXT_STEP("nextStep");
+        NEXT_STEP("nextStep"),
+        CURRENT_TEMPLATE_NAME("currentTemplateName"),
+        NON_TEMPLATE_MESSAGE("nonTemplateMessage");
 
         private String rk;
 
@@ -105,6 +109,7 @@ public class TemplatesEditorPart {
         createTextArea(composite);
         createNextStepButton(composite);
         createPreviousStepButton(composite);
+        createLabelForCurrentTemplate(composite);
     }
 
     private Composite createTextWrapper(final Composite parent) {
@@ -239,6 +244,19 @@ public class TemplatesEditorPart {
                         PartState.VISIBLE);
             }
         });
+    }
+    
+    private void createLabelForCurrentTemplate(final Composite composite){
+        final LocalizationUtil util = LocalizationUtil.getInstance();
+        Label label = new Label(composite, SWT.LEFT);
+        String currentTemplateName;
+        if(participants.getTemplate() != null && participants.getTemplate().getName() != null){
+            Template template = participants.getTemplate();
+            currentTemplateName = template.getName().split(".")[0];
+        } else {
+            currentTemplateName = util.translate(Captions.NON_TEMPLATE_MESSAGE);
+        }        
+        label.setText(util.translate(Captions.CURRENT_TEMPLATE_NAME) + currentTemplateName);
     }
 
 }
