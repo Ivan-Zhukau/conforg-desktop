@@ -14,6 +14,8 @@ public class Participant {
     private ParticipantRole    role;
 
     private ParticipantArrival arrival;
+    
+    private ParticipationInConference participationInConference;
 
     private List<Long>         reportId;
 
@@ -91,5 +93,16 @@ public class Participant {
     public void setPersonId(final Long personId) {
 
         this.personId = personId;
+    }
+    
+    @XmlElement(name = "participation")
+    public ParticipationInConference getParticipationInConference() {
+
+        return participationInConference;
+    }
+
+    public void setParticipationInConference(ParticipationInConference participationInConference) {
+
+        this.participationInConference = participationInConference;
     }
 }

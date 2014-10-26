@@ -9,6 +9,7 @@ import net.ostis.confman.model.entity.Participant;
 import net.ostis.confman.model.entity.ParticipantArrival;
 import net.ostis.confman.model.entity.ParticipantRole;
 import net.ostis.confman.model.entity.Participants;
+import net.ostis.confman.model.entity.ParticipationInConference;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 
@@ -51,6 +52,7 @@ public class ParticipantConverter {
         participantToStore.setReportId(getReportId(participant.getReports(),
                 idProvider));
         participantToStore.setRole(convertRole(participant.getRole()));
+        participantToStore.setParticipationInConference(convertPartisipation(participant.getParticipationInConference()));
         return participantToStore;
     }
 
@@ -65,12 +67,24 @@ public class ParticipantConverter {
         return participantRole;
     }
 
+    private static ParticipationInConference convertPartisipation(
+            final net.ostis.confman.services.common.model.ParticipationInConference p) {
+
+        final ParticipationInConference partisipation = new ParticipationInConference();
+        partisipation.setExhibitionPresentationOfeports(p.getExhibitionPresentationOfeports());
+        partisipation.setTourOfTheCityOfMinsk(p.getTourOfTheCityOfMinsk());
+        partisipation.setCulturalProgram(p.getCulturalProgram());
+        partisipation.setEveningMeetingPC(p.getEveningMeetingPC());
+        return partisipation;
+    }
+    
     private static ParticipantArrival convertArrival(
             final net.ostis.confman.services.common.model.ParticipantArrival arrival) {
 
         final ParticipantArrival participantArrival = new ParticipantArrival();
         participantArrival.setHousing(arrival.getHousing());
         participantArrival.setMeeting(arrival.getMeeting());
+        participantArrival.setIsHostelReservation(arrival.getHostelReservation());
         participantArrival.setResidencePlace(convertResidencePlace(arrival
                 .getResidencePlace()));
         return participantArrival;

@@ -19,6 +19,7 @@ import net.ostis.confman.model.entity.Section;
 import net.ostis.confman.model.entity.SectionBreaks;
 import net.ostis.confman.model.entity.WorkplaceInformation;
 import net.ostis.confman.services.common.model.FullModel;
+import net.ostis.confman.services.common.model.ParticipationInConference;
 import net.ostis.confman.services.common.model.SectionSettings;
 
 public class ConverterFromStorageProvider {
@@ -146,10 +147,26 @@ public class ConverterFromStorageProvider {
             participant
                     .setArrival(convertParticipantArrival(temp.getArrival()));
             participant.setRole(convertParticipantRole(temp.getRole()));
+            participant.setParticipationInConference(convertPartiation(temp.getParticipationInConference()));
             participantsMap.put(temp.getId(), participant);
             listParticipants.add(participant);
         }
         return listParticipants;
+    }
+
+    private ParticipationInConference convertPartiation(
+            net.ostis.confman.model.entity.ParticipationInConference participationInConference) {
+
+        final net.ostis.confman.services.common.model.ParticipationInConference partisipation = new net.ostis.confman.services.common.model.ParticipationInConference();
+        if (participationInConference == null) {
+            return partisipation;
+        }
+        partisipation.setCulturalProgram(participationInConference.getCulturalProgram());
+        partisipation.setEveningMeetingPC(participationInConference.getEveningMeetingPC());
+        partisipation.setExhibitionPresentationOfeports(participationInConference.getExhibitionPresentationOfeports());
+        partisipation.setTourOfTheCityOfMinsk(participationInConference.getTourOfTheCityOfMinsk());
+        
+        return partisipation;
     }
 
     private void setExtraParticipantInfo(
@@ -181,6 +198,7 @@ public class ConverterFromStorageProvider {
         }
         arrival.setHousing(participantArrival.getHousing());
         arrival.setMeeting(participantArrival.getMeeting());
+        arrival.setHostelReservation(participantArrival.getIsHostelReservation());
         arrival.setResidencePlace(convertResidence(participantArrival
                 .getResidencePlace()));
         return arrival;

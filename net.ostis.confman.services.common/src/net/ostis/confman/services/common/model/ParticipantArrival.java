@@ -1,5 +1,6 @@
 package net.ostis.confman.services.common.model;
 
+
 public class ParticipantArrival {
 
     private Boolean housing = false;
@@ -7,6 +8,8 @@ public class ParticipantArrival {
     private Boolean meeting = false;
 
     private Address residencePlace;
+
+    private Boolean isHostelReservation = false;
 
     public ParticipantArrival() {
 
@@ -42,5 +45,16 @@ public class ParticipantArrival {
     public void setResidencePlace(final Address residencePlace) {
 
         this.residencePlace = residencePlace;
+    }
+
+    public void setHostelReservation(Boolean value) {
+
+        this.isHostelReservation = value;
+        
+    }
+
+    public Boolean getHostelReservation() {
+        
+        return this.isHostelReservation;
     }
 }
