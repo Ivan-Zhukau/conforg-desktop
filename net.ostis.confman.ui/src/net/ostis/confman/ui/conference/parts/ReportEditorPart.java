@@ -39,9 +39,9 @@ public class ReportEditorPart {
         TITLE("reportTitle"),
         MAIN_AUTHOR("mainAuthor"),
         YOUNG_REPORT("youngScientistReport"),
-        ACCEPT_REPORT("acceptReport"),
-        CANCEL_REPORT("cancelReport"),
         NUMBER_OF_PAGES("numberOfPages"),
+        PLENARY_REPORT("plenaryReport"),
+        PARTICIPATION_IN_CONTEST("participationInContest"),
         SAVE("save");
 
         private String rk;
@@ -135,6 +135,7 @@ public class ReportEditorPart {
         this.editFields.get(ReportCaptions.MAIN_AUTHOR).setValueComboBinder(
                 new ValueComboBinder() {
 
+                    @SuppressWarnings("unchecked")
                     @Override
                     public void setValues(final Object value) {
 
@@ -174,34 +175,34 @@ public class ReportEditorPart {
                         return report.isYoungScientistReport();
                     }
                 });
-        this.editFields.get(ReportCaptions.ACCEPT_REPORT).setValueBinder(
+        this.editFields.get(ReportCaptions.PLENARY_REPORT).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        report.setReportAccepted((Boolean) value);
+                        report.setPlenaryReport((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return report.isReportAccepted();
+                        return report.isPlenaryReport();
                     }
                 });
-        this.editFields.get(ReportCaptions.CANCEL_REPORT).setValueBinder(
+        this.editFields.get(ReportCaptions.PARTICIPATION_IN_CONTEST).setValueBinder(
                 new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
 
-                        report.setReportCanceled((Boolean) value);
+                        report.setParticipationInContest((Boolean) value);
                     }
 
                     @Override
                     public Object getValue() {
 
-                        return report.isReportCanceled();
+                        return report.getParticipationInContest();
                     }
                 });
     }
@@ -221,10 +222,10 @@ public class ReportEditorPart {
                 new String[0]).setDataConverter(new StringDataConverter()));
         this.editFields.put(ReportCaptions.YOUNG_REPORT, new CheckBoxField(
                 parent, util.translate(ReportCaptions.YOUNG_REPORT)));
-        this.editFields.put(ReportCaptions.ACCEPT_REPORT, new CheckBoxField(
-                parent, util.translate(ReportCaptions.ACCEPT_REPORT)));
-        this.editFields.put(ReportCaptions.CANCEL_REPORT, new CheckBoxField(
-                parent, util.translate(ReportCaptions.CANCEL_REPORT)));
+        this.editFields.put(ReportCaptions.PLENARY_REPORT, new CheckBoxField(
+                parent, util.translate(ReportCaptions.PLENARY_REPORT)));
+        this.editFields.put(ReportCaptions.PARTICIPATION_IN_CONTEST, new CheckBoxField(
+                parent, util.translate(ReportCaptions.PARTICIPATION_IN_CONTEST)));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(ReportCaptions.SAVE));
         button.addSelectionListener(new SelectionListener() {

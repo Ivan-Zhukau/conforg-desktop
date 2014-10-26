@@ -19,6 +19,10 @@ public class Report {
 
     private boolean           reportAccepted;
 
+    private boolean           plenaryReport;
+
+    private boolean           participationInContest;
+
     private String            numberOfPages;
 
     public Report() {
@@ -79,6 +83,16 @@ public class Report {
         this.youngScientistReport = youngScientistReport;
     }
 
+    public String getNumberOfPages() {
+
+        return this.numberOfPages;
+    }
+
+    public void setNumberOfPages(final String numberOfPages) {
+
+        this.numberOfPages = numberOfPages;
+    }
+
     public boolean isReportCanceled() {
 
         return this.reportCanceled;
@@ -99,13 +113,23 @@ public class Report {
         this.reportAccepted = acceptReport;
     }
 
-    public String getNumberOfPages() {
+    public boolean isPlenaryReport() {
 
-        return this.numberOfPages;
+        return plenaryReport;
     }
 
-    public void setNumberOfPages(final String numberOfPages) {
+    public void setPlenaryReport(boolean plenaryReport) {
 
-        this.numberOfPages = numberOfPages;
+        this.plenaryReport = plenaryReport;
+    }
+
+    public boolean getParticipationInContest() {
+
+        return participationInContest;
+    }
+
+    public void setParticipationInContest(boolean participationInContest) {
+
+        this.participationInContest = participationInContest;
     }
 }

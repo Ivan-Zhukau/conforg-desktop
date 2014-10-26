@@ -235,10 +235,18 @@ public class ConverterFromStorageProvider {
             report.setAllAuthors(findNecessaryParticipants(participantMap,
                     temp.getParticipants()));
             report.setNumberOfPages(temp.getNumberOfPages());
+            boolean contestParticipating = safeConvert(temp.getParticipationInContest());
+            report.setParticipationInContest(contestParticipating);
+            boolean plenaryReport = safeConvert(temp.getPlenaryReport());
+            report.setPlenaryReport(plenaryReport);
             reportsMap.put(temp.getId(), report);
             listReports.add(report);
         }
         return listReports;
+    }
+
+    private boolean safeConvert(Boolean field) {
+        return field == null ? false : field;
     }
 
     private void setExtraReportInfo(

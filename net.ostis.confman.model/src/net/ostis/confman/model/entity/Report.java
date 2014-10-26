@@ -25,6 +25,10 @@ public class Report {
 
     private Boolean    canceled;
 
+    private Boolean    participationInContest;
+
+    private Boolean    plenaryReport;
+
     private String     numberOfPages;
 
     public Report() {
@@ -116,6 +120,28 @@ public class Report {
     public void setCanceled(final Boolean canceled) {
 
         this.canceled = canceled;
+    }
+
+    @XmlElement(name = "contest-participation")
+    public Boolean getParticipationInContest() {
+    
+        return participationInContest;
+    }
+
+    public void setParticipationInContest(Boolean participationInContest) {
+    
+        this.participationInContest = participationInContest;
+    }
+
+    @XmlElement(name = "plenary-report")
+    public Boolean getPlenaryReport() {
+    
+        return plenaryReport;
+    }
+
+    public void setPlenaryReport(Boolean plenaryReport) {
+    
+        this.plenaryReport = plenaryReport;
     }
 
     @XmlElement
