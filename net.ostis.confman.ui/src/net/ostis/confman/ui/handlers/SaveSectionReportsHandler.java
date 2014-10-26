@@ -27,7 +27,8 @@ public class SaveSectionReportsHandler {
         final String filePath = dialog.open();
         if (filePath != null) {
             try {
-                ((SectionService) ServiceLocator.getInstance().getService(SectionService.class))
+                ((SectionService) ServiceLocator.getInstance().getService(
+                        SectionService.class))
                         .generateSectionReporList(new FileOutputStream(
                                 new File(filePath)));
             } catch (final FileNotFoundException e) {
