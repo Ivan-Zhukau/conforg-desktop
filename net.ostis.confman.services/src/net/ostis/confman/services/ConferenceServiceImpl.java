@@ -1,6 +1,8 @@
 package net.ostis.confman.services;
 
+import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import net.ostis.confman.model.datastore.StorageProvider;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
@@ -109,5 +111,31 @@ class ConferenceServiceImpl implements ConferenceService {
     public List<Report> getReports() {
 
         return this.reports;
+    }
+
+    @Override
+    public int getSectionOrder(Section section) {
+
+        for (Conference conf : conferences) {
+            List<Section> sections = conf.getSections();
+            ListIterator<Section> iterator = sections.listIterator();
+            while(iterator.hasNext()) {
+                Section currentSection = iterator.next();
+                if (isSameSections(currentSection, section)) {
+                    return iterator.previousIndex();
+                }
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private boolean isSameSections(Section first, Section second) {
+
+        Date firstStartDate = first.getDate();
+        Date secondStartDate = second.getDate();
+        String firstTitle = first.getTitle();
+        String secondTitle = second.getTitle();
+        return firstStartDate.equals(secondStartDate)
+                && firstTitle.equals(secondTitle);
     }
 }
