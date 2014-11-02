@@ -6,12 +6,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.mail.entity.Template;
 import net.ostis.confman.services.ParticipantService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.EmailedParticipant;
+import net.ostis.confman.services.common.model.EmailedParticipants;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.services.common.model.Template;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
@@ -141,8 +143,16 @@ public class ParticipantsChoosePart {
                         final Participant participant = (Participant) object;
                         participants.add(participant);
                     }
-                    final EmailedParticipants ep = new EmailedParticipants(
-                            participants, ParticipantsChoosePart.this.template);
+                    final EmailedParticipants ep = new EmailedParticipants();
+                    List<EmailedParticipant> emailedParticipants = new ArrayList<>();
+                    for(Participant participant : participants){
+                        EmailedParticipant emailedParticipant = new EmailedParticipant();
+                        emailedParticipant.setParticipant(participant);
+                        emailedParticipant.setTemplate(new Template(template));
+                        emailedParticipants.add(emailedParticipant);
+                    }                    
+                    ep.setEmailedParticipants(emailedParticipants);
+                    ep.setTemplateName(template.getName());
                     ParticipantsChoosePart.this.selectionService
                             .setSelection(ep);
                     final MPart part = ParticipantsChoosePart.this.partService

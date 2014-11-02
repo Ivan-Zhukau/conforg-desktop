@@ -21,6 +21,8 @@ import net.ostis.confman.model.entity.WorkplaceInformation;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.ParticipationInConference;
 import net.ostis.confman.services.common.model.SectionSettings;
+import net.ostis.confman.services.common.model.Template;
+import net.ostis.confman.services.common.model.Templates;
 
 public class ConverterFromStorageProvider {
 
@@ -408,5 +410,17 @@ public class ConverterFromStorageProvider {
         settings.setCoffeeBreakNumber(sectionSettings.getCoffeeBreakNumber());
         settings.setCoffeeBreakTime(sectionSettings.getCoffeeBreakTime());
         return settings;
+    }
+    
+    public Templates convertTemplates(List<net.ostis.confman.model.mail.entity.Template> templates){
+        Templates templ = new Templates();
+        for(net.ostis.confman.model.mail.entity.Template template : templates){
+            Template temp = new Template();
+            temp.setLanguage(template.getLanguage());
+            temp.setName(template.getName());
+            temp.setPath(template.getPath());
+            templ.addTemplate(temp);
+        }
+        return templ;
     }
 }

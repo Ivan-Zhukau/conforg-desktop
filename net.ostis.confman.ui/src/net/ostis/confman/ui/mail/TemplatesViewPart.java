@@ -3,9 +3,11 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.mail.entity.Template;
+import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.EmailService;
 import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.common.model.Template;
+import net.ostis.confman.services.common.model.Templates;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
@@ -110,8 +112,10 @@ public class TemplatesViewPart {
                         .getViewer().getSelection();
                 final Object selectedElement = selection.getFirstElement();
                 if (selectedElement instanceof Template) {
+                    Template template = (Template) selectedElement;
+                    template.setBody(emailService.getTemplateBody(template.getPath()));
                     TemplatesViewPart.this.selectionService
-                            .setSelection(selectedElement);
+                            .setSelection(template);
                     final MPart part = TemplatesViewPart.this.partService
                             .findPart(PARTICIPANTS_PART_ID);
                     TemplatesViewPart.this.partService.activate(part);
@@ -162,7 +166,9 @@ public class TemplatesViewPart {
 
         this.table.getViewer().setContentProvider(
                 ArrayContentProvider.getInstance());
-        this.table.getViewer().setInput(this.emailService.getTemplates());
+        ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        Templates tempaltes = converter.convertTemplates(this.emailService.getTemplates());
+        this.table.getViewer().setInput(tempaltes.getTemplates());
     }
 
     @Inject

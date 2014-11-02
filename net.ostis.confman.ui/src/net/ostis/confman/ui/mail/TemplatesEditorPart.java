@@ -3,7 +3,8 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.model.mail.entity.Template;
+import net.ostis.confman.services.common.model.EmailedParticipant;
+import net.ostis.confman.services.common.model.EmailedParticipants;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
@@ -17,7 +18,9 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -39,6 +42,7 @@ public class TemplatesEditorPart {
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep"),
+        SAVE("save"),
         CURRENT_TEMPLATE_NAME("currentTemplateName"),
         NON_TEMPLATE_MESSAGE("nonTemplateMessage");
 
@@ -69,6 +73,10 @@ public class TemplatesEditorPart {
     private DynamicalTable        table;
 
     private EmailedParticipants   participants;
+    
+    private EmailedParticipant    selectedParticipant;
+
+    private Label currentTemplateLabel;
 
     public TemplatesEditorPart() {
 
@@ -90,14 +98,15 @@ public class TemplatesEditorPart {
                 }
                 TemplatesEditorPart.this.participants = (EmailedParticipants) selection;
                 addTableEventSupport();
+                updateCurrentTemplateValue();
             }
         });
         buildLayout(parent);
     }
 
-    private void onNewSelection(final EmailedParticipants participants) {
+    private void onNewSelection(final EmailedParticipant participant) {
 
-        this.textArea.setText(participants.getTemplate().getName());
+        this.textArea.setText(participant.getTemplate().getBody());
     }
 
     private void buildLayout(final Composite parent) {
@@ -107,6 +116,8 @@ public class TemplatesEditorPart {
         createColumns();
         final Composite composite = createTextWrapper(parent);
         createTextArea(composite);
+        createSaveButton(composite);
+        //createCleareButton(composite);
         createNextStepButton(composite);
         createPreviousStepButton(composite);
         createLabelForCurrentTemplate(composite);
@@ -143,8 +154,8 @@ public class TemplatesEditorPart {
 
                     @Override
                     public String getText(final Object element) {
-
-                        final Participant participant = (Participant) element;
+                        EmailedParticipant emailedParticipant = (EmailedParticipant) element;
+                        final Participant participant = emailedParticipant.getParticipant();
                         final Person person = participant.getPerson();
                         return person.getFirstName() + ' '
                                 + person.getSurname();
@@ -155,8 +166,8 @@ public class TemplatesEditorPart {
 
                     @Override
                     public String getText(final Object element) {
-
-                        final Participant participant = (Participant) element;
+                        EmailedParticipant emailedParticipant = (EmailedParticipant) element;
+                        final Participant participant = emailedParticipant.getParticipant();
                         final String email = participant.getPerson()
                                 .getContacts().geteMail();
                         return email == null ? "" : email;
@@ -167,7 +178,21 @@ public class TemplatesEditorPart {
     private void addTableEventSupport() {
 
         this.table.setContentProvider(ArrayContentProvider.getInstance());
-        this.table.setInput(this.participants.getParticipants());
+        this.table.setInput(this.participants.getEmailedParticipants());
+        this.table.addSelectionChangedListener(new ISelectionChangedListener() {
+                
+            @Override
+            public void selectionChanged(final SelectionChangedEvent event) {
+
+                final IStructuredSelection selection = (IStructuredSelection) TemplatesEditorPart.this.table
+                        .getViewer().getSelection();
+                final Object selectedElement = selection.getFirstElement();
+                if (selectedElement instanceof EmailedParticipant) {
+                    selectedParticipant = (EmailedParticipant) selectedElement;
+                    onNewSelection(selectedParticipant);                    
+                }
+            }
+        });
     }
 
     private void createNextStepButton(final Composite parent) {
@@ -199,9 +224,8 @@ public class TemplatesEditorPart {
                 final IStructuredSelection selection = (IStructuredSelection) TemplatesEditorPart.this.table
                         .getViewer().getSelection();
                 final Object selectedElement = selection.getFirstElement();
-                if (selectedElement instanceof EmailedParticipants) {
-                    final EmailedParticipants emailedParticipants = (EmailedParticipants) selectedElement;
-                    onNewSelection(emailedParticipants);
+                if (selectedElement instanceof EmailedParticipant) {
+                    onNewSelection((EmailedParticipant) selectedElement);
 
                 } else {
 
@@ -246,17 +270,85 @@ public class TemplatesEditorPart {
         });
     }
     
-    private void createLabelForCurrentTemplate(final Composite composite){
+    private void createSaveButton(final Composite parent) {
+
         final LocalizationUtil util = LocalizationUtil.getInstance();
-        Label label = new Label(composite, SWT.LEFT);
+        final Button nextButton = new Button(parent, SWT.NONE);
+        nextButton.setText(util.translate(Captions.SAVE));
+        final GridData gridData = new GridData(SWT.LEFT, SWT.BOTTOM,
+                Boolean.FALSE, Boolean.FALSE);
+        nextButton.setLayoutData(gridData);
+        nextButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                onSelection();
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                onSelection();
+
+            }
+
+            private void onSelection() {
+
+                if(selectedParticipant != null){
+                    selectedParticipant.getTemplate().setBody(textArea.getText());
+                }
+            }
+        });
+    }
+    
+    private void createCleareButton(final Composite parent) {
+
+        final LocalizationUtil util = LocalizationUtil.getInstance();
+        final Button nextButton = new Button(parent, SWT.NONE);
+        nextButton.setText(util.translate(Captions.SAVE));
+        final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
+                Boolean.FALSE, Boolean.FALSE);
+        nextButton.setLayoutData(gridData);
+        nextButton.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(final SelectionEvent e) {
+
+                onSelection();
+
+            }
+
+            @Override
+            public void widgetDefaultSelected(final SelectionEvent e) {
+
+                onSelection();
+
+            }
+
+            private void onSelection() {
+
+                selectedParticipant = null;
+                textArea.setText("");
+            }
+        });
+    }
+    
+    private void createLabelForCurrentTemplate(final Composite composite){
+        currentTemplateLabel = new Label(composite, SWT.LEFT);
+    }
+    
+    private void updateCurrentTemplateValue(){
+        final LocalizationUtil util = LocalizationUtil.getInstance();
         String currentTemplateName;
-        if(participants.getTemplate() != null && participants.getTemplate().getName() != null){
-            Template template = participants.getTemplate();
-            currentTemplateName = template.getName().split(".")[0];
+        if(participants.getEmailedParticipants() != null && participants.getTemplateName() != null){
+            String template = participants.getTemplateName();
+            currentTemplateName = template;
         } else {
             currentTemplateName = util.translate(Captions.NON_TEMPLATE_MESSAGE);
         }        
-        label.setText(util.translate(Captions.CURRENT_TEMPLATE_NAME) + currentTemplateName);
+        currentTemplateLabel.setText(util.translate(Captions.CURRENT_TEMPLATE_NAME) + currentTemplateName);
     }
 
 }

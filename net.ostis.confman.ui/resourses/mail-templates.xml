@@ -1,6 +1,7 @@
 <email-templates>
 	<email-template>
-		<name>First.vm</name>
+		<name>Test</name>
+		<path>Test.vm</path>
 		<language>ruRU</language>
 	</email-template>
 </email-templates>

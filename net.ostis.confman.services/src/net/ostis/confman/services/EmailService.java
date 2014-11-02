@@ -10,5 +10,7 @@ public interface EmailService {
     MailDto getMailInfo();
 
     List<Template> getTemplates();
+    
+    String getTemplateBody(String fileName);
 
 }
