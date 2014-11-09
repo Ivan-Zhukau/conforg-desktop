@@ -18,9 +18,11 @@ import net.ostis.confman.model.entity.Report;
 import net.ostis.confman.model.entity.Section;
 import net.ostis.confman.model.entity.SectionBreaks;
 import net.ostis.confman.model.entity.WorkplaceInformation;
+import net.ostis.confman.services.common.model.ConferenceViewState;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.ParticipationInConference;
 import net.ostis.confman.services.common.model.SectionSettings;
+import net.ostis.confman.services.common.model.Workspace;
 
 public class ConverterFromStorageProvider {
 
@@ -62,7 +64,34 @@ public class ConverterFromStorageProvider {
         setExtraSectionsInfo(conferencesMap, sectionsMap, sections);
         model.setSectionSettings(convertSectionSettingsList(
                 storageProvider.getSectionBreaks(), sectionsMap));
+        net.ostis.confman.model.entity.Workspace workspace = storageProvider.getWorkspace();
+        model.setWorkspace(convertWorkspace(workspace, conferencesMap));
         return model;
+    }
+
+    private Workspace convertWorkspace(net.ostis.confman.model.entity.Workspace workspace,
+            Map<Long, net.ostis.confman.services.common.model.Conference> conferencesMap) {
+
+        Workspace ws = new Workspace();
+        ConferenceViewState conferenceViewState = 
+                convertConfViewState(workspace.getConferencePartState(), conferencesMap);
+        ws.setConferencePartState(conferenceViewState);
+        return ws;
+    }
+
+    private ConferenceViewState convertConfViewState(
+            net.ostis.confman.model.entity.ConferenceViewState conferencePartState,
+            Map<Long, net.ostis.confman.services.common.model.Conference> conferencesMap) {
+
+        List<Long> conferenceIds = conferencePartState.getOpenedConferences();
+        List<net.ostis.confman.services.common.model.Conference> conferences = 
+                new ArrayList<>(conferenceIds.size());
+        for (Long confId : conferenceIds) {
+            conferences.add(conferencesMap.get(confId));
+        }
+        ConferenceViewState viewState = new ConferenceViewState();
+        viewState.setOpenedConferences(conferences);
+        return viewState;
     }
 
     private List<net.ostis.confman.services.common.model.Person> convertPersons(

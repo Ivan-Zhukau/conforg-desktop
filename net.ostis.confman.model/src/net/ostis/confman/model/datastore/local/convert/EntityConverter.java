@@ -8,6 +8,7 @@ import net.ostis.confman.model.entity.Persons;
 import net.ostis.confman.model.entity.Reports;
 import net.ostis.confman.model.entity.SectionSettings;
 import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.model.entity.Workspace;
 import net.ostis.confman.services.common.model.FullModel;
 
 public class EntityConverter {
@@ -23,6 +24,8 @@ public class EntityConverter {
     private Participants    participants;
 
     private SectionSettings sectionSettings;
+
+    private Workspace workspace;
 
     public EntityConverter() {
 
@@ -40,9 +43,10 @@ public class EntityConverter {
         this.reports = ReportConverter.convert(model, idProvider);
         this.sectionSettings = SectionSettingsConverter.convert(model,
                 idProvider);
+        this.workspace = WorkspaceConverter.convert(model, idProvider);
         StorageProvider.getInstance().update(this.persons, this.participants,
                 this.conferences, this.sections, this.reports,
-                this.sectionSettings);
+                this.sectionSettings, this.workspace);
     }
 
     public Conferences getConferences() {
@@ -73,5 +77,10 @@ public class EntityConverter {
     public SectionSettings getSectionSettings() {
 
         return this.sectionSettings;
+    }
+
+    public Workspace getWorkspace() {
+
+        return this.workspace;
     }
 }

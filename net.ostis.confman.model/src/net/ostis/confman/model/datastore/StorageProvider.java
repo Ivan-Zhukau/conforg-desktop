@@ -16,6 +16,8 @@ import net.ostis.confman.model.datastore.local.SectionReader;
 import net.ostis.confman.model.datastore.local.SectionSettingsReader;
 import net.ostis.confman.model.datastore.local.SectionSettingsWriter;
 import net.ostis.confman.model.datastore.local.SectionWriter;
+import net.ostis.confman.model.datastore.local.WorkspaceReader;
+import net.ostis.confman.model.datastore.local.WorkspaceWriter;
 import net.ostis.confman.model.datastore.local.convert.EntityConverter;
 import net.ostis.confman.model.entity.Conference;
 import net.ostis.confman.model.entity.Conferences;
@@ -29,6 +31,7 @@ import net.ostis.confman.model.entity.Section;
 import net.ostis.confman.model.entity.SectionBreaks;
 import net.ostis.confman.model.entity.SectionSettings;
 import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.model.entity.Workspace;
 import net.ostis.confman.services.common.model.FullModel;
 
 import org.apache.log4j.Logger;
@@ -50,6 +53,8 @@ public class StorageProvider {
     private Conferences            conferences;
 
     private SectionSettings        sectionSettings;
+
+    private Workspace              workspace;
 
     private StorageProvider() {
 
@@ -73,6 +78,14 @@ public class StorageProvider {
         this.sections = loadSections();
         this.conferences = loadConferences();
         this.sectionSettings = loadSectionSettings();
+        this.workspace = loadWorkspace();
+    }
+
+    private Workspace loadWorkspace() {
+
+        final WorkspaceReader reader = new WorkspaceReader();
+        final Workspace loadedData = (Workspace) load(reader);
+        return loadedData;
     }
 
     private Persons loadPersons() {
@@ -154,6 +167,13 @@ public class StorageProvider {
         savePersons(converter.getPersons());
         saveParticipants(converter.getParticipants());
         saveSectionSettings(converter.getSectionSettings());
+        saveWorkspace(converter.getWorkspace());
+    }
+
+    private synchronized void saveWorkspace(final Workspace workspace) {
+
+        final WorkspaceWriter writer = new WorkspaceWriter(workspace);
+        save(writer);
     }
 
     private synchronized void saveConferences(
@@ -235,6 +255,11 @@ public class StorageProvider {
         return this.sectionSettings.getSectionBreaks();
     }
 
+    public Workspace getWorkspace() {
+    
+        return this.workspace;
+    }
+
     public Person getPerson(final long id) {
 
         final List<Person> personsList = this.persons.getPersons();
@@ -294,7 +319,8 @@ public class StorageProvider {
 
     public void update(final Persons persons, final Participants participants,
             final Conferences conferences, final Sections sections,
-            final Reports reports, final SectionSettings sectionSettings) {
+            final Reports reports, final SectionSettings sectionSettings,
+            final Workspace workspace) {
 
         this.persons = persons;
         this.participants = participants;
@@ -302,5 +328,6 @@ public class StorageProvider {
         this.sections = sections;
         this.reports = reports;
         this.sectionSettings = sectionSettings;
+        this.workspace = workspace;
     }
 }

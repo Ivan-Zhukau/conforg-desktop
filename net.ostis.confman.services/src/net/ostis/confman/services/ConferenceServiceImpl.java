@@ -1,5 +1,6 @@
 package net.ostis.confman.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
@@ -7,9 +8,11 @@ import java.util.ListIterator;
 import net.ostis.confman.model.datastore.StorageProvider;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.ConferenceViewState;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
+import net.ostis.confman.services.common.model.Workspace;
 
 class ConferenceServiceImpl implements ConferenceService {
 
@@ -18,6 +21,8 @@ class ConferenceServiceImpl implements ConferenceService {
     private List<Section>    sections;
 
     private List<Report>     reports;
+
+    private Workspace        workspace;
 
     private FullModel        model;
 
@@ -28,6 +33,13 @@ class ConferenceServiceImpl implements ConferenceService {
         this.conferences = this.model.getConferences();
         this.sections = this.model.getSections();
         this.reports = this.model.getReports();
+        this.workspace = this.model.getWorkspace();
+    }
+
+    @Override
+    public List<Conference> getOpenedConferences() {
+
+        return workspace.getConferencePartState().getOpenedConferences();
     }
 
     @Override
@@ -137,5 +149,56 @@ class ConferenceServiceImpl implements ConferenceService {
         String secondTitle = second.getTitle();
         return firstStartDate.equals(secondStartDate)
                 && firstTitle.equals(secondTitle);
+    }
+
+    @Override
+    public void addConference(Conference conference) {
+
+        if (!this.conferences.contains(conference)) {
+            this.conferences.add(conference);
+        }
+        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
+        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        if (!openedConferences.contains(conference)) {
+            openedConferences.add(conference);
+        }
+        fireData();
+    }
+
+    @Override
+    public void deleteConference(Conference conference) {
+
+        this.conferences.remove(conference);
+        closeConference(conference);
+    }
+
+    @Override
+    public void closeConference(Conference conference) {
+
+        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
+        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        openedConferences.remove(conference);
+        fireData();
+    }
+
+    @Override
+    public void openConference(Conference conference) {
+
+        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
+        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        openedConferences.add(conference);
+        fireData();
+    }
+
+    @Override
+    public List<Conference> getClosedConferences() {
+
+        List<Conference> conferences = new ArrayList<Conference>(this.conferences);
+        List<Conference> openedConferences = workspace.getConferencePartState()
+                .getOpenedConferences();
+        for (Conference openedConference : openedConferences) {
+            conferences.remove(openedConference);
+        }
+        return conferences;
     }
 }

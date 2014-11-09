@@ -141,7 +141,9 @@ public class ConfTreeListenerProvider {
     private static class TreeMenuListener implements IMenuListener {
 
         private enum ConferenceFields implements Localizable {
-            ADD_SECTION("ctxAddSection");
+            ADD_SECTION("ctxAddSection"),
+            CLOSE_CONF("ctxCloseConf"),
+            DELETE_CONF("ctxDeleteConf");
 
             private String rk;
 
@@ -248,7 +250,29 @@ public class ConfTreeListenerProvider {
                             ConferenceTopics.ADD_NEW_SECTION, null);
                 }
             };
+            final String closeConfActionText = getLocalizedValue(ConferenceFields.CLOSE_CONF);
+            final Action closeConfAction = new Action(closeConfActionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.eventBroker.post(
+                            ConferenceTopics.CLOSE_CONF, null);
+                }
+            };
+            final String deleteConfActionText = getLocalizedValue(ConferenceFields.DELETE_CONF);
+            final Action deleteConfAction = new Action(deleteConfActionText) {
+
+                @Override
+                public void run() {
+
+                    TreeMenuListener.this.eventBroker.post(
+                            ConferenceTopics.DELETE_CONF, null);
+                }
+            };
             manager.add(addSectionAction);
+            manager.add(closeConfAction);
+            manager.add(deleteConfAction);
         }
 
         private void addSectionActions(final IMenuManager manager,

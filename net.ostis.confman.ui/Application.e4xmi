@@ -22,7 +22,10 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_WyzmoCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partsashcontainer.conference.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_fOZS4Ck9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.tree">
             <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="%part.label.4">
-              <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1"/>
+              <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1">
+                <children xsi:type="menu:DirectToolItem" xmi:id="_6p04IGLMEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.1" label="%toolbar.conferences.view.create" iconURI="platform:/plugin/net.ostis.confman.ui/icons/createConf.png" tooltip="%toolbar.conferences.view.create" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.NewConferenceHandler"/>
+                <children xsi:type="menu:DirectToolItem" xmi:id="_B-kwwGLQEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.2" label="%toolbar.conferences.view.open" iconURI="platform:/plugin/net.ostis.confman.ui/icons/openConf.png" tooltip="%toolbar.conferences.view.open" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.OpenConferenceHandler"/>
+              </toolbar>
             </children>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">

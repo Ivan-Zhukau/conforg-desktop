@@ -14,6 +14,8 @@ public final class LocalStorageConstants {
 
     public static final String SECTION_CONFIG_FILE_LOCATION = "storage/section-settings.xml";
 
+    public static final String WORKSPACE_FILE_LOCATION      = "storage/workspace.xml";
+
     private LocalStorageConstants() {
 
     }

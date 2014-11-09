@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.TableColumn;
 
 public class DynamicalTable {
 
-    private static final int COLUMN_WIDTH = 230;
+    public static final int COLUMN_WIDTH = 230;
 
     private TableViewer      tableViewer;
 

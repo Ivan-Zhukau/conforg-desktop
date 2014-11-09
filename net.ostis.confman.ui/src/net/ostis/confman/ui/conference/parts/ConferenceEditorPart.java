@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.ConferenceService;
+import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.DateChooserField;
@@ -18,7 +20,9 @@ import net.ostis.confman.ui.common.component.ValueBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.modeling.ISelectionListener;
@@ -100,11 +104,15 @@ public class ConferenceEditorPart {
     @Inject
     private IEventBroker                                                      eventBroker;
 
+    private ConferenceService conferenceService;
+
     public ConferenceEditorPart() {
 
         super();
         this.editFields = new EnumMap<>(ConferenceFields.class);
         this.dateChooserFields = new EnumMap<>(DateChooserFields.class);
+        this.conferenceService = (ConferenceService) ServiceLocator
+                .getInstance().getService(ConferenceService.class);
     }
 
     @PostConstruct
@@ -301,5 +309,16 @@ public class ConferenceEditorPart {
             this.editFields.get(field).apply();
         }
         this.eventBroker.post(ConferenceTopics.CONF_UPDATE, null);
+    }
+
+    @Inject
+    @Optional
+    private void onConferenceAdd(
+            @UIEventTopic(ConferenceTopics.CONF_CREATE) final String s) {
+
+        final Conference conference = new Conference();
+        this.conferenceService.addConference(conference);
+        this.selectionService.setSelection(conference);
+        onConferenceEvent(conference);
     }
 }

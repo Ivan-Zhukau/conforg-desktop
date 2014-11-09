@@ -10,6 +10,8 @@ public interface ConferenceService {
 
     List<Conference> getConferences();
 
+    List<Conference> getOpenedConferences();
+
     void updateConference(Conference storedConference,
             Conference updatedConference);
 
@@ -28,5 +30,15 @@ public interface ConferenceService {
     void fireData();
 
     int getSectionOrder(Section section);
+
+    void addConference(Conference conference);
+
+    void deleteConference(Conference conference);
+
+    void openConference(Conference conference);
+
+    void closeConference(Conference conference);
+
+    List<Conference> getClosedConferences();
 
 }

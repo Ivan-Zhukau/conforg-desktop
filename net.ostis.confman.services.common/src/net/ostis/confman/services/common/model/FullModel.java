@@ -16,6 +16,8 @@ public class FullModel {
 
     private List<SectionSettings> sectionSettings;
 
+    private Workspace workspace;
+
     public FullModel() {
 
         super();
@@ -79,6 +81,16 @@ public class FullModel {
     public void setSectionSettings(final List<SectionSettings> sectionSettings) {
 
         this.sectionSettings = sectionSettings;
+    }
+
+    public Workspace getWorkspace() {
+    
+        return workspace;
+    }
+
+    public void setWorkspace(Workspace workspace) {
+    
+        this.workspace = workspace;
     }
 
 }
