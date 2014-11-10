@@ -181,7 +181,7 @@ public class NewParticipantPart {
                     @Override
                     public void setCurrentValue(final Object value) {
 
-                        if (!util.translate(ParticipationCategory.DEFAULT)
+                        if (!this.util.translate(ParticipationCategory.DEFAULT)
                                 .equals(value)) {
                             participant.getRole().setParticipationCategory(
                                     (String) value);
@@ -194,10 +194,10 @@ public class NewParticipantPart {
                     @Override
                     public Object getValues() {
 
-                        List<String> list = new ArrayList<String>();
-                        for (ParticipationCategory item : ParticipationCategory
+                        final List<String> list = new ArrayList<String>();
+                        for (final ParticipationCategory item : ParticipationCategory
                                 .values()) {
-                            list.add(util.translate(item));
+                            list.add(this.util.translate(item));
                         }
                         return list;
                     }
@@ -249,7 +249,7 @@ public class NewParticipantPart {
             }
         });
 
-        bind(newParticipant);
+        bind(this.newParticipant);
     }
 
     private void onSave() {
@@ -260,14 +260,14 @@ public class NewParticipantPart {
         this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
         final ParticipantService participantService = (ParticipantService) ServiceLocator
                 .getInstance().getService(ParticipantService.class);
-        if (!"".equals(newParticipant.getPerson().getFirstName())
-                || !"".equals(newParticipant.getPerson().getPatronymic())
-                || !"".equals(newParticipant.getPerson().getSurname())) {
-            participantService.addParticipant(newParticipant);
-            participantService.addPerson(newParticipant.getPerson());
+        if (!"".equals(this.newParticipant.getPerson().getFirstName())
+                || !"".equals(this.newParticipant.getPerson().getPatronymic())
+                || !"".equals(this.newParticipant.getPerson().getSurname())) {
+            participantService.addParticipant(this.newParticipant);
+            participantService.addPerson(this.newParticipant.getPerson());
             participantService.fireData();
-            newParticipant = new Participant();
-            bind(newParticipant);
+            this.newParticipant = new Participant();
+            bind(this.newParticipant);
         }
     }
 }

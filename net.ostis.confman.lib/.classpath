@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="velocity-1.7/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="velocity-1.7/commons-lang-2.6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry exported="true" kind="lib" path="log4j/log4j-1.2.17.jar"/>
@@ -21,5 +23,6 @@
 	<classpathentry exported="true" kind="lib" path="jaxb" sourcepath="jaxb"/>
 	<classpathentry exported="true" kind="lib" path="jaxb/jaxb-core.jar"/>
 	<classpathentry exported="true" kind="lib" path="jaxb/jaxb-impl.jar"/>
+	<classpathentry exported="true" kind="lib" path="velocity-1.7/velocity-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

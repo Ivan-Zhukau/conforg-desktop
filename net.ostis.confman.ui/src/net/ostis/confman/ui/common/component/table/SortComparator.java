@@ -15,33 +15,33 @@ public abstract class SortComparator extends ViewerComparator {
     public SortComparator() {
 
         this.propertyIndex = 0;
-        direction = DESCENDING;
+        this.direction = DESCENDING;
     }
 
     public int getDirection() {
 
-        return direction == 1 ? SWT.DOWN : SWT.UP;
+        return this.direction == 1 ? SWT.DOWN : SWT.UP;
     }
 
-    public void setColumn(int column) {
+    public void setColumn(final int column) {
 
         if (column == this.propertyIndex) {
             // Same column as last sort; toggle the direction
-            direction = 1 - direction;
+            this.direction = 1 - this.direction;
         } else {
             // New column; do an ascending sort
             this.propertyIndex = column;
-            direction = DESCENDING;
+            this.direction = DESCENDING;
         }
     }
 
     public abstract int compareAll(int columnNumber, Object e1, Object e2);
 
     @Override
-    public int compare(Viewer viewer, Object e1, Object e2) {
+    public int compare(final Viewer viewer, final Object e1, final Object e2) {
 
-        int rc = compareAll(propertyIndex, e1, e2);
-        if (direction == DESCENDING) {
+        int rc = compareAll(this.propertyIndex, e1, e2);
+        if (this.direction == DESCENDING) {
             rc = -rc;
         }
         return rc;

@@ -81,20 +81,19 @@ public class ReportView {
                 .getInstance();
         final int COLUMN_WIDTH = 150;
         final int FIRST_WIDTH = 20;
-        this.table.createColumn("", FIRST_WIDTH,
-                new ColumnLabelProvider() {
+        this.table.createColumn("", FIRST_WIDTH, new ColumnLabelProvider() {
 
-                    @Override
-                    public String getText(final Object element) {
+            @Override
+            public String getText(final Object element) {
 
-                        final Report report = (Report) element;
-                        if(report != null) {
-                            return report.isReportAccepted() ? "+" : "-";
-                        } else {
-                            return null;                            
-                        }
-                    }
-                });
+                final Report report = (Report) element;
+                if (report != null) {
+                    return report.isReportAccepted() ? "+" : "-";
+                } else {
+                    return null;
+                }
+            }
+        });
         this.table.createColumn(
                 localizationUtil.translate(TableCaptions.TITLE), COLUMN_WIDTH,
                 new ColumnLabelProvider() {
@@ -103,8 +102,7 @@ public class ReportView {
                     public String getText(final Object element) {
 
                         final Report report = (Report) element;
-                        return report == null ? null : report
-                                .getTitle();
+                        return report == null ? null : report.getTitle();
                     }
                 });
         this.table.createColumn(

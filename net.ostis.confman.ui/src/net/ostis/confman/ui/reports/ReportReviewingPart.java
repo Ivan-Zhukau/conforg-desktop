@@ -83,7 +83,7 @@ public class ReportReviewingPart {
 
                 if (selection instanceof Report) {
                     final Report report = (Report) selection;
-                    currentReport = report;
+                    ReportReviewingPart.this.currentReport = report;
                     onReportEvent(report, parent);
                 }
             }
@@ -168,27 +168,28 @@ public class ReportReviewingPart {
 
     private void setAccepting() {
 
-        if (currentReport != null) {
-            currentReport.setReportAccepted(true);
-            currentReport.setReportCanceled(false);
+        if (this.currentReport != null) {
+            this.currentReport.setReportAccepted(true);
+            this.currentReport.setReportCanceled(false);
         }
 
     }
 
     private void setCanceling() {
 
-        if (currentReport != null) {
-            currentReport.setReportAccepted(false);
-            currentReport.setReportCanceled(true);
-            if(currentReport.getSection() != null && currentReport.getSection().getConference() != null) {
-                conferenceService.deleteReport(currentReport);
+        if (this.currentReport != null) {
+            this.currentReport.setReportAccepted(false);
+            this.currentReport.setReportCanceled(true);
+            if (this.currentReport.getSection() != null
+                    && this.currentReport.getSection().getConference() != null) {
+                this.conferenceService.deleteReport(this.currentReport);
             }
         }
     }
 
     private void save() {
 
-        if (currentReport != null) {
+        if (this.currentReport != null) {
             for (final ReportCaptions field : this.editFields.keySet()) {
                 this.editFields.get(field).apply();
             }

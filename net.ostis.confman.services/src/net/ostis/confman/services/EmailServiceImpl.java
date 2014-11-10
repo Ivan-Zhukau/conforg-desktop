@@ -12,7 +12,7 @@ import net.ostis.confman.model.mail.entity.MailDto;
 import net.ostis.confman.model.mail.entity.Template;
 
 class EmailServiceImpl implements EmailService {
-    
+
     private static final String MAIL_TEMPLATES_FOLDER = "templates/";
 
     @Override
@@ -30,22 +30,23 @@ class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String getTemplateBody(String fileName) {
+    public String getTemplateBody(final String fileName) {
 
-        StringBuilder templatePath = new StringBuilder(MAIL_TEMPLATES_FOLDER);
+        final StringBuilder templatePath = new StringBuilder(
+                MAIL_TEMPLATES_FOLDER);
         templatePath.append(fileName);
-        StringBuffer templateBody = new StringBuffer();
+        final StringBuffer templateBody = new StringBuffer();
         try {
-            File file = new File(templatePath.toString());
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            final File file = new File(templatePath.toString());
+            final FileReader fileReader = new FileReader(file);
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                    templateBody.append(line);
-                    templateBody.append("\n");
+                templateBody.append(line);
+                templateBody.append("\n");
             }
             fileReader.close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
         return templateBody.toString();

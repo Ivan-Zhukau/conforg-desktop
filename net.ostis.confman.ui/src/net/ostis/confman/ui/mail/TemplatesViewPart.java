@@ -112,8 +112,9 @@ public class TemplatesViewPart {
                         .getViewer().getSelection();
                 final Object selectedElement = selection.getFirstElement();
                 if (selectedElement instanceof Template) {
-                    Template template = (Template) selectedElement;
-                    template.setBody(emailService.getTemplateBody(template.getPath()));
+                    final Template template = (Template) selectedElement;
+                    template.setBody(TemplatesViewPart.this.emailService
+                            .getTemplateBody(template.getPath()));
                     TemplatesViewPart.this.selectionService
                             .setSelection(template);
                     final MPart part = TemplatesViewPart.this.partService
@@ -166,8 +167,9 @@ public class TemplatesViewPart {
 
         this.table.getViewer().setContentProvider(
                 ArrayContentProvider.getInstance());
-        ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
-        Templates tempaltes = converter.convertTemplates(this.emailService.getTemplates());
+        final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
+        final Templates tempaltes = converter
+                .convertTemplates(this.emailService.getTemplates());
         this.table.getViewer().setInput(tempaltes.getTemplates());
     }
 

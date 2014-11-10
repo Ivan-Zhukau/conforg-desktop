@@ -144,15 +144,17 @@ public class ParticipantsChoosePart {
                         participants.add(participant);
                     }
                     final EmailedParticipants ep = new EmailedParticipants();
-                    List<EmailedParticipant> emailedParticipants = new ArrayList<>();
-                    for(Participant participant : participants){
-                        EmailedParticipant emailedParticipant = new EmailedParticipant();
+                    final List<EmailedParticipant> emailedParticipants = new ArrayList<>();
+                    for (final Participant participant : participants) {
+                        final EmailedParticipant emailedParticipant = new EmailedParticipant();
                         emailedParticipant.setParticipant(participant);
-                        emailedParticipant.setTemplate(new Template(template));
+                        emailedParticipant.setTemplate(new Template(
+                                ParticipantsChoosePart.this.template));
                         emailedParticipants.add(emailedParticipant);
-                    }                    
+                    }
                     ep.setEmailedParticipants(emailedParticipants);
-                    ep.setTemplateName(template.getName());
+                    ep.setTemplateName(ParticipantsChoosePart.this.template
+                            .getName());
                     ParticipantsChoosePart.this.selectionService
                             .setSelection(ep);
                     final MPart part = ParticipantsChoosePart.this.partService

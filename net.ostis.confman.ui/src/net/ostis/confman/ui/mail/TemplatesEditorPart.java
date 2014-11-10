@@ -3,6 +3,10 @@ package net.ostis.confman.ui.mail;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.BuildTemplateService;
+import net.ostis.confman.services.ServiceLocator;
+import net.ostis.confman.services.TemplateContextService;
+import net.ostis.confman.services.TemplateContextServiceLocator;
 import net.ostis.confman.services.common.model.EmailedParticipant;
 import net.ostis.confman.services.common.model.EmailedParticipants;
 import net.ostis.confman.services.common.model.Participant;
@@ -73,10 +77,10 @@ public class TemplatesEditorPart {
     private DynamicalTable        table;
 
     private EmailedParticipants   participants;
-    
+
     private EmailedParticipant    selectedParticipant;
 
-    private Label currentTemplateLabel;
+    private Label                 currentTemplateLabel;
 
     public TemplatesEditorPart() {
 
@@ -106,7 +110,17 @@ public class TemplatesEditorPart {
 
     private void onNewSelection(final EmailedParticipant participant) {
 
-        this.textArea.setText(participant.getTemplate().getBody());
+        final ServiceLocator locator = ServiceLocator.getInstance();
+        final BuildTemplateService templateService = (BuildTemplateService) locator
+                .getService(BuildTemplateService.class);
+        final TemplateContextServiceLocator contextServiceLocator = TemplateContextServiceLocator
+                .getInstance();
+        final TemplateContextService contextService = (TemplateContextService) contextServiceLocator
+                .getService("Test");
+        contextService.initTemplateContext(participant.getParticipant());
+        final String mailBody = templateService.processTemplate(participant
+                .getTemplate().getBody(), contextService);
+        this.textArea.setText(mailBody);
     }
 
     private void buildLayout(final Composite parent) {
@@ -117,7 +131,7 @@ public class TemplatesEditorPart {
         final Composite composite = createTextWrapper(parent);
         createTextArea(composite);
         createSaveButton(composite);
-        //createCleareButton(composite);
+        // createCleareButton(composite);
         createNextStepButton(composite);
         createPreviousStepButton(composite);
         createLabelForCurrentTemplate(composite);
@@ -154,8 +168,10 @@ public class TemplatesEditorPart {
 
                     @Override
                     public String getText(final Object element) {
-                        EmailedParticipant emailedParticipant = (EmailedParticipant) element;
-                        final Participant participant = emailedParticipant.getParticipant();
+
+                        final EmailedParticipant emailedParticipant = (EmailedParticipant) element;
+                        final Participant participant = emailedParticipant
+                                .getParticipant();
                         final Person person = participant.getPerson();
                         return person.getFirstName() + ' '
                                 + person.getSurname();
@@ -166,8 +182,10 @@ public class TemplatesEditorPart {
 
                     @Override
                     public String getText(final Object element) {
-                        EmailedParticipant emailedParticipant = (EmailedParticipant) element;
-                        final Participant participant = emailedParticipant.getParticipant();
+
+                        final EmailedParticipant emailedParticipant = (EmailedParticipant) element;
+                        final Participant participant = emailedParticipant
+                                .getParticipant();
                         final String email = participant.getPerson()
                                 .getContacts().geteMail();
                         return email == null ? "" : email;
@@ -180,7 +198,7 @@ public class TemplatesEditorPart {
         this.table.setContentProvider(ArrayContentProvider.getInstance());
         this.table.setInput(this.participants.getEmailedParticipants());
         this.table.addSelectionChangedListener(new ISelectionChangedListener() {
-                
+
             @Override
             public void selectionChanged(final SelectionChangedEvent event) {
 
@@ -188,8 +206,8 @@ public class TemplatesEditorPart {
                         .getViewer().getSelection();
                 final Object selectedElement = selection.getFirstElement();
                 if (selectedElement instanceof EmailedParticipant) {
-                    selectedParticipant = (EmailedParticipant) selectedElement;
-                    onNewSelection(selectedParticipant);                    
+                    TemplatesEditorPart.this.selectedParticipant = (EmailedParticipant) selectedElement;
+                    onNewSelection(TemplatesEditorPart.this.selectedParticipant);
                 }
             }
         });
@@ -269,7 +287,7 @@ public class TemplatesEditorPart {
             }
         });
     }
-    
+
     private void createSaveButton(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
@@ -296,13 +314,16 @@ public class TemplatesEditorPart {
 
             private void onSelection() {
 
-                if(selectedParticipant != null){
-                    selectedParticipant.getTemplate().setBody(textArea.getText());
+                if (TemplatesEditorPart.this.selectedParticipant != null) {
+                    TemplatesEditorPart.this.selectedParticipant
+                            .getTemplate()
+                            .setBody(
+                                    TemplatesEditorPart.this.textArea.getText());
                 }
             }
         });
     }
-    
+
     private void createCleareButton(final Composite parent) {
 
         final LocalizationUtil util = LocalizationUtil.getInstance();
@@ -329,26 +350,31 @@ public class TemplatesEditorPart {
 
             private void onSelection() {
 
-                selectedParticipant = null;
-                textArea.setText("");
+                TemplatesEditorPart.this.selectedParticipant = null;
+                TemplatesEditorPart.this.textArea.setText("");
             }
         });
     }
-    
-    private void createLabelForCurrentTemplate(final Composite composite){
-        currentTemplateLabel = new Label(composite, SWT.LEFT);
+
+    private void createLabelForCurrentTemplate(final Composite composite) {
+
+        this.currentTemplateLabel = new Label(composite, SWT.LEFT);
     }
-    
-    private void updateCurrentTemplateValue(){
+
+    private void updateCurrentTemplateValue() {
+
         final LocalizationUtil util = LocalizationUtil.getInstance();
         String currentTemplateName;
-        if(participants.getEmailedParticipants() != null && participants.getTemplateName() != null){
-            String template = participants.getTemplateName();
+        if (this.participants.getEmailedParticipants() != null
+                && this.participants.getTemplateName() != null) {
+            final String template = this.participants.getTemplateName();
             currentTemplateName = template;
         } else {
             currentTemplateName = util.translate(Captions.NON_TEMPLATE_MESSAGE);
-        }        
-        currentTemplateLabel.setText(util.translate(Captions.CURRENT_TEMPLATE_NAME) + currentTemplateName);
+        }
+        this.currentTemplateLabel.setText(util
+                .translate(Captions.CURRENT_TEMPLATE_NAME)
+                + currentTemplateName);
     }
 
 }

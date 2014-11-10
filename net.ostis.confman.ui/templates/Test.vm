@@ -1,6 +1,6 @@
-Здравствуйте, уважаемый(ая) ${generateFullName(person)}!
+Здравствуйте, уважаемый(ая) $fullName!
 
-Приглашаем Вас принять участие в конференции ${conference.getTitle()}!
-Конференция состоится ${conference.getDate()}, по адресу: ${generateFullAddress(conference.getAddress())}
+Приглашаем Вас принять участие в конференции $conferenceTitle!
+Конференция состоится $conferenceDate, по адресу: $conferenceAddress.
 
-С уважением, Оргкомитет конференции ${conference.getTitle()}.
+С уважением, Оргкомитет конференции $conferenceTitle.

@@ -149,7 +149,8 @@ public class ConverterFromStorageProvider {
             participant
                     .setArrival(convertParticipantArrival(temp.getArrival()));
             participant.setRole(convertParticipantRole(temp.getRole()));
-            participant.setParticipationInConference(convertPartiation(temp.getParticipationInConference()));
+            participant.setParticipationInConference(convertPartiation(temp
+                    .getParticipationInConference()));
             participantsMap.put(temp.getId(), participant);
             listParticipants.add(participant);
         }
@@ -157,17 +158,22 @@ public class ConverterFromStorageProvider {
     }
 
     private ParticipationInConference convertPartiation(
-            net.ostis.confman.model.entity.ParticipationInConference participationInConference) {
+            final net.ostis.confman.model.entity.ParticipationInConference participationInConference) {
 
         final net.ostis.confman.services.common.model.ParticipationInConference partisipation = new net.ostis.confman.services.common.model.ParticipationInConference();
         if (participationInConference == null) {
             return partisipation;
         }
-        partisipation.setCulturalProgram(participationInConference.getCulturalProgram());
-        partisipation.setEveningMeetingPC(participationInConference.getEveningMeetingPC());
-        partisipation.setExhibitionPresentationOfeports(participationInConference.getExhibitionPresentationOfeports());
-        partisipation.setTourOfTheCityOfMinsk(participationInConference.getTourOfTheCityOfMinsk());
-        
+        partisipation.setCulturalProgram(participationInConference
+                .getCulturalProgram());
+        partisipation.setEveningMeetingPC(participationInConference
+                .getEveningMeetingPC());
+        partisipation
+                .setExhibitionPresentationOfeports(participationInConference
+                        .getExhibitionPresentationOfeports());
+        partisipation.setTourOfTheCityOfMinsk(participationInConference
+                .getTourOfTheCityOfMinsk());
+
         return partisipation;
     }
 
@@ -200,7 +206,8 @@ public class ConverterFromStorageProvider {
         }
         arrival.setHousing(participantArrival.getHousing());
         arrival.setMeeting(participantArrival.getMeeting());
-        arrival.setHostelReservation(participantArrival.getIsHostelReservation());
+        arrival.setHostelReservation(participantArrival
+                .getIsHostelReservation());
         arrival.setResidencePlace(convertResidence(participantArrival
                 .getResidencePlace()));
         return arrival;
@@ -214,7 +221,8 @@ public class ConverterFromStorageProvider {
             return role;
         }
         role.setExibitionStand(participantRole.getExhibitionStand());
-        role.setParticipationCategory(participantRole.getParticipationCategory());
+        role.setParticipationCategory(participantRole
+                .getParticipationCategory());
         role.setParticipationForm(participantRole.getParticipationForm());
         role.setProgramCommitteeMember(participantRole
                 .getProgramCommitteeMember());
@@ -411,11 +419,13 @@ public class ConverterFromStorageProvider {
         settings.setCoffeeBreakTime(sectionSettings.getCoffeeBreakTime());
         return settings;
     }
-    
-    public Templates convertTemplates(List<net.ostis.confman.model.mail.entity.Template> templates){
-        Templates templ = new Templates();
-        for(net.ostis.confman.model.mail.entity.Template template : templates){
-            Template temp = new Template();
+
+    public Templates convertTemplates(
+            final List<net.ostis.confman.model.mail.entity.Template> templates) {
+
+        final Templates templ = new Templates();
+        for (final net.ostis.confman.model.mail.entity.Template template : templates) {
+            final Template temp = new Template();
             temp.setLanguage(template.getLanguage());
             temp.setName(template.getName());
             temp.setPath(template.getPath());

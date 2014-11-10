@@ -1,25 +1,21 @@
 package net.ostis.confman.ui.common.component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.services.common.model.Participant;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Composite;
-
+import org.eclipse.swt.widgets.Group;
 
 public class RadioButtonGroup extends Composite implements
-                            EditableComponent<RadioButtonGroup>  {
+        EditableComponent<RadioButtonGroup> {
 
     private static final int DEFAULT_INDEX = 0;
-    
+
     private Group            group;
 
     private DataConverter    dataConverter;
@@ -43,26 +39,27 @@ public class RadioButtonGroup extends Composite implements
         this.group = new Group(this, SWT.READ_ONLY);
         this.group.setLayoutData(dataGridInput);
         this.group.setText(labelText);
-        Button button = new Button(group, SWT.RADIO);
-        Button button1 = new Button(group, SWT.CHECK);
+        final Button button = new Button(this.group, SWT.RADIO);
+        final Button button1 = new Button(this.group, SWT.CHECK);
         button.setText("Привет");
-        button.setLocation(20,45);
+        button.setLocation(20, 45);
         button.pack();
 
         button1.setText("Привет1");
-        button1.setLocation(20,25);
+        button1.setLocation(20, 25);
         button1.pack();
-        group.pack();
-        //this.group.setItems(items);
+        this.group.pack();
+        // this.group.setItems(items);
     }
 
     @Override
     public void apply() {
-/*
-        final Object value = this.valueBinder.getValues();
-        final Object applied = ((List<Object>) value).get(new ArrayList<>());
-        this.valueBinder.setCurrentValue(applied);
-        */
+
+        /*
+         * final Object value = this.valueBinder.getValues(); final Object
+         * applied = ((List<Object>) value).get(new ArrayList<>());
+         * this.valueBinder.setCurrentValue(applied);
+         */
     }
 
     @Override
@@ -73,7 +70,7 @@ public class RadioButtonGroup extends Composite implements
         if (value != null) {
             items = getItemsValues(value);
         }
-        //this.group.setItems(items);
+        // this.group.setItems(items);
         setSelectedItem();
     }
 
@@ -82,11 +79,11 @@ public class RadioButtonGroup extends Composite implements
         String[] itemsValues = new String[0];
 
         if (((List<Object>) object).get(0) instanceof Participant) {
-            ItemHelper<Participant> helper = new ItemHelper<Participant>();
+            final ItemHelper<Participant> helper = new ItemHelper<Participant>();
             itemsValues = helper.getItems(object);
         }
         if (((List<Object>) object).get(0) instanceof String) {
-            ItemHelper<String> helper = new ItemHelper<String>();
+            final ItemHelper<String> helper = new ItemHelper<String>();
             itemsValues = helper.getItems(object);
         }
 
@@ -100,17 +97,18 @@ public class RadioButtonGroup extends Composite implements
                     .getValues();
             for (final Object object : objects) {
                 if (object.equals(this.valueBinder.getCurrentValue())) {
-                    //this.group.select(objects.indexOf(object));
+                    // this.group.select(objects.indexOf(object));
                     break;
                 }
             }
-        }else{
-            //this.group.select(DEFAULT_INDEX);
+        } else {
+            // this.group.select(DEFAULT_INDEX);
         }
     }
-    
+
     @Override
-    public RadioButtonGroup setValueComboBinder(final ValueComboBinder valueBinder) {
+    public RadioButtonGroup setValueComboBinder(
+            final ValueComboBinder valueBinder) {
 
         this.valueBinder = valueBinder;
         return this;
@@ -125,7 +123,7 @@ public class RadioButtonGroup extends Composite implements
 
     public void setItems(final String[] items) {
 
-       // this.group.setItems(items);
+        // this.group.setItems(items);
     }
 
     @Override
@@ -137,7 +135,8 @@ public class RadioButtonGroup extends Composite implements
 
     public class ItemHelper<T> {
 
-        public String[] getItems(Object object) {
+        public String[] getItems(final Object object) {
+
             String[] itemsValues;
             final List<T> elems = (List<T>) object;
             itemsValues = new String[elems.size()];
