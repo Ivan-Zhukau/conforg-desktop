@@ -43,18 +43,16 @@ public class TestTemplateContextServiceImpl implements TemplateContextService {
             final SafeConversionService safeConversionService = (SafeConversionService) serviceLocator
                     .getService(SafeConversionService.class);
             final Participant participant = (Participant) object;
-            if (participant.getConference() == null) {
-                participant.setConference(new Conference());
-            }
-            this.templateContext.put("conferenceTitle", safeConversionService
-                    .safeConverter(participant.getConference().getTitle()));
+            final Conference conference = safeConversionService
+                    .safeConverter(participant.getConference());
+            this.templateContext.put("conferenceTitle",
+                    safeConversionService.safeConverter(conference.getTitle()));
             this.templateContext.put("fullName", safeConversionService
                     .safeConverter(participant.getPerson().getFullName()));
             this.templateContext.put("conferenceDate", safeConversionService
-                    .safeConverter(participant.getConference().getStartDate()));
+                    .safeConverter(conference.getStartDate()));
             final StringBuilder address = new StringBuilder();
-            final Address conferenceAddress = participant.getConference()
-                    .getConferenceVenue();
+            final Address conferenceAddress = conference.getConferenceVenue();
             address.append(safeConversionService
                     .safeConverter(conferenceAddress.getCountry()) + ", ");
             address.append(safeConversionService

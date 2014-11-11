@@ -1,4 +1,6 @@
-package net.ostis.confman.services.common.model;
+package net.ostis.confman.model.mail.entity;
+
+import net.ostis.confman.model.entity.Participant;
 
 public class EmailedParticipant {
 
@@ -30,5 +32,4 @@ public class EmailedParticipant {
 
         this.template = template;
     }
-
 }

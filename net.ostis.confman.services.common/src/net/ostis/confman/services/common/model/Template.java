@@ -2,23 +2,23 @@ package net.ostis.confman.services.common.model;
 
 public class Template {
 
-    private String name = "";
-    
-    private String path = "";
+    private String name     = "";
+
+    private String path     = "";
 
     private String language = "";
-    
-    private String body = "";
-    
-    private String title = "";
+
+    private String body     = "";
+
+    private String title    = "";
 
     public Template() {
 
         super();
     }
-    
-    public Template(Template template){
-        
+
+    public Template(final Template template) {
+
         super();
         this.body = template.getBody();
         this.language = template.getLanguage();
@@ -49,30 +49,30 @@ public class Template {
 
     public String getBody() {
 
-        return body;
+        return this.body;
     }
 
-    public void setBody(String body) {
+    public void setBody(final String body) {
 
         this.body = body;
     }
 
     public String getTitle() {
 
-        return title;
+        return this.title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
 
         this.title = title;
     }
 
     public String getPath() {
 
-        return path;
+        return this.path;
     }
 
-    public void setPath(String path) {
+    public void setPath(final String path) {
 
         this.path = path;
     }

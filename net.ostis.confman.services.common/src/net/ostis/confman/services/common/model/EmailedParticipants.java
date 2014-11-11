@@ -3,13 +3,12 @@ package net.ostis.confman.services.common.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class EmailedParticipants {
-    
+
     private List<EmailedParticipant> emailedParticipants;
-    
-    private String templateName;
-    
+
+    private String                   templateName;
+
     public EmailedParticipants() {
 
         super();
@@ -18,20 +17,21 @@ public class EmailedParticipants {
 
     public List<EmailedParticipant> getEmailedParticipants() {
 
-        return emailedParticipants;
+        return this.emailedParticipants;
     }
 
-    public void setEmailedParticipants(List<EmailedParticipant> emailedParticipants) {
+    public void setEmailedParticipants(
+            final List<EmailedParticipant> emailedParticipants) {
 
         this.emailedParticipants = emailedParticipants;
     }
 
     public String getTemplateName() {
 
-        return templateName;
+        return this.templateName;
     }
 
-    public void setTemplateName(String templateName) {
+    public void setTemplateName(final String templateName) {
 
         this.templateName = templateName;
     }

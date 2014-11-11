@@ -2,6 +2,8 @@ package net.ostis.confman.services;
 
 import java.util.Date;
 
+import net.ostis.confman.services.common.model.Conference;
+
 public class SafeConversionServiceImpl implements SafeConversionService {
 
     @Override
@@ -20,6 +22,12 @@ public class SafeConversionServiceImpl implements SafeConversionService {
     public Date safeConverter(final Date date) {
 
         return date == null ? new Date() : date;
+    }
+
+    @Override
+    public Conference safeConverter(final Conference conference) {
+
+        return conference == null ? new Conference() : conference;
     }
 
 }

@@ -138,23 +138,7 @@ public class ParticipantsChoosePart {
                         .getViewer().getSelection();
                 final Object[] selectedElements = selection.toArray();
                 if (selection.getFirstElement() instanceof Participant) {
-                    final List<Participant> participants = new ArrayList<>();
-                    for (final Object object : selectedElements) {
-                        final Participant participant = (Participant) object;
-                        participants.add(participant);
-                    }
-                    final EmailedParticipants ep = new EmailedParticipants();
-                    final List<EmailedParticipant> emailedParticipants = new ArrayList<>();
-                    for (final Participant participant : participants) {
-                        final EmailedParticipant emailedParticipant = new EmailedParticipant();
-                        emailedParticipant.setParticipant(participant);
-                        emailedParticipant.setTemplate(new Template(
-                                ParticipantsChoosePart.this.template));
-                        emailedParticipants.add(emailedParticipant);
-                    }
-                    ep.setEmailedParticipants(emailedParticipants);
-                    ep.setTemplateName(ParticipantsChoosePart.this.template
-                            .getName());
+                    final EmailedParticipants ep = prepareEmailedParticipantsInformation(selectedElements);
                     ParticipantsChoosePart.this.selectionService
                             .setSelection(ep);
                     final MPart part = ParticipantsChoosePart.this.partService
@@ -170,6 +154,29 @@ public class ParticipantsChoosePart {
                             .translate("warningDialogMessage"));
                     dialog.open();
                 }
+            }
+
+            private EmailedParticipants prepareEmailedParticipantsInformation(
+                    final Object[] selectedElements) {
+
+                final List<Participant> participants = new ArrayList<>();
+                for (final Object object : selectedElements) {
+                    final Participant participant = (Participant) object;
+                    participants.add(participant);
+                }
+                final EmailedParticipants ep = new EmailedParticipants();
+                final List<EmailedParticipant> emailedParticipants = new ArrayList<>();
+                for (final Participant participant : participants) {
+                    final EmailedParticipant emailedParticipant = new EmailedParticipant();
+                    emailedParticipant.setParticipant(participant);
+                    emailedParticipant.setTemplate(new Template(
+                            ParticipantsChoosePart.this.template));
+                    emailedParticipants.add(emailedParticipant);
+                }
+                ep.setEmailedParticipants(emailedParticipants);
+                ep.setTemplateName(ParticipantsChoosePart.this.template
+                        .getName());
+                return ep;
             }
         });
     }

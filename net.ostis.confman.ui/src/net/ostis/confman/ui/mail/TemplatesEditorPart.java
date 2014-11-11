@@ -110,6 +110,12 @@ public class TemplatesEditorPart {
 
     private void onNewSelection(final EmailedParticipant participant) {
 
+        final String mailBody = processMailBody(participant);
+        this.textArea.setText(mailBody);
+    }
+
+    private String processMailBody(final EmailedParticipant participant) {
+
         final ServiceLocator locator = ServiceLocator.getInstance();
         final BuildTemplateService templateService = (BuildTemplateService) locator
                 .getService(BuildTemplateService.class);
@@ -120,7 +126,7 @@ public class TemplatesEditorPart {
         contextService.initTemplateContext(participant.getParticipant());
         final String mailBody = templateService.processTemplate(participant
                 .getTemplate().getBody(), contextService);
-        this.textArea.setText(mailBody);
+        return mailBody;
     }
 
     private void buildLayout(final Composite parent) {
@@ -289,7 +295,8 @@ public class TemplatesEditorPart {
     }
 
     private void createSaveButton(final Composite parent) {
-
+        
+        this.textArea.setText("");
         final LocalizationUtil util = LocalizationUtil.getInstance();
         final Button nextButton = new Button(parent, SWT.NONE);
         nextButton.setText(util.translate(Captions.SAVE));

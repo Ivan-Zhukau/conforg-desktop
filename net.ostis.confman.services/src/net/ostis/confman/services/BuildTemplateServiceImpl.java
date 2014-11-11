@@ -2,8 +2,6 @@ package net.ostis.confman.services;
 
 import java.io.StringWriter;
 
-import net.ostis.confman.model.datastore.StorageProvider;
-
 import org.apache.log4j.Logger;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -15,7 +13,7 @@ public class BuildTemplateServiceImpl implements BuildTemplateService {
 
     private static final String LOG_TAG = "velocity error";
 
-    private static final Logger LOGGER  = Logger.getLogger(StorageProvider.class);
+    private static final Logger LOGGER  = Logger.getLogger(BuildTemplateService.class);
 
     @Override
     public String processTemplate(final String templateBody,

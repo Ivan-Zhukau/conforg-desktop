@@ -22,8 +22,9 @@ public class Templates {
 
         this.templates = templates;
     }
-    
-    public void addTemplate(Template template){
+
+    public void addTemplate(final Template template) {
+
         this.templates.add(template);
     }
 
