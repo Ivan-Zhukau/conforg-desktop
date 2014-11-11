@@ -4,13 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.log4j.Logger;
-
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.model.excel.ExcelBuilder;
 import net.ostis.confman.model.schedule.Schedule;
 import net.ostis.confman.services.common.model.FullModel;
+
+import org.apache.log4j.Logger;
 
 class ScheduleServiceImpl implements ScheduleService {
 
@@ -34,9 +34,9 @@ class ScheduleServiceImpl implements ScheduleService {
 
         try {
             final SpreadsheetTable table = new SpreadsheetTable();
-            Schedule schedule = new Schedule();
-            schedule.setSkeleton(model);
-            schedule.setTimes(model);
+            final Schedule schedule = new Schedule();
+            schedule.setSkeleton(this.model);
+            schedule.setTimes(this.model);
             schedule.write(table);
             final ExcelBuilder builder = new ExcelBuilder();
             builder.generate(outputStream, table);

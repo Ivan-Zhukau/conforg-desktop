@@ -7,59 +7,59 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ParticipationInConference {
 
     private Boolean exhibitionPresentationOfeports;
-    
+
     private Boolean tourOfTheCityOfMinsk;
-    
+
     private Boolean culturalProgram;
-    
+
     private Boolean eveningMeetingPC;
 
     public ParticipationInConference() {
 
         super();
-    }    
-    
+    }
+
     @XmlElement
     public Boolean getExhibitionPresentationOfeports() {
 
-        return exhibitionPresentationOfeports;
+        return this.exhibitionPresentationOfeports;
     }
-    
+
     public void setExhibitionPresentationOfeports(
-            Boolean exhibitionPresentationOfeports) {
+            final Boolean exhibitionPresentationOfeports) {
 
         this.exhibitionPresentationOfeports = exhibitionPresentationOfeports;
     }
-    
+
     @XmlElement
     public Boolean getTourOfTheCityOfMinsk() {
 
-        return tourOfTheCityOfMinsk;
+        return this.tourOfTheCityOfMinsk;
     }
-    
-    public void setTourOfTheCityOfMinsk(Boolean tourOfTheCityOfMinsk) {
+
+    public void setTourOfTheCityOfMinsk(final Boolean tourOfTheCityOfMinsk) {
 
         this.tourOfTheCityOfMinsk = tourOfTheCityOfMinsk;
     }
-    
+
     @XmlElement
     public Boolean getCulturalProgram() {
 
-        return culturalProgram;
+        return this.culturalProgram;
     }
-    
-    public void setCulturalProgram(Boolean culturalProgram) {
+
+    public void setCulturalProgram(final Boolean culturalProgram) {
 
         this.culturalProgram = culturalProgram;
     }
-    
+
     @XmlElement
     public Boolean getEveningMeetingPC() {
 
-        return eveningMeetingPC;
+        return this.eveningMeetingPC;
     }
-    
-    public void setEveningMeetingPC(Boolean eveningMeetingPC) {
+
+    public void setEveningMeetingPC(final Boolean eveningMeetingPC) {
 
         this.eveningMeetingPC = eveningMeetingPC;
     }

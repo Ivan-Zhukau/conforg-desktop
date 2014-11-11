@@ -95,7 +95,7 @@ public class SelectReportDialog extends TitleAreaDialog {
 
         this.table = new DynamicalTable(container, Boolean.TRUE, SWT.SINGLE);
         createColumns();
-        this.table.setContentProvider(ArrayContentProvider.getInstance()); 
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
         this.table.setInput(getAcceptedReports(conferenceService.getReports()));
         this.table.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -112,11 +112,11 @@ public class SelectReportDialog extends TitleAreaDialog {
         });
     }
 
-    private List<Report> getAcceptedReports(List<Report> reports) {
+    private List<Report> getAcceptedReports(final List<Report> reports) {
 
-        List<Report> acceptedReports = new ArrayList<Report>(); 
-        for(Report report : reports) {
-            if(report.isReportAccepted()) {
+        final List<Report> acceptedReports = new ArrayList<Report>();
+        for (final Report report : reports) {
+            if (report.isReportAccepted()) {
                 acceptedReports.add(report);
             }
         }

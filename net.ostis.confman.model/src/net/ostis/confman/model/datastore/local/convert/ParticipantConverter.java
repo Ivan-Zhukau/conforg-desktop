@@ -52,7 +52,9 @@ public class ParticipantConverter {
         participantToStore.setReportId(getReportId(participant.getReports(),
                 idProvider));
         participantToStore.setRole(convertRole(participant.getRole()));
-        participantToStore.setParticipationInConference(convertPartisipation(participant.getParticipationInConference()));
+        participantToStore
+                .setParticipationInConference(convertPartisipation(participant
+                        .getParticipationInConference()));
         return participantToStore;
     }
 
@@ -62,7 +64,8 @@ public class ParticipantConverter {
         final ParticipantRole participantRole = new ParticipantRole();
         participantRole.setExhibitionStand(role.getExhibitionStand());
         participantRole.setParticipationForm(role.getParticipationForm());
-        participantRole.setParticipationCategory(role.getParticipationCategory());
+        participantRole.setParticipationCategory(role
+                .getParticipationCategory());
         participantRole.setProgramCommitteeMember(role
                 .getProgramCommitteeMember());
         return participantRole;
@@ -72,20 +75,22 @@ public class ParticipantConverter {
             final net.ostis.confman.services.common.model.ParticipationInConference p) {
 
         final ParticipationInConference partisipation = new ParticipationInConference();
-        partisipation.setExhibitionPresentationOfeports(p.getExhibitionPresentationOfeports());
+        partisipation.setExhibitionPresentationOfeports(p
+                .getExhibitionPresentationOfeports());
         partisipation.setTourOfTheCityOfMinsk(p.getTourOfTheCityOfMinsk());
         partisipation.setCulturalProgram(p.getCulturalProgram());
         partisipation.setEveningMeetingPC(p.getEveningMeetingPC());
         return partisipation;
     }
-    
+
     private static ParticipantArrival convertArrival(
             final net.ostis.confman.services.common.model.ParticipantArrival arrival) {
 
         final ParticipantArrival participantArrival = new ParticipantArrival();
         participantArrival.setHousing(arrival.getHousing());
         participantArrival.setMeeting(arrival.getMeeting());
-        participantArrival.setIsHostelReservation(arrival.getHostelReservation());
+        participantArrival.setIsHostelReservation(arrival
+                .getHostelReservation());
         participantArrival.setResidencePlace(convertResidencePlace(arrival
                 .getResidencePlace()));
         return participantArrival;

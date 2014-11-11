@@ -11,4 +11,6 @@ public interface EmailService {
 
     List<Template> getTemplates();
 
+    String getTemplateBody(String fileName);
+
 }

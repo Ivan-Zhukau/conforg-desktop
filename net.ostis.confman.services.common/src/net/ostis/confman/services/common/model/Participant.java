@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Participant {
 
-    private ParticipantRole    role;
+    private ParticipantRole           role;
 
-    private ParticipantArrival arrival;
-    
+    private ParticipantArrival        arrival;
+
     private ParticipationInConference participationInConference;
 
-    private List<Report>       reports;
+    private List<Report>              reports;
 
-    private Conference         conference;
+    private Conference                conference;
 
-    private Person             person;
+    private Person                    person;
 
     public Participant() {
 
@@ -77,17 +77,20 @@ public class Participant {
 
         this.reports = reports;
     }
-    
-    public String toString(){
+
+    @Override
+    public String toString() {
+
         return getPerson().getFullName();
     }
 
     public ParticipationInConference getParticipationInConference() {
 
-        return participationInConference;
+        return this.participationInConference;
     }
 
-    public void setParticipationInConference(ParticipationInConference participationInConference) {
+    public void setParticipationInConference(
+            final ParticipationInConference participationInConference) {
 
         this.participationInConference = participationInConference;
     }

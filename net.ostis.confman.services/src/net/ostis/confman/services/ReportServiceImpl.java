@@ -16,8 +16,8 @@ import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.model.excel.ExcelBuilder;
 import net.ostis.confman.services.common.model.FullModel;
-import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.Participant;
+import net.ostis.confman.services.common.model.Person;
 
 import org.apache.log4j.Logger;
 
@@ -55,7 +55,7 @@ class ReportServiceImpl implements ReportService {
             LOGGER.error("Empty list of Persons");
         }
 
-        String[] headers = { Messages.getString("surname"),
+        final String[] headers = { Messages.getString("surname"),
                 Messages.getString("first_name"),
                 Messages.getString("patronymic") };
 
@@ -73,7 +73,7 @@ class ReportServiceImpl implements ReportService {
         }
     }
 
-    private void createSortedMembersBody(List<Person> sortedPersonsList) {
+    private void createSortedMembersBody(final List<Person> sortedPersonsList) {
 
         Collections
                 .sort(sortedPersonsList, new PersonLexicographicComparator());
@@ -86,10 +86,10 @@ class ReportServiceImpl implements ReportService {
         }
     }
 
-    private void createHeader(SpreadsheetTable table2, FullModel model2,
-            String[] headers) {
+    private void createHeader(final SpreadsheetTable table2,
+            final FullModel model2, final String[] headers) {
 
-        SpreadsheetRow titleRow = new SpreadsheetRow();
+        final SpreadsheetRow titleRow = new SpreadsheetRow();
         titleRow.addCell(new SpreadsheetCell(""));
         titleRow.addCell(new SpreadsheetCell(Messages.getString("conference")
                 + ": "
@@ -103,9 +103,9 @@ class ReportServiceImpl implements ReportService {
                                                                                // name
         titleRow.addCell(new SpreadsheetCell(""));
 
-        SpreadsheetRow headerRow = new SpreadsheetRow();
+        final SpreadsheetRow headerRow = new SpreadsheetRow();
 
-        for (String title : headers) {
+        for (final String title : headers) {
             headerRow.addCell(new SpreadsheetCell(title));
         }
 
@@ -127,7 +127,7 @@ class ReportServiceImpl implements ReportService {
             LOGGER.error("Empty list of Participants");
         }
 
-        String[] headers = { Messages.getString("category"),
+        final String[] headers = { Messages.getString("category"),
                 Messages.getString("surname"),
                 Messages.getString("first_name"),
                 Messages.getString("patronymic") };
@@ -147,12 +147,12 @@ class ReportServiceImpl implements ReportService {
     }
 
     private void createParticipantsCategoryBody(
-            List<Participant> allParticipants) {
+            final List<Participant> allParticipants) {
 
-        List<Participant> withCategoryParticipants = new ArrayList<Participant>();
-        List<Participant> withoutCategoryParticipants = new ArrayList<Participant>();
+        final List<Participant> withCategoryParticipants = new ArrayList<Participant>();
+        final List<Participant> withoutCategoryParticipants = new ArrayList<Participant>();
 
-        for (Participant participant : allParticipants) {
+        for (final Participant participant : allParticipants) {
             if (participant.getRole() != null
                     && participant.getRole().getParticipationCategory() != null) {
                 withCategoryParticipants.add(participant);

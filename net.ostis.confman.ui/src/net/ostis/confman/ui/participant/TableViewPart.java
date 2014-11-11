@@ -69,8 +69,8 @@ public class TableViewPart {
 
         parent.setLayout(new FillLayout());
         this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
-        comparator = createComparator();
-        this.table.setComparator(comparator);
+        this.comparator = createComparator();
+        this.table.setComparator(this.comparator);
         createColumns();
         addTableEventSupport();
     }
@@ -80,10 +80,11 @@ public class TableViewPart {
         return new SortComparator() {
 
             @Override
-            public int compareAll(int columnNumber, Object e1, Object e2) {
+            public int compareAll(final int columnNumber, final Object e1,
+                    final Object e2) {
 
-                Participant p1 = (Participant) e1;
-                Participant p2 = (Participant) e2;
+                final Participant p1 = (Participant) e1;
+                final Participant p2 = (Participant) e2;
                 int rc = 0;
                 switch (columnNumber) {
                     case 0: {
@@ -216,7 +217,7 @@ public class TableViewPart {
         this.table.refresh();
     }
 
-    private int judge(boolean i, boolean j) {
+    private int judge(final boolean i, final boolean j) {
 
         if (i == true && j == false) {
             return -1;

@@ -1,23 +1,30 @@
-package net.ostis.confman.model.mail.entity;
+package net.ostis.confman.services.common.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "email-template")
 public class Template {
 
-    private String name;
+    private String name     = "";
 
-    private String path;
+    private String path     = "";
 
-    private String language;
+    private String language = "";
 
-    private String body;
+    private String body     = "";
 
-    private String title;
+    private String title    = "";
 
     public Template() {
 
         super();
+    }
+
+    public Template(final Template template) {
+
+        super();
+        this.body = template.getBody();
+        this.language = template.getLanguage();
+        this.name = template.getName();
+        this.path = template.getPath();
+        this.title = template.getTitle();
     }
 
     public String getName() {

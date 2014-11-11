@@ -15,7 +15,7 @@ public class ComboBoxField extends Composite implements
         EditableComponent<ComboBoxField> {
 
     private static final int DEFAULT_INDEX = 0;
-    
+
     private Combo            comboBox;
 
     private DataConverter    dataConverter;
@@ -49,7 +49,8 @@ public class ComboBoxField extends Composite implements
     public void apply() {
 
         final Object value = this.valueBinder.getValues();
-        final Object applied = ((List<Object>) value).get(this.comboBox.getSelectionIndex());
+        final Object applied = ((List<Object>) value).get(this.comboBox
+                .getSelectionIndex());
         this.valueBinder.setCurrentValue(applied);
     }
 
@@ -70,11 +71,11 @@ public class ComboBoxField extends Composite implements
         String[] itemsValues = new String[0];
 
         if (((List<Object>) object).get(0) instanceof Participant) {
-            ItemHelper<Participant> helper = new ItemHelper<Participant>();
+            final ItemHelper<Participant> helper = new ItemHelper<Participant>();
             itemsValues = helper.getItems(object);
         }
         if (((List<Object>) object).get(0) instanceof String) {
-            ItemHelper<String> helper = new ItemHelper<String>();
+            final ItemHelper<String> helper = new ItemHelper<String>();
             itemsValues = helper.getItems(object);
         }
 
@@ -92,11 +93,11 @@ public class ComboBoxField extends Composite implements
                     break;
                 }
             }
-        }else{
+        } else {
             this.comboBox.select(DEFAULT_INDEX);
         }
     }
-    
+
     @Override
     public ComboBoxField setValueComboBinder(final ValueComboBinder valueBinder) {
 
@@ -125,7 +126,8 @@ public class ComboBoxField extends Composite implements
 
     public class ItemHelper<T> {
 
-        public String[] getItems(Object object) {
+        public String[] getItems(final Object object) {
+
             String[] itemsValues;
             final List<T> elems = (List<T>) object;
             itemsValues = new String[elems.size()];

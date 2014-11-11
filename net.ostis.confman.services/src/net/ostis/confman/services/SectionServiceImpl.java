@@ -157,7 +157,8 @@ class SectionServiceImpl implements SectionService {
 
         int numberOfPages = 0;
         for (final Report report : reports) {
-            if (report.getNumberOfPages() != null && !"".equals(report.getNumberOfPages())) {
+            if (report.getNumberOfPages() != null
+                    && !"".equals(report.getNumberOfPages())) {
                 numberOfPages += Integer.parseInt(report.getNumberOfPages());
             }
         }
