@@ -98,10 +98,13 @@ public class Person {
     public String getFullName() {
 
         final StringBuilder fullName = new StringBuilder();
-        fullName.append(this.firstName == null ? "" : this.firstName + " ");
-        fullName.append(this.patronymic == null ? "" : " " + this.patronymic
-                + " ");
-        fullName.append(this.surname == null ? "" : " " + this.surname);
+        if(this.surname != null) {
+            fullName.append(this.surname).append(" ");
+        }
+        if(this.firstName != null) {
+            fullName.append(this.firstName).append(" ");
+        }        
+        fullName.append(this.patronymic == null ? "" : " " + this.patronymic);        
         return fullName.toString();
     }
 

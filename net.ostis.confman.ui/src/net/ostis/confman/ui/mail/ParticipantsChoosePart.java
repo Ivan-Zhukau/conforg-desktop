@@ -7,8 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import net.ostis.confman.services.ParticipantService;
+import net.ostis.confman.services.SafeConversionService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.EmailedParticipant;
 import net.ostis.confman.services.common.model.EmailedParticipants;
 import net.ostis.confman.services.common.model.Participant;
@@ -42,7 +42,7 @@ public class ParticipantsChoosePart {
 
     private enum Captions implements Localizable {
         NAME("participantTableAuthorName"),
-        CONFERENCE("participantTableConference"),
+        CATEGORY("participantTableCategory"),
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep");
@@ -219,6 +219,9 @@ public class ParticipantsChoosePart {
 
         final LocalizationUtil localizationUtil = LocalizationUtil
                 .getInstance();
+        final ServiceLocator serviceLocator = ServiceLocator.getInstance();
+        final SafeConversionService conversionService = (SafeConversionService) serviceLocator
+                .getService(SafeConversionService.class);
         final int COLUMN_WIDTH = 200;
         this.table.createColumn(localizationUtil.translate(Captions.NAME),
                 COLUMN_WIDTH, new ColumnLabelProvider() {
@@ -228,21 +231,20 @@ public class ParticipantsChoosePart {
 
                         final Participant participant = (Participant) element;
                         final Person person = participant.getPerson();
-                        return person.getFirstName() + ' '
-                                + person.getSurname();
+                        return person.getFullName();
                     }
                 });
-        this.table.createColumn(
-                localizationUtil.translate(Captions.CONFERENCE), COLUMN_WIDTH,
-                new ColumnLabelProvider() {
+        this.table.createColumn(localizationUtil.translate(Captions.CATEGORY),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
 
                     @Override
                     public String getText(final Object element) {
 
                         final Participant participant = (Participant) element;
-                        final Conference conference = participant
-                                .getConference();
-                        return conference == null ? "" : conference.getTitle();
+                        final String category = conversionService
+                                .safeConverter(participant.getRole()
+                                        .getParticipationCategory());
+                        return category;
                     }
                 });
     }

@@ -19,9 +19,9 @@ public class SafeConversionServiceImpl implements SafeConversionService {
     }
 
     @Override
-    public Date safeConverter(final Date date) {
+    public String safeConverter(final Date date) {
 
-        return date == null ? new Date() : date;
+        return date == null ? "" : date.toString();
     }
 
     @Override

@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import net.ostis.confman.services.BuildTemplateService;
+import net.ostis.confman.services.SafeConversionService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.TemplateContextService;
 import net.ostis.confman.services.TemplateContextServiceLocator;
@@ -43,6 +44,7 @@ public class TemplatesEditorPart {
     private enum Captions implements Localizable {
         NAME("participantTableAuthorName"),
         EMAIL("participantTableEmail"),
+        CATEGORY("participantTableCategory"),
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep"),
@@ -102,6 +104,7 @@ public class TemplatesEditorPart {
                 }
                 TemplatesEditorPart.this.participants = (EmailedParticipants) selection;
                 addTableEventSupport();
+                processMailBody(TemplatesEditorPart.this.participants);
                 updateCurrentTemplateValue();
             }
         });
@@ -110,23 +113,25 @@ public class TemplatesEditorPart {
 
     private void onNewSelection(final EmailedParticipant participant) {
 
-        final String mailBody = processMailBody(participant);
-        this.textArea.setText(mailBody);
+        this.textArea.setText(participant.getTemplate().getBody());
     }
 
-    private String processMailBody(final EmailedParticipant participant) {
+    private void processMailBody(final EmailedParticipants participants) {
 
-        final ServiceLocator locator = ServiceLocator.getInstance();
-        final BuildTemplateService templateService = (BuildTemplateService) locator
-                .getService(BuildTemplateService.class);
-        final TemplateContextServiceLocator contextServiceLocator = TemplateContextServiceLocator
-                .getInstance();
-        final TemplateContextService contextService = (TemplateContextService) contextServiceLocator
-                .getService("Test");
-        contextService.initTemplateContext(participant.getParticipant());
-        final String mailBody = templateService.processTemplate(participant
-                .getTemplate().getBody(), contextService);
-        return mailBody;
+        for (final EmailedParticipant participant : participants
+                .getEmailedParticipants()) {
+            final ServiceLocator locator = ServiceLocator.getInstance();
+            final BuildTemplateService templateService = (BuildTemplateService) locator
+                    .getService(BuildTemplateService.class);
+            final TemplateContextServiceLocator contextServiceLocator = TemplateContextServiceLocator
+                    .getInstance();
+            final TemplateContextService contextService = (TemplateContextService) contextServiceLocator
+                    .getService(participants.getTemplateName());
+            contextService.initTemplateContext(participant.getParticipant());
+            final String mailBody = templateService.processTemplate(participant
+                    .getTemplate().getBody(), contextService);
+            participant.getTemplate().setBody(mailBody);
+        }
     }
 
     private void buildLayout(final Composite parent) {
@@ -137,7 +142,6 @@ public class TemplatesEditorPart {
         final Composite composite = createTextWrapper(parent);
         createTextArea(composite);
         createSaveButton(composite);
-        // createCleareButton(composite);
         createNextStepButton(composite);
         createPreviousStepButton(composite);
         createLabelForCurrentTemplate(composite);
@@ -168,6 +172,9 @@ public class TemplatesEditorPart {
 
         final LocalizationUtil localizationUtil = LocalizationUtil
                 .getInstance();
+        final ServiceLocator serviceLocator = ServiceLocator.getInstance();
+        final SafeConversionService conversionService = (SafeConversionService) serviceLocator
+                .getService(SafeConversionService.class);
         final int COLUMN_WIDTH = 200;
         this.table.createColumn(localizationUtil.translate(Captions.NAME),
                 COLUMN_WIDTH, new ColumnLabelProvider() {
@@ -179,8 +186,7 @@ public class TemplatesEditorPart {
                         final Participant participant = emailedParticipant
                                 .getParticipant();
                         final Person person = participant.getPerson();
-                        return person.getFirstName() + ' '
-                                + person.getSurname();
+                        return person.getFullName();
                     }
                 });
         this.table.createColumn(localizationUtil.translate(Captions.EMAIL),
@@ -192,9 +198,25 @@ public class TemplatesEditorPart {
                         final EmailedParticipant emailedParticipant = (EmailedParticipant) element;
                         final Participant participant = emailedParticipant
                                 .getParticipant();
-                        final String email = participant.getPerson()
-                                .getContacts().geteMail();
-                        return email == null ? "" : email;
+                        final String email = conversionService
+                                .safeConverter(participant.getPerson()
+                                        .getContacts().geteMail());
+                        return email;
+                    }
+                });
+        this.table.createColumn(localizationUtil.translate(Captions.CATEGORY),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final EmailedParticipant emailedParticipant = (EmailedParticipant) element;
+                        final Participant participant = emailedParticipant
+                                .getParticipant();
+                        final String category = conversionService
+                                .safeConverter(participant.getRole()
+                                        .getParticipationCategory());
+                        return category;
                     }
                 });
     }
@@ -295,7 +317,7 @@ public class TemplatesEditorPart {
     }
 
     private void createSaveButton(final Composite parent) {
-        
+
         this.textArea.setText("");
         final LocalizationUtil util = LocalizationUtil.getInstance();
         final Button nextButton = new Button(parent, SWT.NONE);
@@ -327,38 +349,6 @@ public class TemplatesEditorPart {
                             .setBody(
                                     TemplatesEditorPart.this.textArea.getText());
                 }
-            }
-        });
-    }
-
-    private void createCleareButton(final Composite parent) {
-
-        final LocalizationUtil util = LocalizationUtil.getInstance();
-        final Button nextButton = new Button(parent, SWT.NONE);
-        nextButton.setText(util.translate(Captions.SAVE));
-        final GridData gridData = new GridData(SWT.RIGHT, SWT.BOTTOM,
-                Boolean.FALSE, Boolean.FALSE);
-        nextButton.setLayoutData(gridData);
-        nextButton.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(final SelectionEvent e) {
-
-                onSelection();
-
-            }
-
-            @Override
-            public void widgetDefaultSelected(final SelectionEvent e) {
-
-                onSelection();
-
-            }
-
-            private void onSelection() {
-
-                TemplatesEditorPart.this.selectedParticipant = null;
-                TemplatesEditorPart.this.textArea.setText("");
             }
         });
     }

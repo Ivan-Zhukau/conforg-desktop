@@ -10,7 +10,7 @@ public interface SafeConversionService {
 
     public Integer safeConverter(Integer value);
 
-    public Date safeConverter(Date date);
+    public String safeConverter(Date date);
 
     public Conference safeConverter(Conference conference);
 
