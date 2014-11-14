@@ -1,9 +1,15 @@
 package net.ostis.confman.ui.mail;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import net.ostis.confman.services.BuildTemplateService;
+import net.ostis.confman.services.EmailService;
 import net.ostis.confman.services.SafeConversionService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.TemplateContextService;
@@ -15,8 +21,12 @@ import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.table.DynamicalTable;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
+import net.ostis.confman.ui.conference.ConferenceTopics;
 
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -34,12 +44,16 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class TemplatesEditorPart {
 
-    private static final int LAYOUT_COL_COUNT = 1;
+    private static final int    LAYOUT_COL_COUNT  = 1;
+
+    private static final String DEFAULT_FILE_NAME = "Emailed_participants_list.xlsx";
 
     private enum Captions implements Localizable {
         NAME("participantTableAuthorName"),
@@ -372,6 +386,30 @@ public class TemplatesEditorPart {
         this.currentTemplateLabel.setText(util
                 .translate(Captions.CURRENT_TEMPLATE_NAME)
                 + currentTemplateName);
+    }
+
+    @Inject
+    @Optional
+    private void saveEmailedParticipantsToExcel(
+            @UIEventTopic(ConferenceTopics.SAVE_EMAILED_PARTICIPANTS_TO_EXCEL) final String s,
+            @Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
+
+        final FileDialog dialog = new FileDialog(shell, SWT.SAVE);
+        dialog.setFilterNames(new String[] { "xlsx", "xls" });
+        dialog.setFilterExtensions(new String[] { "*.xlsx", "*.xls" });
+        dialog.setFileName(DEFAULT_FILE_NAME);
+        final String filePath = dialog.open();
+        if (filePath != null) {
+            try {
+                ((EmailService) ServiceLocator.getInstance().getService(
+                        EmailService.class))
+                        .generateExcelListOfEmailedParticipants(
+                                new FileOutputStream(new File(filePath)),
+                                this.participants.getEmailedParticipants());
+            } catch (final FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

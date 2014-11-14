@@ -8,7 +8,6 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.swt.widgets.Composite;
 
-
 public class ParticipantArrivalEditor {
 
     @Inject
@@ -21,13 +20,14 @@ public class ParticipantArrivalEditor {
     private IEventBroker      eventBroker;
 
     public ParticipantArrivalEditor() {
+
         super();
     }
 
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        //initTreeViewer(parent);
+        // initTreeViewer(parent);
     }
 
 }

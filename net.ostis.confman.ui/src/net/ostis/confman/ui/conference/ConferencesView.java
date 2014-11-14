@@ -1,7 +1,5 @@
 package net.ostis.confman.ui.conference;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -128,40 +126,36 @@ public class ConferencesView {
         this.treeViewer.refresh();
     }
 
-    /*@Inject
-    @Optional
-    private void onConfCreate(
-            @UIEventTopic(ConferenceTopics.CONF_CREATE) final String s) {
-
-        Composite composite = this.treeViewer.getControl().getParent();
-        EditConferenceDialog dialog =
-                new EditConferenceDialog(composite.getShell());
-        dialog.create();
-        if (dialog.open() == Window.OK) {
-            final Conference newConference = dialog.getCreatedConference();
-            if (newConference != null) {
-                this.confService.addConference(newConference);
-                this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE,
-                        null);
-            }
-        }
-    }*/
+    /*
+     * @Inject
+     * 
+     * @Optional private void onConfCreate(
+     * 
+     * @UIEventTopic(ConferenceTopics.CONF_CREATE) final String s) {
+     * 
+     * Composite composite = this.treeViewer.getControl().getParent();
+     * EditConferenceDialog dialog = new
+     * EditConferenceDialog(composite.getShell()); dialog.create(); if
+     * (dialog.open() == Window.OK) { final Conference newConference =
+     * dialog.getCreatedConference(); if (newConference != null) {
+     * this.confService.addConference(newConference);
+     * this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null); } } }
+     */
 
     @Inject
     @Optional
     private void onConfOpen(
             @UIEventTopic(ConferenceTopics.CONF_OPEN) final String s) {
 
-        Composite composite = this.treeViewer.getControl().getParent();
-        OpenConferenceDialog dialog =
-                new OpenConferenceDialog(composite.getShell());
+        final Composite composite = this.treeViewer.getControl().getParent();
+        final OpenConferenceDialog dialog = new OpenConferenceDialog(
+                composite.getShell());
         dialog.create();
         if (dialog.open() == Window.OK) {
             final Conference openedConference = dialog.getOpenedConference();
             if (openedConference != null) {
                 this.confService.openConference(openedConference);
-                this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE,
-                        null);
+                this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
             }
         }
     }
@@ -175,7 +169,7 @@ public class ConferencesView {
                 .getSelection();
         final Object data = selection.getFirstElement();
         if (data instanceof Conference) {
-            Conference conference = (Conference) data;
+            final Conference conference = (Conference) data;
             this.confService.closeConference(conference);
         }
         this.treeViewer.refresh();
@@ -190,7 +184,7 @@ public class ConferencesView {
                 .getSelection();
         final Object data = selection.getFirstElement();
         if (data instanceof Conference) {
-            Conference conference = (Conference) data;
+            final Conference conference = (Conference) data;
             this.confService.deleteConference(conference);
         }
         this.treeViewer.refresh();

@@ -39,7 +39,7 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public List<Conference> getOpenedConferences() {
 
-        return workspace.getConferencePartState().getOpenedConferences();
+        return this.workspace.getConferencePartState().getOpenedConferences();
     }
 
     @Override
@@ -126,13 +126,13 @@ class ConferenceServiceImpl implements ConferenceService {
     }
 
     @Override
-    public int getSectionOrder(Section section) {
+    public int getSectionOrder(final Section section) {
 
-        for (Conference conf : conferences) {
-            List<Section> sections = conf.getSections();
-            ListIterator<Section> iterator = sections.listIterator();
-            while(iterator.hasNext()) {
-                Section currentSection = iterator.next();
+        for (final Conference conf : this.conferences) {
+            final List<Section> sections = conf.getSections();
+            final ListIterator<Section> iterator = sections.listIterator();
+            while (iterator.hasNext()) {
+                final Section currentSection = iterator.next();
                 if (isSameSections(currentSection, section)) {
                     return iterator.previousIndex();
                 }
@@ -141,24 +141,26 @@ class ConferenceServiceImpl implements ConferenceService {
         throw new IllegalArgumentException();
     }
 
-    private boolean isSameSections(Section first, Section second) {
+    private boolean isSameSections(final Section first, final Section second) {
 
-        Date firstStartDate = first.getDate();
-        Date secondStartDate = second.getDate();
-        String firstTitle = first.getTitle();
-        String secondTitle = second.getTitle();
+        final Date firstStartDate = first.getDate();
+        final Date secondStartDate = second.getDate();
+        final String firstTitle = first.getTitle();
+        final String secondTitle = second.getTitle();
         return firstStartDate.equals(secondStartDate)
                 && firstTitle.equals(secondTitle);
     }
 
     @Override
-    public void addConference(Conference conference) {
+    public void addConference(final Conference conference) {
 
         if (!this.conferences.contains(conference)) {
             this.conferences.add(conference);
         }
-        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
-        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        final ConferenceViewState conferenceViewState = this.workspace
+                .getConferencePartState();
+        final List<Conference> openedConferences = conferenceViewState
+                .getOpenedConferences();
         if (!openedConferences.contains(conference)) {
             openedConferences.add(conference);
         }
@@ -166,26 +168,30 @@ class ConferenceServiceImpl implements ConferenceService {
     }
 
     @Override
-    public void deleteConference(Conference conference) {
+    public void deleteConference(final Conference conference) {
 
         this.conferences.remove(conference);
         closeConference(conference);
     }
 
     @Override
-    public void closeConference(Conference conference) {
+    public void closeConference(final Conference conference) {
 
-        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
-        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        final ConferenceViewState conferenceViewState = this.workspace
+                .getConferencePartState();
+        final List<Conference> openedConferences = conferenceViewState
+                .getOpenedConferences();
         openedConferences.remove(conference);
         fireData();
     }
 
     @Override
-    public void openConference(Conference conference) {
+    public void openConference(final Conference conference) {
 
-        ConferenceViewState conferenceViewState = workspace.getConferencePartState();
-        List<Conference> openedConferences = conferenceViewState.getOpenedConferences();
+        final ConferenceViewState conferenceViewState = this.workspace
+                .getConferencePartState();
+        final List<Conference> openedConferences = conferenceViewState
+                .getOpenedConferences();
         openedConferences.add(conference);
         fireData();
     }
@@ -193,10 +199,11 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public List<Conference> getClosedConferences() {
 
-        List<Conference> conferences = new ArrayList<Conference>(this.conferences);
-        List<Conference> openedConferences = workspace.getConferencePartState()
-                .getOpenedConferences();
-        for (Conference openedConference : openedConferences) {
+        final List<Conference> conferences = new ArrayList<Conference>(
+                this.conferences);
+        final List<Conference> openedConferences = this.workspace
+                .getConferencePartState().getOpenedConferences();
+        for (final Conference openedConference : openedConferences) {
             conferences.remove(openedConference);
         }
         return conferences;

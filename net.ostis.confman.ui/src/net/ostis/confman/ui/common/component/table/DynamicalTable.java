@@ -20,15 +20,15 @@ public class DynamicalTable {
 
     public static final int COLUMN_WIDTH = 230;
 
-    private TableViewer      tableViewer;
+    private TableViewer     tableViewer;
 
-    private Pagination       pagination;
+    private Pagination      pagination;
 
-    private PagingElement    pagingElement;
+    private PagingElement   pagingElement;
 
-    private boolean          showPaging;
+    private boolean         showPaging;
 
-    private SortComparator   comparator;
+    private SortComparator  comparator;
 
     public DynamicalTable(final Composite parent, final boolean showPaging,
             final int selectionBehaviour) {

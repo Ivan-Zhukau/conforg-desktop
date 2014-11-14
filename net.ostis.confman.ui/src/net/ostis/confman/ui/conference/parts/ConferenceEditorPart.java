@@ -104,7 +104,7 @@ public class ConferenceEditorPart {
     @Inject
     private IEventBroker                                                      eventBroker;
 
-    private ConferenceService conferenceService;
+    private ConferenceService                                                 conferenceService;
 
     public ConferenceEditorPart() {
 

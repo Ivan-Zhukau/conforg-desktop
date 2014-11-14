@@ -26,6 +26,8 @@ public final class ConferenceTopics {
 
     public static final String TEMPLATES_EDITOR_PART_TABLE_UPDATE = "TEMPLATES_EDITOR_PART_TABLE_UPDATE";
 
+    public static final String SAVE_EMAILED_PARTICIPANTS_TO_EXCEL = "SAVE_EMAILED_PARTICIPANTS_TO_EXCEL";
+
     private ConferenceTopics() {
 
         super();

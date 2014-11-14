@@ -31,11 +31,11 @@ public class OpenConferenceDialog extends TitleAreaDialog {
         OK_BUTTON_TEXT("openConfDialogOKText"),
         CANCEL_BUTTON_TEXT("openConfDialogCancelText"),
         CONFERENCE_NAME("conferenceNameColumn")
-        //TABLE_MAIN_AUTHOR("reportTableAuthor"),
-        //TABLE_SECTION("reportTableSection"),
-        //TABLE_CONFERENCE("reportTableConference");
+        // TABLE_MAIN_AUTHOR("reportTableAuthor"),
+        // TABLE_SECTION("reportTableSection"),
+        // TABLE_CONFERENCE("reportTableConference");
         ;
-        
+
         private String rk;
 
         private LocaleStrings(final String rk) {
@@ -49,10 +49,10 @@ public class OpenConferenceDialog extends TitleAreaDialog {
             return this.rk;
         }
     }
-    
+
     private DynamicalTable table;
 
-    private Conference         openedConference;
+    private Conference     openedConference;
 
     public OpenConferenceDialog(final Shell parentShell) {
 
@@ -90,7 +90,7 @@ public class OpenConferenceDialog extends TitleAreaDialog {
 
         this.table = new DynamicalTable(container, Boolean.TRUE, SWT.SINGLE);
         createColumns();
-        this.table.setContentProvider(ArrayContentProvider.getInstance()); 
+        this.table.setContentProvider(ArrayContentProvider.getInstance());
         this.table.setInput(conferenceService.getClosedConferences());
         this.table.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -113,8 +113,7 @@ public class OpenConferenceDialog extends TitleAreaDialog {
                 .getInstance();
         this.table.createColumn(
                 localizationUtil.translate(LocaleStrings.CONFERENCE_NAME),
-                DynamicalTable.COLUMN_WIDTH * 2,
-                new ColumnLabelProvider() {
+                DynamicalTable.COLUMN_WIDTH * 2, new ColumnLabelProvider() {
 
                     @Override
                     public String getText(final Object element) {

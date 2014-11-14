@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 public class NewConferenceHandler {
 
     @Inject
-    EventBroker eventBroker;
+    EventBroker  eventBroker;
 
     @Inject
     EPartService partService;
@@ -27,7 +27,7 @@ public class NewConferenceHandler {
     public void execute(@Named(IServiceConstants.ACTIVE_SHELL) final Shell shell) {
 
         final MPart part = this.partService.findPart(PartId.CONFERENCE_PART);
-        partService.showPart(part, PartState.VISIBLE);
+        this.partService.showPart(part, PartState.VISIBLE);
         this.eventBroker.post(ConferenceTopics.CONF_CREATE, null);
     }
 }

@@ -190,8 +190,8 @@ public class ReportEditorPart {
                         return report.isPlenaryReport();
                     }
                 });
-        this.editFields.get(ReportCaptions.PARTICIPATION_IN_CONTEST).setValueBinder(
-                new ValueBinder() {
+        this.editFields.get(ReportCaptions.PARTICIPATION_IN_CONTEST)
+                .setValueBinder(new ValueBinder() {
 
                     @Override
                     public void setValue(final Object value) {
@@ -224,8 +224,10 @@ public class ReportEditorPart {
                 parent, util.translate(ReportCaptions.YOUNG_REPORT)));
         this.editFields.put(ReportCaptions.PLENARY_REPORT, new CheckBoxField(
                 parent, util.translate(ReportCaptions.PLENARY_REPORT)));
-        this.editFields.put(ReportCaptions.PARTICIPATION_IN_CONTEST, new CheckBoxField(
-                parent, util.translate(ReportCaptions.PARTICIPATION_IN_CONTEST)));
+        this.editFields.put(
+                ReportCaptions.PARTICIPATION_IN_CONTEST,
+                new CheckBoxField(parent, util
+                        .translate(ReportCaptions.PARTICIPATION_IN_CONTEST)));
         final Button button = new Button(parent, SWT.PUSH);
         button.setText(util.translate(ReportCaptions.SAVE));
         button.addSelectionListener(new SelectionListener() {

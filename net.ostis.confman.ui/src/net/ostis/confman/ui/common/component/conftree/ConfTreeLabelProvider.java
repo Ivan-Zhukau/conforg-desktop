@@ -15,9 +15,10 @@ public class ConfTreeLabelProvider extends LabelProvider {
 
     private static final String SECTION_PREFIX = "sectionPrefix";
 
-    private ConferenceService confService;
+    private ConferenceService   confService;
 
     public ConfTreeLabelProvider() {
+
         super();
         this.confService = (ConferenceService) ServiceLocator.getInstance()
                 .getService(ConferenceService.class);
@@ -39,14 +40,14 @@ public class ConfTreeLabelProvider extends LabelProvider {
         throw new IllegalArgumentException();
     }
 
-    private String generateSectionLabel(Section section) {
-        StringBuilder temp = new StringBuilder();
-        int adjustedIndex = confService.getSectionOrder(section) + 1;
-        String sectionPrefix = LocalizationUtil.getInstance().translate(SECTION_PREFIX);
-        temp.append(sectionPrefix)
-            .append(adjustedIndex)
-            .append(". ")
-            .append(section.getTitle());
+    private String generateSectionLabel(final Section section) {
+
+        final StringBuilder temp = new StringBuilder();
+        final int adjustedIndex = this.confService.getSectionOrder(section) + 1;
+        final String sectionPrefix = LocalizationUtil.getInstance().translate(
+                SECTION_PREFIX);
+        temp.append(sectionPrefix).append(adjustedIndex).append(". ")
+                .append(section.getTitle());
         return temp.toString();
     }
 

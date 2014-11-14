@@ -52,7 +52,7 @@
             <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.participantsPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ParticipantsChoosePart" label="%part.label.11"/>
             <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="%part.label.12">
               <toolbar xmi:id="_zohckGKgEeSKB6_mQhRp9g" elementId="net.ostis.confman.ui.toolbar.2">
-                <children xsi:type="menu:DirectToolItem" xmi:id="_2ALQcGKgEeSKB6_mQhRp9g" elementId="net.ostis.confman.ui.directtoolitem.1" iconURI="platform:/plugin/net.ostis.confman.ui/icons/excel.png" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.SaveExcelFileOfEmailedParticipantsActionListener"/>
+                <children xsi:type="menu:DirectToolItem" xmi:id="_2ALQcGKgEeSKB6_mQhRp9g" elementId="net.ostis.confman.ui.directtoolitem.1" iconURI="platform:/plugin/net.ostis.confman.ui/icons/excel.png" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.SaveEmailedParticipantsListListener"/>
               </toolbar>
             </children>
           </children>
