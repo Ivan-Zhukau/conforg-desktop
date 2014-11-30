@@ -98,7 +98,7 @@ public class DynamicalTable {
     }
 
     public void createSortColumn(final String text, final int columnWidth,
-            final CellLabelProvider cellLabelProvider, int colNumber) {
+            final CellLabelProvider cellLabelProvider, final int colNumber) {
 
         final TableViewerColumn col = createColumn(text, COLUMN_WIDTH,
                 cellLabelProvider);
@@ -120,9 +120,9 @@ public class DynamicalTable {
 
         if (input instanceof List<?>) {
             this.pagination = new Pagination((List<?>) input);
-            if(!((List) input).isEmpty()) {
+            if (!((List) input).isEmpty()) {
                 this.tableViewer.setInput(this.pagination.getFirstPage());
-            } 
+            }
             this.pagingElement.setPagination(this.pagination);
         }
     }
@@ -144,7 +144,7 @@ public class DynamicalTable {
         this.tableViewer.refresh();
     }
 
-    public void setComparator(SortComparator comparator) {
+    public void setComparator(final SortComparator comparator) {
 
         this.comparator = comparator;
         this.tableViewer.setComparator(comparator);
@@ -153,16 +153,18 @@ public class DynamicalTable {
     private SelectionAdapter getSelectionAdapter(final TableColumn column,
             final int index) {
 
-        SelectionAdapter selectionAdapter = new SelectionAdapter() {
+        final SelectionAdapter selectionAdapter = new SelectionAdapter() {
 
             @Override
-            public void widgetSelected(SelectionEvent e) {
+            public void widgetSelected(final SelectionEvent e) {
 
-                comparator.setColumn(index);
-                int dir = comparator.getDirection();
-                tableViewer.getTable().setSortDirection(dir);
-                tableViewer.getTable().setSortColumn(column);
-                tableViewer.refresh();
+                DynamicalTable.this.comparator.setColumn(index);
+                final int dir = DynamicalTable.this.comparator.getDirection();
+                DynamicalTable.this.tableViewer.getTable()
+                        .setSortDirection(dir);
+                DynamicalTable.this.tableViewer.getTable()
+                        .setSortColumn(column);
+                DynamicalTable.this.tableViewer.refresh();
             }
         };
         return selectionAdapter;

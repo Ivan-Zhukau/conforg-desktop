@@ -1,11 +1,10 @@
 package net.ostis.confman.services.common.model;
 
-
 public class ParticipantArrival {
 
-    private Boolean housing = false;
+    private Boolean housing             = false;
 
-    private Boolean meeting = false;
+    private Boolean meeting             = false;
 
     private Address residencePlace;
 
@@ -47,14 +46,14 @@ public class ParticipantArrival {
         this.residencePlace = residencePlace;
     }
 
-    public void setHostelReservation(Boolean value) {
+    public void setHostelReservation(final Boolean value) {
 
         this.isHostelReservation = value;
-        
+
     }
 
     public Boolean getHostelReservation() {
-        
+
         return this.isHostelReservation;
     }
 }

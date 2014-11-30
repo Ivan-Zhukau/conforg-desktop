@@ -51,14 +51,14 @@ public class ParticipantArrival {
 
         this.residencePlace = residencePlace;
     }
-    
+
     @XmlElement(name = "hostel_reservation")
     public Boolean getIsHostelReservation() {
 
-        return isHostelReservation;
+        return this.isHostelReservation;
     }
 
-    public void setIsHostelReservation(Boolean isHostelReservation) {
+    public void setIsHostelReservation(final Boolean isHostelReservation) {
 
         this.isHostelReservation = isHostelReservation;
     }

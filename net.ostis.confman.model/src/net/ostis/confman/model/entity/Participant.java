@@ -9,19 +9,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "participant")
 public class Participant {
 
-    private Long               id;
+    private Long                      id;
 
-    private ParticipantRole    role;
+    private ParticipantRole           role;
 
-    private ParticipantArrival arrival;
-    
+    private ParticipantArrival        arrival;
+
     private ParticipationInConference participationInConference;
 
-    private List<Long>         reportId;
+    private List<Long>                reportId;
 
-    private Long               conferenceId;
+    private Long                      conferenceId;
 
-    private Long               personId;
+    private Long                      personId;
 
     public Participant() {
 
@@ -94,14 +94,15 @@ public class Participant {
 
         this.personId = personId;
     }
-    
+
     @XmlElement(name = "participation")
     public ParticipationInConference getParticipationInConference() {
 
-        return participationInConference;
+        return this.participationInConference;
     }
 
-    public void setParticipationInConference(ParticipationInConference participationInConference) {
+    public void setParticipationInConference(
+            final ParticipationInConference participationInConference) {
 
         this.participationInConference = participationInConference;
     }

@@ -1,55 +1,54 @@
 package net.ostis.confman.services.common.model;
 
-
 public class ParticipationInConference {
 
     private Boolean exhibitionPresentationOfeports = false;
-    
-    private Boolean tourOfTheCityOfMinsk = false;
-    
-    private Boolean culturalProgram = false;
-    
-    private Boolean eveningMeetingPC = false;
-    
+
+    private Boolean tourOfTheCityOfMinsk           = false;
+
+    private Boolean culturalProgram                = false;
+
+    private Boolean eveningMeetingPC               = false;
+
     public Boolean getExhibitionPresentationOfeports() {
 
-        return exhibitionPresentationOfeports;
+        return this.exhibitionPresentationOfeports;
     }
-    
+
     public void setExhibitionPresentationOfeports(
-            Boolean exhibitionPresentationOfeports) {
+            final Boolean exhibitionPresentationOfeports) {
 
         this.exhibitionPresentationOfeports = exhibitionPresentationOfeports;
     }
-    
+
     public Boolean getTourOfTheCityOfMinsk() {
 
-        return tourOfTheCityOfMinsk;
+        return this.tourOfTheCityOfMinsk;
     }
-    
-    public void setTourOfTheCityOfMinsk(Boolean tourOfTheCityOfMinsk) {
+
+    public void setTourOfTheCityOfMinsk(final Boolean tourOfTheCityOfMinsk) {
 
         this.tourOfTheCityOfMinsk = tourOfTheCityOfMinsk;
     }
-    
+
     public Boolean getCulturalProgram() {
 
-        return culturalProgram;
+        return this.culturalProgram;
     }
-    
-    public void setCulturalProgram(Boolean culturalProgram) {
+
+    public void setCulturalProgram(final Boolean culturalProgram) {
 
         this.culturalProgram = culturalProgram;
     }
-    
+
     public Boolean getEveningMeetingPC() {
 
-        return eveningMeetingPC;
+        return this.eveningMeetingPC;
     }
-    
-    public void setEveningMeetingPC(Boolean eveningMeetingPC) {
+
+    public void setEveningMeetingPC(final Boolean eveningMeetingPC) {
 
         this.eveningMeetingPC = eveningMeetingPC;
     }
-    
+
 }

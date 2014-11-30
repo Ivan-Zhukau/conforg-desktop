@@ -202,7 +202,7 @@ public class ExtraAuthorInformation {
                     @Override
                     public void setCurrentValue(final Object value) {
 
-                        if (!util.translate(ParticipationCategory.DEFAULT)
+                        if (!this.util.translate(ParticipationCategory.DEFAULT)
                                 .equals(value)) {
                             participant.getRole().setParticipationCategory(
                                     (String) value);
@@ -215,10 +215,10 @@ public class ExtraAuthorInformation {
                     @Override
                     public Object getValues() {
 
-                        List<String> list = new ArrayList<String>();
-                        for (ParticipationCategory item : ParticipationCategory
+                        final List<String> list = new ArrayList<String>();
+                        for (final ParticipationCategory item : ParticipationCategory
                                 .values()) {
-                            list.add(util.translate(item));
+                            list.add(this.util.translate(item));
                         }
                         return list;
                     }
@@ -416,8 +416,8 @@ public class ExtraAuthorInformation {
                     @Override
                     public void setCurrentValue(final Object value) {
 
-                        if (!util.translate(ParticipationFormFields.DEFAULT)
-                                .equals(value)) {
+                        if (!this.util.translate(
+                                ParticipationFormFields.DEFAULT).equals(value)) {
                             participant.getRole().setParticipationForm(
                                     (String) value);
                         } else {
@@ -428,10 +428,10 @@ public class ExtraAuthorInformation {
                     @Override
                     public Object getValues() {
 
-                        List<String> list = new ArrayList<String>();
-                        for (ParticipationFormFields item : ParticipationFormFields
+                        final List<String> list = new ArrayList<String>();
+                        for (final ParticipationFormFields item : ParticipationFormFields
                                 .values()) {
-                            list.add(util.translate(item));
+                            list.add(this.util.translate(item));
                         }
                         return list;
                     }
@@ -473,25 +473,25 @@ public class ExtraAuthorInformation {
                 new TextField(parent, util.translate(TextFields.STREET))
                         .setDataConverter(stringConverter));
 
-        Group group1 = new Group(parent, SWT.READ_ONLY);
+        final Group group1 = new Group(parent, SWT.READ_ONLY);
         group1.setText(util.translate(GroupButtons.PARTICIPATION_IN_CONFERENCE));
 
-        CheckBoxField boxField1 = new CheckBoxField(group1,
+        final CheckBoxField boxField1 = new CheckBoxField(group1,
                 util.translate(TextFields.EXHIBITION_PRESENTATION_OF_REPORTS));
         boxField1.setLocation(5, 20);
         boxField1.pack();
 
-        CheckBoxField boxField2 = new CheckBoxField(group1,
+        final CheckBoxField boxField2 = new CheckBoxField(group1,
                 util.translate(TextFields.TOUR_OF_THE_CITY_OF_MINSK));
         boxField2.setLocation(5, 40);
         boxField2.pack();
 
-        CheckBoxField boxField3 = new CheckBoxField(group1,
+        final CheckBoxField boxField3 = new CheckBoxField(group1,
                 util.translate(TextFields.CULTURAL_PROGRAM));
         boxField3.setLocation(5, 60);
         boxField3.pack();
 
-        CheckBoxField boxField4 = new CheckBoxField(group1,
+        final CheckBoxField boxField4 = new CheckBoxField(group1,
                 util.translate(TextFields.EVENING_MEETING_PC));
         boxField4.setLocation(5, 80);
         boxField4.pack();
@@ -504,10 +504,10 @@ public class ExtraAuthorInformation {
 
         group1.pack();
 
-        Group group2 = new Group(parent, SWT.READ_ONLY);
+        final Group group2 = new Group(parent, SWT.READ_ONLY);
         group2.setText(util.translate(GroupButtons.ARRIVAL));
 
-        CheckBoxField boxField5 = new CheckBoxField(group2,
+        final CheckBoxField boxField5 = new CheckBoxField(group2,
                 util.translate(TextFields.HOSTEL_RESERVATION));
         boxField5.setLocation(5, 20);
         boxField5.pack();
