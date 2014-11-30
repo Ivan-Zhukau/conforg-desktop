@@ -219,7 +219,7 @@ public class ReportEditorPart {
                 .setDataConverter(new StringDataConverter()));
         this.editFields.put(ReportCaptions.MAIN_AUTHOR, new ComboBoxField(
                 parent, util.translate(ReportCaptions.MAIN_AUTHOR),
-                new String[0]).setDataConverter(new StringDataConverter()));
+                new String[0], null).setDataConverter(new StringDataConverter()));
         this.editFields.put(ReportCaptions.YOUNG_REPORT, new CheckBoxField(
                 parent, util.translate(ReportCaptions.YOUNG_REPORT)));
         this.editFields.put(ReportCaptions.PLENARY_REPORT, new CheckBoxField(

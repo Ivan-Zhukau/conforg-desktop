@@ -229,7 +229,7 @@ public class NewParticipantPart {
                 TextFields.PATICIPATION_CATEGORY,
                 new ComboBoxField(parent, util
                         .translate(TextFields.PATICIPATION_CATEGORY),
-                        new String[0])
+                        new String[0], null)
                         .setDataConverter(new StringDataConverter()));
 
         final Button button = new Button(parent, SWT.PUSH);

@@ -10,6 +10,7 @@ import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvi
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.ConferenceViewState;
 import net.ostis.confman.services.common.model.FullModel;
+import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 import net.ostis.confman.services.common.model.Workspace;
@@ -207,5 +208,12 @@ class ConferenceServiceImpl implements ConferenceService {
             conferences.remove(openedConference);
         }
         return conferences;
+    }
+
+    @Override
+    public void addParticipant(Conference conf, Participant participant) {
+
+        conf.getParticipants().add(participant);
+        participant.setConference(conf);
     }
 }

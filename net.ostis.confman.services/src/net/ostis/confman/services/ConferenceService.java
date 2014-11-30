@@ -3,6 +3,7 @@ package net.ostis.confman.services;
 import java.util.List;
 
 import net.ostis.confman.services.common.model.Conference;
+import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Report;
 import net.ostis.confman.services.common.model.Section;
 
@@ -40,5 +41,7 @@ public interface ConferenceService {
     void closeConference(Conference conference);
 
     List<Conference> getClosedConferences();
+
+    void addParticipant(Conference conf, Participant participant);
 
 }
