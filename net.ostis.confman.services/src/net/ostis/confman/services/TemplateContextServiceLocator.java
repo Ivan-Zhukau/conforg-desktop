@@ -32,7 +32,11 @@ public class TemplateContextServiceLocator {
     }
 
     public Object getService(final String templateName) {
-
-        return this.serviceImpls.get(templateName);
+        
+        if(this.serviceImpls.containsKey(templateName)){
+            return this.serviceImpls.get(templateName); 
+        } else {
+            return new DefaultTemplateContextServiceImpl();
+        }
     }
 }
