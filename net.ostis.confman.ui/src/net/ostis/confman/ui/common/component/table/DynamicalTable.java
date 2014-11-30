@@ -119,11 +119,16 @@ public class DynamicalTable {
     public void setInput(final Object input) {
 
         if (input instanceof List<?>) {
-            this.pagination = new Pagination((List<?>) input);
-            if (!((List) input).isEmpty()) {
-                this.tableViewer.setInput(this.pagination.getFirstPage());
+            if (!((List<?>) input).isEmpty()) {
+                if (showPaging) {
+                    this.pagination = new Pagination((List<?>) input);
+                    this.tableViewer.setInput(this.pagination.getFirstPage());
+                    this.pagingElement.setPagination(this.pagination);
+                } else {
+                    this.tableViewer.setInput(input);                    
+                }
             }
-            this.pagingElement.setPagination(this.pagination);
+            
         }
     }
 

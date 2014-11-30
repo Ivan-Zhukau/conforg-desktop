@@ -88,7 +88,7 @@ public class OpenConferenceDialog extends TitleAreaDialog {
         final ConferenceService conferenceService = (ConferenceService) ServiceLocator
                 .getInstance().getService(ConferenceService.class);
 
-        this.table = new DynamicalTable(container, Boolean.TRUE, SWT.SINGLE);
+        this.table = new DynamicalTable(container, Boolean.FALSE, SWT.SINGLE);
         createColumns();
         this.table.setContentProvider(ArrayContentProvider.getInstance());
         this.table.setInput(conferenceService.getClosedConferences());

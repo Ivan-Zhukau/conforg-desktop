@@ -93,7 +93,7 @@ public class ParticipantArrivalView {
         gridData.grabExcessHorizontalSpace = true;
         confSelector = new ComboBoxField(parent, 
                 localizationUtil.translate(TableColumns.CONFERENCE), confNames, gridData);
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
+        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
         createColumns();
         addTableEventSupport();
     }

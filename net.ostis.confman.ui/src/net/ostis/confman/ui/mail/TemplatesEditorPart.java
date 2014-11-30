@@ -151,7 +151,7 @@ public class TemplatesEditorPart {
     private void buildLayout(final Composite parent) {
 
         parent.setLayout(new FillLayout());
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
+        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
         createColumns();
         final Composite composite = createTextWrapper(parent);
         createTextArea(composite);

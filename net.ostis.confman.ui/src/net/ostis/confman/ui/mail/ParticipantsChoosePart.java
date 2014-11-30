@@ -102,7 +102,7 @@ public class ParticipantsChoosePart {
         final MPart part = this.partService.findPart(TEMPLATES_EDITOR_PART_ID);
         this.partService.showPart(part, PartState.ACTIVATE);
         parent.setLayout(new GridLayout(1, true));
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.MULTI);
+        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.MULTI);
         createNextStepButton(parent);
         createPreviousStepButton(parent);
         createColumns();

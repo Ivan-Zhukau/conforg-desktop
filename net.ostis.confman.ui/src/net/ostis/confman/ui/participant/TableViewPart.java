@@ -68,7 +68,7 @@ public class TableViewPart {
     public void createComposite(final Composite parent) {
 
         parent.setLayout(new FillLayout());
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
+        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
         this.comparator = createComparator();
         this.table.setComparator(this.comparator);
         createColumns();
