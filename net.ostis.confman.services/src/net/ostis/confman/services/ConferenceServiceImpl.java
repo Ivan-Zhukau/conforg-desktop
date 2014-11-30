@@ -77,6 +77,14 @@ class ConferenceServiceImpl implements ConferenceService {
         if (!this.reports.contains(report)) {
             this.reports.add(report);
         }
+        List<Participant> participants = report.getAllAuthors();
+        for (Participant participant : participants) {
+            List<Participant> confParticipants = conf.getParticipants();
+            if (!confParticipants.contains(participant)) {
+                confParticipants.add(participant);
+            }
+            participant.setConference(conf);
+        }
         fireData();
     }
 

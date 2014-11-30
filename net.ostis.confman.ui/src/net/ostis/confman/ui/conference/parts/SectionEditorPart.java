@@ -261,6 +261,7 @@ public class SectionEditorPart {
             final Report selectedReport = dialog.getSelectedReport();
             if (selectedReport != null) {
                 this.conferenceService.addReport(this.section, selectedReport);
+                this.eventBroker.post(ConferenceTopics.CONF_TREE_UPDATE, null);
             }
         }
     }

@@ -3,6 +3,24 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" selectedElement="_SOyu8hpVEeOmro9kd1wSKw" label="%trimmedwindow.label.1" width="700" height="560">
     <tags>shellMaximized</tags>
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_SOyu8hpVEeOmro9kd1wSKw" elementId="" selectedElement="_BVLAYCk9EeOe4N68_VhelA">
+      <children xsi:type="advanced:Perspective" xmi:id="_BVLAYCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.perspective.conference" label="%perspective.label.2">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_WyzmoCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partsashcontainer.conference.main" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_fOZS4Ck9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.tree">
+            <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="%part.label.4">
+              <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1">
+                <children xsi:type="menu:DirectToolItem" xmi:id="_6p04IGLMEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.1" label="%toolbar.conferences.view.create" iconURI="platform:/plugin/net.ostis.confman.ui/icons/createConf.png" tooltip="%toolbar.conferences.view.create" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.NewConferenceHandler"/>
+                <children xsi:type="menu:DirectToolItem" xmi:id="_B-kwwGLQEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.2" label="%toolbar.conferences.view.open" iconURI="platform:/plugin/net.ostis.confman.ui/icons/openConf.png" tooltip="%toolbar.conferences.view.open" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.OpenConferenceHandler"/>
+                <children xsi:type="menu:ToolBarSeparator" xmi:id="_kMefUHjbEeSWPsI6ii0ZFg" elementId="net.ostis.confman.ui.toolbarseparator.0"/>
+              </toolbar>
+            </children>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">
+            <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ConferenceEditorPart" label="%part.label.5" tooltip="%part.tooltip.1"/>
+            <children xsi:type="basic:Part" xmi:id="_v6-X4F3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.SectionEditorPart" label="%part.label.6" tooltip="%part.tooltip.2"/>
+            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.report.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="%part.label.7" tooltip="%part.tooltip.3"/>
+          </children>
+        </children>
+      </children>
       <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="%perspective.label.1">
         <children xsi:type="basic:PartSashContainer" xmi:id="_SOyu9BpVEeOmro9kd1wSKw" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_SOyu9RpVEeOmro9kd1wSKw">
@@ -16,23 +34,6 @@
             </children>
             <children xsi:type="basic:Part" xmi:id="_LYtvkFhpEeO5h8HvaUnikA" elementId="net.ostis.confman.ui.part.0" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.ExtraAuthorInformation" label="%part.label.3"/>
             <children xsi:type="basic:Part" xmi:id="_f7iaoFVlEeSvefnGLYBR6g" elementId="net.ostis.confman.ui.part.newParticipant" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.participant.NewParticipantPart" label="%part.label.14"/>
-          </children>
-        </children>
-      </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_BVLAYCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.perspective.conference" label="%perspective.label.2">
-        <children xsi:type="basic:PartSashContainer" xmi:id="_WyzmoCk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partsashcontainer.conference.main" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_fOZS4Ck9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.tree">
-            <children xsi:type="basic:Part" xmi:id="_pk0UICk9EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.view.tree" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.ConferencesView" label="%part.label.4">
-              <toolbar xmi:id="_AopcICk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.toolbar.1">
-                <children xsi:type="menu:DirectToolItem" xmi:id="_6p04IGLMEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.1" label="%toolbar.conferences.view.create" iconURI="platform:/plugin/net.ostis.confman.ui/icons/createConf.png" tooltip="%toolbar.conferences.view.create" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.NewConferenceHandler"/>
-                <children xsi:type="menu:DirectToolItem" xmi:id="_B-kwwGLQEeSQWoJDxf7OIQ" elementId="net.ostis.confman.ui.directtoolitem.2" label="%toolbar.conferences.view.open" iconURI="platform:/plugin/net.ostis.confman.ui/icons/openConf.png" tooltip="%toolbar.conferences.view.open" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.handlers.OpenConferenceHandler"/>
-              </toolbar>
-            </children>
-          </children>
-          <children xsi:type="basic:PartStack" xmi:id="_PtOOkCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.partstack.conference.container.editor">
-            <children xsi:type="basic:Part" xmi:id="_Vo14cCk-EeOe4N68_VhelA" elementId="net.ostis.confman.ui.part.conference.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ConferenceEditorPart" label="%part.label.5" tooltip="%part.tooltip.1"/>
-            <children xsi:type="basic:Part" xmi:id="_v6-X4F3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.section.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.SectionEditorPart" label="%part.label.6" tooltip="%part.tooltip.2"/>
-            <children xsi:type="basic:Part" xmi:id="_4tYBoF3VEeOUZsQwOUaMOA" elementId="net.ostis.confman.ui.part.report.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.conference.parts.ReportEditorPart" label="%part.label.7" tooltip="%part.tooltip.3"/>
           </children>
         </children>
       </children>
