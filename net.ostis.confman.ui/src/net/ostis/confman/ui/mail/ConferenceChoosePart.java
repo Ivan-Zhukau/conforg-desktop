@@ -1,18 +1,13 @@
 package net.ostis.confman.ui.mail;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import net.ostis.confman.services.ParticipantService;
+import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.SafeConversionService;
 import net.ostis.confman.services.ServiceLocator;
-import net.ostis.confman.services.common.model.EmailedParticipant;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.EmailedParticipants;
-import net.ostis.confman.services.common.model.Participant;
-import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.Template;
 import net.ostis.confman.ui.common.Localizable;
 import net.ostis.confman.ui.common.component.table.DynamicalTable;
@@ -38,12 +33,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.MessageBox;
 
-public class ParticipantsChoosePart {
+public class ConferenceChoosePart {
 
     private enum Captions implements Localizable {
-        NAME("participantTableAuthorName"),
-        CATEGORY("participantTableCategory"),
-        SECTION("participantTableSection"),
+        NAME("conferenceTitle"),
+        START_DATE("conferenceStartDate"),
+        END_DATE("conferenceEndDate"),
         PREVIOUS_STEP("previousStep"),
         NEXT_STEP("nextStep");
 
@@ -61,9 +56,9 @@ public class ParticipantsChoosePart {
         }
     }
 
-    protected static final String TEMPLATES_EDITOR_PART_ID = "net.ostis.confman.ui.part.email.editor";
+    protected static final String PARTICIPANTS_PART_ID = "net.ostis.confman.ui.part.email.participantsPart";
 
-    protected static final String CONFERENCE_PART_ID   = "net.ostis.confman.ui.part.conferencePart";
+    protected static final String TEMPLATES_VIEW_PART_ID   = "net.ostis.confman.ui.part.emailTemplatesPart";
 
     @Inject
     private ESelectionService     selectionService;
@@ -71,19 +66,17 @@ public class ParticipantsChoosePart {
     @Inject
     private EPartService          partService;
 
-    private ParticipantService    participantService;
+    private ConferenceService    conferenceService;
 
     private DynamicalTable        table;
 
-    private EmailedParticipants   emailedParticipants;
-    
-    private Template template;
+    private Template              template;
 
-    public ParticipantsChoosePart() {
+    public ConferenceChoosePart() {
 
         super();
-        this.participantService = (ParticipantService) ServiceLocator
-                .getInstance().getService(ParticipantService.class);
+        this.conferenceService = (ConferenceService) ServiceLocator
+                .getInstance().getService(ConferenceService.class);
     }
 
     @PostConstruct
@@ -95,17 +88,16 @@ public class ParticipantsChoosePart {
             public void selectionChanged(final MPart part,
                     final Object selection) {
 
-                if (!(selection instanceof EmailedParticipants)) {
+                if (!(selection instanceof Template)) {
                     return;
                 }
-                emailedParticipants = (EmailedParticipants) selection;
-                template = emailedParticipants.getTemplate(); 
+                ConferenceChoosePart.this.template = (Template) selection;
             }
         });
-        final MPart part = this.partService.findPart(TEMPLATES_EDITOR_PART_ID);
+        final MPart part = this.partService.findPart(PARTICIPANTS_PART_ID);
         this.partService.showPart(part, PartState.ACTIVATE);
         parent.setLayout(new GridLayout(1, true));
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.MULTI);
+        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
         createNextStepButton(parent);
         createPreviousStepButton(parent);
         createColumns();
@@ -137,16 +129,19 @@ public class ParticipantsChoosePart {
 
             private void onSelected() {
 
-                final IStructuredSelection selection = (IStructuredSelection) ParticipantsChoosePart.this.table
+                final IStructuredSelection selection = (IStructuredSelection) ConferenceChoosePart.this.table
                         .getViewer().getSelection();
-                final Object[] selectedElements = selection.toArray();
-                if (selection.getFirstElement() instanceof Participant) {
-                    final EmailedParticipants ep = prepareEmailedParticipantsInformation(selectedElements);
-                    ParticipantsChoosePart.this.selectionService
-                            .setSelection(ep);
-                    final MPart part = ParticipantsChoosePart.this.partService
-                            .findPart(TEMPLATES_EDITOR_PART_ID);
-                    ParticipantsChoosePart.this.partService.activate(part);
+                final Object selectedElement = selection.getFirstElement();
+                if (selectedElement instanceof Conference) {
+                    final Conference conference = (Conference)selectedElement;
+                    EmailedParticipants emailedParticipants = new EmailedParticipants();
+                    emailedParticipants.setConference(conference);
+                    emailedParticipants.setTemplate(template);
+                    ConferenceChoosePart.this.selectionService
+                            .setSelection(emailedParticipants);
+                    final MPart part = ConferenceChoosePart.this.partService
+                            .findPart(PARTICIPANTS_PART_ID);
+                    ConferenceChoosePart.this.partService.activate(part);
 
                 } else {
                     final MessageBox dialog = new MessageBox(parent.getShell(),
@@ -157,26 +152,6 @@ public class ParticipantsChoosePart {
                             .translate("warningDialogMessage"));
                     dialog.open();
                 }
-            }
-
-            private EmailedParticipants prepareEmailedParticipantsInformation(
-                    final Object[] selectedElements) {
-
-                final List<Participant> participants = new ArrayList<>();
-                for (final Object object : selectedElements) {
-                    final Participant participant = (Participant) object;
-                    participants.add(participant);
-                }
-                final List<EmailedParticipant> emailedParticipants = new ArrayList<>();
-                for (final Participant participant : participants) {
-                    final EmailedParticipant emailedParticipant = new EmailedParticipant();
-                    emailedParticipant.setParticipant(participant);
-                    emailedParticipant.setTemplate(new Template(
-                            ParticipantsChoosePart.this.template));
-                    emailedParticipants.add(emailedParticipant);
-                }
-                ParticipantsChoosePart.this.emailedParticipants.setEmailedParticipants(emailedParticipants);
-                return ParticipantsChoosePart.this.emailedParticipants;
             }
         });
     }
@@ -207,9 +182,9 @@ public class ParticipantsChoosePart {
 
             private void previousStep() {
 
-                final MPart part = ParticipantsChoosePart.this.partService
-                        .findPart(CONFERENCE_PART_ID);
-                ParticipantsChoosePart.this.partService.showPart(part,
+                final MPart part = ConferenceChoosePart.this.partService
+                        .findPart(TEMPLATES_VIEW_PART_ID);
+                ConferenceChoosePart.this.partService.showPart(part,
                         PartState.VISIBLE);
             }
         });
@@ -229,22 +204,28 @@ public class ParticipantsChoosePart {
                     @Override
                     public String getText(final Object element) {
 
-                        final Participant participant = (Participant) element;
-                        final Person person = participant.getPerson();
-                        return person.getFullName();
+                        final Conference conference = (Conference) element;
+                        return conversionService.safeConverter(conference.getTitle());
                     }
                 });
-        this.table.createColumn(localizationUtil.translate(Captions.CATEGORY),
+        this.table.createColumn(localizationUtil.translate(Captions.START_DATE),
                 COLUMN_WIDTH, new ColumnLabelProvider() {
 
                     @Override
                     public String getText(final Object element) {
 
-                        final Participant participant = (Participant) element;
-                        final String category = conversionService
-                                .safeConverter(participant.getRole()
-                                        .getParticipationCategory());
-                        return category;
+                        final Conference conference = (Conference) element;
+                        return conversionService.safeConverter(conference.getStartDate());
+                    }
+                });
+        this.table.createColumn(localizationUtil.translate(Captions.END_DATE),
+                COLUMN_WIDTH, new ColumnLabelProvider() {
+
+                    @Override
+                    public String getText(final Object element) {
+
+                        final Conference conference = (Conference) element;
+                        return conversionService.safeConverter(conference.getEndDate());
                     }
                 });
     }
@@ -252,7 +233,7 @@ public class ParticipantsChoosePart {
     private void addTableEventSupport() {
 
         this.table.setContentProvider(ArrayContentProvider.getInstance());
-        this.table.setInput(this.participantService.getParticipants());
+        this.table.setInput(this.conferenceService.getConferences());
     }
 
     @Inject

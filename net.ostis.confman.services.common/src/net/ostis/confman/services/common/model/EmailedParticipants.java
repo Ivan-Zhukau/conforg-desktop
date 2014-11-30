@@ -7,7 +7,9 @@ public class EmailedParticipants {
 
     private List<EmailedParticipant> emailedParticipants;
 
-    private String                   templateName;
+    private Template                 template;
+    
+    private Conference conference;
 
     public EmailedParticipants() {
 
@@ -26,14 +28,24 @@ public class EmailedParticipants {
         this.emailedParticipants = emailedParticipants;
     }
 
-    public String getTemplateName() {
+    public Conference getConference() {
 
-        return this.templateName;
+        return conference;
     }
 
-    public void setTemplateName(final String templateName) {
+    public void setConference(Conference conference) {
 
-        this.templateName = templateName;
+        this.conference = conference;
+    }
+
+    public Template getTemplate() {
+
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+
+        this.template = template;
     }
 
 }

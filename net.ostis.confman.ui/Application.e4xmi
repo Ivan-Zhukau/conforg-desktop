@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_SOfz8BpVEeOmro9kd1wSKw" elementId="org.eclipse.e4.ide.application" bindingContexts="_SOfz-RpVEeOmro9kd1wSKw">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_SOfz8RpVEeOmro9kd1wSKw" selectedElement="_SOyu8hpVEeOmro9kd1wSKw" label="%trimmedwindow.label.1" width="700" height="560">
+    <tags>shellMaximized</tags>
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_SOyu8hpVEeOmro9kd1wSKw" elementId="" selectedElement="_BVLAYCk9EeOe4N68_VhelA">
       <children xsi:type="advanced:Perspective" xmi:id="_SOyu8xpVEeOmro9kd1wSKw" elementId="net.ostis.confman.ui.perspective.participantPerspective" label="%perspective.label.1">
         <children xsi:type="basic:PartSashContainer" xmi:id="_SOyu9BpVEeOmro9kd1wSKw" horizontal="true">
@@ -49,6 +50,7 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_DTyswGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partsashcontainer.1" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_EMuf4GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.partstack.2">
             <children xsi:type="basic:Part" xmi:id="_GjQSYGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.emailTemplatesPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesViewPart" label="%part.label.10"/>
+            <children xsi:type="basic:Part" xmi:id="_a4KYsHbVEeSvrpU28bk8_w" elementId="net.ostis.confman.ui.part.conferencePart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ConferenceChoosePart" label="%part.label.15"/>
             <children xsi:type="basic:Part" xmi:id="_HCnu8GQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.participantsPart" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.ParticipantsChoosePart" label="%part.label.11"/>
             <children xsi:type="basic:Part" xmi:id="_GBUqAGQjEeOh-bXxOdxLmg" elementId="net.ostis.confman.ui.part.email.editor" contributionURI="bundleclass://net.ostis.confman.ui/net.ostis.confman.ui.mail.TemplatesEditorPart" label="%part.label.12">
               <toolbar xmi:id="_zohckGKgEeSKB6_mQhRp9g" elementId="net.ostis.confman.ui.toolbar.2">

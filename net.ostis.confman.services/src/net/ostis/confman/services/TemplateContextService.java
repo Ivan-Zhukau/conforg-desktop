@@ -10,6 +10,6 @@ public interface TemplateContextService {
 
     public void addValueToTemplateContext(String key, Object value);
 
-    public void initTemplateContext(Object object);
+    public void initTemplateContext(Object object, Object object2);
 
 }

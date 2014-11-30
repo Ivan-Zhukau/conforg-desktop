@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import net.ostis.confman.model.registrationform.ArticleInformation;
 import net.ostis.confman.services.BuildTemplateService;
 import net.ostis.confman.services.EmailService;
 import net.ostis.confman.services.SafeConversionService;
@@ -140,8 +141,8 @@ public class TemplatesEditorPart {
             final TemplateContextServiceLocator contextServiceLocator = TemplateContextServiceLocator
                     .getInstance();
             final TemplateContextService contextService = (TemplateContextService) contextServiceLocator
-                    .getService(participants.getTemplateName());
-            contextService.initTemplateContext(participant.getParticipant());
+                    .getService(participants.getTemplate().getName());
+            contextService.initTemplateContext(participant.getParticipant(), participants.getConference());
             final String mailBody = templateService.processTemplate(participant
                     .getTemplate().getBody(), contextService);
             participant.getTemplate().setBody(mailBody);
@@ -377,8 +378,8 @@ public class TemplatesEditorPart {
         final LocalizationUtil util = LocalizationUtil.getInstance();
         String currentTemplateName;
         if (this.participants.getEmailedParticipants() != null
-                && this.participants.getTemplateName() != null) {
-            final String template = this.participants.getTemplateName();
+                && this.participants.getTemplate() != null) {
+            final String template = this.participants.getTemplate().getName();
             currentTemplateName = template;
         } else {
             currentTemplateName = util.translate(Captions.NON_TEMPLATE_MESSAGE);

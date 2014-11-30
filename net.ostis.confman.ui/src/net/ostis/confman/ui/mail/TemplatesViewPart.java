@@ -52,7 +52,7 @@ public class TemplatesViewPart {
         }
     }
 
-    protected static final String PARTICIPANTS_PART_ID = "net.ostis.confman.ui.part.email.participantsPart";
+    protected static final String CONFERENCE_PART_ID   = "net.ostis.confman.ui.part.conferencePart";
 
     @Inject
     private ESelectionService     selectionService;
@@ -74,7 +74,7 @@ public class TemplatesViewPart {
     @PostConstruct
     public void createComposite(final Composite parent) {
 
-        final MPart part = this.partService.findPart(PARTICIPANTS_PART_ID);
+        final MPart part = this.partService.findPart(CONFERENCE_PART_ID);
         this.partService.showPart(part, PartState.ACTIVATE);
         parent.setLayout(new GridLayout(1, true));
         this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
@@ -118,7 +118,7 @@ public class TemplatesViewPart {
                     TemplatesViewPart.this.selectionService
                             .setSelection(template);
                     final MPart part = TemplatesViewPart.this.partService
-                            .findPart(PARTICIPANTS_PART_ID);
+                            .findPart(CONFERENCE_PART_ID);
                     TemplatesViewPart.this.partService.activate(part);
 
                 } else {
