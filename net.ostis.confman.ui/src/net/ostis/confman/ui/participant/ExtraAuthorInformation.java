@@ -453,12 +453,12 @@ public class ExtraAuthorInformation {
 
         this.editFields.put(TextFields.PATICIPATION_FORM, new ComboBoxField(
                 parent, util.translate(TextFields.PATICIPATION_FORM),
-                new String[0]).setDataConverter(new StringDataConverter()));
+                new String[0], null).setDataConverter(new StringDataConverter()));
         this.editFields.put(
                 TextFields.PATICIPATION_CATEGORY,
                 new ComboBoxField(parent, util
                         .translate(TextFields.PATICIPATION_CATEGORY),
-                        new String[0])
+                        new String[0], null)
                         .setDataConverter(new StringDataConverter()));
         this.editFields.put(TextFields.CITY,
                 new TextField(parent, util.translate(TextFields.CITY))

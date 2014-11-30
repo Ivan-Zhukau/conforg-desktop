@@ -23,25 +23,28 @@ public class ComboBoxField extends Composite implements
     private ValueComboBinder valueBinder;
 
     public ComboBoxField(final Composite parent, final String labelText,
-            final String[] items) {
+            final String[] items, GridData gridData) {
 
         super(parent, SWT.NONE);
         final GridLayout layout = new GridLayout(2, false);
         setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         setLayout(layout);
-        buildControl(labelText, items);
+        buildControl(labelText, items, gridData);
     }
 
-    private void buildControl(final String labelText, final String[] items) {
+    private void buildControl(final String labelText, final String[] items,
+            GridData gridData) {
 
         final Label label = new Label(this, SWT.RIGHT);
         label.setText(labelText);
 
-        final GridData dataGridInput = new GridData();
-        dataGridInput.grabExcessHorizontalSpace = true;
-        dataGridInput.horizontalAlignment = GridData.FILL;
+        if (gridData == null) {
+            gridData = new GridData();
+            gridData.grabExcessHorizontalSpace = true;
+            gridData.horizontalAlignment = GridData.FILL;
+        }
         this.comboBox = new Combo(this, SWT.READ_ONLY);
-        this.comboBox.setLayoutData(dataGridInput);
+        this.comboBox.setLayoutData(gridData);
         this.comboBox.setItems(items);
     }
 
@@ -119,8 +122,8 @@ public class ComboBoxField extends Composite implements
     @Override
     public ComboBoxField setValueBinder(final ValueBinder valueBinder) {
 
-        // TODO Auto-generated method stub
-        return null;
+        // should not be used, because it is a multi-value item
+        throw new IllegalArgumentException();
     }
 
     public class ItemHelper<T> {
