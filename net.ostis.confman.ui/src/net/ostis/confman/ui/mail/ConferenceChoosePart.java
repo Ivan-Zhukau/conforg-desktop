@@ -97,7 +97,7 @@ public class ConferenceChoosePart {
         final MPart part = this.partService.findPart(PARTICIPANTS_PART_ID);
         this.partService.showPart(part, PartState.ACTIVATE);
         parent.setLayout(new GridLayout(1, true));
-        this.table = new DynamicalTable(parent, Boolean.TRUE, SWT.SINGLE);
+        this.table = new DynamicalTable(parent, Boolean.FALSE, SWT.SINGLE);
         createNextStepButton(parent);
         createPreviousStepButton(parent);
         createColumns();
