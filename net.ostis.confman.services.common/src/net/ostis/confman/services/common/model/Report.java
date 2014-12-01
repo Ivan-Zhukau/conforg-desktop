@@ -24,6 +24,8 @@ public class Report {
     private boolean           participationInContest;
 
     private String            numberOfPages;
+    
+    private String contestParticipation;
 
     public Report() {
 
@@ -131,5 +133,15 @@ public class Report {
     public void setParticipationInContest(boolean participationInContest) {
 
         this.participationInContest = participationInContest;
+    }
+
+    public String getContestParticipation() {
+
+        return contestParticipation;
+    }
+
+    public void setContestParticipation(String contestParticipation) {
+
+        this.contestParticipation = contestParticipation;
     }
 }

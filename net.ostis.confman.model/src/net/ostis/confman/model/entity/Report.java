@@ -31,6 +31,8 @@ public class Report {
 
     private String     numberOfPages;
 
+    private String contestParticipation;
+
     public Report() {
 
         super();
@@ -153,5 +155,15 @@ public class Report {
     public void setNumberOfPages(final String numberOfPages) {
 
         this.numberOfPages = numberOfPages;
+    }
+
+    public String getContestParticipation() {
+
+        return contestParticipation;
+    }
+
+    public void setContestParticipation(String contestParticipation) {
+
+        this.contestParticipation = contestParticipation;
     }
 }

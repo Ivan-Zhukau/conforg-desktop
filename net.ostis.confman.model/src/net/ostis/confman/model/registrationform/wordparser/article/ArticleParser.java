@@ -47,8 +47,8 @@ public class ArticleParser {
                 this.articleInformation.setSpeaker(info);
                 break;
             }
-            case RegistrationFormConstant.SHOW_LAUNCHING: {
-                this.articleInformation.setShowLaunching(info);
+            case RegistrationFormConstant.PARTICIPATION_IN_CONTEST: {
+                this.articleInformation.setContestParticipation(info);
                 break;
             }
             default:

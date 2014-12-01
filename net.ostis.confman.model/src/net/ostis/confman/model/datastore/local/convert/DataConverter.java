@@ -81,6 +81,7 @@ public class DataConverter {
 
         final Report report = new Report();
         report.setTitle(articleInformation.getTitleEntry());
+        report.setContestParticipation(articleInformation.getContestParticipation());
         return report;
     }
 

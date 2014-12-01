@@ -278,6 +278,7 @@ public class ConverterFromStorageProvider {
             report.setParticipationInContest(contestParticipating);
             boolean plenaryReport = safeConvert(temp.getPlenaryReport());
             report.setPlenaryReport(plenaryReport);
+            report.setContestParticipation(temp.getContestParticipation());
             reportsMap.put(temp.getId(), report);
             listReports.add(report);
         }

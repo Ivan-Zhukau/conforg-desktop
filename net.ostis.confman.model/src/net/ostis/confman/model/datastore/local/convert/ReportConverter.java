@@ -51,6 +51,7 @@ public class ReportConverter {
         reportToStore.setParticipationInContest(report.getParticipationInContest());
         reportToStore.setPlenaryReport(report.isPlenaryReport());
         reportToStore.setNumberOfPages(report.getNumberOfPages());
+        reportToStore.setContestParticipation(report.getContestParticipation());
         return reportToStore;
     }
 

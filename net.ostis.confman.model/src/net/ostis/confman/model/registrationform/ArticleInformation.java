@@ -13,7 +13,7 @@ public class ArticleInformation {
 
     private String       speaker;
 
-    private String       showLaunching;
+    private String       contestParticipation;
 
     public ArticleInformation() {
 
@@ -31,9 +31,9 @@ public class ArticleInformation {
         return this.participationForm;
     }
 
-    public String getShowLaunching() {
+    public String getContestParticipation() {
 
-        return this.showLaunching;
+        return this.contestParticipation;
     }
 
     public String getSpeaker() {
@@ -46,9 +46,9 @@ public class ArticleInformation {
         this.participationForm = participationForm;
     }
 
-    public void setShowLaunching(final String showLaunching) {
+    public void setContestParticipation(final String contestParticipation) {
 
-        this.showLaunching = showLaunching;
+        this.contestParticipation = contestParticipation;
     }
 
     public void setSpeaker(final String speaker) {

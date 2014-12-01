@@ -16,7 +16,7 @@ public class RegistrationFormConstant {
 
     public static final int SPEAKER              = 3;
 
-    public static final int SHOW_LAUNCHING       = 4;
+    public static final int PARTICIPATION_IN_CONTEST       = 4;
 
     public static final int SECOND_NAME          = 5;
 
