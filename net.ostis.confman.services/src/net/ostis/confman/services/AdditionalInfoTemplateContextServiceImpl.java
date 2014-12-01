@@ -7,11 +7,11 @@ import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Participant;
 
 
-public class PersonalInvitationTemplateContextServiceImpl implements TemplateContextService {
+public class AdditionalInfoTemplateContextServiceImpl implements TemplateContextService {
     
     public Map<String, Object> templateContext;
 
-    public PersonalInvitationTemplateContextServiceImpl() {
+    public AdditionalInfoTemplateContextServiceImpl() {
 
         super();
         this.templateContext = new HashMap<>();
@@ -42,17 +42,9 @@ public class PersonalInvitationTemplateContextServiceImpl implements TemplateCon
             final ServiceLocator serviceLocator = ServiceLocator.getInstance();
             final SafeConversionService safeConversionService = (SafeConversionService) serviceLocator
                     .getService(SafeConversionService.class);
-            final Participant participant = (Participant) object;
             final Conference conference = (Conference)object2;
             this.templateContext.put("conferenceTitle",
                     safeConversionService.safeConverter(conference.getTitle()));
-            this.templateContext.put("reports", participant.getReports());
-            this.templateContext.put("fullName", safeConversionService
-                    .safeConverter(participant.getPerson().getFullName()));
-            String startDate = safeConversionService.safeConverter(conference.getStartDate());
-            String endDate = safeConversionService.safeConverter(conference.getEndDate());
-            this.templateContext.put("conferenceDates", startDate + "-" + endDate);
         }
     }
-
 }

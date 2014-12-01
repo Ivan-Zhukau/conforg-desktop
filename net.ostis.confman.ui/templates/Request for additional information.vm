@@ -1,3 +1,6 @@
+#set( $firstPart = "http://www.conf.ostis.net/images/e/ea/Заявка_на_участие_в_" )
+#set( $endPart = ".zip)" )
+#set($link = "$firstPart$conferenceTitle$endPart" )
 Уважаемые коллеги!
 
 Спасибо за интерес к нашей конференции. Ваша статья принята к рассмотрению. 
@@ -8,4 +11,4 @@
 
 скачать, пройдя по ссылке 
 
-http://www.conf.ostis.net/images/e/ea/Заявка_на_участие_в_$conferenceTitle.zip
+$link
