@@ -20,6 +20,10 @@ public class TemplateContextServiceLocator {
     private void initialize() {
 
         this.serviceImpls.put("Test", new TestTemplateContextServiceImpl());
+        this.serviceImpls.put("Personal invitation", new PersonalInvitationTemplateContextServiceImpl());
+        this.serviceImpls.put("Request for additional information", new AdditionalInfoTemplateContextServiceImpl());
+        this.serviceImpls.put("Inconsistency registration rules", new AdditionalInfoTemplateContextServiceImpl());
+        this.serviceImpls.put("An acknowledgment of receipt of materials", new AdditionalInfoTemplateContextServiceImpl());
     }
 
     public static TemplateContextServiceLocator getInstance() {
