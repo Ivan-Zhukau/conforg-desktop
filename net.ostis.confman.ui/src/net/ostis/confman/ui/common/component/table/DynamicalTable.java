@@ -145,7 +145,6 @@ public class DynamicalTable {
 
     public void refresh() {
 
-        this.tableViewer.setInput(this.pagination.getPage());
         this.tableViewer.refresh();
     }
 
