@@ -224,4 +224,72 @@ class ConferenceServiceImpl implements ConferenceService {
         conf.getParticipants().add(participant);
         participant.setConference(conf);
     }
+
+    @Override
+    public void upReportChild(Report report) {
+
+        Section section = report.getSection();
+        if (section != null) {
+            List<Report> sectionReports = section.getReports();
+            int index = sectionReports.indexOf(report);
+            if (index == 0) {
+                return;
+            } else {
+                Report temp = sectionReports.get(index - 1);
+                sectionReports.set(index - 1, report);
+                sectionReports.set(index, temp);
+            }
+        }
+    }
+
+    @Override
+    public void upSectionChild(Section section) {
+
+        Conference conf = section.getConference();
+        if (conf != null) {
+            List<Section> sections = conf.getSections();
+            int index = sections.indexOf(section);
+            if (index == 0) {
+                return;
+            } else {
+                Section temp = sections.get(index - 1);
+                sections.set(index - 1, section);
+                sections.set(index, temp);
+            }
+        }
+    }
+
+    @Override
+    public void downReportChild(Report report) {
+
+        Section section = report.getSection();
+        if (section != null) {
+            List<Report> sectionReports = section.getReports();
+            int index = sectionReports.indexOf(report);
+            if (index == sectionReports.size() - 1) {
+                return;
+            } else {
+                Report temp = sectionReports.get(index + 1);
+                sectionReports.set(index + 1, report);
+                sectionReports.set(index, temp);
+            }
+        }
+    }
+
+    @Override
+    public void downSectionChild(Section section) {
+
+        Conference conf = section.getConference();
+        if (conf != null) {
+            List<Section> sections = conf.getSections();
+            int index = sections.indexOf(section);
+            if (index == sections.size() - 1) {
+                return;
+            } else {
+                Section temp = sections.get(index + 1);
+                sections.set(index + 1, section);
+                sections.set(index, temp);
+            }
+        }
+    }
 }
