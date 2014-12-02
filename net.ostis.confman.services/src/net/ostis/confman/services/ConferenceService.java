@@ -44,4 +44,12 @@ public interface ConferenceService {
 
     void addParticipant(Conference conf, Participant participant);
 
+    void upReportChild(Report selection);
+
+    void upSectionChild(Section selection);
+
+    void downReportChild(Report selection);
+
+    void downSectionChild(Section selection);
+
 }

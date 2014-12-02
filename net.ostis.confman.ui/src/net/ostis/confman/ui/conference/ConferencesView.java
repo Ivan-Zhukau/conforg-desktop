@@ -197,4 +197,34 @@ public class ConferencesView {
 
         this.treeViewer.refresh();
     }
+
+    @Inject
+    @Optional
+    private void onTreeChildUp(
+            @UIEventTopic(ConferenceTopics.CONF_CHILD_UP) final String s) {
+
+        Object selection = selectionService.getSelection();
+        if (selection instanceof Report) {
+            confService.upReportChild((Report) selection);
+        }
+        if (selection instanceof Section) {
+            confService.upSectionChild((Section) selection);
+        }
+        this.treeViewer.refresh();
+    }
+
+    @Inject
+    @Optional
+    private void onTreeChildDown(
+            @UIEventTopic(ConferenceTopics.CONF_CHILD_DOWN) final String s) {
+
+        Object selection = selectionService.getSelection();
+        if (selection instanceof Report) {
+            confService.downReportChild((Report) selection);
+        }
+        if (selection instanceof Section) {
+            confService.downSectionChild((Section) selection);
+        }
+        this.treeViewer.refresh();
+    }
 }

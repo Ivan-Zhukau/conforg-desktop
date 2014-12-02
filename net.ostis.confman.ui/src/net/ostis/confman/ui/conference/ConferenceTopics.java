@@ -30,6 +30,10 @@ public final class ConferenceTopics {
 
     public static final String SAVE_EMAILED_PARTICIPANTS_TO_EXCEL = "SAVE_EMAILED_PARTICIPANTS_TO_EXCEL";
 
+    public static final String CONF_CHILD_UP = "CONF_CHILD_UP";
+
+    public static final String CONF_CHILD_DOWN = "CONF_CHILD_DOWN";
+
     private ConferenceTopics() {
 
         super();
