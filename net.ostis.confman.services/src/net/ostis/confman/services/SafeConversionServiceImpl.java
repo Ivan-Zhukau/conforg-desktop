@@ -21,4 +21,10 @@ public class SafeConversionServiceImpl implements SafeConversionService {
 
         return date == null ? "" : date.toString();
     }
+
+    @Override
+    public Boolean safeConverter(Boolean bool) {
+
+        return bool == null ? false : bool;
+    }
 }

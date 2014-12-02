@@ -1,5 +1,8 @@
 package net.ostis.confman.ui.common.component;
 
+import net.ostis.confman.services.SafeConversionService;
+import net.ostis.confman.services.ServiceLocator;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Button;
@@ -34,9 +37,11 @@ public class CheckBoxField extends Composite implements
 
     @Override
     public void activate() {
-
-        final Object value = this.valueBinder.getValue();
-        this.checkBox.setSelection((Boolean) value);
+        
+        ServiceLocator locator = ServiceLocator.getInstance();
+        SafeConversionService conversionService = (SafeConversionService) locator.getService(SafeConversionService.class);
+        final Boolean value = conversionService.safeConverter((Boolean)this.valueBinder.getValue());
+        this.checkBox.setSelection(value);
     }
 
     @Override

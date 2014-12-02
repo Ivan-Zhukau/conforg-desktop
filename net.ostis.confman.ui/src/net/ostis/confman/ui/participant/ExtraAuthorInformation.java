@@ -86,10 +86,35 @@ public class ExtraAuthorInformation {
             return this.rk;
         }
     }
+    
+    private enum ParticipationInConferenceCompetitionsFields implements Localizable {
+        DEFAULT("defaultComboItem"),
+        COMPETITION_RESEARCH_OF_YOUNG_SCIENTISTS("competitionResearchOfYoungScientists"),
+        cOMPETITION_SOFTWARE_YOUNG_SCIENTISTS("competitionSoftwareYoungScientists");
+
+        private String rk;
+
+        private ParticipationInConferenceCompetitionsFields(final String rk) {
+
+            this.rk = rk;
+        }
+
+        public String getValue() {
+
+            return this.rk;
+        }
+
+        @Override
+        public String getResourceKey() {
+
+            return this.rk;
+        }
+    }
 
     private enum TextFields implements Localizable {
         PATICIPATION_FORM("participationForm"),
         PATICIPATION_CATEGORY("participationCategory"),
+        PATICIPATION_IN_CONFERENCE_COMPETITIONS("participationInConferenceCompetitions"),
         COUNTRY("country"),
         CITY("city"),
         STREET("street"),
@@ -180,6 +205,7 @@ public class ExtraAuthorInformation {
         applyCheckBoxes(participant);
         applyParticipationFormBinder(participant);
         applyParticipationCategoryBinder(participant);
+        //applyParticipationInConferenceCompetitionsBinder(participant);
         applyCityBinder(address);
         applyCountryBinder(address);
         applyHouseBinder(address);
@@ -443,6 +469,50 @@ public class ExtraAuthorInformation {
                     }
                 });
     }
+    
+    private void applyParticipationInConferenceCompetitionsBinder(final Participant participant) {
+
+        this.editFields.get(TextFields.PATICIPATION_IN_CONFERENCE_COMPETITIONS).setValueComboBinder(
+                new ValueComboBinder() {
+
+                    final LocalizationUtil util = LocalizationUtil
+                                                        .getInstance();
+
+                    @Override
+                    public void setValues(final Object value) {
+
+                    }
+
+                    @Override
+                    public void setCurrentValue(final Object value) {
+
+                        if (!this.util.translate(
+                                ParticipationInConferenceCompetitionsFields.DEFAULT).equals(value)) {
+                            participant.getRole().setParticipationForm(
+                                    (String) value);
+                        } else {
+                            participant.getRole().setParticipationForm(null);
+                        }
+                    }
+
+                    @Override
+                    public Object getValues() {
+
+                        final List<String> list = new ArrayList<String>();
+                        for (final ParticipationInConferenceCompetitionsFields item : ParticipationInConferenceCompetitionsFields
+                                .values()) {
+                            list.add(this.util.translate(item));
+                        }
+                        return list;
+                    }
+
+                    @Override
+                    public Object getCurrentValue() {
+
+                        return participant.getRole().getParticipationForm();
+                    }
+                });
+    }
 
     private void buildLayout(final Composite parent) {
 
@@ -460,6 +530,12 @@ public class ExtraAuthorInformation {
                         .translate(TextFields.PATICIPATION_CATEGORY),
                         new String[0], null)
                         .setDataConverter(new StringDataConverter()));
+        /**this.editFields.put(
+                TextFields.PATICIPATION_IN_CONFERENCE_COMPETITIONS,
+                new ComboBoxField(parent, util
+                        .translate(TextFields.PATICIPATION_IN_CONFERENCE_COMPETITIONS),
+                        new String[0], null)
+                        .setDataConverter(new StringDataConverter()));*/
         this.editFields.put(TextFields.CITY,
                 new TextField(parent, util.translate(TextFields.CITY))
                         .setDataConverter(stringConverter));

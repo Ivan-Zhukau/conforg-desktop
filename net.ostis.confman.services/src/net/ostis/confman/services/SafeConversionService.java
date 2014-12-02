@@ -9,5 +9,7 @@ public interface SafeConversionService {
     public Integer safeConverter(Integer value);
 
     public String safeConverter(Date date);
+    
+    public Boolean safeConverter(Boolean bool);
 
 }
