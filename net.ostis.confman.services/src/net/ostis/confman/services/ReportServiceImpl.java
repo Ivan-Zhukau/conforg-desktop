@@ -123,19 +123,7 @@ class ReportServiceImpl implements ReportService {
         List<Participant> allParticipants = new ArrayList<>();
         this.table = new SpreadsheetTable();
         this.excelBuilder = new ExcelBuilder();
-        if (this.model.getParticipants() != null) {
-            //todo: get participants only for current conference!!!
-            allParticipants = this.model.getParticipants();
-            List<Participant> tempParticipants = new ArrayList<Participant>();
-            for (Participant participant : allParticipants) {
-                if (conference.getTitle().equals(participant.getConference().getTitle())) {
-                    tempParticipants.add(participant);
-                } 
-            }
-            allParticipants = tempParticipants;
-        } else {
-            LOGGER.error("Empty list of Participants");
-        }
+        allParticipants = conference.getParticipants();
 
         final String[] headers = { Messages.getString("category"),
                 Messages.getString("surname"),
