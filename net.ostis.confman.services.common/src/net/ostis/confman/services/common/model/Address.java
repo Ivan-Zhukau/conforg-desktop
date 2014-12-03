@@ -54,5 +54,13 @@ public class Address {
 
         this.city = city;
     }
+    
+    public String toString() {
+        String address = getCountry()!= null ? getCountry() + ", " : "" +
+                getCity()!= null ? getCity() + ", " : "" + 
+                        getStreet()!= null ? getStreet() + ", " : "" + 
+                                getStreet()!= null ? getStreet() + ", " : "" ;
+        return "".equals(address) ? "" : address.substring(0, address.length()-2);
+    }
 
 }

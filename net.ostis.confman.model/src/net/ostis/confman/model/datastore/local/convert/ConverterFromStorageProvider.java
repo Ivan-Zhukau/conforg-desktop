@@ -109,7 +109,7 @@ public class ConverterFromStorageProvider {
             person.setContacts(converContactInfo(temp.getContacts()));
             person.setWorkplace(convertWorplaceInfo(temp.getWorkplace()));
             person.setDegree(convertDegree(temp.getDegree()));
-            person.setResidence(convertResidence(temp.getResidence()));
+            person.setAddress(convertResidence(temp.getResidence()));
             personsMap.put(temp.getId(), person);
             listPersons.add(person);
         }

@@ -140,7 +140,7 @@ public class TableEditorPart {
     private void applyValueBindings(final Participant participant) {
 
         final Person person = participant.getPerson();
-        final Address address = person.getResidence();
+        final Address address = person.getAddress();
         final WorkplaceInformation workplaceInformation = person.getWorkplace();
         final ContactInformation contactInfo = person.getContacts();
         final AcademicInformation academicInfo = person.getDegree();

@@ -8,7 +8,7 @@ public class Person {
 
     private String               firstName;
 
-    private Address              residence;
+    private Address              arddess;
 
     private WorkplaceInformation workplace;
 
@@ -19,7 +19,7 @@ public class Person {
     public Person() {
 
         super();
-        this.residence = new Address();
+        this.arddess = new Address();
         this.workplace = new WorkplaceInformation();
         this.contacts = new ContactInformation();
         this.degree = new AcademicInformation();
@@ -55,14 +55,14 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public Address getResidence() {
+    public Address getAddress() {
 
-        return this.residence;
+        return this.arddess;
     }
 
-    public void setResidence(final Address residence) {
+    public void setAddress(final Address address) {
 
-        this.residence = residence;
+        this.arddess = address;
     }
 
     public WorkplaceInformation getWorkplace() {
@@ -107,5 +107,5 @@ public class Person {
         fullName.append(this.patronymic == null ? "" : " " + this.patronymic);        
         return fullName.toString();
     }
-
+    
 }

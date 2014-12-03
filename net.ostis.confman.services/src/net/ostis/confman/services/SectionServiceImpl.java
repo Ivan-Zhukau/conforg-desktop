@@ -132,7 +132,7 @@ class SectionServiceImpl implements SectionService {
         final ContactInformation contactInformation = person.getContacts();
         final WorkplaceInformation workplaceInformation = person.getWorkplace();
         final AcademicInformation academicInformation = person.getDegree();
-        final Address address = person.getResidence();
+        final Address address = person.getAddress();
         final ParticipantRole participantRole = tempParticipant.getRole();
         report.addCell(new SpreadsheetCell(tempReport.getNumberOfPages()));
         report.addCell(new SpreadsheetCell(Integer

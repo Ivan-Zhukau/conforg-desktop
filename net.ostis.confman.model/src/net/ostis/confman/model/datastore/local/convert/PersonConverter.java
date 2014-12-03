@@ -48,7 +48,7 @@ public class PersonConverter {
         person.setSurname(anotherPerson.getSurname());
         person.setContacts(convertContacts(anotherPerson.getContacts()));
         person.setDegree(convertDegree(anotherPerson.getDegree()));
-        person.setResidence(convertResidence(anotherPerson.getResidence()));
+        person.setResidence(convertResidence(anotherPerson.getAddress()));
         person.setWorkplace(convertWorkplace(anotherPerson.getWorkplace()));
         return person;
     }

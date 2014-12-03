@@ -91,7 +91,7 @@ public class DataConverter {
             final WorkPlaceInformation workPlaceInformation) {
 
         setPersonalInfo(person, personalInformation);
-        person.setResidence(getAddress(contactInfo));
+        person.setAddress(getAddress(contactInfo));
         person.setWorkplace(getWorkplaceInfo(workPlaceInformation));
         person.setContacts(getContactInfo(contactInfo));
         person.setDegree(getAcademicInfo(personalInformation));

@@ -45,7 +45,7 @@ public class SaveParticipantsByCategory {
                 ((ReportService) ServiceLocator.getInstance().getService(
                         ReportService.class))
                         .generateParticipantsCategoryList(new FileOutputStream(
-                                new File(filePath)));
+                                new File(filePath)), selectedConf);
             } catch (final FileNotFoundException e) {
                 e.printStackTrace();
             }

@@ -15,9 +15,11 @@ import net.ostis.confman.model.common.spreadsheet.SpreadsheetRow;
 import net.ostis.confman.model.common.spreadsheet.SpreadsheetTable;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.model.excel.ExcelBuilder;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
+import net.ostis.confman.services.common.model.Report;
 
 import org.apache.log4j.Logger;
 
@@ -77,11 +79,11 @@ class ReportServiceImpl implements ReportService {
 
         Collections
                 .sort(sortedPersonsList, new PersonLexicographicComparator());
-        for (final Person personList : sortedPersonsList) {
+        for (final Person person : sortedPersonsList) {
             final SpreadsheetRow row = new SpreadsheetRow();
-            row.addCell(new SpreadsheetCell(personList.getSurname()));
-            row.addCell(new SpreadsheetCell(personList.getFirstName()));
-            row.addCell(new SpreadsheetCell(personList.getPatronymic()));
+            row.addCell(new SpreadsheetCell(person.getSurname()));
+            row.addCell(new SpreadsheetCell(person.getFirstName()));
+            row.addCell(new SpreadsheetCell(person.getPatronymic()));
             this.table.addRow(row);
         }
     }
@@ -114,7 +116,7 @@ class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public void generateParticipantsCategoryList(final OutputStream outputStream) {
+    public void generateParticipantsCategoryList(final OutputStream outputStream, final Conference conference) {
 
         final ConverterFromStorageProvider converter = new ConverterFromStorageProvider();
         this.model = converter.convertData();
@@ -122,7 +124,15 @@ class ReportServiceImpl implements ReportService {
         this.table = new SpreadsheetTable();
         this.excelBuilder = new ExcelBuilder();
         if (this.model.getParticipants() != null) {
+            //todo: get participants only for current conference!!!
             allParticipants = this.model.getParticipants();
+            List<Participant> tempParticipants = new ArrayList<Participant>();
+            for (Participant participant : allParticipants) {
+                if (conference.getTitle().equals(participant.getConference().getTitle())) {
+                    tempParticipants.add(participant);
+                } 
+            }
+            allParticipants = tempParticipants;
         } else {
             LOGGER.error("Empty list of Participants");
         }
@@ -130,7 +140,16 @@ class ReportServiceImpl implements ReportService {
         final String[] headers = { Messages.getString("category"),
                 Messages.getString("surname"),
                 Messages.getString("first_name"),
-                Messages.getString("patronymic") };
+                Messages.getString("patronymic"),
+                Messages.getString("article_title"),
+                Messages.getString("email"), 
+                Messages.getString("phone"), 
+                Messages.getString("acadimic_degree"),
+                Messages.getString("organization"),
+                Messages.getString("position"),
+                Messages.getString("participation_form"),
+                Messages.getString("address"),
+                Messages.getString("competition_participate") };
 
         createHeader(this.table, this.model, headers);
 
@@ -165,33 +184,86 @@ class ReportServiceImpl implements ReportService {
                 new ParticipantByCategoryComparator());
 
         for (final Participant participant : withCategoryParticipants) {
-            final SpreadsheetRow row = new SpreadsheetRow();
-
-            row.addCell(new SpreadsheetCell(participant.getRole()
-                    .getParticipationCategory()));
-            row.addCell(new SpreadsheetCell(participant.getPerson()
-                    .getSurname()));
-            row.addCell(new SpreadsheetCell(participant.getPerson()
-                    .getFirstName()));
-            row.addCell(new SpreadsheetCell(participant.getPerson()
-                    .getPatronymic()));
-
-            this.table.addRow(row);
+            addPartisipantsToTable(participant);
         }
 
         for (final Participant participant : withoutCategoryParticipants) {
-            final SpreadsheetRow row = new SpreadsheetRow();
+            addPartisipantsToTable(participant);
+        }
 
+    }
+
+    private void addPartisipantsToTable(final Participant participant) {
+
+        final SpreadsheetRow row = new SpreadsheetRow();
+
+        if (participant.getReports() != null
+                && !participant.getReports().isEmpty()) {
+            addReports(row, participant);
+        } else {
+            addRow(row, participant, null);
+        }
+        this.table.addRow(row);
+    }
+
+    private void addReports(final SpreadsheetRow row,
+            final Participant participant) {
+
+        for (final Report report : participant.getReports()) {
+            addRow(row, participant, report);
+        }
+    }
+
+    private void addRow(final SpreadsheetRow row,
+            final Participant participant, final Report report) {
+
+        if (participant.getRole() != null) {
+            row.addCell(new SpreadsheetCell(participant.getRole()
+                    .getParticipationCategory()));
+        } else {
             row.addCell(new SpreadsheetCell(""));
+        }
+
+        if (participant.getPerson() != null) {
             row.addCell(new SpreadsheetCell(participant.getPerson()
                     .getSurname()));
             row.addCell(new SpreadsheetCell(participant.getPerson()
                     .getFirstName()));
             row.addCell(new SpreadsheetCell(participant.getPerson()
                     .getPatronymic()));
-
-            this.table.addRow(row);
+        } else {
+            row.addCell(new SpreadsheetCell(""));
+            row.addCell(new SpreadsheetCell(""));
+            row.addCell(new SpreadsheetCell(""));
         }
+        row.addCell(new SpreadsheetCell(report != null ? report.getTitle() : ""));
+        row.addCell(new SpreadsheetCell(
+                (participant.getPerson() != null && participant.getPerson()
+                        .getContacts() != null) ? participant.getPerson()
+                        .getContacts().geteMail() : ""));
+        row.addCell(new SpreadsheetCell(
+                (participant.getPerson() != null && participant.getPerson()
+                        .getContacts() != null) ? participant.getPerson()
+                        .getContacts().getContactPhoneNumber() : ""));
+        row.addCell(new SpreadsheetCell((participant.getPerson() != null && participant.getPerson().getDegree() != null) ? participant.getPerson().getDegree().getDegree() : ""));
+        row.addCell(new SpreadsheetCell(
+                (participant.getPerson() != null && participant.getPerson()
+                        .getWorkplace() != null) ? participant.getPerson()
+                                .getWorkplace().getAffliation() : ""));
+        row.addCell(new SpreadsheetCell((participant.getPerson() != null && participant.getPerson().getWorkplace() != null) ? participant.getPerson().getWorkplace().getPosition() : ""));
+        row.addCell(new SpreadsheetCell(participant.getRole() != null ? participant.getRole().getParticipationForm() : ""));
+        row.addCell(new SpreadsheetCell(participant.getPerson().getAddress().toString()));
+        row.addCell(new SpreadsheetCell(getCompetitionParticipate(participant)));
+        
+    }
 
+    private Object getCompetitionParticipate(Participant participant) {
+
+        for(Report report : participant.getReports()) {
+            if (report.getContestParticipation() != null) {
+                return report.getContestParticipation();
+            }
+        }
+        return "";
     }
 }
