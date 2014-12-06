@@ -6,20 +6,2033 @@
             <phone>78965412</phone>
         </contacts>
         <acdegree>
-            <degree>scholar</degree>
-            <title>scholar</title>
+            <degree>scholahfhgf</degree>
+            <title>scholar2</title>
         </acdegree>
         <firstname>Vadim</firstname>
         <id>1</id>
         <patronymic>Viktorovich</patronymic>
         <address>
             <city>MINSK</city>
-            <country>BOOLBLAND</country>
+            <country>BOo</country>
         </address>
         <surname>Mihalovski</surname>
         <workplace>
             <position>Scholar</position>
             <workplace>BSUIR</workplace>
         </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>lanin@perm.ru</email>
+            <phone>+79128852689</phone>
+        </contacts>
+        <acdegree>
+            <degree>Не имею</degree>
+            <title>Не имею</title>
+        </acdegree>
+        <firstname>Вячеслав</firstname>
+        <id>898</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Пермь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Ланин</surname>
+        <workplace>
+            <position>старший преподаватель факультета бизнес-информатики</position>
+            <workplace>Национальный исследовательский университет  Высшая школа экономики </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Ladamandraka2010@gmail.com</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Юлия</firstname>
+        <id>922</id>
+        <patronymic>Витальевна</patronymic>
+        <address>
+            <city>Киев</city>
+            <country>Украина</country>
+        </address>
+        <surname>Рогушина </surname>
+        <workplace>
+            <position>С.н.с.</position>
+            <workplace>Институт программных систем НАН Украины</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>glanat@yahoo.com</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Анатолий</firstname>
+        <id>923</id>
+        <patronymic>Ясонович</patronymic>
+        <address>
+            <city>Киев</city>
+            <country>Украина</country>
+        </address>
+        <surname>Гладун </surname>
+        <workplace>
+            <position>С.н.с.</position>
+            <workplace>Международный научно-учебный центр информационных технологий и систем НАН Украины  и МОН Украины </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Andrushevich@bsu.by</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алексей</firstname>
+        <id>924</id>
+        <patronymic>Андреевич</patronymic>
+        <address>
+            <city>Минск</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Андрушевич</surname>
+        <workplace>
+            <position>Соискатель</position>
+            <workplace>Кафедра технологий программирования, факультет прикладной математики и информатики, Белорусский Государственный Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>kurbatski@bsu.by</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>Привет</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>925</id>
+        <patronymic>Николаевич</patronymic>
+        <address>
+            <city>Минск</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Курбацкий</surname>
+        <workplace>
+            <position>Заведующий кафедрой</position>
+            <workplace>Кафедра технологий программирования, факультет прикладной математики и информатики, Белорусский Государственный Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:rozamgul@list.ru&quot;  rozamgul@list.ru </email>
+            <phone>+77073691476</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Розамгуль</firstname>
+        <id>926</id>
+        <patronymic>Сериковна</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Ниязова</surname>
+        <workplace>
+            <position>И.о.зав.кафедрой  Теоретическая информатика </position>
+            <workplace>Евразийский  национальный  университет  им. Л.Н.Гумилева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>lanin@perm.ru</email>
+            <phone>+79128852689</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Вячеслав</firstname>
+        <id>898</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Пермь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Ланин</surname>
+        <workplace>
+            <position>старший преподаватель факультета бизнес-информатики</position>
+            <workplace>Национальный исследовательский университет  Высшая школа экономики </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>frank-ab@mail.ru</email>
+            <phone>+7   7172 - 369531/ +7-705-162-7097</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алибек</firstname>
+        <id>927</id>
+        <patronymic>Бактыбаевич</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Барлыбаев</surname>
+        <workplace>
+            <position>Младший научный сотрудник</position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева НИИ  Искусственный интеллект </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nurgasinova@mail.ru</email>
+            <phone>-/ +7-705-579-7800</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Гульбаршин </firstname>
+        <id>928</id>
+        <patronymic>Шарапиденовна</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Нургазинова</surname>
+        <workplace>
+            <position>Младший научный сотрудник</position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева НИИ  Искусственный интеллект </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>frank-ab@mail.ru</email>
+            <phone>+7   7172 - 369531/ +7-705-162-7097</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алибек</firstname>
+        <id>927</id>
+        <patronymic>Бактыбаевич</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Барлыбаев</surname>
+        <workplace>
+            <position>Младший научный сотрудник</position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева НИИ  Искусственный интеллект </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>beliacov@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Станислав</firstname>
+        <id>930</id>
+        <patronymic>Леонидович</patronymic>
+        <address>
+            <city>Таганрог</city>
+            <country>РФ</country>
+        </address>
+        <surname>Беляков</surname>
+        <workplace>
+            <position>профессор кафедры прикладной информатики</position>
+            <workplace>Южный федеральный университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>beliacov@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Марина</firstname>
+        <id>931</id>
+        <patronymic>Леонтьевна</patronymic>
+        <address>
+            <city>Таганрог</city>
+            <country>РФ</country>
+        </address>
+        <surname>Белякова</surname>
+        <workplace>
+            <position>доцент кафедры информационно-измерительных технологий и систем</position>
+            <workplace>Южный федеральный университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:gbtms@yandex.ru&quot;  gbtms@yandex.ru </email>
+            <phone>+7910-532-66-25</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Георгий</firstname>
+        <id>932</id>
+        <patronymic>Борисович</patronymic>
+        <address>
+            <city>Тверь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Бурдо</surname>
+        <workplace>
+            <position>Заведующий кафедрой Технологии и автоматизации машиностроения</position>
+            <workplace>Тверской государственный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:pboris@tstu.tver.ru&quot;  pboris@tstu.tver.ru </email>
+            <phone>-</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Борис</firstname>
+        <id>933</id>
+        <patronymic>Васильевич</patronymic>
+        <address>
+            <city>Тверь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Палюх</surname>
+        <workplace>
+            <position>Заведующий кафедрой Информационных систем</position>
+            <workplace>Тверской государственный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>evgeniya.vor813@gmail.com</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Евгения</firstname>
+        <id>934</id>
+        <patronymic>Викторовна</patronymic>
+        <address>
+            <city>Тверь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Воробьева</surname>
+        <workplace>
+            <position>Ассистент кафедры ТАМ</position>
+            <workplace>Тверской государственный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>matushin@scsc.ru</email>
+            <phone>(495) 513-74-97</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Максим </firstname>
+        <id>935</id>
+        <patronymic>Михайлович</patronymic>
+        <address>
+            <city>Королев</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Матюшин </surname>
+        <workplace>
+            <position>начальник отдела</position>
+            <workplace>Ракетно-Космической Корпорации  Энергия  им С.П. Королева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>vlad@scsc.ru</email>
+            <phone>(495) 513 58 57</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Владислав</firstname>
+        <id>936</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Королев</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Котеля </surname>
+        <workplace>
+            <position>начальник сектора</position>
+            <workplace>Ракетно-Космической Корпорации  Энергия  им С.П. Королева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>tvakurina@yandex.ru</email>
+            <phone>(495) 513 66 28</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Татьяна</firstname>
+        <id>937</id>
+        <patronymic>Германовна</patronymic>
+        <address>
+            <city>Королев</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Вакурина </surname>
+        <workplace>
+            <position>Ведущий инженер</position>
+            <workplace>Ракетно-Космической Корпорации  Энергия  им С.П. Королева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>lakhin@yandex.ru</email>
+            <phone>+7 9170123830</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Олег</firstname>
+        <id>938</id>
+        <patronymic>Иванович</patronymic>
+        <address>
+            <city>Самара</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Лахин </surname>
+        <workplace>
+            <position>Руководитель направления</position>
+            <workplace>ООО  НПК  Разумные решения </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>petr.skobelev@gmail.com</email>
+            <phone>+7 846 373 0480</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Петр</firstname>
+        <id>939</id>
+        <patronymic>Олегович</patronymic>
+        <address>
+            <city>Самара</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Скобелев </surname>
+        <workplace>
+            <position>Генеральный директор</position>
+            <workplace>ООО  НПК  Разумные решения </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>WGP272NG@MAIL.ru</email>
+            <phone>8-903-800-89-72</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Геннадий</firstname>
+        <id>940</id>
+        <patronymic>Павлович</patronymic>
+        <address>
+            <city>Тверь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Виноградов</surname>
+        <workplace>
+            <position>Профессор</position>
+            <workplace>Тверской государственный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nfilatova99@mail.ru</email>
+            <phone>8-910-935-94-06</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Наталья</firstname>
+        <id>941</id>
+        <patronymic>Николаевна</patronymic>
+        <address>
+            <city>Тверь</city>
+            <country>Россия</country>
+        </address>
+        <surname>Филатова</surname>
+        <workplace>
+            <position>Тверской государственный технический университет</position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:i.am.tim.0n.line@gmail.com&quot;  i.am.tim.0n.line@gmail.com </email>
+            <phone>+37529 123 39 33</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Артём </firstname>
+        <id>942</id>
+        <patronymic>Александрович</patronymic>
+        <address>
+            <city>Минск</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Волчанин </surname>
+        <workplace>
+            <position>Студент</position>
+            <workplace>БГУИР</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Минск</email>
+            <phone>alexandrscherbak@gmail.com</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Щербак </firstname>
+        <id>943</id>
+        <patronymic>Александр </patronymic>
+        <address>
+            <city>Беларусь</city>
+            <country>не имею/no degree</country>
+        </address>
+        <surname></surname>
+        <workplace>
+            <position>БГУИР</position>
+            <workplace>+37529 757 99 03</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Беларусь</email>
+            <phone>Минск</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname></firstname>
+        <id>944</id>
+        <patronymic>Фролов</patronymic>
+        <address>
+            <city>не имею/no degree</city>
+            <country>кандидат наук/ Candidate of science</country>
+        </address>
+        <surname>Студент</surname>
+        <workplace>
+            <position>+37529 614 78 45</position>
+            <workplace>frolov@bsuir.by  HYPERLINK &quot;http://vk.com/write?email=alexandrscherbak@gmail.com&quot; \t &quot;_blank&quot;   </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>anya_kr@aol.com</email>
+            <phone>+7(3452)392995, +79091826371</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Анна / Anna</firstname>
+        <id>945</id>
+        <patronymic>Валерьевна / Valer evna</patronymic>
+        <address>
+            <city>Тюмень / Tyumen</city>
+            <country>Россия / Russia</country>
+        </address>
+        <surname>Глазкова / Glazkova</surname>
+        <workplace>
+            <position>Ассистент кафедры программного обеспечения / Teaching assistant at the Department of Software</position>
+            <workplace>Тюменский государственный университет  / Tyumen State University</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>gribova@iacp.dvo.ru</email>
+            <phone>89084498959</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Валерия</firstname>
+        <id>946</id>
+        <patronymic>Викторовна</patronymic>
+        <address>
+            <city>Владивосток</city>
+            <country>Россия</country>
+        </address>
+        <surname>Грибова</surname>
+        <workplace>
+            <position>Зав.лаб.</position>
+            <workplace>Федеральное государственное бюджетное учреждение науки Институт автоматики и процессов управления Дальневосточного отделения Российской академии наук</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>kleschev@iacp.dvo.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>947</id>
+        <patronymic>Сергеевич</patronymic>
+        <address>
+            <city>Владивосток</city>
+            <country>Россия</country>
+        </address>
+        <surname>Клещев</surname>
+        <workplace>
+            <position>Федеральное государственное бюджетное учреждение науки Институт автоматики и процессов управления Дальневосточного отделения Российской академии наук</position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>eremeev@appmat.ru</email>
+            <phone>+7 (495) 362-79-62</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>948</id>
+        <patronymic>Павлович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname> Еремеев</surname>
+        <workplace>
+            <position>Заведующий кафедрой прикладной математики</position>
+            <workplace>Национальный исследовательский университет  МЭИ  (НИУ  МЭИ )</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>korolevyu@gmail.com</email>
+            <phone>+7 (926) 524-69-97</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Юрий</firstname>
+        <id>949</id>
+        <patronymic>Ильич</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname> Королев</surname>
+        <workplace>
+            <position>Аспирант, м.н.с. кафедры прикладной математики</position>
+            <workplace>Национальный исследовательский университет  МЭИ  (НИУ  МЭИ )</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>elena.sukach@mail.ru</email>
+            <phone>+375-25-6600022</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Елена</firstname>
+        <id>950</id>
+        <patronymic>Ивановна</patronymic>
+        <address>
+            <city>Гомель</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Сукач </surname>
+        <workplace>
+            <position>Доцент кафедры Математических проблем управления</position>
+            <workplace>Гомельский государственный университет имени Франциска Скорины</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>yuraid@tut.by</email>
+            <phone>+375-25-9334215</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Юрий</firstname>
+        <id>951</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Гомель</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Жердецкий</surname>
+        <workplace>
+            <position>Инженер   программист </position>
+            <workplace>Гомельский государственный университет имени Франциска Скорины</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>zuenko@iimm.kolasc.net.ru</email>
+            <phone>+79215131993</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>952</id>
+        <patronymic>Анатольевич</patronymic>
+        <address>
+            <city>Апатиты, Мурманская область</city>
+            <country>Россия</country>
+        </address>
+        <surname>Зуенко</surname>
+        <workplace>
+            <position>научный сотрудник</position>
+            <workplace>ФГБУН Институт информатики и математического моделирования технологических процессов Кольского научного центра РАН</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>kandel@yandex.ru </email>
+            <phone>гор. 284 20 79, </phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Сергей</firstname>
+        <id>953</id>
+        <patronymic>Львович</patronymic>
+        <address>
+            <city>Минск</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Канделинский </surname>
+        <workplace>
+            <position>Научный сотрудник</position>
+            <workplace>Объединенный институт проблем информатики НАН Беларуси</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>   San Jose, CA</email>
+            <phone> HYPERLINK &quot;mailto:igboyko@cisco.com&quot; igboyko@cisco.com </phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Бойко </firstname>
+        <id>954</id>
+        <patronymic>Игорь</patronymic>
+        <address>
+            <city>США</city>
+            <country></country>
+        </address>
+        <surname>нет</surname>
+        <workplace>
+            <position>Cisco Inc.</position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>kleschev@iacp.dvo.ru</email>
+            <phone>+7 (423) 231-0424</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>947</id>
+        <patronymic>Сергеевич</patronymic>
+        <address>
+            <city>Владивосток</city>
+            <country>Россия</country>
+        </address>
+        <surname>Клещев</surname>
+        <workplace>
+            <position>Главный научный сотрудник</position>
+            <workplace>Институт автоматики и процессов управления Дальневосточного отделения Российской академии наук</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>smagin@iacp.dvo.ru</email>
+            <phone>+7 (423) 231-0424</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Сергей</firstname>
+        <id>956</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Владивосток</city>
+            <country>Россия</country>
+        </address>
+        <surname>Смагин</surname>
+        <workplace>
+            <position>Ведущий инженер-программист</position>
+            <workplace>Институт автоматики и процессов управления Дальневосточного отделения Российской академии наук</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:kleschev@iacp.dvo.ru&quot;   kleschev@iacp.dvo.ru </email>
+            <phone>(423)2310424</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Александр</firstname>
+        <id>947</id>
+        <patronymic>Сергеевич</patronymic>
+        <address>
+            <city>Владивосток, </city>
+            <country>Россия</country>
+        </address>
+        <surname>Клещев</surname>
+        <workplace>
+            <position>Главный научный сотрудник лаборатории интеллектуальных систем</position>
+            <workplace>Институт автоматики и процессов управления</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Владивосток </email>
+            <phone>  HYPERLINK &quot;mailto:kleschev@iacp.dvo.ru&quot;    shalf @iacp.dvo.ru </phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Шалфеева</firstname>
+        <id>958</id>
+        <patronymic>Елена</patronymic>
+        <address>
+            <city>Россия</city>
+            <country>доцент по специальности</country>
+        </address>
+        <surname> </surname>
+        <workplace>
+            <position>Институт автоматики и процессов управления</position>
+            <workplace>(423)2310424</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>KlimovV@gmail.com</email>
+            <phone>+7 8482 246924;  +7 937 237 0554</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Виталий / Vitalii</firstname>
+        <id>959</id>
+        <patronymic>Сергеевич / Sergeevich</patronymic>
+        <address>
+            <city>Тольятти / Togliatti</city>
+            <country>Россия / Russia</country>
+        </address>
+        <surname>Климов / Klimov</surname>
+        <workplace>
+            <position>Преподаватель кафедры Прикладная математика и информатика / Lecturer, Department of Applied Mathematics and Informatics.</position>
+            <workplace> ФГБОУ ВПО  Тольяттинский государственный университет  / Togliatti State University</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nelenivec777@mail.ru</email>
+            <phone>+7 987 962 2118</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алина / Alina</firstname>
+        <id>960</id>
+        <patronymic>Олеговна / Olegovna</patronymic>
+        <address>
+            <city>Тольятти / Togliatti</city>
+            <country>Россия / Russia</country>
+        </address>
+        <surname>Новикова / Novikova</surname>
+        <workplace>
+            <position>ФГБОУ ВПО  Тольяттинский государственный университет  / Togliatti State University</position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Тольятти / Togliatti</email>
+            <phone>east1941@gmail.com</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Данко / Danko</firstname>
+        <id>961</id>
+        <patronymic>Анатолий / Anatolii</patronymic>
+        <address>
+            <city>Россия / Russia</city>
+            <country>не имею/no title</country>
+        </address>
+        <surname>студент / student</surname>
+        <workplace>
+            <position></position>
+            <workplace>---</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>ayyankov@gmail.com</email>
+            <phone>+7(3822) 65-07-82</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Анна </firstname>
+        <id>962</id>
+        <patronymic>Ефимовна</patronymic>
+        <address>
+            <city>Томск</city>
+            <country>Россия</country>
+        </address>
+        <surname>Янковская </surname>
+        <workplace>
+            <position>Зав. лабораторией интеллектуальных систем (ИС) ТГАСУ Профессор каф. Информатики ТГУ Профессор каф. Компьютерных систем в управлении и проектировании ТУСУР</position>
+            <workplace>Томский государственный архитектурно-строительный университет (ТГАСУ), Томский государственный университет (ТГУ), Томский государственный университет систем управления и радиоэлектроники (ТУСУР)</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>curbatow.serg@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>senior</title>
+        </acdegree>
+        <firstname>Сергей</firstname>
+        <id>963</id>
+        <patronymic>Сергеевич</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Курбатов</surname>
+        <workplace>
+            <position>ведущий научный сотрудник</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>artlav@land.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Артем</firstname>
+        <id>964</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Литвинович</surname>
+        <workplace>
+            <position>Ведущий инженер-программист</position>
+            <workplace>ООО &quot;Телеком-Защита&quot;, Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>lobzin@rambler.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алексей</firstname>
+        <id>965</id>
+        <patronymic>Петрович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Лобзин</surname>
+        <workplace>
+            <position>ведущий инженер-программист</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>gkhakhalin@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Геннадий</firstname>
+        <id>966</id>
+        <patronymic>Константинович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Хахалин</surname>
+        <workplace>
+            <position>по договору</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>gkhakhalin@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Геннадий</firstname>
+        <id>966</id>
+        <patronymic>Константинович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Хахалин</surname>
+        <workplace>
+            <position>по договору</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>curbatow.serg@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>senior</title>
+        </acdegree>
+        <firstname>Сергей</firstname>
+        <id>963</id>
+        <patronymic>Сергеевич</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Курбатов</surname>
+        <workplace>
+            <position>ведущий научный сотрудник</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>lobzin@rambler.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Алексей</firstname>
+        <id>965</id>
+        <patronymic>Петрович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Лобзин</surname>
+        <workplace>
+            <position>ведущий инженер-программист</position>
+            <workplace>Научно-Исследовательский Центр Электронной Вычислительной Техники (НИЦЭВТ), Москва, Россия</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>+380 466 89 17</email>
+            <phone>Институт проблем регистрации информации Национальной академии наук Украины</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Владимирович</firstname>
+        <id>970</id>
+        <patronymic>Доктор технических наук</patronymic>
+        <address>
+            <city>dwlande@gmail.com</city>
+            <country>Киев</country>
+        </address>
+        <surname>Дмитрий</surname>
+        <workplace>
+            <position>Снарский</position>
+            <workplace>Заведующий отделом</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone>Национальный технический университет Украины  Киевский политехнический институт </phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Александрович</firstname>
+        <id>971</id>
+        <patronymic>Доктор физико-математических наук</patronymic>
+        <address>
+            <city>ASnarskii@gmail.com</city>
+            <country>Киев</country>
+        </address>
+        <surname>Андрей</surname>
+        <workplace>
+            <position>Ягунова</position>
+            <workplace>Профессор  кафедры</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>leshcheva@gsom.pu.ru</email>
+            <phone>+7 911 777 8466</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Ирина</firstname>
+        <id>972</id>
+        <patronymic>Анатольевна</patronymic>
+        <address>
+            <city>Санкт-Петербург</city>
+            <country>Россия</country>
+        </address>
+        <surname>Лещева</surname>
+        <workplace>
+            <position>Старший преподаватель</position>
+            <workplace>Высшая Школа Менеджмента, Санкт-Петербургский Государственный Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>dimvovich@gmail.com</email>
+            <phone>+7 911 2525256</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Дмитрий</firstname>
+        <id>973</id>
+        <patronymic>Владимирович</patronymic>
+        <address>
+            <city>Санкт-Петербург</city>
+            <country>Россия</country>
+        </address>
+        <surname>Лещев</surname>
+        <workplace>
+            <position>Ведущий научный сотрудник</position>
+            <workplace>Центр Перспективных исследований, Санкт-Петербургский Государственный Политехнический Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>louk_nat@mail.ru</email>
+            <phone>+7-926-1446163</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Наталья/Natalia</firstname>
+        <id>974</id>
+        <patronymic>Валентиновна/Valentinovna</patronymic>
+        <address>
+            <city>Москва/Moscow</city>
+            <country>Россия/Russia</country>
+        </address>
+        <surname>Лукашевич/./Loukachevitch</surname>
+        <workplace>
+            <position>Ведущий научный сотрудник/Leading researcher</position>
+            <workplace>МГУ им.М.В.Ломоносова/Lomonosov Moscow State University</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>2348843@tut.by</email>
+            <phone>8029 6349929 моб.</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Марина/Marina</firstname>
+        <id>975</id>
+        <patronymic>Васильевна</patronymic>
+        <address>
+            <city>Минск</city>
+            <country>Беларусь</country>
+        </address>
+        <surname>Макарич/Makarych</surname>
+        <workplace>
+            <position>Доцент кафедры английского языка  2</position>
+            <workplace>Белорусский национальный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>malk@cs.msu.su</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Михаил</firstname>
+        <id>976</id>
+        <patronymic>Георгиевич</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Мальковский</surname>
+        <workplace>
+            <position>Заведующий кафедрой</position>
+            <workplace>Московский государственный университет имени М.В.Ломоносова</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>soloviev@glossary.ru</email>
+            <phone>89099254642</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Сергей</firstname>
+        <id>977</id>
+        <patronymic>Юрьевич</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Соловьев</surname>
+        <workplace>
+            <position>Профессор</position>
+            <workplace>Московский государственный университет имени М.В.Ломоносова</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:omorsik@gmail.com&quot;  omorsik@gmail.com </email>
+            <phone>+79261158823</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Олег</firstname>
+        <id>978</id>
+        <patronymic>Леонидович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Моросин </surname>
+        <workplace>
+            <position>м.н.с., аспирант.</position>
+            <workplace>Национальный Исследовательский Университет  МЭИ , каф. Прикладная Математика</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nam@ulstu.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Алексей</firstname>
+        <id>979</id>
+        <patronymic>Михайлович</patronymic>
+        <address>
+            <city>г. Ульяновск</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Наместников</surname>
+        <workplace>
+            <position>Доцент</position>
+            <workplace>Ульяновский Государственный Технический Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>subkhangulov-ruslan@yandex.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Руслан</firstname>
+        <id>980</id>
+        <patronymic>Айратович</patronymic>
+        <address>
+            <city>г. Ульяновск</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Субхангулов</surname>
+        <workplace>
+            <position>Аспирант</position>
+            <workplace>Ульяновский Государственный Технический Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Sh_kurmangali@mail.ru</email>
+            <phone>+77711008462</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Шынар</firstname>
+        <id>981</id>
+        <patronymic>Курмангалиевна</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Турмаганбетова</surname>
+        <workplace>
+            <position>Студент докторантуры 2 курс(Ph.D)</position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>           sharalt@e-mail.address</email>
+            <phone>+77477771652</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Алтынбек </firstname>
+        <id>982</id>
+        <patronymic>Амирович</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Шарипбаев</surname>
+        <workplace>
+            <position>Директор научного центра  Искуственный интеллект ,  </position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>            HYPERLINK &quot;mailto:omarbekova@e-mail.address&quot; omarbekova@e-mail.address </email>
+            <phone>+77074442902</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Асель </firstname>
+        <id>983</id>
+        <patronymic>Сайлаубековна</patronymic>
+        <address>
+            <city>Астана</city>
+            <country>Казахстан</country>
+        </address>
+        <surname>Омарбекова </surname>
+        <workplace>
+            <position>Зам. директора научного центра  Искуственный интеллект ,  </position>
+            <workplace>Евразийский национальный университет имени Л.Н.Гумилева</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Itk3@ukr.net</email>
+            <phone>067-636-11-12</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Юрий</firstname>
+        <id>984</id>
+        <patronymic>Александрович</patronymic>
+        <address>
+            <city>Днепропетровск</city>
+            <country>Украина</country>
+        </address>
+        <surname>Прокопчук</surname>
+        <workplace>
+            <position>Ст.научн.сотр</position>
+            <workplace>Институт технической механики НАНУ и ГКАУ, отдел системного анализа и проблем управления</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Ladamandraka2010@gmail.com</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Юлия</firstname>
+        <id>922</id>
+        <patronymic>Витальевна</patronymic>
+        <address>
+            <city>Киев</city>
+            <country>Украина</country>
+        </address>
+        <surname>Рогушина </surname>
+        <workplace>
+            <position>С.н.с.</position>
+            <workplace>Институт программных систем НАН Украины</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Gms1234gms@rambler.ru</email>
+            <phone>83412513848</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Юрий </firstname>
+        <id>986</id>
+        <patronymic>Михайлович</patronymic>
+        <address>
+            <city>Ижевск</city>
+            <country>РФ</country>
+        </address>
+        <surname>Сметанин</surname>
+        <workplace>
+            <position>Зав. кафедрой</position>
+            <workplace>ФБГОУ ВПО  Удмуртский государственный университет , Математический факультет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>sicwl@newmail.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Виктор</firstname>
+        <id>987</id>
+        <patronymic>Иванович</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Соловьев</surname>
+        <workplace>
+            <position>Председатель Правления</position>
+            <workplace>Научно-Инженерный Центр Ассоциации содействия Всемирной Лаборатории (НИЦ АСВЛ)</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone>+79510954466</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Петр</firstname>
+        <id>988</id>
+        <patronymic>Иванович</patronymic>
+        <address>
+            <city>Ульяновск</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Соснин</surname>
+        <workplace>
+            <position>Зав. кафедрой  Вычислительная техника </position>
+            <workplace>Ульяновский государственный технический университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nina_khajrova@yahoo.com</email>
+            <phone>+38 050 96 63 744</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Нина</firstname>
+        <id>989</id>
+        <patronymic>Феликсовна</patronymic>
+        <address>
+            <city>Харьков</city>
+            <country>Украина</country>
+        </address>
+        <surname>Хайрова</surname>
+        <workplace>
+            <position>Доцент кафедры интеллектуальных компьютерных систем</position>
+            <workplace>Национальный технический университет  Харьковский политехнический институт </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nvsharonova@mail.ru</email>
+            <phone>+38 057 337 59 82</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>professor</title>
+        </acdegree>
+        <firstname>Наталья </firstname>
+        <id>990</id>
+        <patronymic>Валерьевна</patronymic>
+        <address>
+            <city>Харьков</city>
+            <country>Украина</country>
+        </address>
+        <surname>Шаронова</surname>
+        <workplace>
+            <position>Заведующий кафедрой интеллектуальных компьютерных систем</position>
+            <workplace>Национальный технический университет  Харьковский политехнический институт </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>poputcik@mail.ru</email>
+            <phone>+38 057 707 65 05</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Дмитрий </firstname>
+        <id>991</id>
+        <patronymic>Юрьевич</patronymic>
+        <address>
+            <city>Харьков</city>
+            <country>Украина</country>
+        </address>
+        <surname>Узлов</surname>
+        <workplace>
+            <position>Соискатель кафедры интеллектуальных компьютерных систем</position>
+            <workplace>Национальный технический университет  Харьковский политехнический институт </workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>  HYPERLINK &quot;mailto:radsh@rambler.ru&quot;  radsh@rambler.ru </email>
+            <phone>+79174175360</phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Татьяна</firstname>
+        <id>992</id>
+        <patronymic>Михайловна</patronymic>
+        <address>
+            <city>Уфа</city>
+            <country>Россия</country>
+        </address>
+        <surname>Шамсутдинова</surname>
+        <workplace>
+            <position>Доцент кафедры информатики и ИТ</position>
+            <workplace>Башкирский государственный аграрный университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>shetoma@mail.ru</email>
+            <phone>8-919-109-35-30</phone>
+        </contacts>
+        <acdegree>
+            <degree>doctor</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Тамара</firstname>
+        <id>993</id>
+        <patronymic>Шихгасановна</patronymic>
+        <address>
+            <city>Москва</city>
+            <country>Россия</country>
+        </address>
+        <surname>Шихнабиева</surname>
+        <workplace>
+            <position>Заведующий лабораторией</position>
+            <workplace>ФГНУ  Институт информатизации образования  Российской академии образования</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree></degree>
+            <title></title>
+        </acdegree>
+        <firstname></firstname>
+        <id>39239</id>
+        <patronymic></patronymic>
+        <address>
+            <city></city>
+            <country></country>
+        </address>
+        <surname></surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>Степ</degree>
+            <title></title>
+        </acdegree>
+        <firstname>Степан</firstname>
+        <id>43416</id>
+        <patronymic>Степанович</patronymic>
+        <address>
+            <city></city>
+            <country></country>
+        </address>
+        <surname>Степанов</surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <id>9621</id>
+        <address/>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <id>9622</id>
+        <address/>
+        <workplace/>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree></degree>
+            <title></title>
+        </acdegree>
+        <firstname>qwetr</firstname>
+        <id>50436</id>
+        <patronymic>qerty</patronymic>
+        <address>
+            <city></city>
+            <country></country>
+        </address>
+        <surname>qwert</surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree></degree>
+            <title></title>
+        </acdegree>
+        <firstname></firstname>
+        <id>39239</id>
+        <patronymic></patronymic>
+        <address>
+            <city></city>
+            <country></country>
+        </address>
+        <surname></surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>qwerty2</firstname>
+        <id>51181</id>
+        <patronymic>8</patronymic>
+        <address/>
+        <surname>q</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>qwerty2</firstname>
+        <id>51181</id>
+        <patronymic>8</patronymic>
+        <address/>
+        <surname>q</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>qwerty2</firstname>
+        <id>51181</id>
+        <patronymic>8</patronymic>
+        <address/>
+        <surname>q</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>qwerty2</firstname>
+        <id>51181</id>
+        <patronymic>8</patronymic>
+        <address/>
+        <surname>q</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>qwerty2</firstname>
+        <id>51181</id>
+        <patronymic>8</patronymic>
+        <address/>
+        <surname>q</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>51306</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>test</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>39239</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname></surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>51566</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>qwerff</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>51698</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>a</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>asdff</firstname>
+        <id>51831</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname></surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>51965</id>
+        <patronymic>vcc</patronymic>
+        <address/>
+        <surname></surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>ddf</firstname>
+        <id>52100</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname></surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>52236</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>asdf</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname></firstname>
+        <id>52373</id>
+        <patronymic>vvvcxz</patronymic>
+        <address/>
+        <surname>zxcv</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>vvv</firstname>
+        <id>52511</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname></surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>Дмитрий</firstname>
+        <id>52650</id>
+        <patronymic>Иванович</patronymic>
+        <address/>
+        <surname>Космич</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>Сережа</firstname>
+        <id>52929</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>Молодец</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>Я</firstname>
+        <id>53070</id>
+        <patronymic></patronymic>
+        <address/>
+        <surname>Работаю</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <id>9623</id>
+        <address/>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>1</firstname>
+        <id>443</id>
+        <patronymic>1</patronymic>
+        <address/>
+        <surname>1</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts>
+            <email></email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree></degree>
+            <title></title>
+        </acdegree>
+        <firstname>12</firstname>
+        <id>593</id>
+        <patronymic>2</patronymic>
+        <address>
+            <city></city>
+            <country></country>
+        </address>
+        <surname>12</surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>nam@ulstu.ru</email>
+            <phone></phone>
+        </contacts>
+        <acdegree>
+            <degree>candidate</degree>
+            <title>docent</title>
+        </acdegree>
+        <firstname>Алексей</firstname>
+        <id>979</id>
+        <patronymic>Михайлович</patronymic>
+        <address>
+            <city>Ульяновск</city>
+            <country>Российская Федерация</country>
+        </address>
+        <surname>Наместников</surname>
+        <workplace>
+            <position>Доцент кафедры &quot;Информационные системы&quot;</position>
+            <workplace>Ульяновский Государственный Технический Университет</workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts>
+            <email>Ульяновск</email>
+            <phone>subkhangulov-ruslan@yandex.ru</phone>
+        </contacts>
+        <acdegree>
+            <degree>none</degree>
+            <title>none</title>
+        </acdegree>
+        <firstname>Субхангулов</firstname>
+        <id>7198</id>
+        <patronymic>Руслан</patronymic>
+        <address>
+            <city>Российская Федерация</city>
+            <country>не имею</country>
+        </address>
+        <surname></surname>
+        <workplace>
+            <position></position>
+            <workplace></workplace>
+        </workplace>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>Кто-то</firstname>
+        <id>7499</id>
+        <patronymic>ТАм</patronymic>
+        <address/>
+        <surname>Это</surname>
+        <workplace/>
+    </person>
+    <person>
+        <contacts/>
+        <acdegree/>
+        <firstname>А</firstname>
+        <id>7651</id>
+        <patronymic>А</patronymic>
+        <address/>
+        <surname>А</surname>
+        <workplace/>
     </person>
 </persons>

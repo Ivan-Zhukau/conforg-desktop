@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <conferences>
     <conference>
-        <endDate>2013-12-03T23:22:33.887+03:00</endDate>
+        <endDate>2014-10-17T17:22:33.887-03:00</endDate>
         <id>3</id>
         <participants>
-            <participant>2</participant>
+            <participant>9321</participant>
+            <participant>9481</participant>
+            <participant>9641</participant>
         </participants>
         <reports>
-            <report>5</report>
+            <report>9731</report>
+            <report>9733</report>
+            <report>9738</report>
+            <report>9735</report>
+            <report>9736</report>
+            <report>9748</report>
+            <report>9753</report>
+            <report>9762</report>
+            <report>9764</report>
+            <report>9763</report>
+            <report>9760</report>
+            <report>9759</report>
+            <report>9758</report>
+            <report>9746</report>
+            <report>9750</report>
+            <report>9765</report>
+            <report>9737</report>
+            <report>9734</report>
+            <report>9732</report>
+            <report>9730</report>
         </reports>
+        <address>
+            <city>Minsk</city>
+            <country>Belarus</country>
+            <housenumber>222</housenumber>
+            <street>Brovki</street>
+        </address>
         <sections>
-            <section>4</section>
+            <section>66184</section>
+            <section>439</section>
+            <section>2991</section>
+            <section>3442</section>
         </sections>
-        <startDate>2013-12-03T23:22:33.887+03:00</startDate>
+        <startDate>2013-12-03T17:22:33.887-03:00</startDate>
         <title>OSTIS-2014</title>
+    </conference>
+    <conference>
+        <endDate>2014-11-30T16:09:16.620-03:00</endDate>
+        <id>4044</id>
+        <participants>
+            <participant>7059</participant>
+            <participant>8716</participant>
+        </participants>
+        <reports>
+            <report>9733</report>
+        </reports>
+        <address>
+            <city>sfaaf</city>
+            <country>asf</country>
+            <housenumber>124</housenumber>
+            <street>asfasf</street>
+        </address>
+        <sections>
+            <section>7045</section>
+        </sections>
+        <startDate>2014-11-29T16:09:13.791-03:00</startDate>
+        <title>asf</title>
     </conference>
 </conferences>

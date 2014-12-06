@@ -1,12 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <sections>
     <section>
-        <conference>3</conference>
-        <date>2013-12-03T23:26:11.466+03:00</date>
-        <id>4</id>
+        <date>2013-12-19T03:00:00-03:00</date>
+        <id>9767</id>
         <reports>
-            <report>5</report>
+            <report>9726</report>
+            <report>9731</report>
+            <report>9762</report>
         </reports>
-        <title>SemanTec</title>
+        <title>SemanTec2</title>
+    </section>
+    <section>
+        <date>2013-12-18T04:00:00-03:00</date>
+        <id>9768</id>
+        <reports>
+            <report>9735</report>
+        </reports>
+        <title>Секция 2</title>
+    </section>
+    <section>
+        <date>2014-01-09T12:52:00-03:00</date>
+        <id>9769</id>
+        <reports>
+            <report>9736</report>
+            <report>9748</report>
+            <report>9753</report>
+            <report>9764</report>
+        </reports>
+        <title>Секция</title>
+    </section>
+    <section>
+        <date>2014-01-26T02:00:00-03:00</date>
+        <id>9770</id>
+        <reports>
+            <report>9763</report>
+            <report>9760</report>
+            <report>9759</report>
+            <report>9758</report>
+            <report>9746</report>
+            <report>9750</report>
+        </reports>
+        <title>Секция Веселая</title>
+    </section>
+    <section>
+        <date>2014-10-08T14:35:23.745-03:00</date>
+        <id>9771</id>
+        <reports>
+            <report>9738</report>
+            <report>9765</report>
+        </reports>
+        <title>qwre</title>
+    </section>
+    <section>
+        <conference>3</conference>
+        <date>2014-10-01T02:00:00-03:00</date>
+        <id>66184</id>
+        <reports>
+            <report>9737</report>
+        </reports>
+        <title>Первая</title>
+    </section>
+    <section>
+        <conference>3</conference>
+        <date>2014-11-01T16:58:17.903-03:00</date>
+        <id>439</id>
+        <reports>
+            <report>9734</report>
+            <report>9732</report>
+            <report>9730</report>
+        </reports>
+        <title>Second :D</title>
+    </section>
+    <section>
+        <conference>3</conference>
+        <date>2014-11-14T18:27:06.829-03:00</date>
+        <id>2991</id>
+        <reports/>
+        <title>Секция</title>
+    </section>
+    <section>
+        <conference>3</conference>
+        <date>2014-11-22T15:15:04.403-03:00</date>
+        <id>3442</id>
+        <reports/>
+        <title>4</title>
+    </section>
+    <section>
+        <conference>4044</conference>
+        <date>2014-11-30T17:42:31.682-03:00</date>
+        <id>7045</id>
+        <reports>
+            <report>9733</report>
+        </reports>
+        <title>asfasff</title>
     </section>
 </sections>

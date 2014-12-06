@@ -1,21 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <section-report-data>
     <section-report-break>
-        <break-time>0</break-time>
+        <break-time>5</break-time>
+        <chairman-time>3</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>25</plenary-time>
+        <report-time>15</report-time>
+        <section-id>9767</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>5</break-time>
         <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
         <plenary-time>0</plenary-time>
-        <report-time>0</report-time>
-		<coffee-break-num>921</coffee-break-num>
-		<coffee-break-time>921</coffee-break-time>
-        <section-id>12</section-id>
+        <report-time>15</report-time>
+        <section-id>9768</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>5</break-time>
+        <chairman-time>20</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>20</plenary-time>
+        <report-time>10</report-time>
+        <section-id>9769</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>5</break-time>
+        <chairman-time>45</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>30</plenary-time>
+        <report-time>10</report-time>
+        <section-id>9770</section-id>
     </section-report-break>
     <section-report-break>
         <break-time>0</break-time>
         <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
         <plenary-time>0</plenary-time>
         <report-time>0</report-time>
-		<coffee-break-num>921</coffee-break-num>
-		<coffee-break-time>921</coffee-break-time>
-        <section-id>921</section-id>
+        <section-id>9771</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>5</break-time>
+        <chairman-time>115</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>30</plenary-time>
+        <report-time>15</report-time>
+        <section-id>66184</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>0</break-time>
+        <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>0</plenary-time>
+        <report-time>0</report-time>
+        <section-id>439</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>0</break-time>
+        <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>0</plenary-time>
+        <report-time>0</report-time>
+        <section-id>2991</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>0</break-time>
+        <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>0</plenary-time>
+        <report-time>0</report-time>
+        <section-id>3442</section-id>
+    </section-report-break>
+    <section-report-break>
+        <break-time>0</break-time>
+        <chairman-time>0</chairman-time>
+        <coffee-break-num>0</coffee-break-num>
+        <coffee-break-time>0</coffee-break-time>
+        <plenary-time>0</plenary-time>
+        <report-time>0</report-time>
+        <section-id>7045</section-id>
     </section-report-break>
 </section-report-data>

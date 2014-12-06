@@ -189,25 +189,38 @@ public class TableEditorPart {
                     @Override
                     public void setCurrentValue(final Object value) {
                         if (value != null) {
-                            Conference conference = (Conference)  value;
-                            conferenceService.addParticipant(conference, participant);
-                            participant.setConference(conference);
-                            
+                            if (!util.translate(DEFAULT).equals(((Conference) value).getTitle())) {
+                                Conference conference = (Conference)  value;
+                                conferenceService.addParticipant(conference, participant);
+                                participant.setConference(conference);                                 
+                            } else {
+                                if ( participant.getConference() != null 
+                                        && participant.getConference().getParticipants() != null) {
+                                      
+                                    participant.getConference().getParticipants().remove(participant);
+                                    participant.setConference(null); 
+                                }
+                            }                           
                         }
                     }
 
                     @Override
                     public Object getValues() {
-
-                        return conferenceService.getConferences();                        
+                        List<Conference> conferences = new ArrayList<>();
+                        Conference conference = new Conference();
+                        conference.setTitle(util.translate(DEFAULT));
+                        conferences.add(conference);
+                        if (conferenceService.getConferences() !=null) {
+                            conferences.addAll(conferenceService.getConferences());                            
+                        }
+                        return conferences;                        
                         
                     }
 
                     @Override
                     public Object getCurrentValue() {
                         
-                        return participant.getConference() != null ? 
-                                participant.getConference().getTitle() : util.translate(DEFAULT);
+                        return participant.getConference();
                     }
                 });
     }
