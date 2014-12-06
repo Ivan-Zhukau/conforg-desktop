@@ -51,7 +51,7 @@ public class SkeletonCreator {
     private int getCycle(final int sons, final int coffeBreakNumber) {
 
         int cycle = sons;
-        if (coffeBreakNumber != 0) {
+        if (coffeBreakNumber >= 0) {
             cycle = sons / (coffeBreakNumber + 1);
         } else {
             return sons;

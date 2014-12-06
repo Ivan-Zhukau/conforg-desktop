@@ -221,6 +221,10 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public void addParticipant(Conference conf, Participant participant) {
 
+        Conference oldConf = participant.getConference();
+        if (oldConf != null) {
+            oldConf.getParticipants().remove(participant);
+        }
         conf.getParticipants().add(participant);
         participant.setConference(conf);
     }

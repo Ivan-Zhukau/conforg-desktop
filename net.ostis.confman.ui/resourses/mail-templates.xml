@@ -1,36 +1,31 @@
 <email-templates>
-	<email-template>
-		<name>Test</name>
-		<path>Test.vm</path>
-		<language>ruRU</language>
-	</email-template>
-	<email-template>
-		<name>Empty message</name>
+    <email-template>
+		<name>Пустой шаблон</name>
 		<path>Empty message.vm</path>
 		<language>ruRU</language>
 	</email-template>
 	<email-template>
-		<name>To refuse publication</name>
+		<name>Отказ в публикации</name>
 		<path>To refuse publication.vm</path>
 		<language>ruRU</language>
 	</email-template>
 	<email-template>
-		<name>Request for additional information</name>
+		<name>Запрос дополнительных документов</name>
 		<path>Request for additional information.vm</path>
 		<language>ruRU</language>
 	</email-template>
 	<email-template>
-		<name>Personal invitation</name>
+		<name>Персональное приглашение с подтверждением публикации</name>
 		<path>Personal invitation.vm</path>
 		<language>ruRU</language>
 	</email-template>
 	<email-template>
-		<name>An acknowledgment of receipt of materials</name>
+		<name>Подтверждение принятия материалов для участия в конференции</name>
 		<path>An acknowledgment of receipt of materials.vm</path>
 		<language>ruRU</language>
 	</email-template>
 	<email-template>
-		<name>Inconsistency registration rules</name>
+		<name>Полное несоответствие правилам оформления</name>
 		<path>Inconsistency registration rules.vm</path>
 		<language>ruRU</language>
 	</email-template>

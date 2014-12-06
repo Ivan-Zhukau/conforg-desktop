@@ -98,4 +98,11 @@ public class Conference {
 
         this.conferenceVenue = conferenceVenue;
     }
+    
+    @Override
+    public String toString() {
+        
+        return this.title != null ? this.title : "";
+    }
+    
 }

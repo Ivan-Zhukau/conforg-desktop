@@ -1,24 +1,30 @@
 package net.ostis.confman.ui.participant;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import net.ostis.confman.services.ConferenceService;
 import net.ostis.confman.services.ParticipantService;
 import net.ostis.confman.services.ServiceLocator;
 import net.ostis.confman.services.common.model.AcademicInformation;
 import net.ostis.confman.services.common.model.Address;
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.ContactInformation;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
 import net.ostis.confman.services.common.model.WorkplaceInformation;
 import net.ostis.confman.ui.common.Localizable;
+import net.ostis.confman.ui.common.component.ComboBoxField;
 import net.ostis.confman.ui.common.component.EditableComponent;
 import net.ostis.confman.ui.common.component.StringDataConverter;
 import net.ostis.confman.ui.common.component.TextField;
 import net.ostis.confman.ui.common.component.ValueBinder;
+import net.ostis.confman.ui.common.component.ValueComboBinder;
 import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
@@ -40,8 +46,10 @@ import org.eclipse.swt.widgets.Composite;
 public class TableEditorPart {
 
     private static final int LAYOUT_COL_COUNT = 1;
+    private static final String DEFAULT = "none";
 
     private enum TableFields implements Localizable {
+        CONFERENCE("conference"),
         INFORMATION_OF_AUTHOR_OF_ARTICLE("informationOfAuthorArticle"),
         SURNAME("surname"),
         NAME("name"),
@@ -88,7 +96,7 @@ public class TableEditorPart {
 
     }
 
-    private final Map<TableFields, EditableComponent<TextField>> editFields;
+    private final Map<TableFields, EditableComponent<?>> editFields;
 
     @Inject
     private ESelectionService                                    selectionService;
@@ -98,6 +106,8 @@ public class TableEditorPart {
 
     @Inject
     private EPartService                                         partService;
+
+    private ConferenceService                               conferenceService;
 
     public TableEditorPart() {
 
@@ -111,6 +121,9 @@ public class TableEditorPart {
         final MPart extraAuthorPart = this.partService
                 .findPart("net.ostis.confman.ui.part.0");
         this.partService.showPart(extraAuthorPart, PartState.ACTIVATE);
+
+        this.conferenceService = (ConferenceService) ServiceLocator
+                .getInstance().getService(ConferenceService.class);
 
         this.selectionService.addSelectionListener(new ISelectionListener() {
 
@@ -144,6 +157,7 @@ public class TableEditorPart {
         final WorkplaceInformation workplaceInformation = person.getWorkplace();
         final ContactInformation contactInfo = person.getContacts();
         final AcademicInformation academicInfo = person.getDegree();
+        applyConferenceBinder(participant);
         applySurnameBinder(person);
         applyNameBinder(person);
         applyPatronymicBinder(person);
@@ -156,6 +170,48 @@ public class TableEditorPart {
         applyAfflicationBinder(workplaceInformation);
         applyPositionBinder(workplaceInformation);
     }
+
+
+    
+    private void applyConferenceBinder(final Participant participant) {
+
+        this.editFields.get(TableFields.CONFERENCE).setValueComboBinder(
+                new ValueComboBinder() {
+
+                    final LocalizationUtil util = LocalizationUtil
+                                                        .getInstance();
+
+                    @Override
+                    public void setValues(final Object value) {
+                        
+                    }
+
+                    @Override
+                    public void setCurrentValue(final Object value) {
+                        if (value != null) {
+                            Conference conference = (Conference)  value;
+                            conferenceService.addParticipant(conference, participant);
+                            participant.setConference(conference);
+                            
+                        }
+                    }
+
+                    @Override
+                    public Object getValues() {
+
+                        return conferenceService.getConferences();                        
+                        
+                    }
+
+                    @Override
+                    public Object getCurrentValue() {
+                        
+                        return participant.getConference() != null ? 
+                                participant.getConference().getTitle() : util.translate(DEFAULT);
+                    }
+                });
+    }
+
 
     private void applySurnameBinder(final Person personInfo) {
 
@@ -370,6 +426,9 @@ public class TableEditorPart {
         parent.setLayout(new GridLayout(LAYOUT_COL_COUNT, true));
 
         final StringDataConverter stringConverter = new StringDataConverter();
+        this.editFields.put(TableFields.CONFERENCE, new ComboBoxField(
+                parent, util.translate(TableFields.CONFERENCE),
+                new String[0], null).setDataConverter(stringConverter));
         this.editFields.put(TableFields.SURNAME,
                 new TextField(parent, util.translate(TableFields.SURNAME))
                         .setDataConverter(stringConverter));
@@ -389,7 +448,6 @@ public class TableEditorPart {
          * translateItems(AcademicTitle.values(), util))
          * .setDataConverter(stringConverter);
          */
-
         this.editFields.put(TableFields.ACADEMIC_DEGREE, new TextField(parent,
                 util.translate(TableFields.ACADEMIC_DEGREE))
                 .setDataConverter(stringConverter));

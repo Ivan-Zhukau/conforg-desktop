@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import net.ostis.confman.model.registrationform.ArticleInformation;
 import net.ostis.confman.services.BuildTemplateService;
 import net.ostis.confman.services.EmailService;
 import net.ostis.confman.services.SafeConversionService;
@@ -25,6 +24,7 @@ import net.ostis.confman.ui.common.component.util.LocalizationUtil;
 import net.ostis.confman.ui.conference.ConferenceTopics;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -62,7 +62,7 @@ public class TemplatesEditorPart {
         CATEGORY("participantTableCategory"),
         SECTION("participantTableSection"),
         PREVIOUS_STEP("previousStep"),
-        NEXT_STEP("nextStep"),
+        NEXT_STEP("generateEmailedParticipantsExcel"),
         SAVE("save"),
         CURRENT_TEMPLATE_NAME("currentTemplateName"),
         NON_TEMPLATE_MESSAGE("nonTemplateMessage");
@@ -88,6 +88,9 @@ public class TemplatesEditorPart {
 
     @Inject
     private ESelectionService     selectionService;
+    
+    @Inject
+    private IEventBroker eventBroker;
 
     private Text                  textArea;
 
@@ -281,18 +284,8 @@ public class TemplatesEditorPart {
             }
 
             private void onSelection() {
-
-                final IStructuredSelection selection = (IStructuredSelection) TemplatesEditorPart.this.table
-                        .getViewer().getSelection();
-                final Object selectedElement = selection.getFirstElement();
-                if (selectedElement instanceof EmailedParticipant) {
-                    onNewSelection((EmailedParticipant) selectedElement);
-
-                } else {
-
-                    // TODO vadim-mihalovski: add warning dialog: empty
-                    // selection
-                }
+                eventBroker.post(
+                        ConferenceTopics.SAVE_EMAILED_PARTICIPANTS_TO_EXCEL, null);
             }
         });
     }

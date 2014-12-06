@@ -1,8 +1,13 @@
 package net.ostis.confman.services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SafeConversionServiceImpl implements SafeConversionService {
+
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat(DATE_PATTERN);
 
     @Override
     public String safeConverter(final String value) {
@@ -19,7 +24,7 @@ public class SafeConversionServiceImpl implements SafeConversionService {
     @Override
     public String safeConverter(final Date date) {
 
-        return date == null ? "" : date.toString();
+        return date == null ? "" : DATE_FORMAT.format(date);
     }
 
     @Override

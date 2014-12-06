@@ -2,6 +2,7 @@ package net.ostis.confman.ui.common.component;
 
 import java.util.List;
 
+import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Participant;
 
 import org.eclipse.swt.SWT;
@@ -79,6 +80,10 @@ public class ComboBoxField extends Composite implements
         }
         if (((List<Object>) object).get(0) instanceof String) {
             final ItemHelper<String> helper = new ItemHelper<String>();
+            itemsValues = helper.getItems(object);
+        }
+        if (((List<Object>) object).get(0) instanceof Conference) {
+            final ItemHelper<Conference> helper = new ItemHelper<Conference>();
             itemsValues = helper.getItems(object);
         }
 
