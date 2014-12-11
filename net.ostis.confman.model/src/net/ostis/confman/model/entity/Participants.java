@@ -1,5 +1,6 @@
 package net.ostis.confman.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -13,6 +14,7 @@ public class Participants {
     public Participants() {
 
         super();
+        participants = new ArrayList<Participant>();
     }
 
     @XmlElement(name = "participant")

@@ -257,7 +257,6 @@ public class NewParticipantPart {
         for (final TextFields field : this.editFields.keySet()) {
             this.editFields.get(field).apply();
         }
-        this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
         final ParticipantService participantService = (ParticipantService) ServiceLocator
                 .getInstance().getService(ParticipantService.class);
         if (!"".equals(this.newParticipant.getPerson().getFirstName())
@@ -269,5 +268,6 @@ public class NewParticipantPart {
             this.newParticipant = new Participant();
             bind(this.newParticipant);
         }
+        this.eventBroker.post(ConferenceTopics.TABLE_UPDATE, null);
     }
 }

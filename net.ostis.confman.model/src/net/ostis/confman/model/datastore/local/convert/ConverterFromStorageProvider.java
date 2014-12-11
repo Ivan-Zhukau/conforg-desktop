@@ -101,6 +101,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Person> personsMap) {
 
         final List<net.ostis.confman.services.common.model.Person> listPersons = new ArrayList<>();
+        if (persons == null) {
+            return listPersons;
+        }
         for (final Person temp : persons) {
             final net.ostis.confman.services.common.model.Person person = new net.ostis.confman.services.common.model.Person();
             person.setFirstName(temp.getFirstName());
@@ -172,6 +175,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Participant> participantsMap) {
 
         final List<net.ostis.confman.services.common.model.Participant> listParticipants = new ArrayList<>();
+        if (participants == null) {
+            return listParticipants;
+        }
         for (final Participant temp : participants) {
             final net.ostis.confman.services.common.model.Participant participant = new net.ostis.confman.services.common.model.Participant();
             participant.setPerson(personsMap.get(temp.getPersonId()));
@@ -212,6 +218,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Report> reportsMap,
             final List<Participant> listParticipants) {
 
+        if (listParticipants == null) {
+            return;
+        }
         for (final Participant temp : listParticipants) {
             final net.ostis.confman.services.common.model.Participant participant = participantsMap
                     .get(temp.getId());
@@ -264,6 +273,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Report> reportsMap) {
 
         final List<net.ostis.confman.services.common.model.Report> listReports = new ArrayList<>();
+        if (reports == null) {
+            return listReports;
+        }
         for (final Report temp : reports) {
             final net.ostis.confman.services.common.model.Report report = new net.ostis.confman.services.common.model.Report();
             report.setTitle(temp.getTitle());
@@ -294,6 +306,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Report> reportsMap,
             final List<Report> reports) {
 
+        if (reports == null) {
+            return;
+        }
         for (final Report temp : reports) {
             final net.ostis.confman.services.common.model.Report report = reportsMap
                     .get(temp.getId());
@@ -318,6 +333,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Report> reportsMap) {
 
         final List<net.ostis.confman.services.common.model.Section> sectionsList = new ArrayList<>();
+        if (sections == null) {
+            return sectionsList;
+        }
         for (final Section temp : sections) {
             final net.ostis.confman.services.common.model.Section section = new net.ostis.confman.services.common.model.Section();
             section.setTitle(temp.getTitle());
@@ -335,6 +353,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Section> sectionsMap,
             final List<Section> sections) {
 
+        if (sections == null) {
+            return;
+        }
         for (final Section temp : sections) {
             final net.ostis.confman.services.common.model.Section section = sectionsMap
                     .get(temp.getId());
@@ -361,6 +382,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Section> sectionsMap) {
 
         final List<net.ostis.confman.services.common.model.Conference> listConferences = new ArrayList<>();
+        if (conferences == null) {
+            return listConferences;
+        }
         for (final Conference temp : conferences) {
             final net.ostis.confman.services.common.model.Conference conference = new net.ostis.confman.services.common.model.Conference();
             conference.setTitle(temp.getTitle());
@@ -432,6 +456,9 @@ public class ConverterFromStorageProvider {
             final Map<Long, net.ostis.confman.services.common.model.Section> sectionsMap) {
 
         final List<SectionSettings> sectionSettingsList = new ArrayList<>();
+        if (sectionBreaks == null) {
+            return sectionSettingsList;
+        }
         for (final SectionBreaks sectionSettings : sectionBreaks) {
             final SectionSettings settings = convertSectionSettings(
                     sectionSettings, sectionsMap);
