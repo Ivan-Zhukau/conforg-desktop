@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="WINDOWS-1251" standalone="no"?>
 <eclipse-userlibraries version="2">
     <library name="jaxb" systemlibrary="false">
         <archive javadoc="jar:platform:/resource/net.ostis.confman.lib/jaxb/jaxb-core-javadoc.jar!/" path="/net.ostis.confman.lib/jaxb/jaxb-core.jar" source="/net.ostis.confman.lib/jaxb/jaxb-core.src.zip"/>
@@ -24,5 +24,10 @@
     </library>
     <library name="swt" systemlibrary="false">
         <archive path="/net.ostis.confman.lib/swt/swt.jar"/>
+    </library>
+    <library name="velocity" systemlibrary="false">
+        <archive path="/net.ostis.confman.lib/velocity-1.7/commons-collections-3.2.1.jar"/>
+        <archive path="/net.ostis.confman.lib/velocity-1.7/commons-lang-2.6.jar"/>
+        <archive path="/net.ostis.confman.lib/velocity-1.7/velocity-1.7.jar"/>
     </library>
 </eclipse-userlibraries>

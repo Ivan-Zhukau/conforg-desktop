@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="net.ostis.confman.ui" uid="net.ostis.confman.ui.product" id="net.ostis.confman.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="net.ostis.confman.ui" uid="net.ostis.confman.ui.product" id="net.ostis.confman.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.4.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
       <programArgs>-clearPersistedState
--nl ru</programArgs>
+-vm
+../jre8/bin/javaw.exe
+-Xdebug 
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787</programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
       <vmArgsWin>-Dfile.encoding=UTF-8</vmArgsWin>
    </launcherArgs>
