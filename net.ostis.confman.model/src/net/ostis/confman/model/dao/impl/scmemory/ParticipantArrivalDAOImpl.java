@@ -1,13 +1,11 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
 import java.util.List;
-import java.util.UUID;
 
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.ParticipantArrivalDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
-import net.ostis.confman.model.dao.impl.scmemory.PersonDAOImpl.ScChildRelations;
 import net.ostis.confman.model.entity.scmemory.ParticipantArrival;
 
 
