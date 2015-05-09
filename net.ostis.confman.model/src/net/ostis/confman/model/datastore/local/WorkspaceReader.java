@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Workspace;
+import net.ostis.confman.model.entity.xml.Workspace;
 
 
 public class WorkspaceReader extends Reader implements Callable<Workspace> {

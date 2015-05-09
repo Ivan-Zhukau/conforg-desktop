@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.Address;
-import net.ostis.confman.model.entity.Conference;
-import net.ostis.confman.model.entity.Conferences;
+import net.ostis.confman.model.entity.xml.Address;
+import net.ostis.confman.model.entity.xml.Conference;
+import net.ostis.confman.model.entity.xml.Conferences;
 import net.ostis.confman.services.common.model.FullModel;
 
 class ConferenceConverter {

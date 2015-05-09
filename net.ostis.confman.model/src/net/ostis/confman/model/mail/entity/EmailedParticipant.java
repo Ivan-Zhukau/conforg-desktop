@@ -1,6 +1,6 @@
 package net.ostis.confman.model.mail.entity;
 
-import net.ostis.confman.model.entity.Participant;
+import net.ostis.confman.model.entity.xml.Participant;
 
 public class EmailedParticipant {
 

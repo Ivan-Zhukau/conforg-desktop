@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Participants;
+import net.ostis.confman.model.entity.xml.Participants;
 
 public class ParticipantWriter extends Writer implements Runnable {
 

@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Conferences;
+import net.ostis.confman.model.entity.xml.Conferences;
 
 public class ConferenceWriter extends Writer implements Runnable {
 

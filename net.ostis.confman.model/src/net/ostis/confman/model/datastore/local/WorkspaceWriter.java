@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Workspace;
+import net.ostis.confman.model.entity.xml.Workspace;
 
 
 public class WorkspaceWriter extends Writer implements Runnable {

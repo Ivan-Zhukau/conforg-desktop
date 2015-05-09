@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Reports;
+import net.ostis.confman.model.entity.xml.Reports;
 
 public class ReportWriter extends Writer implements Runnable {
 

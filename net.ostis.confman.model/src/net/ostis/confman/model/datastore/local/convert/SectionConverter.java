@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.Section;
-import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.model.entity.xml.Section;
+import net.ostis.confman.model.entity.xml.Sections;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 

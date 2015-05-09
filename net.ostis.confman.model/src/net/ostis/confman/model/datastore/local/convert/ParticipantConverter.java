@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.Address;
-import net.ostis.confman.model.entity.Participant;
-import net.ostis.confman.model.entity.ParticipantArrival;
-import net.ostis.confman.model.entity.ParticipantRole;
-import net.ostis.confman.model.entity.Participants;
-import net.ostis.confman.model.entity.ParticipationInConference;
+import net.ostis.confman.model.entity.xml.Address;
+import net.ostis.confman.model.entity.xml.Participant;
+import net.ostis.confman.model.entity.xml.ParticipantArrival;
+import net.ostis.confman.model.entity.xml.ParticipantRole;
+import net.ostis.confman.model.entity.xml.Participants;
+import net.ostis.confman.model.entity.xml.ParticipationInConference;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Report;
 

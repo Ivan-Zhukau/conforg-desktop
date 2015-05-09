@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Persons;
+import net.ostis.confman.model.entity.xml.Persons;
 
 public class PersonReader extends Reader implements Callable<Persons> {
 

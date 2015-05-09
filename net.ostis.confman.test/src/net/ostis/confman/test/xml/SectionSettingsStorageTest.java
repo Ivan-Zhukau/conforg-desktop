@@ -3,8 +3,8 @@ package net.ostis.confman.test.xml;
 import java.util.Arrays;
 
 import net.ostis.confman.model.datastore.local.SectionSettingsWriter;
-import net.ostis.confman.model.entity.SectionBreaks;
-import net.ostis.confman.model.entity.SectionSettings;
+import net.ostis.confman.model.entity.xml.SectionBreaks;
+import net.ostis.confman.model.entity.xml.SectionSettings;
 
 import org.junit.Test;
 

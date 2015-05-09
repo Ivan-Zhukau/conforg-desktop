@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.SectionBreaks;
-import net.ostis.confman.model.entity.SectionSettings;
+import net.ostis.confman.model.entity.xml.SectionBreaks;
+import net.ostis.confman.model.entity.xml.SectionSettings;
 import net.ostis.confman.services.common.model.FullModel;
 
 public class SectionSettingsConverter {

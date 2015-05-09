@@ -1,4 +1,4 @@
-package net.ostis.confman.model.entity;
+package net.ostis.confman.model.entity.xml;
 
 import java.util.List;
 

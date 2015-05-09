@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 import net.ostis.confman.model.datastore.local.ConferenceWriter;
-import net.ostis.confman.model.entity.Conference;
-import net.ostis.confman.model.entity.Conferences;
+import net.ostis.confman.model.entity.xml.Conference;
+import net.ostis.confman.model.entity.xml.Conferences;
 
 import org.junit.Test;
 

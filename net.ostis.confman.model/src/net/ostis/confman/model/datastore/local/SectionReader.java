@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.model.entity.xml.Sections;
 
 public class SectionReader extends Reader implements Callable<Sections> {
 

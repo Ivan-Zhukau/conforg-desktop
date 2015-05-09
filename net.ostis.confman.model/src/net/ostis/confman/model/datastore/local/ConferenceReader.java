@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Conferences;
+import net.ostis.confman.model.entity.xml.Conferences;
 
 public class ConferenceReader extends Reader implements Callable<Conferences> {
 

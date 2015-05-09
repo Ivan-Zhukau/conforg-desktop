@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.SectionSettings;
+import net.ostis.confman.model.entity.xml.SectionSettings;
 
 public class SectionSettingsWriter extends Writer implements Runnable {
 

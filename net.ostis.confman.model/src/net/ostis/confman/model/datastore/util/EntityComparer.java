@@ -15,7 +15,7 @@ public class EntityComparer {
     }
 
     public boolean isSamePersons(final Person person,
-            final net.ostis.confman.model.entity.Person storedPerson) {
+            final net.ostis.confman.model.entity.xml.Person storedPerson) {
 
         if (person.getFirstName() == null || person.getPatronymic() == null
                 || person.getSurname() == null
@@ -30,7 +30,7 @@ public class EntityComparer {
     }
 
     public boolean isSameParticipants(final Participant participant,
-            final net.ostis.confman.model.entity.Participant storedParticipant) {
+            final net.ostis.confman.model.entity.xml.Participant storedParticipant) {
 
         final StorageProvider storageProvider = StorageProvider.getInstance();
         if (participant.getConference() != null
@@ -48,7 +48,7 @@ public class EntityComparer {
     }
 
     public boolean isSameReports(final Report report,
-            final net.ostis.confman.model.entity.Report storedReport) {
+            final net.ostis.confman.model.entity.xml.Report storedReport) {
 
         final StorageProvider storageProvider = StorageProvider.getInstance();
         if (report.getMainAuthor() != null && report.getTitle() != null
@@ -62,7 +62,7 @@ public class EntityComparer {
     }
 
     public boolean isSameSections(final Section section,
-            final net.ostis.confman.model.entity.Section storedSection) {
+            final net.ostis.confman.model.entity.xml.Section storedSection) {
 
         final StorageProvider storageProvider = StorageProvider.getInstance();
         if (section.getConference() != null && section.getTitle() != null
@@ -77,7 +77,7 @@ public class EntityComparer {
     }
 
     public boolean isSameConferences(final Conference conference,
-            final net.ostis.confman.model.entity.Conference storedConference) {
+            final net.ostis.confman.model.entity.xml.Conference storedConference) {
 
         if (conference.getTitle() != null && conference.getStartDate() != null
                 && storedConference.getTitle() != null

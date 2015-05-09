@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 import net.ostis.confman.model.datastore.local.SectionWriter;
-import net.ostis.confman.model.entity.Section;
-import net.ostis.confman.model.entity.Sections;
+import net.ostis.confman.model.entity.xml.Section;
+import net.ostis.confman.model.entity.xml.Sections;
 
 import org.junit.Test;
 

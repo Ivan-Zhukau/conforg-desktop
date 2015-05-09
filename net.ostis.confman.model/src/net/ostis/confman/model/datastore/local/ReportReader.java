@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Reports;
+import net.ostis.confman.model.entity.xml.Reports;
 
 public class ReportReader extends Reader implements Callable<Reports> {
 

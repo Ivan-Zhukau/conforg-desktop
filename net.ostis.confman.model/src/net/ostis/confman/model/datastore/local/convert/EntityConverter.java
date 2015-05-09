@@ -2,13 +2,13 @@ package net.ostis.confman.model.datastore.local.convert;
 
 import net.ostis.confman.model.datastore.StorageProvider;
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.Conferences;
-import net.ostis.confman.model.entity.Participants;
-import net.ostis.confman.model.entity.Persons;
-import net.ostis.confman.model.entity.Reports;
-import net.ostis.confman.model.entity.SectionSettings;
-import net.ostis.confman.model.entity.Sections;
-import net.ostis.confman.model.entity.Workspace;
+import net.ostis.confman.model.entity.xml.Conferences;
+import net.ostis.confman.model.entity.xml.Participants;
+import net.ostis.confman.model.entity.xml.Persons;
+import net.ostis.confman.model.entity.xml.Reports;
+import net.ostis.confman.model.entity.xml.SectionSettings;
+import net.ostis.confman.model.entity.xml.Sections;
+import net.ostis.confman.model.entity.xml.Workspace;
 import net.ostis.confman.services.common.model.FullModel;
 
 public class EntityConverter {
@@ -25,7 +25,7 @@ public class EntityConverter {
 
     private SectionSettings sectionSettings;
 
-    private Workspace workspace;
+    private Workspace       workspace;
 
     public EntityConverter() {
 

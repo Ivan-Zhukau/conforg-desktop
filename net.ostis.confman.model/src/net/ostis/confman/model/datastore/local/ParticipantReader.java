@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import javax.xml.bind.JAXBException;
 
-import net.ostis.confman.model.entity.Participants;
+import net.ostis.confman.model.entity.xml.Participants;
 
 public class ParticipantReader extends Reader implements Callable<Participants> {
 

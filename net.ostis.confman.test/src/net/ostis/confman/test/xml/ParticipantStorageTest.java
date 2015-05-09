@@ -3,11 +3,11 @@ package net.ostis.confman.test.xml;
 import java.util.Arrays;
 
 import net.ostis.confman.model.datastore.local.ParticipantWriter;
-import net.ostis.confman.model.entity.Address;
-import net.ostis.confman.model.entity.Participant;
-import net.ostis.confman.model.entity.ParticipantArrival;
-import net.ostis.confman.model.entity.ParticipantRole;
-import net.ostis.confman.model.entity.Participants;
+import net.ostis.confman.model.entity.xml.Address;
+import net.ostis.confman.model.entity.xml.Participant;
+import net.ostis.confman.model.entity.xml.ParticipantArrival;
+import net.ostis.confman.model.entity.xml.ParticipantRole;
+import net.ostis.confman.model.entity.xml.Participants;
 
 import org.junit.Test;
 

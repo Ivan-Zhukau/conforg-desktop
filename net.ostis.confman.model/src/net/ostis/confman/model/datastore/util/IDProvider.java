@@ -39,7 +39,7 @@ public class IDProvider {
 
     private void formConferences(
             final List<Conference> conferences,
-            final List<net.ostis.confman.model.entity.Conference> storedConferences) {
+            final List<net.ostis.confman.model.entity.xml.Conference> storedConferences) {
 
         for (final Conference conference : conferences) {
             final long id = findConferenceId(conference, storedConferences);
@@ -48,9 +48,9 @@ public class IDProvider {
     }
 
     private long findConferenceId(final Conference conference,
-            final List<net.ostis.confman.model.entity.Conference> conferences) {
+            final List<net.ostis.confman.model.entity.xml.Conference> conferences) {
 
-        for (final net.ostis.confman.model.entity.Conference storedConference : conferences) {
+        for (final net.ostis.confman.model.entity.xml.Conference storedConference : conferences) {
             if (this.comparer.isSameConferences(conference, storedConference)) {
                 return storedConference.getId();
             }
@@ -59,7 +59,7 @@ public class IDProvider {
     }
 
     private void formSections(final List<Section> sections,
-            final List<net.ostis.confman.model.entity.Section> storedSections) {
+            final List<net.ostis.confman.model.entity.xml.Section> storedSections) {
 
         for (final Section section : sections) {
             final long id = findSectionId(section, storedSections);
@@ -68,9 +68,9 @@ public class IDProvider {
     }
 
     private long findSectionId(final Section section,
-            final List<net.ostis.confman.model.entity.Section> sections) {
+            final List<net.ostis.confman.model.entity.xml.Section> sections) {
 
-        for (final net.ostis.confman.model.entity.Section storedSection : sections) {
+        for (final net.ostis.confman.model.entity.xml.Section storedSection : sections) {
             if (this.comparer.isSameSections(section, storedSection)) {
                 return storedSection.getId();
             }
@@ -79,7 +79,7 @@ public class IDProvider {
     }
 
     private void formReports(final List<Report> reports,
-            final List<net.ostis.confman.model.entity.Report> storedReports) {
+            final List<net.ostis.confman.model.entity.xml.Report> storedReports) {
 
         for (final Report report : reports) {
             final long id = findPersonId(report, storedReports);
@@ -88,13 +88,13 @@ public class IDProvider {
     }
 
     private long findPersonId(final Report report,
-            final List<net.ostis.confman.model.entity.Report> reports) {
+            final List<net.ostis.confman.model.entity.xml.Report> reports) {
 
         final Long existingId = this.idStorage.get(report);
         if (existingId != null) {
             return existingId;
         }
-        for (final net.ostis.confman.model.entity.Report storedReport : reports) {
+        for (final net.ostis.confman.model.entity.xml.Report storedReport : reports) {
             if (this.comparer.isSameReports(report, storedReport)) {
                 return storedReport.getId();
             }
@@ -103,7 +103,7 @@ public class IDProvider {
     }
 
     private void formPersons(final List<Person> persons,
-            final List<net.ostis.confman.model.entity.Person> storedPersons) {
+            final List<net.ostis.confman.model.entity.xml.Person> storedPersons) {
 
         for (final Person person : persons) {
             final long id = findPersonId(person, storedPersons);
@@ -112,13 +112,13 @@ public class IDProvider {
     }
 
     private long findPersonId(final Person person,
-            final List<net.ostis.confman.model.entity.Person> persons) {
+            final List<net.ostis.confman.model.entity.xml.Person> persons) {
 
         final Long existingId = this.idStorage.get(person);
         if (existingId != null) {
             return existingId;
         }
-        for (final net.ostis.confman.model.entity.Person storedPerson : persons) {
+        for (final net.ostis.confman.model.entity.xml.Person storedPerson : persons) {
             if (this.comparer.isSamePersons(person, storedPerson)) {
                 return storedPerson.getId();
             }
@@ -128,7 +128,7 @@ public class IDProvider {
 
     private void formParticipants(
             final List<Participant> participants,
-            final List<net.ostis.confman.model.entity.Participant> storedParticipants) {
+            final List<net.ostis.confman.model.entity.xml.Participant> storedParticipants) {
 
         for (final Participant participant : participants) {
             final long id = findParticipantId(participant, storedParticipants);
@@ -137,13 +137,13 @@ public class IDProvider {
     }
 
     private long findParticipantId(final Participant participant,
-            final List<net.ostis.confman.model.entity.Participant> participants) {
+            final List<net.ostis.confman.model.entity.xml.Participant> participants) {
 
         final Long existingId = this.idStorage.get(participant);
         if (existingId != null) {
             return existingId;
         }
-        for (final net.ostis.confman.model.entity.Participant storedParticipant : participants) {
+        for (final net.ostis.confman.model.entity.xml.Participant storedParticipant : participants) {
             if (this.comparer
                     .isSameParticipants(participant, storedParticipant)) {
                 return storedParticipant.getId();

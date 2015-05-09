@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.AcademicInformation;
-import net.ostis.confman.model.entity.Address;
-import net.ostis.confman.model.entity.ContactInformation;
-import net.ostis.confman.model.entity.Person;
-import net.ostis.confman.model.entity.Persons;
-import net.ostis.confman.model.entity.WorkplaceInformation;
+import net.ostis.confman.model.entity.xml.AcademicInformation;
+import net.ostis.confman.model.entity.xml.Address;
+import net.ostis.confman.model.entity.xml.ContactInformation;
+import net.ostis.confman.model.entity.xml.Person;
+import net.ostis.confman.model.entity.xml.Persons;
+import net.ostis.confman.model.entity.xml.WorkplaceInformation;
 import net.ostis.confman.services.common.model.FullModel;
 
 public class PersonConverter {

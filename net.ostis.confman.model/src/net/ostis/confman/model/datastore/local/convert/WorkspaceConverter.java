@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ostis.confman.model.datastore.util.IDProvider;
-import net.ostis.confman.model.entity.ConferenceViewState;
-import net.ostis.confman.model.entity.Workspace;
+import net.ostis.confman.model.entity.xml.ConferenceViewState;
+import net.ostis.confman.model.entity.xml.Workspace;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.FullModel;
 
