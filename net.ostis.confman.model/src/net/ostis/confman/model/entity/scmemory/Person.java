@@ -1,20 +1,22 @@
 package net.ostis.confman.model.entity.scmemory;
 
+import java.util.UUID;
+
 public class Person extends BaseEntity {
 
-    private String               surname;
+    private String surname;
 
-    private String               patronymic;
+    private String patronymic;
 
-    private String               firstName;
+    private String firstName;
 
-    private Address              residence;
+    private UUID   residenceAdrUuid;
 
-    private WorkplaceInformation workplace;
+    private UUID   workplaceUuid;
 
-    private ContactInformation   contacts;
+    private UUID   contactUuid;
 
-    private AcademicInformation  degree;
+    private UUID   academicInfoUuid;
 
     public Person() {
 
@@ -22,17 +24,16 @@ public class Person extends BaseEntity {
     }
 
     public Person(String surname, String patronymic, String firstName,
-            Address residence, WorkplaceInformation workplace,
-            ContactInformation contacts, AcademicInformation degree) {
+            UUID residence, UUID workplace, UUID contacts, UUID degree) {
 
         super();
         this.surname = surname;
         this.patronymic = patronymic;
         this.firstName = firstName;
-        this.residence = residence;
-        this.workplace = workplace;
-        this.contacts = contacts;
-        this.degree = degree;
+        this.residenceAdrUuid = residence;
+        this.workplaceUuid = workplace;
+        this.contactUuid = contacts;
+        this.academicInfoUuid = degree;
     }
 
     public String getSurname() {
@@ -65,43 +66,44 @@ public class Person extends BaseEntity {
         this.firstName = firstName;
     }
 
-    public Address getResidence() {
+    public UUID getResidenceAdrUuid() {
 
-        return this.residence;
+        return residenceAdrUuid;
     }
 
-    public void setResidence(final Address residence) {
+    public void setResidenceAdrUuid(UUID residenceAdrUuid) {
 
-        this.residence = residence;
+        this.residenceAdrUuid = residenceAdrUuid;
     }
 
-    public WorkplaceInformation getWorkplace() {
+    public UUID getWorkplaceUuid() {
 
-        return this.workplace;
+        return workplaceUuid;
     }
 
-    public void setWorkplace(final WorkplaceInformation workplace) {
+    public void setWorkplaceUuid(UUID workplaceUuid) {
 
-        this.workplace = workplace;
+        this.workplaceUuid = workplaceUuid;
     }
 
-    public ContactInformation getContacts() {
+    public UUID getContactUuid() {
 
-        return this.contacts;
+        return contactUuid;
     }
 
-    public void setContacts(final ContactInformation contacts) {
+    public void setContactUuid(UUID contactUuid) {
 
-        this.contacts = contacts;
+        this.contactUuid = contactUuid;
     }
 
-    public AcademicInformation getDegree() {
+    public UUID getAcademicInfoUuid() {
 
-        return this.degree;
+        return academicInfoUuid;
     }
 
-    public void setDegree(final AcademicInformation degree) {
+    public void setAcademicInfoUuid(UUID academicInfoUuid) {
 
-        this.degree = degree;
+        this.academicInfoUuid = academicInfoUuid;
     }
+
 }
