@@ -1,95 +1,107 @@
 package net.ostis.confman.model.entity.scmemory;
 
-import java.util.UUID;
-
 public class Person extends BaseEntity {
 
-    private String firstName;
+    private String               surname;
 
-    private String patronymic;
+    private String               patronymic;
 
-    private String lastName;
+    private String               firstName;
 
-    private UUID   address;
+    private Address              residence;
 
-    private UUID   workplace;
+    private WorkplaceInformation workplace;
 
-    private UUID   academicDegree;
+    private ContactInformation   contacts;
+
+    private AcademicInformation  degree;
 
     public Person() {
 
         super();
     }
 
-    public Person(String firstName, String patronymic, String lastName,
-            UUID address, UUID workplace, UUID academicDegree) {
+    public Person(String surname, String patronymic, String firstName,
+            Address residence, WorkplaceInformation workplace,
+            ContactInformation contacts, AcademicInformation degree) {
 
         super();
-        this.firstName = firstName;
+        this.surname = surname;
         this.patronymic = patronymic;
-        this.lastName = lastName;
-        this.address = address;
-        this.workplace = workplace;
-        this.academicDegree = academicDegree;
-    }
-
-    public String getFirstName() {
-
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-
         this.firstName = firstName;
+        this.residence = residence;
+        this.workplace = workplace;
+        this.contacts = contacts;
+        this.degree = degree;
+    }
+
+    public String getSurname() {
+
+        return this.surname;
+    }
+
+    public void setSurname(final String surname) {
+
+        this.surname = surname;
     }
 
     public String getPatronymic() {
 
-        return patronymic;
+        return this.patronymic;
     }
 
-    public void setPatronymic(String patronymic) {
+    public void setPatronymic(final String patronymic) {
 
         this.patronymic = patronymic;
     }
 
-    public String getLastName() {
+    public String getFirstName() {
 
-        return lastName;
+        return this.firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setFirstName(final String firstName) {
 
-        this.lastName = lastName;
+        this.firstName = firstName;
     }
 
-    public UUID getAddress() {
+    public Address getResidence() {
 
-        return address;
+        return this.residence;
     }
 
-    public void setAddress(UUID address) {
+    public void setResidence(final Address residence) {
 
-        this.address = address;
+        this.residence = residence;
     }
 
-    public UUID getWorkplace() {
+    public WorkplaceInformation getWorkplace() {
 
-        return workplace;
+        return this.workplace;
     }
 
-    public void setWorkplace(UUID workplace) {
+    public void setWorkplace(final WorkplaceInformation workplace) {
 
         this.workplace = workplace;
     }
 
-    public UUID getAcademicDegree() {
+    public ContactInformation getContacts() {
 
-        return academicDegree;
+        return this.contacts;
     }
 
-    public void setAcademicDegree(UUID academicDegree) {
+    public void setContacts(final ContactInformation contacts) {
 
-        this.academicDegree = academicDegree;
+        this.contacts = contacts;
+    }
+
+    public AcademicInformation getDegree() {
+
+        return this.degree;
+    }
+
+    public void setDegree(final AcademicInformation degree) {
+
+        this.degree = degree;
     }
 }

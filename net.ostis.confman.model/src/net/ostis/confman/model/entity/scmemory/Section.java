@@ -8,9 +8,9 @@ public class Section extends BaseEntity {
 
     private String     title;
 
-    private Date       startDate;
+    private Date       date;
 
-    private UUID       conference;
+    private UUID       conferenceId;
 
     private List<UUID> reports;
 
@@ -19,52 +19,52 @@ public class Section extends BaseEntity {
         super();
     }
 
-    public Section(String title, Date startDate, UUID conference,
+    public Section(String title, Date date, UUID conferenceId,
             List<UUID> reports) {
 
         super();
         this.title = title;
-        this.startDate = startDate;
-        this.conference = conference;
+        this.date = date;
+        this.conferenceId = conferenceId;
         this.reports = reports;
     }
 
     public String getTitle() {
 
-        return title;
+        return this.title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
 
         this.title = title;
     }
 
-    public Date getStartDate() {
+    public Date getDate() {
 
-        return startDate;
+        return this.date;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setDate(final Date date) {
 
-        this.startDate = startDate;
+        this.date = date;
     }
 
-    public UUID getConference() {
+    public UUID getConferenceId() {
 
-        return conference;
+        return this.conferenceId;
     }
 
-    public void setConference(UUID conference) {
+    public void setConferenceId(final UUID conferenceId) {
 
-        this.conference = conference;
+        this.conferenceId = conferenceId;
     }
 
     public List<UUID> getReports() {
 
-        return reports;
+        return this.reports;
     }
 
-    public void setReports(List<UUID> reports) {
+    public void setReports(final List<UUID> reports) {
 
         this.reports = reports;
     }

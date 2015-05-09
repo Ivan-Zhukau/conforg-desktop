@@ -5,167 +5,146 @@ import java.util.UUID;
 
 public class Report extends BaseEntity {
 
-    public static class ReportBuilder {
-
-        private String     title;
-
-        private Integer    noOfPages;
-
-        private Boolean    accepted;
-
-        private Boolean    youngScientistReport;
-
-        private UUID       reporter;
-
-        private List<UUID> authors;
-
-        private UUID       section;
-
-        public ReportBuilder setTitle(String title) {
-
-            this.title = title;
-            return this;
-        }
-
-        public ReportBuilder setNoOfPages(Integer noOfPages) {
-
-            this.noOfPages = noOfPages;
-            return this;
-        }
-
-        public ReportBuilder setAccepted(Boolean accepted) {
-
-            this.accepted = accepted;
-            return this;
-        }
-
-        public ReportBuilder setYoungScientistReport(
-                Boolean youngScientistReport) {
-
-            this.youngScientistReport = youngScientistReport;
-            return this;
-        }
-
-        public ReportBuilder setReporter(UUID reporter) {
-
-            this.reporter = reporter;
-            return this;
-        }
-
-        public ReportBuilder setAuthors(List<UUID> authors) {
-
-            this.authors = authors;
-            return this;
-        }
-
-        public ReportBuilder setSection(UUID section) {
-
-            this.section = section;
-            return this;
-        }
-
-        public Report build() {
-
-            return new Report(title, noOfPages, accepted, youngScientistReport,
-                    reporter, authors, section);
-        }
-    }
-
     private String     title;
 
-    private Integer    noOfPages;
+    private UUID       sectionId;
 
-    private Boolean    accepted;
-
-    private Boolean    youngScientistReport;
+    private List<UUID> participants;
 
     private UUID       reporter;
 
-    private List<UUID> authors;
+    private Boolean    youngScientistReport;
 
-    private UUID       section;
+    private Boolean    accepted;
 
-    private Report(String title, Integer noOfPages, Boolean accepted,
-            Boolean youngScientistReport, UUID reporter, List<UUID> authors,
-            UUID section) {
+    private Boolean    canceled;
+
+    private Boolean    participationInContest;
+
+    private Boolean    plenaryReport;
+
+    private String     numberOfPages;
+
+    public Report() {
+
+        super();
+    }
+
+    public Report(String title, UUID sectionId, List<UUID> participants,
+            UUID reporter, Boolean youngScientistReport, Boolean accepted,
+            Boolean canceled, Boolean participationInContest,
+            Boolean plenaryReport, String numberOfPages) {
 
         super();
         this.title = title;
-        this.noOfPages = noOfPages;
-        this.accepted = accepted;
-        this.youngScientistReport = youngScientistReport;
+        this.sectionId = sectionId;
+        this.participants = participants;
         this.reporter = reporter;
-        this.authors = authors;
-        this.section = section;
+        this.youngScientistReport = youngScientistReport;
+        this.accepted = accepted;
+        this.canceled = canceled;
+        this.participationInContest = participationInContest;
+        this.plenaryReport = plenaryReport;
+        this.numberOfPages = numberOfPages;
     }
-
+    
     public String getTitle() {
 
-        return title;
+        return this.title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
 
         this.title = title;
     }
 
-    public Integer getNoOfPages() {
+    public UUID getSectionId() {
 
-        return noOfPages;
+        return this.sectionId;
     }
 
-    public void setNoOfPages(Integer noOfPages) {
+    public void setSectionId(final UUID sectionId) {
 
-        this.noOfPages = noOfPages;
+        this.sectionId = sectionId;
     }
 
-    public Boolean isAccepted() {
+    public List<UUID> getParticipants() {
 
-        return accepted;
+        return this.participants;
     }
 
-    public void setAccepted(Boolean accepted) {
+    public void setParticipants(final List<UUID> participants) {
 
-        this.accepted = accepted;
-    }
-
-    public Boolean isYoungScientistReport() {
-
-        return youngScientistReport;
-    }
-
-    public void setYoungScientistReport(Boolean youngScientistReport) {
-
-        this.youngScientistReport = youngScientistReport;
+        this.participants = participants;
     }
 
     public UUID getReporter() {
 
-        return reporter;
+        return this.reporter;
     }
 
-    public void setReporter(UUID reporter) {
+    public void setReporter(final UUID reporter) {
 
         this.reporter = reporter;
     }
 
-    public List<UUID> getAuthors() {
+    public Boolean getYoungScientistReport() {
 
-        return authors;
+        return this.youngScientistReport;
     }
 
-    public void setAuthors(List<UUID> authors) {
+    public void setYoungScientistReport(final Boolean youngScientistReport) {
 
-        this.authors = authors;
+        this.youngScientistReport = youngScientistReport;
     }
 
-    public UUID getSection() {
+    public Boolean getAccepted() {
 
-        return section;
+        return this.accepted;
     }
 
-    public void setSection(UUID section) {
+    public void setAccepted(final Boolean accepted) {
 
-        this.section = section;
+        this.accepted = accepted;
+    }
+
+    public Boolean getCanceled() {
+
+        return this.canceled;
+    }
+
+    public void setCanceled(final Boolean canceled) {
+
+        this.canceled = canceled;
+    }
+
+    public Boolean getParticipationInContest() {
+    
+        return participationInContest;
+    }
+
+    public void setParticipationInContest(Boolean participationInContest) {
+    
+        this.participationInContest = participationInContest;
+    }
+
+    public Boolean getPlenaryReport() {
+    
+        return plenaryReport;
+    }
+
+    public void setPlenaryReport(Boolean plenaryReport) {
+    
+        this.plenaryReport = plenaryReport;
+    }
+
+    public String getNumberOfPages() {
+
+        return this.numberOfPages;
+    }
+
+    public void setNumberOfPages(final String numberOfPages) {
+
+        this.numberOfPages = numberOfPages;
     }
 }

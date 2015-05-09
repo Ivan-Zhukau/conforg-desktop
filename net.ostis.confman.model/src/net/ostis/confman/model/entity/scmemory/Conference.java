@@ -4,75 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-/* (non-Javadoc)
- * Conference 
- */
 public class Conference extends BaseEntity {
-
-    public static class ConferenceBuilder {
-
-        private String     title;
-
-        private Date       startDate;
-
-        private Date       endDate;
-
-        private UUID       residence;
-
-        private List<UUID> sections;
-
-        private List<UUID> reports;
-
-        private List<UUID> participants;
-
-        public ConferenceBuilder setTitle(String title) {
-
-            this.title = title;
-            return this;
-        }
-
-        public ConferenceBuilder setStartDate(Date startDate) {
-
-            this.startDate = startDate;
-            return this;
-        }
-
-        public ConferenceBuilder setEndDate(Date endDate) {
-
-            this.endDate = endDate;
-            return this;
-        }
-
-        public ConferenceBuilder setResidence(UUID residence) {
-
-            this.residence = residence;
-            return this;
-        }
-
-        public ConferenceBuilder setSections(List<UUID> sections) {
-
-            this.sections = sections;
-            return this;
-        }
-
-        public ConferenceBuilder setReports(List<UUID> reports) {
-
-            this.reports = reports;
-            return this;
-        }
-
-        public ConferenceBuilder setParticipants(List<UUID> participants) {
-
-            this.participants = participants;
-            return this;
-        }
-
-        public Conference build() {
-
-            return new Conference(title, startDate, endDate, residence,
-                    sections, reports, participants);
-        }
-    }
 
     private String     title;
 
@@ -80,7 +12,7 @@ public class Conference extends BaseEntity {
 
     private Date       endDate;
 
-    private UUID       residence;
+    private Address    residence;
 
     private List<UUID> sections;
 
@@ -88,8 +20,15 @@ public class Conference extends BaseEntity {
 
     private List<UUID> participants;
 
-    private Conference(String title, Date startDate, Date endDate,
-            UUID residence, List<UUID> sections, List<UUID> reports,
+    public Conference() {
+
+        super();
+    }
+    
+    
+
+    public Conference(String title, Date startDate, Date endDate,
+            Address residence, List<UUID> sections, List<UUID> reports,
             List<UUID> participants) {
 
         super();
@@ -104,71 +43,71 @@ public class Conference extends BaseEntity {
 
     public String getTitle() {
 
-        return title;
+        return this.title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
 
         this.title = title;
     }
 
     public Date getStartDate() {
 
-        return startDate;
+        return this.startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(final Date startDate) {
 
         this.startDate = startDate;
     }
 
     public Date getEndDate() {
 
-        return endDate;
+        return this.endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(final Date endDate) {
 
         this.endDate = endDate;
     }
 
-    public UUID getResidence() {
-
-        return residence;
-    }
-
-    public void setResidence(UUID residence) {
-
-        this.residence = residence;
-    }
-
     public List<UUID> getSections() {
 
-        return sections;
+        return this.sections;
     }
 
-    public void setSections(List<UUID> sections) {
+    public void setSections(final List<UUID> sections) {
 
         this.sections = sections;
     }
 
     public List<UUID> getReports() {
 
-        return reports;
+        return this.reports;
     }
 
-    public void setReports(List<UUID> reports) {
+    public void setReports(final List<UUID> reports) {
 
         this.reports = reports;
     }
 
     public List<UUID> getParticipants() {
 
-        return participants;
+        return this.participants;
     }
 
-    public void setParticipants(List<UUID> participants) {
+    public void setParticipants(final List<UUID> participants) {
 
         this.participants = participants;
+    }
+
+    public Address getResidence() {
+
+        return this.residence;
+    }
+
+    public void setResidence(final Address residence) {
+
+        this.residence = residence;
     }
 }
