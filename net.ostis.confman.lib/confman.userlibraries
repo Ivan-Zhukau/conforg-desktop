@@ -25,4 +25,13 @@
     <library name="swt" systemlibrary="false">
         <archive path="/net.ostis.confman.lib/swt/swt.jar"/>
     </library>
+    <library name="commons-lang3" systemlibrary="false">
+        <archive path="/net.ostis.confman.lib/commons-lang3/commons-lang3-3.4.jar"/>
+    </library>
+    <library name="jodatime" systemlibrary="false">
+        <archive path="/net.ostis.confman.lib/jodatime/joda-time-2.7.jar"/>
+    </library>
+    <library name="sctpclient" systemlibrary="false">
+        <archive path="/net.ostis.confman.lib/sctpclient/sctp-client-0.0.1-SNAPSHOT.jar"/>
+    </library>
 </eclipse-userlibraries>
