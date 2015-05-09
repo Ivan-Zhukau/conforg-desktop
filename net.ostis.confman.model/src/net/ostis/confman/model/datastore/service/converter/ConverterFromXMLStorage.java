@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 import net.ostis.confman.model.datastore.StorageProvider;
-import net.ostis.confman.model.entity.AcademicInformation;
-import net.ostis.confman.model.entity.Address;
-import net.ostis.confman.model.entity.Conference;
-import net.ostis.confman.model.entity.ContactInformation;
-import net.ostis.confman.model.entity.Participant;
-import net.ostis.confman.model.entity.ParticipantArrival;
-import net.ostis.confman.model.entity.ParticipantRole;
-import net.ostis.confman.model.entity.Person;
-import net.ostis.confman.model.entity.Report;
-import net.ostis.confman.model.entity.Section;
-import net.ostis.confman.model.entity.SectionBreaks;
-import net.ostis.confman.model.entity.WorkplaceInformation;
+import net.ostis.confman.model.entity.xml.AcademicInformation;
+import net.ostis.confman.model.entity.xml.Address;
+import net.ostis.confman.model.entity.xml.Conference;
+import net.ostis.confman.model.entity.xml.ContactInformation;
+import net.ostis.confman.model.entity.xml.Participant;
+import net.ostis.confman.model.entity.xml.ParticipantArrival;
+import net.ostis.confman.model.entity.xml.ParticipantRole;
+import net.ostis.confman.model.entity.xml.Person;
+import net.ostis.confman.model.entity.xml.Report;
+import net.ostis.confman.model.entity.xml.Section;
+import net.ostis.confman.model.entity.xml.SectionBreaks;
+import net.ostis.confman.model.entity.xml.WorkplaceInformation;
 import net.ostis.confman.services.common.model.ConferenceViewState;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.ParticipationInConference;
@@ -63,12 +63,12 @@ class ConverterFromXMLStorage implements BaseConverter{
         setExtraSectionsInfo(conferencesMap, sectionsMap, sections);
         model.setSectionSettings(convertSectionSettingsList(
                 storageProvider.getSectionBreaks(), sectionsMap));
-        net.ostis.confman.model.entity.Workspace workspace = storageProvider.getWorkspace();
+        net.ostis.confman.model.entity.xml.Workspace workspace = storageProvider.getWorkspace();
         model.setWorkspace(convertWorkspace(workspace, conferencesMap));
         return model;
     }
     
-    private Workspace convertWorkspace(net.ostis.confman.model.entity.Workspace workspace,
+    private Workspace convertWorkspace(net.ostis.confman.model.entity.xml.Workspace workspace,
             Map<Long, net.ostis.confman.services.common.model.Conference> conferencesMap) {
 
         Workspace ws = new Workspace();
@@ -79,7 +79,7 @@ class ConverterFromXMLStorage implements BaseConverter{
     }
 
     private ConferenceViewState convertConfViewState(
-            net.ostis.confman.model.entity.ConferenceViewState conferencePartState,
+            net.ostis.confman.model.entity.xml.ConferenceViewState conferencePartState,
             Map<Long, net.ostis.confman.services.common.model.Conference> conferencesMap) {
 
         List<Long> conferenceIds = conferencePartState.getOpenedConferences();
@@ -184,7 +184,7 @@ class ConverterFromXMLStorage implements BaseConverter{
     }
 
     private ParticipationInConference convertPartiation(
-            final net.ostis.confman.model.entity.ParticipationInConference participationInConference) {
+            final net.ostis.confman.model.entity.xml.ParticipationInConference participationInConference) {
 
         final net.ostis.confman.services.common.model.ParticipationInConference partisipation = new net.ostis.confman.services.common.model.ParticipationInConference();
         if (participationInConference == null) {
