@@ -9,7 +9,10 @@ enum ScSpaces implements ScIdentifiable {
     ADDRESS("conforg_address"),
     ACADEMIC_DEGREE("conforg_academic_degree"),
     WORKPLACE("conforg_workplace"),
-    PARTICIPANT_ADDITIONAL_INFO("conforg_participant_additional_info");
+    PARTICIPANT_ADDITIONAL_INFO("conforg_participant_additional_info"), 
+    PARTICIPANT_ARRIVAL("conforg_participant_arrival"), 
+    PARTICIPANT_ROLE("conforg_participant_role"), 
+    PARTICIPATION_IN_CONFERENCE("conforg_participation_in_conference");
 
     private String spaceSystemId;
 

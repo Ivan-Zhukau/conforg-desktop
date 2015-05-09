@@ -6,9 +6,9 @@ public class ParticipantArrival extends BaseEntity {
 
     private Boolean meeting;
 
-    private SystemAddress residencePlaceAdr;
+    private SystemAddress residencePlace;
 
-    private Boolean isHostelReservation;
+    private Boolean needHostelReservation;
 
     public ParticipantArrival() {
 
@@ -16,13 +16,13 @@ public class ParticipantArrival extends BaseEntity {
     }
 
     public ParticipantArrival(Boolean housing, Boolean meeting,
-            SystemAddress residencePlace, Boolean isHostelReservation) {
-
+            SystemAddress residencePlace, Boolean needHostelReservation) {
+     
         super();
         this.housing = housing;
         this.meeting = meeting;
-        this.residencePlaceAdr = residencePlace;
-        this.isHostelReservation = isHostelReservation;
+        this.residencePlace = residencePlace;
+        this.needHostelReservation = needHostelReservation;
     }
 
     public Boolean getHousing() {
@@ -46,22 +46,22 @@ public class ParticipantArrival extends BaseEntity {
     }
     
     public SystemAddress getResidencePlace() {
-
-        return this.residencePlaceAdr;
+        
+        return this.residencePlace;
     }
 
     public void setResidencePlace(final SystemAddress residencePlace) {
 
-        this.residencePlaceAdr = residencePlace;
+        this.residencePlace = residencePlace;
     }
 
-    public Boolean getIsHostelReservation() {
+    public Boolean getNeedHostelReservation() {
 
-        return this.isHostelReservation;
+        return this.needHostelReservation;
     }
 
-    public void setIsHostelReservation(final Boolean isHostelReservation) {
+    public void setNeedHostelReservation(final Boolean needHostelReservation) {
 
-        this.isHostelReservation = isHostelReservation;
+        this.needHostelReservation = needHostelReservation;
     }
 }

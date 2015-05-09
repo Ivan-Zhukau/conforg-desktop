@@ -2,7 +2,7 @@ package net.ostis.confman.model.entity.scmemory;
 
 public class ParticipationInConference extends BaseEntity {
 
-    private Boolean exhibitionPresentationOfeports;
+    private Boolean exhibitionPresentationOfReports;
 
     private Boolean tourOfTheCityOfMinsk;
 
@@ -15,26 +15,26 @@ public class ParticipationInConference extends BaseEntity {
         super();
     }
 
-    public ParticipationInConference(Boolean exhibitionPresentationOfeports,
+    public ParticipationInConference(Boolean exhibitionPresentationOfReports,
             Boolean tourOfTheCityOfMinsk, Boolean culturalProgram,
             Boolean eveningMeetingPC) {
 
         super();
-        this.exhibitionPresentationOfeports = exhibitionPresentationOfeports;
+        this.exhibitionPresentationOfReports = exhibitionPresentationOfReports;
         this.tourOfTheCityOfMinsk = tourOfTheCityOfMinsk;
         this.culturalProgram = culturalProgram;
         this.eveningMeetingPC = eveningMeetingPC;
     }
 
-    public Boolean getExhibitionPresentationOfeports() {
+    public Boolean getExhibitionPresentationOfReports() {
 
-        return this.exhibitionPresentationOfeports;
+        return this.exhibitionPresentationOfReports;
     }
 
-    public void setExhibitionPresentationOfeports(
-            final Boolean exhibitionPresentationOfeports) {
+    public void setExhibitionPresentationOfReports(
+            final Boolean exhibitionPresentationOfReports) {
 
-        this.exhibitionPresentationOfeports = exhibitionPresentationOfeports;
+        this.exhibitionPresentationOfReports = exhibitionPresentationOfReports;
     }
 
     public Boolean getTourOfTheCityOfMinsk() {

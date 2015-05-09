@@ -8,7 +8,7 @@ public class Participant extends BaseEntity {
 
     private SystemAddress       arrival;
 
-    private SystemAddress       SystemAddress;
+    private SystemAddress participationInConference;
 
     private List<SystemAddress> reportId;
 
@@ -22,13 +22,13 @@ public class Participant extends BaseEntity {
     }
 
     public Participant(SystemAddress role, SystemAddress arrival,
-            SystemAddress SystemAddress, List<SystemAddress> reportId,
+            SystemAddress participationInConference, List<SystemAddress> reportId,
             SystemAddress conferenceId, SystemAddress personId) {
-
+    
         super();
         this.role = role;
         this.arrival = arrival;
-        this.SystemAddress = SystemAddress;
+        this.participationInConference = participationInConference;
         this.reportId = reportId;
         this.conferenceId = conferenceId;
         this.personId = personId;
@@ -86,11 +86,11 @@ public class Participant extends BaseEntity {
 
     public SystemAddress getSystemAddress() {
 
-        return this.SystemAddress;
+        return this.participationInConference;
     }
 
-    public void setSystemAddress(final SystemAddress SystemAddress) {
+    public void setSystemAddress(final SystemAddress participationInConference) {
 
-        this.SystemAddress = SystemAddress;
+        this.participationInConference = participationInConference;
     }
 }
