@@ -144,7 +144,7 @@ public class TemplatesEditorPart {
             final TemplateContextServiceLocator contextServiceLocator = TemplateContextServiceLocator
                     .getInstance();
             final TemplateContextService contextService = (TemplateContextService) contextServiceLocator
-                    .getService(participants.getTemplate().getName());
+                    .getService(participants.getTemplate().getPath());
             contextService.initTemplateContext(participant.getParticipant(), participants.getConference());
             final String mailBody = templateService.processTemplate(participant
                     .getTemplate().getBody(), contextService);
