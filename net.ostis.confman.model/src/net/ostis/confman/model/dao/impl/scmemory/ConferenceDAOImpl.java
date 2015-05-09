@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import net.ostis.confman.model.dao.ConferenceDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.Conference;
@@ -48,12 +46,4 @@ public class ConferenceDAOImpl extends BaseDAOImpl<Conference> implements
 
         throw new IllegalStateException("not implemented yet");
     }
-
-    @Override
-    public List<Conference> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

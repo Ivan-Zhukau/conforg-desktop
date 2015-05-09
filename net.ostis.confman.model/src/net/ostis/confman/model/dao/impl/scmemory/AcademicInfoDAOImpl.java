@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.AcademicInfoDAO;
@@ -65,12 +63,4 @@ public class AcademicInfoDAOImpl extends BaseDAOImpl<AcademicInformation>
 
         return new AcademicInformation(titleContent, degreeContent);
     }
-
-    @Override
-    public List<AcademicInformation> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

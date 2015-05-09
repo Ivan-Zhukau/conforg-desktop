@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import net.ostis.confman.model.dao.PersonDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.Person;

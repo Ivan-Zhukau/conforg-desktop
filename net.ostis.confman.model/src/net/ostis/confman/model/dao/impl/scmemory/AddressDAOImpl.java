@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import net.ostis.confman.model.dao.AddressDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.Address;
@@ -91,12 +89,4 @@ public class AddressDAOImpl extends BaseDAOImpl<Address> implements AddressDAO {
         return new Address(countryContent, cityContent, streetContent,
                 houseNumberContent);
     }
-
-    @Override
-    public List<Address> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
