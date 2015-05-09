@@ -224,4 +224,29 @@ enum ScUtils {
             throw new DAOException("cannot load content of element", e);
         }
     }
+
+    public List<ScAddress> getSpaceElements(ScAddress spaceAddress)
+            throws DAOException {
+
+        List<ScParameter> parameters = new ArrayList<ScParameter>(3);
+        parameters.add(spaceAddress);
+        parameters.add(ScElementType.SC_TYPE_ARC_POS);
+        parameters.add(ScElementType.SC_TYPE_NODE);
+        try {
+            SctpResponse<List<ScIterator>> result = sctpClient
+                    .searchByIterator(ScIteratorType.SCTP_ITERATOR_3F_A_A,
+                            parameters);
+            checkHeader(result.getHeader());
+            List<ScIterator> iterators = result.getAnswer();
+            List<ScAddress> spaceElements = new ArrayList<>(iterators.size());
+            for (ScIterator iterator : iterators) {
+                ScAddress address = (ScAddress) iterator
+                        .getElement(Constants.ITERATOR_3_3RD);
+                spaceElements.add(address);
+            }
+            return spaceElements;
+        } catch (SctpClientException e) {
+            throw new DAOException("cannot find element using 3FAF iterator", e);
+        }
+    }
 }

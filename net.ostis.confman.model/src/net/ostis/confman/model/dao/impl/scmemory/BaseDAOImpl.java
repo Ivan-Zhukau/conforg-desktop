@@ -1,5 +1,7 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import by.ostis.common.sctpclient.model.ScAddress;
@@ -29,10 +31,9 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
         ScAddress elementNode = ScUtils.INSTANCE
                 .createElWithGivenSystemId(systemId);
 
-        ScAddress addressSpaceNode = ScUtils.INSTANCE.findElement(space
-                .getSystemId());
-        ScUtils.INSTANCE.createArc(ScElementType.SC_TYPE_ARC_POS,
-                addressSpaceNode, elementNode);
+        ScAddress spaceNode = ScUtils.INSTANCE.findElement(space.getSystemId());
+        ScUtils.INSTANCE.createArc(ScElementType.SC_TYPE_ARC_POS, spaceNode,
+                elementNode);
 
         saveFields(element, elementNode);
 
@@ -64,4 +65,19 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
 
     protected abstract Type readFields(ScAddress elementNode)
             throws DAOException;
+
+    @Override
+    public List<Type> readAll() throws DAOException {
+
+        ScAddress spaceNode = ScUtils.INSTANCE.findElement(space.getSystemId());
+        List<ScAddress> spaceElementAdrs = ScUtils.INSTANCE
+                .getSpaceElements(spaceNode);
+        List<Type> spaceElements = new ArrayList<>(spaceElementAdrs.size());
+        for (ScAddress spaceElementAdr : spaceElementAdrs) {
+            Type spaceElement = readFields(spaceElementAdr);
+            spaceElements.add(spaceElement);
+        }
+        return spaceElements;
+    }
+
 }
