@@ -1,17 +1,16 @@
 package net.ostis.confman.model.entity.scmemory;
 
 import java.util.List;
-import java.util.UUID;
 
 public class Report extends BaseEntity {
 
     private String     title;
 
-    private UUID       sectionId;
+    private SystemAddress       sectionId;
 
-    private List<UUID> participants;
+    private List<SystemAddress> participants;
 
-    private UUID       reporter;
+    private SystemAddress       reporter;
 
     private Boolean    youngScientistReport;
 
@@ -30,8 +29,8 @@ public class Report extends BaseEntity {
         super();
     }
 
-    public Report(String title, UUID sectionId, List<UUID> participants,
-            UUID reporter, Boolean youngScientistReport, Boolean accepted,
+    public Report(String title, SystemAddress sectionId, List<SystemAddress> participants,
+            SystemAddress reporter, Boolean youngScientistReport, Boolean accepted,
             Boolean canceled, Boolean participationInContest,
             Boolean plenaryReport, String numberOfPages) {
 
@@ -58,32 +57,32 @@ public class Report extends BaseEntity {
         this.title = title;
     }
 
-    public UUID getSectionId() {
+    public SystemAddress getSectionId() {
 
         return this.sectionId;
     }
 
-    public void setSectionId(final UUID sectionId) {
+    public void setSectionId(final SystemAddress sectionId) {
 
         this.sectionId = sectionId;
     }
 
-    public List<UUID> getParticipants() {
+    public List<SystemAddress> getParticipants() {
 
         return this.participants;
     }
 
-    public void setParticipants(final List<UUID> participants) {
+    public void setParticipants(final List<SystemAddress> participants) {
 
         this.participants = participants;
     }
 
-    public UUID getReporter() {
+    public SystemAddress getReporter() {
 
         return this.reporter;
     }
 
-    public void setReporter(final UUID reporter) {
+    public void setReporter(final SystemAddress reporter) {
 
         this.reporter = reporter;
     }

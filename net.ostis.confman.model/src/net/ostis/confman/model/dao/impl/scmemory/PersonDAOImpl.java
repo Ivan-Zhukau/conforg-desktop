@@ -59,17 +59,17 @@ public class PersonDAOImpl extends BaseDAOImpl<Person> implements PersonDAO {
                 ScChildRelations.LAST_NAME);
 
         ScAddress addressNode = ScUtils.INSTANCE.findElement(element
-                .getResidenceAdrUuid());
+                .getResidenceSystemAddress());
         ScUtils.INSTANCE.createRelation(parentNode, addressNode,
                 ScCommonRelations.ADDRESS);
 
         ScAddress workplaceNode = ScUtils.INSTANCE.findElement(element
-                .getWorkplaceUuid());
+                .getWorkplaceSystemAddress());
         ScUtils.INSTANCE.createRelation(parentNode, workplaceNode,
                 ScChildRelations.WORKPLACE);
 
         ScAddress academicDegreeNode = ScUtils.INSTANCE.findElement(element
-                .getAcademicInfoUuid());
+                .getAcademicInfoSystemAddress());
         ScUtils.INSTANCE.createRelation(parentNode, academicDegreeNode,
                 ScChildRelations.ACADEMIC_DEGREE);
     }
@@ -103,12 +103,5 @@ public class PersonDAOImpl extends BaseDAOImpl<Person> implements PersonDAO {
         // UUID addressSystemId = ScUtils.INSTANCE.findElementUuid(addressAdr);
         return new Person(firstNameContent, patronymicContent, lastNameContent,
                 null, null, null, null);
-    }
-
-    @Override
-    public List<Person> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
     }
 }

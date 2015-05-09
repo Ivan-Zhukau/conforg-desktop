@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.WorkplaceDAO;
@@ -66,12 +64,5 @@ public class WorkplaceDAOImpl extends BaseDAOImpl<WorkplaceInformation>
                 .findElementContent(positionAdr);
 
         return new WorkplaceInformation(workplaceContent, positionContent);
-    }
-
-    @Override
-    public List<WorkplaceInformation> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
     }
 }

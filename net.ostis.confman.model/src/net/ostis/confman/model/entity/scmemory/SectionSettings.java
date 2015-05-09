@@ -1,10 +1,9 @@
 package net.ostis.confman.model.entity.scmemory;
 
-import java.util.UUID;
 
 public class SectionSettings {
 
-    private UUID sectionId;
+    private SystemAddress sectionId;
 
     private int  chairmanTime;
 
@@ -23,7 +22,7 @@ public class SectionSettings {
         super();
     }
 
-    public SectionSettings(UUID sectionId, int chairmanTime, int reportTime,
+    public SectionSettings(SystemAddress sectionId, int chairmanTime, int reportTime,
             int plenaryReportTime, int breakTime, int coffeeBreaksNum,
             int coffeeBreaksTime) {
 
@@ -37,12 +36,12 @@ public class SectionSettings {
         this.coffeeBreaksTime = coffeeBreaksTime;
     }
 
-    public UUID getSectionId() {
+    public SystemAddress getSectionId() {
 
         return this.sectionId;
     }
 
-    public void setSectionId(final UUID sectionId) {
+    public void setSectionId(final SystemAddress sectionId) {
 
         this.sectionId = sectionId;
     }

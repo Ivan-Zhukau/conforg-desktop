@@ -10,6 +10,7 @@ import net.ostis.confman.model.dao.BaseDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.dao.exception.TypeMismatchException;
 import net.ostis.confman.model.entity.scmemory.Identifiable;
+import net.ostis.confman.model.entity.scmemory.SystemAddress;
 
 abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
 
@@ -23,7 +24,7 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
 
     public UUID save(Type element) throws DAOException {
 
-        if (element.getSystemId() != null) {
+        if (element.getSystemAddress() != null) {
             throw new DAOException(
                     "attempting to save object with non-empty system id");
         }
@@ -37,29 +38,33 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
 
         saveFields(element, elementNode);
 
-        element.setSystemId(systemId);
+        SystemAddress systemAddress = new SystemAddress(elementNode, systemId);
+        element.setSystemAddress(systemAddress);
         return systemId;
     }
 
     protected abstract void saveFields(Type element, ScAddress parentNode)
             throws DAOException;
 
-    public Type read(UUID systemId) throws DAOException {
+    public Type read(SystemAddress systemAddress) throws DAOException {
 
-        if (systemId == null) {
+        if (systemAddress == null) {
             throw new NullPointerException(
                     "cannot find element, system id is null");
         }
-        ScAddress elementNode = ScUtils.INSTANCE.findElement(systemId);
+        ScAddress elementNode = systemAddress.getScAddress();
+        if (elementNode == null) {
+                elementNode = ScUtils.INSTANCE.findElement(systemAddress);
+        }
         boolean convenientType = ScUtils.INSTANCE.belongsToSpace(elementNode,
                 space);
         if (!convenientType) {
             throw new TypeMismatchException(
                     "element with given system id doesn't belong to address space, id: "
-                            + systemId);
+                            + systemAddress);
         }
         Type element = readFields(elementNode);
-        element.setSystemId(systemId);
+        element.setSystemAddress(systemAddress);
         return element;
     }
 

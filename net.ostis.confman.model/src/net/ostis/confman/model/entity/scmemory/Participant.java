@@ -1,98 +1,96 @@
 package net.ostis.confman.model.entity.scmemory;
 
 import java.util.List;
-import java.util.UUID;
 
 public class Participant extends BaseEntity {
 
-    private ParticipantRole           role;
+    private SystemAddress       role;
 
-    private ParticipantArrival        arrival;
+    private SystemAddress       arrival;
 
-    private ParticipationInConference participationInConference;
+    private SystemAddress       SystemAddress;
 
-    private List<UUID>                reportId;
+    private List<SystemAddress> reportId;
 
-    private UUID                      conferenceId;
+    private SystemAddress       conferenceId;
 
-    private UUID                      personId;
+    private SystemAddress       personId;
 
     public Participant() {
 
         super();
     }
-    
-    public Participant(ParticipantRole role, ParticipantArrival arrival,
-            ParticipationInConference participationInConference,
-            List<UUID> reportId, UUID conferenceId, UUID personId) {
+
+    public Participant(SystemAddress role, SystemAddress arrival,
+            SystemAddress SystemAddress, List<SystemAddress> reportId,
+            SystemAddress conferenceId, SystemAddress personId) {
 
         super();
         this.role = role;
         this.arrival = arrival;
-        this.participationInConference = participationInConference;
+        this.SystemAddress = SystemAddress;
         this.reportId = reportId;
         this.conferenceId = conferenceId;
         this.personId = personId;
     }
 
-    public ParticipantRole getRole() {
+    public SystemAddress getRole() {
 
         return this.role;
     }
 
-    public void setRole(final ParticipantRole role) {
+    public void setRole(final SystemAddress role) {
 
         this.role = role;
     }
 
-    public ParticipantArrival getArrival() {
+    public SystemAddress getArrival() {
 
         return this.arrival;
     }
 
-    public void setArrival(final ParticipantArrival arrival) {
+    public void setArrival(final SystemAddress arrival) {
 
         this.arrival = arrival;
     }
 
-    public List<UUID> getReportId() {
+    public List<SystemAddress> getReportId() {
 
         return this.reportId;
     }
 
-    public void setReportId(final List<UUID> reportId) {
+    public void setReportId(final List<SystemAddress> reportId) {
 
         this.reportId = reportId;
     }
 
-    public UUID getConferenceId() {
+    public SystemAddress getConferenceId() {
 
         return this.conferenceId;
     }
 
-    public void setConferenceId(final UUID conferenceId) {
+    public void setConferenceId(final SystemAddress conferenceId) {
 
         this.conferenceId = conferenceId;
     }
 
-    public UUID getPersonId() {
+    public SystemAddress getPersonId() {
 
         return this.personId;
     }
 
-    public void setPersonId(final UUID personId) {
+    public void setPersonId(final SystemAddress personId) {
 
         this.personId = personId;
     }
 
-    public ParticipationInConference getParticipationInConference() {
+    public SystemAddress getSystemAddress() {
 
-        return this.participationInConference;
+        return this.SystemAddress;
     }
 
-    public void setParticipationInConference(
-            final ParticipationInConference participationInConference) {
+    public void setSystemAddress(final SystemAddress SystemAddress) {
 
-        this.participationInConference = participationInConference;
+        this.SystemAddress = SystemAddress;
     }
 }

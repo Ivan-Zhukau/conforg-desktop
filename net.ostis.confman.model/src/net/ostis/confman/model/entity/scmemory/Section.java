@@ -2,7 +2,6 @@ package net.ostis.confman.model.entity.scmemory;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class Section extends BaseEntity {
 
@@ -10,17 +9,17 @@ public class Section extends BaseEntity {
 
     private Date       date;
 
-    private UUID       conferenceId;
+    private SystemAddress       conferenceId;
 
-    private List<UUID> reports;
+    private List<SystemAddress> reports;
 
     public Section() {
 
         super();
     }
 
-    public Section(String title, Date date, UUID conferenceId,
-            List<UUID> reports) {
+    public Section(String title, Date date, SystemAddress conferenceId,
+            List<SystemAddress> reports) {
 
         super();
         this.title = title;
@@ -49,22 +48,22 @@ public class Section extends BaseEntity {
         this.date = date;
     }
 
-    public UUID getConferenceId() {
+    public SystemAddress getConferenceId() {
 
         return this.conferenceId;
     }
 
-    public void setConferenceId(final UUID conferenceId) {
+    public void setConferenceId(final SystemAddress conferenceId) {
 
         this.conferenceId = conferenceId;
     }
 
-    public List<UUID> getReports() {
+    public List<SystemAddress> getReports() {
 
         return this.reports;
     }
 
-    public void setReports(final List<UUID> reports) {
+    public void setReports(final List<SystemAddress> reports) {
 
         this.reports = reports;
     }

@@ -1,23 +1,22 @@
 package net.ostis.confman.model.entity.scmemory;
 
-import java.util.UUID;
 
 abstract class BaseEntity implements Identifiable {
 
-    protected UUID systemId;
+    protected SystemAddress systemAddress;
 
     public BaseEntity() {
 
         super();
     }
 
-    public UUID getSystemId() {
+    public SystemAddress getSystemAddress() {
 
-        return systemId;
+        return systemAddress;
     }
 
-    public void setSystemId(UUID systemId) {
+    public void setSystemAddress(SystemAddress systemAddress) {
 
-        this.systemId = systemId;
+        this.systemAddress = systemAddress;
     }
 }

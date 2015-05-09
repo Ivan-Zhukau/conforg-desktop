@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.Identifiable;
+import net.ostis.confman.model.entity.scmemory.SystemAddress;
 
 public interface BaseDAO<Type extends Identifiable> {
 
@@ -28,7 +29,7 @@ public interface BaseDAO<Type extends Identifiable> {
      * @throws DAOException
      *             if element with given system id wasn't found.
      */
-    Type read(UUID systemId) throws DAOException;
+    Type read(SystemAddress systemAddress) throws DAOException;
 
     List<Type> readAll() throws DAOException;
 }

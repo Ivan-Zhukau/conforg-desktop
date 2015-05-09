@@ -1,6 +1,5 @@
 package net.ostis.confman.model.entity.scmemory;
 
-import java.util.UUID;
 
 public class Person extends BaseEntity {
 
@@ -10,13 +9,13 @@ public class Person extends BaseEntity {
 
     private String firstName;
 
-    private UUID   residenceAdrUuid;
+    private SystemAddress   residenceSystemAddress;
 
-    private UUID   workplaceUuid;
+    private SystemAddress   workplaceSystemAddress;
 
-    private UUID   contactUuid;
+    private SystemAddress   contactSystemAddress;
 
-    private UUID   academicInfoUuid;
+    private SystemAddress   academicInfoSystemAddress;
 
     public Person() {
 
@@ -24,16 +23,16 @@ public class Person extends BaseEntity {
     }
 
     public Person(String surname, String patronymic, String firstName,
-            UUID residence, UUID workplace, UUID contacts, UUID degree) {
+            SystemAddress residence, SystemAddress workplace, SystemAddress contacts, SystemAddress degree) {
 
         super();
         this.surname = surname;
         this.patronymic = patronymic;
         this.firstName = firstName;
-        this.residenceAdrUuid = residence;
-        this.workplaceUuid = workplace;
-        this.contactUuid = contacts;
-        this.academicInfoUuid = degree;
+        this.residenceSystemAddress = residence;
+        this.workplaceSystemAddress = workplace;
+        this.contactSystemAddress = contacts;
+        this.academicInfoSystemAddress = degree;
     }
 
     public String getSurname() {
@@ -66,44 +65,44 @@ public class Person extends BaseEntity {
         this.firstName = firstName;
     }
 
-    public UUID getResidenceAdrUuid() {
+    public SystemAddress getResidenceSystemAddress() {
 
-        return residenceAdrUuid;
+        return residenceSystemAddress;
     }
 
-    public void setResidenceAdrUuid(UUID residenceAdrUuid) {
+    public void setResidenceSystemAddress(SystemAddress residenceAdrSystemAddress) {
 
-        this.residenceAdrUuid = residenceAdrUuid;
+        this.residenceSystemAddress = residenceAdrSystemAddress;
     }
 
-    public UUID getWorkplaceUuid() {
+    public SystemAddress getWorkplaceSystemAddress() {
 
-        return workplaceUuid;
+        return workplaceSystemAddress;
     }
 
-    public void setWorkplaceUuid(UUID workplaceUuid) {
+    public void setWorkplaceSystemAddress(SystemAddress workplaceSystemAddress) {
 
-        this.workplaceUuid = workplaceUuid;
+        this.workplaceSystemAddress = workplaceSystemAddress;
     }
 
-    public UUID getContactUuid() {
+    public SystemAddress getContactSystemAddress() {
 
-        return contactUuid;
+        return contactSystemAddress;
     }
 
-    public void setContactUuid(UUID contactUuid) {
+    public void setContactSystemAddress(SystemAddress contactSystemAddress) {
 
-        this.contactUuid = contactUuid;
+        this.contactSystemAddress = contactSystemAddress;
     }
 
-    public UUID getAcademicInfoUuid() {
+    public SystemAddress getAcademicInfoSystemAddress() {
 
-        return academicInfoUuid;
+        return academicInfoSystemAddress;
     }
 
-    public void setAcademicInfoUuid(UUID academicInfoUuid) {
+    public void setAcademicInfoSystemAddress(SystemAddress academicInfoSystemAddress) {
 
-        this.academicInfoUuid = academicInfoUuid;
+        this.academicInfoSystemAddress = academicInfoSystemAddress;
     }
 
 }

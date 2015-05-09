@@ -2,34 +2,31 @@ package net.ostis.confman.model.entity.scmemory;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class Conference extends BaseEntity {
 
-    private String     title;
+    private String              title;
 
-    private Date       startDate;
+    private Date                startDate;
 
-    private Date       endDate;
+    private Date                endDate;
 
-    private Address    residence;
+    private SystemAddress             residence;
 
-    private List<UUID> sections;
+    private List<SystemAddress> sections;
 
-    private List<UUID> reports;
+    private List<SystemAddress> reports;
 
-    private List<UUID> participants;
+    private List<SystemAddress> participants;
 
     public Conference() {
 
         super();
     }
-    
-    
 
     public Conference(String title, Date startDate, Date endDate,
-            Address residence, List<UUID> sections, List<UUID> reports,
-            List<UUID> participants) {
+            SystemAddress residence, List<SystemAddress> sections,
+            List<SystemAddress> reports, List<SystemAddress> participants) {
 
         super();
         this.title = title;
@@ -71,42 +68,42 @@ public class Conference extends BaseEntity {
         this.endDate = endDate;
     }
 
-    public List<UUID> getSections() {
+    public List<SystemAddress> getSections() {
 
         return this.sections;
     }
 
-    public void setSections(final List<UUID> sections) {
+    public void setSections(final List<SystemAddress> sections) {
 
         this.sections = sections;
     }
 
-    public List<UUID> getReports() {
+    public List<SystemAddress> getReports() {
 
         return this.reports;
     }
 
-    public void setReports(final List<UUID> reports) {
+    public void setReports(final List<SystemAddress> reports) {
 
         this.reports = reports;
     }
 
-    public List<UUID> getParticipants() {
+    public List<SystemAddress> getParticipants() {
 
         return this.participants;
     }
 
-    public void setParticipants(final List<UUID> participants) {
+    public void setParticipants(final List<SystemAddress> participants) {
 
         this.participants = participants;
     }
 
-    public Address getResidence() {
+    public SystemAddress getResidence() {
 
         return this.residence;
     }
 
-    public void setResidence(final Address residence) {
+    public void setResidence(final SystemAddress residence) {
 
         this.residence = residence;
     }

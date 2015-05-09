@@ -18,6 +18,7 @@ import by.ostis.common.sctpclient.utils.constants.ScElementType;
 import by.ostis.common.sctpclient.utils.constants.ScIteratorType;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.dao.exception.ElementNotFoundException;
+import net.ostis.confman.model.entity.scmemory.SystemAddress;
 
 /* (non-Javadoc)
  * ScUtils 
@@ -39,10 +40,18 @@ enum ScUtils {
         sctpClient.init(HOST, PORT);
     }
 
-    public ScAddress findElement(UUID uuid) throws DAOException {
+    public ScAddress findElement(SystemAddress systemAddress) throws DAOException {
 
-        String systemId = uuid.toString();
-        return findElement(systemId);
+        ScAddress nodeAdr = systemAddress.getScAddress();
+        if (nodeAdr != null) {
+            return nodeAdr;
+        } else {
+            UUID systemId = systemAddress.getSystemId();
+            if (systemId == null) {
+                throw new DAOException("cannot find element by system address: " + systemAddress);
+            }
+            return findElement(systemId.toString());
+        }
     }
 
     public ScAddress findElement(String systemId) throws DAOException {
@@ -246,7 +255,7 @@ enum ScUtils {
             }
             return spaceElements;
         } catch (SctpClientException e) {
-            throw new DAOException("cannot find element using 3FAF iterator", e);
+            throw new DAOException("cannot find element using 3FAA iterator", e);
         }
     }
 }
