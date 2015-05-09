@@ -1,10 +1,15 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
+import java.util.List;
+
+import by.ostis.common.sctpclient.model.ScAddress;
+import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.AcademicInfoDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.AcademicInformation;
 
-public class AcademicInfoDAOImpl extends BaseDAOImpl<AcademicInformation> implements AcademicInfoDAO {
+public class AcademicInfoDAOImpl extends BaseDAOImpl<AcademicInformation>
+        implements AcademicInfoDAO {
 
     private enum ScChildRelations implements ScIdentifiable {
 
@@ -14,37 +19,58 @@ public class AcademicInfoDAOImpl extends BaseDAOImpl<AcademicInformation> implem
         private String systemId;
 
         ScChildRelations(String systemId) {
+
             this.systemId = systemId;
         }
 
         public String getSystemId() {
+
             return systemId;
         }
     }
 
     public AcademicInfoDAOImpl() {
+
         super(ScSpaces.ACADEMIC_DEGREE);
     }
 
-    protected void saveFields(AcademicInformation element, ScAddress addressNode) throws DAOException {
+    protected void saveFields(AcademicInformation element, ScAddress addressNode)
+            throws DAOException {
+
         ScString degreeContent = ScStrings.wrap(element.getDegree());
-        ScAddress degreeNode = ScUtils.INSTANCE.createNodeWithContent(degreeContent);
-        ScUtils.INSTANCE.createRelation(addressNode, degreeNode, ScChildRelations.DEGREE);
+        ScAddress degreeNode = ScUtils.INSTANCE
+                .createNodeWithContent(degreeContent);
+        ScUtils.INSTANCE.createRelation(addressNode, degreeNode,
+                ScChildRelations.DEGREE);
 
         ScString titleContent = ScStrings.wrap(element.getTitle());
-        ScAddress titleNode = ScUtils.INSTANCE.createNodeWithContent(titleContent);
-        ScUtils.INSTANCE.createRelation(addressNode, titleNode, ScChildRelations.TITLE);
+        ScAddress titleNode = ScUtils.INSTANCE
+                .createNodeWithContent(titleContent);
+        ScUtils.INSTANCE.createRelation(addressNode, titleNode,
+                ScChildRelations.TITLE);
     }
 
-    protected AcademicDegree readFields(ScAddress addressElement) throws DAOException {
-        ScAddress degreeAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.DEGREE);
+    protected AcademicInformation readFields(ScAddress addressElement)
+            throws DAOException {
+
+        ScAddress degreeAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.DEGREE);
         String degreeContent = ScUtils.INSTANCE.findElementContent(degreeAdr);
 
-        ScAddress titleAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.TITLE);
+        ScAddress titleAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.TITLE);
         String titleContent = ScUtils.INSTANCE.findElementContent(titleAdr);
 
-        return new AcademicDegree(degreeContent, titleContent);
+        return new AcademicInformation(titleContent, degreeContent);
     }
+
+    @Override
+    public List<AcademicInformation> readAll() throws DAOException {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

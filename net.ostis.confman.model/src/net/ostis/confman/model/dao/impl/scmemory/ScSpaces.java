@@ -14,10 +14,12 @@ enum ScSpaces implements ScIdentifiable {
     private String spaceSystemId;
 
     ScSpaces(String spaceSystemId) {
+
         this.spaceSystemId = spaceSystemId;
     }
 
     public String getSystemId() {
+
         return spaceSystemId;
     }
 }

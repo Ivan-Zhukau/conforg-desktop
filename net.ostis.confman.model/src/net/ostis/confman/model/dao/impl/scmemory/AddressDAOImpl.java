@@ -1,5 +1,7 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
+import java.util.List;
+
 import net.ostis.confman.model.dao.AddressDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.Address;
@@ -18,55 +20,83 @@ public class AddressDAOImpl extends BaseDAOImpl<Address> implements AddressDAO {
         private String systemId;
 
         ScChildRelations(String systemId) {
+
             this.systemId = systemId;
         }
 
         public String getSystemId() {
+
             return systemId;
         }
     }
 
     public AddressDAOImpl() {
+
         super(ScSpaces.ADDRESS);
     }
 
     @Override
-    protected void saveFields(Address element, ScAddress addressNode) throws DAOException {
+    protected void saveFields(Address element, ScAddress addressNode)
+            throws DAOException {
+
         ScString countryContent = ScStrings.wrap(element.getCountry());
-        ScAddress countryNode = ScUtils.INSTANCE.createNodeWithContent(countryContent);
-        ScUtils.INSTANCE.createRelation(addressNode, countryNode, ScChildRelations.COUNTRY);
+        ScAddress countryNode = ScUtils.INSTANCE
+                .createNodeWithContent(countryContent);
+        ScUtils.INSTANCE.createRelation(addressNode, countryNode,
+                ScChildRelations.COUNTRY);
 
         ScString cityContent = ScStrings.wrap(element.getCity());
-        ScAddress cityNode = ScUtils.INSTANCE.createNodeWithContent(cityContent);
-        ScUtils.INSTANCE.createRelation(addressNode, cityNode, ScChildRelations.CITY);
+        ScAddress cityNode = ScUtils.INSTANCE
+                .createNodeWithContent(cityContent);
+        ScUtils.INSTANCE.createRelation(addressNode, cityNode,
+                ScChildRelations.CITY);
 
         ScString streetContent = ScStrings.wrap(element.getStreet());
-        ScAddress streetNode = ScUtils.INSTANCE.createNodeWithContent(streetContent);
-        ScUtils.INSTANCE.createRelation(addressNode, streetNode, ScChildRelations.STREET);
+        ScAddress streetNode = ScUtils.INSTANCE
+                .createNodeWithContent(streetContent);
+        ScUtils.INSTANCE.createRelation(addressNode, streetNode,
+                ScChildRelations.STREET);
 
         ScString houseNumberContent = ScStrings.wrap(element.getHouseNumber());
-        ScAddress houseNumberNode = ScUtils.INSTANCE.createNodeWithContent(houseNumberContent);
-        ScUtils.INSTANCE.createRelation(addressNode, houseNumberNode, ScChildRelations.HOUSE_NUMBER);
+        ScAddress houseNumberNode = ScUtils.INSTANCE
+                .createNodeWithContent(houseNumberContent);
+        ScUtils.INSTANCE.createRelation(addressNode, houseNumberNode,
+                ScChildRelations.HOUSE_NUMBER);
     }
 
     @Override
     protected Address readFields(ScAddress addressElement) throws DAOException {
-        ScAddress countryAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.COUNTRY);
+
+        ScAddress countryAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.COUNTRY);
         String countryContent = ScUtils.INSTANCE.findElementContent(countryAdr);
 
-        ScAddress cityAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.CITY);
+        ScAddress cityAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.CITY);
         String cityContent = ScUtils.INSTANCE.findElementContent(cityAdr);
 
-        ScAddress streetAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.STREET);
+        ScAddress streetAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.STREET);
         String streetContent = ScUtils.INSTANCE.findElementContent(streetAdr);
 
-        ScAddress houseNumberAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.HOUSE_NUMBER);
-        String houseNumberContent = ScUtils.INSTANCE.findElementContent(houseNumberAdr);
+        ScAddress houseNumberAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.HOUSE_NUMBER);
+        String houseNumberContent = ScUtils.INSTANCE
+                .findElementContent(houseNumberAdr);
 
-        return new Address(countryContent, cityContent, streetContent, houseNumberContent);
+        return new Address(countryContent, cityContent, streetContent,
+                houseNumberContent);
     }
+
+    @Override
+    public List<Address> readAll() throws DAOException {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

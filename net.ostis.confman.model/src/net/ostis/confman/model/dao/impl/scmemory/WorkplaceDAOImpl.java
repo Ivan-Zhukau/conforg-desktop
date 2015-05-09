@@ -1,9 +1,15 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
+import java.util.List;
+
+import by.ostis.common.sctpclient.model.ScAddress;
+import by.ostis.common.sctpclient.model.ScString;
+import net.ostis.confman.model.dao.WorkplaceDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.WorkplaceInformation;
 
-public class WorkplaceDAOImpl extends BaseDAOImpl<WorkplaceInformation> implements WorkplaceDAO {
+public class WorkplaceDAOImpl extends BaseDAOImpl<WorkplaceInformation>
+        implements WorkplaceDAO {
 
     private enum ScChildRelations implements ScIdentifiable {
 
@@ -13,37 +19,59 @@ public class WorkplaceDAOImpl extends BaseDAOImpl<WorkplaceInformation> implemen
         private String systemId;
 
         ScChildRelations(String systemId) {
+
             this.systemId = systemId;
         }
 
         public String getSystemId() {
+
             return systemId;
         }
     }
 
     public WorkplaceDAOImpl() {
+
         super(ScSpaces.WORKPLACE);
     }
 
-    protected void saveFields(Workplace element, ScAddress addressNode) throws DAOException {
+    protected void saveFields(WorkplaceInformation element,
+            ScAddress addressNode) throws DAOException {
+
         ScString positionContent = ScStrings.wrap(element.getPosition());
-        ScAddress positionNode = ScUtils.INSTANCE.createNodeWithContent(positionContent);
-        ScUtils.INSTANCE.createRelation(addressNode, positionNode, ScChildRelations.POSITION);
+        ScAddress positionNode = ScUtils.INSTANCE
+                .createNodeWithContent(positionContent);
+        ScUtils.INSTANCE.createRelation(addressNode, positionNode,
+                ScChildRelations.POSITION);
 
         ScString workplaceContent = ScStrings.wrap(element.getWorkplace());
-        ScAddress workplaceNode = ScUtils.INSTANCE.createNodeWithContent(workplaceContent);
-        ScUtils.INSTANCE.createRelation(addressNode, workplaceNode, ScChildRelations.WORKPLACE);
+        ScAddress workplaceNode = ScUtils.INSTANCE
+                .createNodeWithContent(workplaceContent);
+        ScUtils.INSTANCE.createRelation(addressNode, workplaceNode,
+                ScChildRelations.WORKPLACE);
     }
 
-    protected Workplace readFields(ScAddress addressElement) throws DAOException {
-        ScAddress workplaceAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.WORKPLACE);
-        String workplaceContent = ScUtils.INSTANCE.findElementContent(workplaceAdr);
+    protected WorkplaceInformation readFields(ScAddress addressElement)
+            throws DAOException {
 
-        ScAddress positionAdr = ScUtils.INSTANCE.findUniqueElementByParentAndRelation(addressElement,
-                ScChildRelations.POSITION);
-        String positionContent = ScUtils.INSTANCE.findElementContent(positionAdr);
+        ScAddress workplaceAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.WORKPLACE);
+        String workplaceContent = ScUtils.INSTANCE
+                .findElementContent(workplaceAdr);
 
-        return new Workplace(workplaceContent, positionContent);
+        ScAddress positionAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(addressElement,
+                        ScChildRelations.POSITION);
+        String positionContent = ScUtils.INSTANCE
+                .findElementContent(positionAdr);
+
+        return new WorkplaceInformation(workplaceContent, positionContent);
+    }
+
+    @Override
+    public List<WorkplaceInformation> readAll() throws DAOException {
+
+        // TODO Auto-generated method stub
+        return null;
     }
 }
