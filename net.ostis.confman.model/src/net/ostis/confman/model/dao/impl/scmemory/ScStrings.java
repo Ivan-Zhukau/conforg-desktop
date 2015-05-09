@@ -1,11 +1,13 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
 import by.ostis.common.sctpclient.model.ScString;
+
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
+import java.util.Date;
 import java.util.UUID;
 
 final class ScStrings {
@@ -45,6 +47,20 @@ final class ScStrings {
         return result;
     }
 
+    public static ScString wrap(Date date) {
+
+        ScString result;
+        if (date != null) {
+            DateTime dateTime = new DateTime(date);
+            DateTimeFormatter formatter = ISODateTimeFormat.basicDateTime();
+            String stringDate = formatter.print(dateTime);
+            result = new ScString(stringDate);
+        } else {
+            result = new ScString(StringUtils.EMPTY);
+        }
+        return result;
+    }
+
     public static ScString wrap(Integer value) {
 
         return value == null ? new ScString(StringUtils.EMPTY) : new ScString(
@@ -67,6 +83,12 @@ final class ScStrings {
             result = null;
         }
         return result;
+    }
+
+    public static Date unwrapToDate(String scString) {
+
+        DateTime result = unwrapToDateTime(scString);
+        return result != null ? result.toDate() : null;
     }
 
     public static Integer unwrapToInteger(String scString) {

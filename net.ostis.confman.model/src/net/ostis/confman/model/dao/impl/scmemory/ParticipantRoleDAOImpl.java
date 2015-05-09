@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.ParticipantRoleDAO;
@@ -34,13 +32,6 @@ class ParticipantRoleDAOImpl extends BaseDAOImpl<ParticipantRole> implements Par
     public ParticipantRoleDAOImpl() {
 
         super(ScSpaces.PARTICIPANT_ROLE);
-    }
-
-    @Override
-    public List<ParticipantRole> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override

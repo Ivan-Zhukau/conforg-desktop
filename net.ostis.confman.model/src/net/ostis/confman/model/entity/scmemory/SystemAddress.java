@@ -39,4 +39,11 @@ public class SystemAddress {
         return systemId;
     }
 
+    @Override
+    public String toString() {
+
+        String scAdr = scAddress != null ? scAddress.getBytes().toString() : "not loaded";
+        return "SystemAddress: [ScAddress: " + scAdr + ", UUID: " + systemId + "]";
+    }
+
 }

@@ -249,13 +249,54 @@ enum ScUtils {
             List<ScIterator> iterators = result.getAnswer();
             List<ScAddress> spaceElements = new ArrayList<>(iterators.size());
             for (ScIterator iterator : iterators) {
-                ScAddress address = (ScAddress) iterator
-                        .getElement(Constants.ITERATOR_3_3RD);
-                spaceElements.add(address);
+                ScParameter element = iterator.getElement(Constants.ITERATOR_3_3RD);
+                if (element instanceof ScAddress) {
+                    ScAddress address = (ScAddress) iterator
+                            .getElement(Constants.ITERATOR_3_3RD);
+                    spaceElements.add(address);
+                } else {
+                    throw new DAOException("returned parameter is not an instance of sc address, but: "
+                                + element.getClass());
+                }
             }
             return spaceElements;
         } catch (SctpClientException e) {
             throw new DAOException("cannot find element using 3FAA iterator", e);
+        }
+    }
+
+    public List<ScAddress> getElementsLinkedByRelation(ScAddress parentNode, ScAddress relation)
+            throws DAOException {
+
+        try {
+            List<ScParameter> parameters = new ArrayList<ScParameter>(5);
+            parameters.add(parentNode);
+            parameters.add(ScElementType.SC_TYPE_ARC_COMMON);
+            parameters.add(ScElementType.SC_TYPE_NODE);
+            parameters.add(ScElementType.SC_TYPE_ARC_POS);
+            parameters.add(relation);
+            SctpResponse<List<ScIterator>> response = sctpClient
+                    .searchByIterator(ScIteratorType.SCTP_ITERATOR_5F_A_A_A_F,
+                            parameters);
+            checkHeader(response.getHeader());
+            List<ScIterator> results = response.getAnswer();
+            List<ScAddress> elements = new ArrayList<ScAddress>();
+            for (ScIterator iterator : results) {
+                ScParameter element = iterator
+                        .getElement(Constants.ITERATOR_5_3RD);
+                if (element instanceof ScAddress) {
+                    ScAddress elementAdr = (ScAddress) element;
+                    elements.add(elementAdr);
+                } else {
+                    throw new DAOException(
+                            "returned parameter is not an instance of sc address, but: "
+                                    + element.getClass());
+                }
+            }
+            return elements;
+        } catch (SctpClientException e) {
+            throw new DAOException(
+                    "cannot get children from parent :" + parentNode, e);
         }
     }
 }

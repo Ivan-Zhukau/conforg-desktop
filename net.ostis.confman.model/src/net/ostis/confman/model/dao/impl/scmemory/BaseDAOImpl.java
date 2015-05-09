@@ -54,7 +54,7 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
         }
         ScAddress elementNode = systemAddress.getScAddress();
         if (elementNode == null) {
-                elementNode = ScUtils.INSTANCE.findElement(systemAddress);
+            elementNode = ScUtils.INSTANCE.findElement(systemAddress);
         }
         boolean convenientType = ScUtils.INSTANCE.belongsToSpace(elementNode,
                 space);
@@ -83,6 +83,27 @@ abstract class BaseDAOImpl<Type extends Identifiable> implements BaseDAO<Type> {
             spaceElements.add(spaceElement);
         }
         return spaceElements;
+    }
+
+    protected SystemAddress loadLinkedElementSysAdr(ScAddress parentNode,
+            ScIdentifiable relationSysId) throws DAOException {
+
+        ScAddress contactsAdr = ScUtils.INSTANCE
+                .findUniqueElementByParentAndRelation(parentNode, relationSysId);
+        return new SystemAddress(contactsAdr);
+    }
+    
+    protected List<SystemAddress> loadLinkedElementsByRel(ScAddress parentNode,
+            ScIdentifiable relationSysId) throws DAOException {
+        String systemId = relationSysId.getSystemId();
+        ScAddress relAdr = ScUtils.INSTANCE.findElement(systemId);
+        List<ScAddress> elementAdrs = ScUtils.INSTANCE.getElementsLinkedByRelation(parentNode, relAdr);
+        List<SystemAddress> elementSysAdrs = new ArrayList<SystemAddress>(elementAdrs.size());
+        for (ScAddress scAddress : elementAdrs) {
+            SystemAddress systemAddress = new SystemAddress(scAddress);
+            elementSysAdrs.add(systemAddress);
+        }
+        return elementSysAdrs;
     }
 
 }

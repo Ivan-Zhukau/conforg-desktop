@@ -1,12 +1,11 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.ParticipantArrivalDAO;
 import net.ostis.confman.model.dao.exception.DAOException;
 import net.ostis.confman.model.entity.scmemory.ParticipantArrival;
+import net.ostis.confman.model.entity.scmemory.SystemAddress;
 
 
 public class ParticipantArrivalDAOImpl extends BaseDAOImpl<ParticipantArrival> implements ParticipantArrivalDAO {
@@ -34,13 +33,6 @@ public class ParticipantArrivalDAOImpl extends BaseDAOImpl<ParticipantArrival> i
     public ParticipantArrivalDAOImpl() {
 
         super(ScSpaces.PARTICIPANT_ARRIVAL);
-    }
-
-    @Override
-    public List<ParticipantArrival> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -92,7 +84,7 @@ public class ParticipantArrivalDAOImpl extends BaseDAOImpl<ParticipantArrival> i
         ScAddress residencePlaceAdr = ScUtils.INSTANCE
                 .findUniqueElementByParentAndRelation(elementNode,
                         ScChildRelations.RESIDENCE_PLACE);
-        //TODO do something with UUID for address
+        SystemAddress residencePlaceSysArd = new SystemAddress(residencePlaceAdr);
 
         ScAddress needHostelReservationAdr = ScUtils.INSTANCE
                 .findUniqueElementByParentAndRelation(elementNode,
@@ -101,8 +93,8 @@ public class ParticipantArrivalDAOImpl extends BaseDAOImpl<ParticipantArrival> i
                 .unwrapToBoolean(ScUtils.INSTANCE
                         .findElementContent(needHostelReservationAdr));
         
-        //TODO change null to Address UUID 
-        return new ParticipantArrival(housingContent, meetingContent, null, needHostelReservationContent);
+        return new ParticipantArrival(housingContent, meetingContent,
+                residencePlaceSysArd, needHostelReservationContent);
     }
 
 }

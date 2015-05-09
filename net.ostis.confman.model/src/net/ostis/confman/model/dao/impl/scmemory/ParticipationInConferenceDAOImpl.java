@@ -1,7 +1,5 @@
 package net.ostis.confman.model.dao.impl.scmemory;
 
-import java.util.List;
-
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 import net.ostis.confman.model.dao.ParticipationInConferenceDAO;
@@ -34,13 +32,6 @@ public class ParticipationInConferenceDAOImpl extends BaseDAOImpl<ParticipationI
     public ParticipationInConferenceDAOImpl(ScSpaces space) {
 
         super(ScSpaces.PARTICIPATION_IN_CONFERENCE);
-    }
-
-    @Override
-    public List<ParticipationInConference> readAll() throws DAOException {
-
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
