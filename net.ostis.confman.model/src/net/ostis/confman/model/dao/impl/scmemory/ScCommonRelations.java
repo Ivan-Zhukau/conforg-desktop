@@ -7,7 +7,11 @@ enum ScCommonRelations implements ScIdentifiable {
     CONFERENCE("conforg_conference*"),
     REPORT("conforg_report*"),
     PARTICIPANT("conforg_participant*"),
-    WORKPLACE("conforg_workplace*");
+    WORKPLACE("conforg_workplace*"),
+    PARTICIPANT_ARRIVAL("conforg_participant_arrival*"), 
+    PARTICIPANT_ROLE("conforg_participant_role*"), 
+    PARTICIPATION_IN_CONFERENCE("conforg_participation_in_conference*"),
+    PERSON("conforg_person*");
 
     private String systemId;
 

@@ -84,12 +84,12 @@ public class Participant extends BaseEntity {
         this.personId = personId;
     }
 
-    public SystemAddress getSystemAddress() {
+    public SystemAddress getParticipationInConference() {
 
         return this.participationInConference;
     }
 
-    public void setSystemAddress(final SystemAddress participationInConference) {
+    public void setParticipationInConference(final SystemAddress participationInConference) {
 
         this.participationInConference = participationInConference;
     }

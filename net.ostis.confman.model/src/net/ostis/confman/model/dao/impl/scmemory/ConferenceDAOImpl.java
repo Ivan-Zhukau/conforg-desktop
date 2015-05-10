@@ -10,9 +10,7 @@ import net.ostis.confman.model.entity.scmemory.SystemAddress;
 import by.ostis.common.sctpclient.model.ScAddress;
 import by.ostis.common.sctpclient.model.ScString;
 
-/* (non-Javadoc)
- * ConferenceDAO 
- */
+
 public class ConferenceDAOImpl extends BaseDAOImpl<Conference> implements
         ConferenceDAO {
 
