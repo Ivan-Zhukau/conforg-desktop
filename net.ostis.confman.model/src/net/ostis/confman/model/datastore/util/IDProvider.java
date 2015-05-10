@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
@@ -27,7 +27,7 @@ public class IDProvider {
 
     public void init(final FullModel model) {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         formPersons(model.getPersons(), storageProvider.getPersons());
         formParticipants(model.getParticipants(),
                 storageProvider.getParticipants());

@@ -1,6 +1,6 @@
 package net.ostis.confman.model.datastore.local.convert;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.model.datastore.util.IDProvider;
 import net.ostis.confman.model.entity.xml.Conferences;
 import net.ostis.confman.model.entity.xml.Participants;
@@ -44,7 +44,7 @@ public class EntityConverter {
         this.sectionSettings = SectionSettingsConverter.convert(model,
                 idProvider);
         this.workspace = WorkspaceConverter.convert(model, idProvider);
-        StorageProvider.getInstance().update(this.persons, this.participants,
+        XmlStorageProvider.getInstance().update(this.persons, this.participants,
                 this.conferences, this.sections, this.reports,
                 this.sectionSettings, this.workspace);
     }

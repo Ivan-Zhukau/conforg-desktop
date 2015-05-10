@@ -2,7 +2,7 @@ package net.ostis.confman.services;
 
 import java.util.List;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.common.model.FullModel;
 import net.ostis.confman.services.common.model.Participant;
@@ -45,7 +45,7 @@ class ParticipantServiceImpl implements ParticipantService {
     @Override
     public void fireData() {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         storageProvider.persist(this.model);
     }
 

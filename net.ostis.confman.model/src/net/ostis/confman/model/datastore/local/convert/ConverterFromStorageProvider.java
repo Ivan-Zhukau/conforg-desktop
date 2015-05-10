@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.model.entity.xml.AcademicInformation;
 import net.ostis.confman.model.entity.xml.Address;
 import net.ostis.confman.model.entity.xml.Conference;
@@ -41,7 +41,7 @@ public class ConverterFromStorageProvider {
             return model;
         }
         model = new FullModel();
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         final List<Person> persons = storageProvider.getPersons();
         final Map<Long, net.ostis.confman.services.common.model.Person> personsMap = new HashMap<>();
         final List<Participant> participants = storageProvider

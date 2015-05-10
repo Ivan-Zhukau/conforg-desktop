@@ -36,11 +36,11 @@ import net.ostis.confman.services.common.model.FullModel;
 
 import org.apache.log4j.Logger;
 
-public class StorageProvider {
+public class XmlStorageProvider {
 
-    public static final Logger     LOGGER = Logger.getLogger(StorageProvider.class);
+    public static final Logger     LOGGER = Logger.getLogger(XmlStorageProvider.class);
 
-    private static StorageProvider INSTANCE;
+    private static XmlStorageProvider INSTANCE;
 
     private Persons                persons;
 
@@ -56,15 +56,15 @@ public class StorageProvider {
 
     private Workspace              workspace;
 
-    private StorageProvider() {
+    private XmlStorageProvider() {
 
         super();
     }
 
-    public static StorageProvider getInstance() {
+    public static XmlStorageProvider getInstance() {
 
         if (INSTANCE == null) {
-            INSTANCE = new StorageProvider();
+            INSTANCE = new XmlStorageProvider();
             INSTANCE.loadOnStartup();
         }
         return INSTANCE;

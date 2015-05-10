@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.model.datastore.local.convert.ConverterFromStorageProvider;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.ConferenceViewState;
@@ -103,7 +103,7 @@ class ConferenceServiceImpl implements ConferenceService {
     @Override
     public void fireData() {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         storageProvider.persist(this.model);
     }
 

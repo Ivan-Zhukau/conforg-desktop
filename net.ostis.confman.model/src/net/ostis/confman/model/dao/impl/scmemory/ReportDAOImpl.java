@@ -87,13 +87,7 @@ public class ReportDAOImpl extends BaseDAOImpl<Report> implements ReportDAO {
                 .createNodeWithContent(acceptedContent);
         ScUtils.INSTANCE.createRelation(parentNode, acceptedNode,
                 ScChildRelations.ACCEPTED);
-        
-        ScString canceledContent = ScStrings.wrap(element.getCanceled());
-        ScAddress canceledNode = ScUtils.INSTANCE
-                .createNodeWithContent(canceledContent);
-        ScUtils.INSTANCE.createRelation(parentNode, canceledNode,
-                ScChildRelations.CANCELED);
-        
+
         ScString participationInContestContent = ScStrings.wrap(element.getParticipationInContest());
         ScAddress participationInContestNode = ScUtils.INSTANCE
                 .createNodeWithContent(participationInContestContent);
@@ -107,8 +101,6 @@ public class ReportDAOImpl extends BaseDAOImpl<Report> implements ReportDAO {
                 ScChildRelations.PLENARY_REPORT);
         
     }
-
-    private Boolean    plenaryReport;
 
     @Override
     protected Report readFields(ScAddress elementNode) throws DAOException {
@@ -145,13 +137,6 @@ public class ReportDAOImpl extends BaseDAOImpl<Report> implements ReportDAO {
                 .unwrapToBoolean(ScUtils.INSTANCE
                         .findElementContent(acceptedAdr));
         
-        ScAddress canceledAdr = ScUtils.INSTANCE
-                .findUniqueElementByParentAndRelation(elementNode,
-                        ScChildRelations.CANCELED);
-        Boolean canceledContent = ScStrings
-                .unwrapToBoolean(ScUtils.INSTANCE
-                        .findElementContent(canceledAdr));
-        
         ScAddress plenaryReportAdr = ScUtils.INSTANCE
                 .findUniqueElementByParentAndRelation(elementNode,
                         ScChildRelations.PLENARY_REPORT);
@@ -167,7 +152,7 @@ public class ReportDAOImpl extends BaseDAOImpl<Report> implements ReportDAO {
                         .findElementContent(participationInContestAdr));
         
         return new Report(titleContent, sectionSysAdr, participantSysAdrs, reporterSysAdr, youngScientistReportContent, 
-                acceptedContent, canceledContent, participationInContestContent, plenaryReportContent, numberOfPagesContent);
+                acceptedContent, participationInContestContent, plenaryReportContent, numberOfPagesContent);
     }
 
 }

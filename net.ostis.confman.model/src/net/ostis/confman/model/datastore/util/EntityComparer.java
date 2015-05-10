@@ -1,6 +1,6 @@
 package net.ostis.confman.model.datastore.util;
 
-import net.ostis.confman.model.datastore.StorageProvider;
+import net.ostis.confman.model.datastore.XmlStorageProvider;
 import net.ostis.confman.services.common.model.Conference;
 import net.ostis.confman.services.common.model.Participant;
 import net.ostis.confman.services.common.model.Person;
@@ -32,7 +32,7 @@ public class EntityComparer {
     public boolean isSameParticipants(final Participant participant,
             final net.ostis.confman.model.entity.xml.Participant storedParticipant) {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         if (participant.getConference() != null
                 && participant.getPerson() != null
                 && storedParticipant.getConferenceId() != null
@@ -50,7 +50,7 @@ public class EntityComparer {
     public boolean isSameReports(final Report report,
             final net.ostis.confman.model.entity.xml.Report storedReport) {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         if (report.getMainAuthor() != null && report.getTitle() != null
                 && storedReport.getReporter() != null
                 && storedReport.getTitle() != null) {
@@ -64,7 +64,7 @@ public class EntityComparer {
     public boolean isSameSections(final Section section,
             final net.ostis.confman.model.entity.xml.Section storedSection) {
 
-        final StorageProvider storageProvider = StorageProvider.getInstance();
+        final XmlStorageProvider storageProvider = XmlStorageProvider.getInstance();
         if (section.getConference() != null && section.getTitle() != null
                 && storedSection.getConferenceId() != null
                 && storedSection.getTitle() != null) {

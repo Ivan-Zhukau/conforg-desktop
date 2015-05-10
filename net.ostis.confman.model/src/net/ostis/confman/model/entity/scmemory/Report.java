@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Report extends BaseEntity {
 
-    private String     title;
+    private String              title;
 
     private SystemAddress       sectionId;
 
@@ -12,27 +12,26 @@ public class Report extends BaseEntity {
 
     private SystemAddress       reporter;
 
-    private Boolean    youngScientistReport;
+    private Boolean             youngScientistReport;
 
-    private Boolean    accepted;
+    private Boolean             accepted;
 
-    private Boolean    canceled;
+    private Boolean             participationInContest;
 
-    private Boolean    participationInContest;
+    private Boolean             plenaryReport;
 
-    private Boolean    plenaryReport;
-
-    private String     numberOfPages;
+    private String              numberOfPages;
 
     public Report() {
 
         super();
     }
 
-    public Report(String title, SystemAddress sectionId, List<SystemAddress> participants,
-            SystemAddress reporter, Boolean youngScientistReport, Boolean accepted,
-            Boolean canceled, Boolean participationInContest,
-            Boolean plenaryReport, String numberOfPages) {
+    public Report(String title, SystemAddress sectionId,
+            List<SystemAddress> participants, SystemAddress reporter,
+            Boolean youngScientistReport, Boolean accepted,
+            Boolean participationInContest, Boolean plenaryReport,
+            String numberOfPages) {
 
         super();
         this.title = title;
@@ -41,12 +40,11 @@ public class Report extends BaseEntity {
         this.reporter = reporter;
         this.youngScientistReport = youngScientistReport;
         this.accepted = accepted;
-        this.canceled = canceled;
         this.participationInContest = participationInContest;
         this.plenaryReport = plenaryReport;
         this.numberOfPages = numberOfPages;
     }
-    
+
     public String getTitle() {
 
         return this.title;
@@ -107,33 +105,23 @@ public class Report extends BaseEntity {
         this.accepted = accepted;
     }
 
-    public Boolean getCanceled() {
-
-        return this.canceled;
-    }
-
-    public void setCanceled(final Boolean canceled) {
-
-        this.canceled = canceled;
-    }
-
     public Boolean getParticipationInContest() {
-    
+
         return participationInContest;
     }
 
     public void setParticipationInContest(Boolean participationInContest) {
-    
+
         this.participationInContest = participationInContest;
     }
 
     public Boolean getPlenaryReport() {
-    
+
         return plenaryReport;
     }
 
     public void setPlenaryReport(Boolean plenaryReport) {
-    
+
         this.plenaryReport = plenaryReport;
     }
 
