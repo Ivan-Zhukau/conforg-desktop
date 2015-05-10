@@ -1,7 +1,7 @@
 package net.ostis.confman.model.entity.scmemory;
 
 
-public class SectionSettings {
+public class SectionSettings extends BaseEntity {
 
     private SystemAddress sectionId;
 
